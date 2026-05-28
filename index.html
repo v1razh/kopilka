@@ -1,0 +1,3141 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-title" content="ПК Копилка" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  <title>ПК Копилка</title>
+  <style>
+    :root {
+      --bg: #07101d;
+      --card: rgba(16, 27, 45, .46);
+      --field: rgba(6, 16, 28, .54);
+      --glass-card: rgba(16, 27, 45, .42);
+      --glass-card-soft: rgba(255,255,255,.045);
+      --accent: #5b8cff;
+      --accent2: #7c3aed;
+      --text: #f5f7fb;
+      --muted: #9aa8bf;
+      --green: #4ade80;
+      --red: #fb7185;
+      --border: rgba(255,255,255,.09);
+      --safe-top: env(safe-area-inset-top, 0px);
+      --safe-bottom: env(safe-area-inset-bottom, 0px);
+    }
+
+    * { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+
+    html { background: var(--bg); }
+
+    body {
+      margin: 0;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif;
+      color: var(--text);
+      min-height: 100vh;
+      padding:
+        calc(var(--safe-top) + 26px)
+        18px
+        calc(var(--safe-bottom) + 150px);
+      background:
+        radial-gradient(circle at top left, rgba(91,140,255,.34), transparent 35%),
+        radial-gradient(circle at top right, rgba(124,58,237,.22), transparent 30%),
+        var(--bg);
+      overflow-x: hidden;
+    }
+
+    .app { max-width: 520px; margin: 0 auto; }
+
+    .hero {
+      background: linear-gradient(135deg, #2563eb, #4f46e5 55%, #111827);
+      border: 1px solid rgba(255,255,255,.12);
+      border-radius: 28px;
+      padding: 22px;
+      box-shadow: 0 18px 50px rgba(0,0,0,.35);
+      margin-bottom: 14px;
+      overflow: hidden;
+    }
+
+    .top { display: flex; justify-content: space-between; align-items: flex-start; gap: 12px; }
+
+    .badge {
+      width: 54px;
+      height: 54px;
+      border-radius: 18px;
+      background: rgba(255,255,255,.14);
+      display: grid;
+      place-items: center;
+      font-size: 28px;
+      flex: 0 0 auto;
+    }
+
+    .label { color: rgba(255,255,255,.72); font-size: 14px; margin: 0 0 3px; }
+
+    h1 { margin: 0; font-size: 28px; line-height: 1.05; }
+    h2 { margin: 0 0 16px; font-size: 22px; }
+
+    .big {
+      font-size: 34px;
+      font-weight: 900;
+      margin: 18px 0 6px;
+      letter-spacing: -1px;
+    }
+
+    .row { display: flex; justify-content: space-between; gap: 10px; align-items: center; }
+
+    .bar {
+      width: 100%;
+      height: 12px;
+      background: rgba(255,255,255,.18);
+      border-radius: 999px;
+      overflow: hidden;
+      margin-top: 10px;
+    }
+
+    .fill {
+      height: 100%;
+      width: 0%;
+      background: #fff;
+      border-radius: 999px;
+      transition: width .25s ease;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 10px;
+      margin-bottom: 14px;
+    }
+
+    .mini, .card {
+      background:
+        linear-gradient(180deg, rgba(255,255,255,.075), rgba(255,255,255,.025)),
+        var(--glass-card);
+      border: 1px solid rgba(255,255,255,.13);
+      box-shadow:
+        0 16px 42px rgba(0,0,0,.24),
+        inset 0 1px 0 rgba(255,255,255,.11);
+      backdrop-filter: blur(24px) saturate(1.35);
+      -webkit-backdrop-filter: blur(24px) saturate(1.35);
+    }
+
+    .mini {
+      padding: 13px;
+      border-radius: 22px;
+      min-width: 0;
+    }
+
+    .mini p { margin: 0; color: var(--muted); font-size: 12px; }
+
+    .mini strong {
+      display: block;
+      margin-top: 5px;
+      font-size: 15px;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .card {
+      padding: 18px;
+      margin-bottom: 14px;
+      border-radius: 26px;
+      overflow: hidden;
+    }
+
+    input, select {
+      width: 100%;
+      border: 1px solid var(--border);
+      background:
+        linear-gradient(180deg, rgba(255,255,255,.035), rgba(255,255,255,.012)),
+        var(--field);
+      color: var(--text);
+      border-radius: 16px;
+      padding: 0 16px;
+      min-height: 58px;
+      height: 58px;
+      font-size: 16px;
+      outline: none;
+      max-width: 100%;
+    }
+
+    select {
+      appearance: none;
+      -webkit-appearance: none;
+      background-image:
+        linear-gradient(45deg, transparent 50%, #9aa8bf 50%),
+        linear-gradient(135deg, #9aa8bf 50%, transparent 50%);
+      background-position:
+        calc(100% - 22px) 25px,
+        calc(100% - 15px) 25px;
+      background-size: 7px 7px, 7px 7px;
+      background-repeat: no-repeat;
+      padding-right: 42px;
+    }
+
+    input:focus, select:focus { border-color: rgba(91,140,255,.8); }
+
+    input[type="date"], input[type="month"] {
+      -webkit-appearance: none;
+      appearance: none;
+      text-align: left;
+      display: block;
+      line-height: normal;
+    }
+
+    input[type="date"]::-webkit-date-and-time-value,
+    input[type="month"]::-webkit-date-and-time-value {
+      text-align: left;
+      min-height: 58px;
+      line-height: 58px;
+      margin: 0;
+    }
+
+    input[type="date"]::-webkit-calendar-picker-indicator,
+    input[type="month"]::-webkit-calendar-picker-indicator {
+      opacity: .85;
+      filter: invert(1);
+      padding: 8px;
+    }
+
+    .form-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+      margin-bottom: 10px;
+    }
+
+    .field { margin-bottom: 13px; min-width: 0; }
+
+    .field label {
+      display: block;
+      color: var(--muted);
+      font-size: 13px;
+      margin: 0 0 6px 2px;
+    }
+
+    button.primary {
+      width: 100%;
+      border: 0;
+      border-radius: 17px;
+      padding: 15px;
+      min-height: 56px;
+      background: linear-gradient(135deg, var(--accent), var(--accent2));
+      color: white;
+      font-weight: 900;
+      font-size: 16px;
+      margin-top: 4px;
+    }
+
+    .tx {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 10px;
+      background: rgba(255,255,255,.035);
+      border: 1px solid var(--border);
+      border-radius: 18px;
+      padding: 12px;
+      margin-bottom: 9px;
+    }
+
+    .tx-title { font-weight: 850; margin: 0; }
+
+    .tx-sub {
+      color: var(--muted);
+      font-size: 12px;
+      margin: 3px 0 0;
+      line-height: 1.35;
+    }
+
+    .amount { font-weight: 900; white-space: nowrap; text-align: right; }
+
+    .expense { color: var(--red); }
+    .income, .saving { color: var(--green); }
+
+    .delete {
+      border: 0;
+      background: rgba(255,255,255,.07);
+      color: var(--muted);
+      border-radius: 12px;
+      width: 36px;
+      height: 36px;
+      font-size: 16px;
+      margin-top: 4px;
+    }
+
+    .hidden { display: none; }
+
+    .hint {
+      color: var(--muted);
+      font-size: 13px;
+      line-height: 1.45;
+      margin: 10px 0 0;
+    }
+
+    .plan-box, .settings-box {
+      background: rgba(255,255,255,.045);
+      border: 1px solid var(--border);
+      border-radius: 18px;
+      padding: 14px;
+      line-height: 1.45;
+      margin-bottom: 12px;
+    }
+
+    .plan-box strong { color: white; }
+
+    .salary-box {
+      background: linear-gradient(135deg, rgba(91,140,255,.18), rgba(124,58,237,.13));
+      border: 1px solid rgba(255,255,255,.11);
+      border-radius: 20px;
+      padding: 14px;
+      margin-bottom: 12px;
+    }
+
+    .salary-box p { margin: 0; color: var(--muted); font-size: 13px; line-height: 1.45; }
+    .salary-box strong { color: white; font-size: 20px; display: block; margin: 5px 0; }
+
+    .cat-row {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 12px;
+      align-items: center;
+      margin-bottom: 10px;
+    }
+
+    .cat-name {
+      color: var(--muted);
+      font-size: 13px;
+      margin-bottom: 5px;
+    }
+
+    .cat-bar {
+      height: 8px;
+      border-radius: 999px;
+      background: rgba(255,255,255,.08);
+      overflow: hidden;
+    }
+
+    .cat-fill {
+      height: 100%;
+      background: linear-gradient(90deg, var(--accent), var(--accent2));
+      border-radius: 999px;
+    }
+
+    .empty {
+      color: var(--muted);
+      text-align: center;
+      padding: 24px 10px;
+      line-height: 1.45;
+    }
+
+    .danger {
+      background: transparent;
+      color: var(--red);
+      border: 1px solid rgba(251,113,133,.35);
+      border-radius: 15px;
+      padding: 12px;
+      width: 100%;
+      font-weight: 800;
+    }
+
+    .switch-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 12px;
+      padding: 14px;
+      border: 1px solid var(--border);
+      border-radius: 18px;
+      background: rgba(255,255,255,.035);
+      margin-bottom: 12px;
+    }
+
+    .switch-row p { margin: 0; font-weight: 800; }
+
+    .switch-row small {
+      display: block;
+      margin-top: 3px;
+      color: var(--muted);
+      line-height: 1.35;
+    }
+
+    .switch {
+      width: 54px;
+      height: 32px;
+      border: 0;
+      border-radius: 999px;
+      background: rgba(255,255,255,.12);
+      padding: 4px;
+      flex: 0 0 auto;
+    }
+
+    .switch::before {
+      content: "";
+      display: block;
+      width: 24px;
+      height: 24px;
+      background: white;
+      border-radius: 50%;
+      transition: transform .2s ease;
+    }
+
+    .switch.on { background: linear-gradient(135deg, var(--accent), var(--accent2)); }
+
+    .switch.on::before { transform: translateX(22px); }
+
+    .nav-shield {
+      position: fixed;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      height: calc(var(--safe-bottom) + 96px);
+      background:
+        linear-gradient(to top, rgba(7,16,29,.72) 0%, rgba(7,16,29,.32) 42%, rgba(7,16,29,0) 100%);
+      z-index: 9;
+      pointer-events: none;
+    }
+
+    .bottom-nav {
+      position: fixed;
+      left: 14px;
+      right: 14px;
+      bottom: calc(var(--safe-bottom) + 10px);
+      max-width: 520px;
+      margin: 0 auto;
+      border-radius: 30px;
+      padding: 8px;
+      display: grid;
+      grid-template-columns: repeat(7, 1fr);
+      gap: 4px;
+      z-index: 10;
+      background:
+        linear-gradient(180deg, rgba(255,255,255,.18), rgba(255,255,255,.055)),
+        rgba(13, 26, 44, .58);
+      border: 1px solid rgba(255,255,255,.22);
+      box-shadow:
+        0 24px 60px rgba(0,0,0,.48),
+        inset 0 1px 0 rgba(255,255,255,.24),
+        inset 0 -1px 0 rgba(255,255,255,.05);
+      backdrop-filter: blur(34px) saturate(1.75);
+      -webkit-backdrop-filter: blur(34px) saturate(1.75);
+      overflow: hidden;
+    }
+
+    .bottom-nav::before {
+      content: "";
+      position: absolute;
+      inset: 1px;
+      border-radius: 29px;
+      background:
+        radial-gradient(circle at 18% 0%, rgba(255,255,255,.14), transparent 34%),
+        radial-gradient(circle at 84% 10%, rgba(91,140,255,.12), transparent 30%);
+      pointer-events: none;
+      opacity: .75;
+    }
+
+    .bottom-nav > * {
+      position: relative;
+      z-index: 1;
+    }
+
+    .nav-btn {
+      border: 0;
+      background: transparent;
+      color: var(--muted);
+      border-radius: 21px;
+      padding: 7px 2px 6px;
+      font-size: 10px;
+      font-weight: 850;
+      letter-spacing: -.15px;
+      min-width: 0;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .nav-btn span {
+      display: grid;
+      place-items: center;
+      width: 30px;
+      height: 30px;
+      margin: 0 auto 2px;
+      border-radius: 15px;
+      font-size: 18px;
+      transition:
+        transform .18s cubic-bezier(.2,.8,.2,1),
+        background .2s ease,
+        box-shadow .2s ease;
+    }
+
+    .nav-btn.active {
+      color: white;
+      background:
+        linear-gradient(180deg, rgba(91,140,255,.38), rgba(124,58,237,.24)),
+        rgba(255,255,255,.08);
+      box-shadow:
+        inset 0 0 0 1px rgba(255,255,255,.16),
+        0 12px 28px rgba(91,140,255,.24);
+    }
+
+    .nav-btn.active span {
+      background:
+        linear-gradient(135deg, rgba(91,140,255,.95), rgba(124,58,237,.92));
+      box-shadow:
+        0 10px 22px rgba(91,140,255,.34),
+        inset 0 1px 0 rgba(255,255,255,.34);
+      transform: translateY(-1px);
+    }
+
+    .nav-btn::after {
+      content: "";
+      position: absolute;
+      left: 50%;
+      bottom: 4px;
+      width: 4px;
+      height: 4px;
+      border-radius: 50%;
+      background: white;
+      opacity: 0;
+      transform: translateX(-50%) scale(.5);
+      transition: opacity .18s ease, transform .18s ease;
+    }
+
+    .nav-btn.active::after {
+      opacity: .75;
+      transform: translateX(-50%) scale(1);
+    }
+
+
+    .analytics-summary {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+      margin-bottom: 14px;
+    }
+
+    .analytics-tile {
+      background: rgba(255,255,255,.045);
+      border: 1px solid var(--border);
+      border-radius: 18px;
+      padding: 14px;
+      min-width: 0;
+    }
+
+    .analytics-tile p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 12px;
+    }
+
+    .analytics-tile strong {
+      display: block;
+      margin-top: 5px;
+      font-size: 18px;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .chart-wrap {
+      height: 220px;
+      display: flex;
+      align-items: flex-end;
+      gap: 10px;
+      padding: 18px 4px 30px;
+      border-radius: 20px;
+      background: rgba(255,255,255,.035);
+      border: 1px solid var(--border);
+      overflow: hidden;
+    }
+
+    .chart-bar {
+      flex: 1;
+      min-width: 0;
+      height: 10%;
+      border-radius: 14px 14px 6px 6px;
+      background: linear-gradient(180deg, var(--accent), var(--accent2));
+      position: relative;
+      transition: height .25s ease;
+    }
+
+    .chart-bar span {
+      position: absolute;
+      left: 50%;
+      bottom: -24px;
+      transform: translateX(-50%);
+      color: var(--muted);
+      font-size: 11px;
+      white-space: nowrap;
+    }
+
+    .insight {
+      background: rgba(255,255,255,.045);
+      border: 1px solid var(--border);
+      border-radius: 18px;
+      padding: 14px;
+      margin-bottom: 10px;
+      line-height: 1.45;
+    }
+
+    .insight b {
+      color: white;
+    }
+
+
+    .pc-build-total {
+      background: linear-gradient(135deg, rgba(91,140,255,.18), rgba(124,58,237,.13));
+      border: 1px solid rgba(255,255,255,.11);
+      border-radius: 20px;
+      padding: 14px;
+      margin-bottom: 12px;
+    }
+
+    .pc-build-total p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 13px;
+    }
+
+    .pc-build-total strong {
+      display: block;
+      margin-top: 5px;
+      font-size: 24px;
+      color: white;
+    }
+
+    .pc-part {
+      background: rgba(255,255,255,.035);
+      border: 1px solid var(--border);
+      border-radius: 18px;
+      padding: 14px;
+      margin-bottom: 10px;
+    }
+
+    .pc-part-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: 10px;
+    }
+
+    .pc-part h3 {
+      margin: 0;
+      font-size: 16px;
+    }
+
+    .pc-part small {
+      display: block;
+      margin-top: 4px;
+      color: var(--muted);
+      line-height: 1.35;
+    }
+
+    .pc-part-price {
+      font-weight: 900;
+      white-space: nowrap;
+      text-align: right;
+    }
+
+    .pc-part-actions {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 8px;
+      margin-top: 12px;
+    }
+
+    .small-btn {
+      border: 1px solid var(--border);
+      background: rgba(255,255,255,.055);
+      color: white;
+      border-radius: 14px;
+      padding: 11px;
+      font-weight: 800;
+    }
+
+    .small-btn.danger-text {
+      color: var(--red);
+      border-color: rgba(251,113,133,.28);
+    }
+
+
+    .chart-card-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: 12px;
+      margin-bottom: 12px;
+    }
+
+    .chart-card-header h2 {
+      margin-bottom: 4px;
+    }
+
+    .chart-pill {
+      padding: 8px 10px;
+      border-radius: 999px;
+      background: rgba(91,140,255,.14);
+      border: 1px solid rgba(91,140,255,.22);
+      color: white;
+      font-size: 12px;
+      font-weight: 800;
+      white-space: nowrap;
+    }
+
+    .chart-legend {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+      margin: 8px 0 14px;
+    }
+
+    .legend-item {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      color: var(--muted);
+      font-size: 12px;
+    }
+
+    .legend-dot {
+      width: 9px;
+      height: 9px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--accent), var(--accent2));
+    }
+
+    .legend-dot.current {
+      background: #4ade80;
+    }
+
+    .legend-dot.goal {
+      background: rgba(255,255,255,.55);
+    }
+
+    .chart-wrap {
+      height: 260px;
+      display: flex;
+      align-items: flex-end;
+      gap: 8px;
+      padding: 22px 10px 36px;
+      border-radius: 22px;
+      background:
+        linear-gradient(to top, rgba(255,255,255,.055) 1px, transparent 1px),
+        rgba(255,255,255,.035);
+      background-size: 100% 25%;
+      border: 1px solid var(--border);
+      overflow: hidden;
+      position: relative;
+    }
+
+    .chart-wrap::before {
+      content: "500k";
+      position: absolute;
+      top: 9px;
+      right: 12px;
+      color: rgba(255,255,255,.48);
+      font-size: 11px;
+      font-weight: 800;
+    }
+
+    .chart-wrap::after {
+      content: "";
+      position: absolute;
+      left: 10px;
+      right: 10px;
+      top: 18px;
+      border-top: 1px dashed rgba(255,255,255,.28);
+    }
+
+    .chart-bar {
+      flex: 1;
+      min-width: 0;
+      height: 10%;
+      border-radius: 16px 16px 7px 7px;
+      background: linear-gradient(180deg, rgba(91,140,255,1), rgba(124,58,237,.92));
+      position: relative;
+      transition: height .25s ease, transform .2s ease;
+      box-shadow: 0 10px 22px rgba(91,140,255,.16);
+      z-index: 2;
+    }
+
+    .chart-bar.current {
+      background: linear-gradient(180deg, #4ade80, #16a34a);
+      box-shadow: 0 10px 24px rgba(74,222,128,.18);
+    }
+
+    .chart-bar:hover {
+      transform: translateY(-3px);
+    }
+
+    .chart-bar span {
+      position: absolute;
+      left: 50%;
+      bottom: -24px;
+      transform: translateX(-50%);
+      color: var(--muted);
+      font-size: 11px;
+      white-space: nowrap;
+    }
+
+    .chart-value {
+      position: absolute;
+      left: 50%;
+      top: -20px;
+      transform: translateX(-50%);
+      color: rgba(255,255,255,.9);
+      font-size: 10px;
+      font-weight: 800;
+      white-space: nowrap;
+    }
+
+    .chart-note {
+      margin-top: 12px;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+    }
+
+    .chart-note-box {
+      background: rgba(255,255,255,.045);
+      border: 1px solid var(--border);
+      border-radius: 18px;
+      padding: 12px;
+    }
+
+    .chart-note-box p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 12px;
+    }
+
+    .chart-note-box strong {
+      display: block;
+      margin-top: 4px;
+      font-size: 16px;
+      color: white;
+    }
+
+
+    .tab-content {
+      animation: iosFadeSlide .28s cubic-bezier(.2,.8,.2,1);
+      transform-origin: center top;
+    }
+
+    @keyframes iosFadeSlide {
+      from {
+        opacity: 0;
+        transform: translateY(14px) scale(.985);
+        filter: blur(3px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+        filter: blur(0);
+      }
+    }
+
+    .card, .hero, .mini, .tx, .pc-part, .insight, .analytics-tile, .chart-note-box {
+      animation: cardPop .34s cubic-bezier(.2,.8,.2,1);
+    }
+
+    @keyframes cardPop {
+      from {
+        opacity: 0;
+        transform: translateY(10px) scale(.985);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+      }
+    }
+
+    button, .nav-btn, .small-btn, .delete, .switch {
+      transition:
+        transform .13s cubic-bezier(.2,.8,.2,1),
+        opacity .13s ease,
+        background .2s ease,
+        box-shadow .2s ease;
+      touch-action: manipulation;
+    }
+
+    button:active,
+    .nav-btn:active,
+    .small-btn:active,
+    .delete:active,
+    .switch:active {
+      transform: scale(.94);
+      opacity: .82;
+    }
+
+    button.primary:active {
+      transform: scale(.985);
+    }
+
+    .bottom-nav {
+      animation: navRise .42s cubic-bezier(.2,.8,.2,1);
+    }
+
+    @keyframes navRise {
+      from {
+        opacity: 0;
+        transform: translateY(22px) scale(.96);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+      }
+    }
+
+    .nav-btn {
+      position: relative;
+      overflow: hidden;
+    }
+
+    .nav-btn.active {
+      box-shadow: inset 0 0 0 1px rgba(255,255,255,.06), 0 8px 22px rgba(91,140,255,.12);
+    }
+
+    .nav-btn.active span {
+      animation: iconBounce .28s cubic-bezier(.2,.8,.2,1);
+    }
+
+    @keyframes iconBounce {
+      0% { transform: translateY(0) scale(1); }
+      45% { transform: translateY(-2px) scale(1.12); }
+      100% { transform: translateY(0) scale(1); }
+    }
+
+    .fill {
+      transition: width .7s cubic-bezier(.2,.8,.2,1);
+    }
+
+    .chart-bar {
+      animation: growBar .55s cubic-bezier(.2,.8,.2,1);
+      transform-origin: bottom;
+    }
+
+    @keyframes growBar {
+      from {
+        transform: scaleY(.25);
+        opacity: .25;
+      }
+      to {
+        transform: scaleY(1);
+        opacity: 1;
+      }
+    }
+
+    .salary-box,
+    .plan-box,
+    .settings-box,
+    .pc-build-total {
+      animation: softGlowIn .36s cubic-bezier(.2,.8,.2,1);
+    }
+
+    @keyframes softGlowIn {
+      from {
+        opacity: 0;
+        transform: translateY(8px);
+        box-shadow: 0 0 0 rgba(91,140,255,0);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        animation-duration: .001ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: .001ms !important;
+        scroll-behavior: auto !important;
+      }
+    }
+
+
+    .premium-chart {
+      position: relative;
+      height: 270px;
+      border-radius: 24px;
+      border: 1px solid rgba(255,255,255,.1);
+      background:
+        radial-gradient(circle at 20% 20%, rgba(91,140,255,.18), transparent 32%),
+        radial-gradient(circle at 80% 10%, rgba(124,58,237,.14), transparent 28%),
+        linear-gradient(180deg, rgba(255,255,255,.055), rgba(255,255,255,.025));
+      overflow: hidden;
+      padding: 12px;
+      box-shadow: inset 0 1px 0 rgba(255,255,255,.06);
+    }
+
+    .premium-chart svg {
+      width: 100%;
+      height: 100%;
+      display: block;
+      overflow: visible;
+    }
+
+    .grid-line {
+      stroke: rgba(255,255,255,.09);
+      stroke-width: 1;
+    }
+
+    .goal-line {
+      stroke: rgba(255,255,255,.34);
+      stroke-width: 1.4;
+      stroke-dasharray: 6 7;
+    }
+
+    .area-fill {
+      fill: url(#premiumArea);
+      opacity: .75;
+    }
+
+    .main-line {
+      fill: none;
+      stroke: url(#premiumStroke);
+      stroke-width: 4;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+      filter: drop-shadow(0 8px 14px rgba(91,140,255,.35));
+      stroke-dasharray: 900;
+      stroke-dashoffset: 900;
+      animation: drawLine 1.1s cubic-bezier(.2,.8,.2,1) forwards;
+    }
+
+    @keyframes drawLine {
+      to { stroke-dashoffset: 0; }
+    }
+
+    .future-line {
+      fill: none;
+      stroke: rgba(255,255,255,.44);
+      stroke-width: 2;
+      stroke-linecap: round;
+      stroke-dasharray: 5 7;
+    }
+
+    .chart-point {
+      fill: #ffffff;
+      stroke: #5b8cff;
+      stroke-width: 3;
+      filter: drop-shadow(0 5px 8px rgba(91,140,255,.32));
+      animation: pointIn .45s cubic-bezier(.2,.8,.2,1) both;
+    }
+
+    @keyframes pointIn {
+      from { opacity: 0; transform: scale(.4); }
+      to { opacity: 1; transform: scale(1); }
+    }
+
+    .current-point {
+      fill: #4ade80;
+      stroke: rgba(255,255,255,.92);
+      stroke-width: 3;
+    }
+
+    .chart-axis-label {
+      fill: rgba(255,255,255,.55);
+      font-size: 11px;
+      font-weight: 700;
+    }
+
+    .chart-money-label {
+      fill: rgba(255,255,255,.82);
+      font-size: 11px;
+      font-weight: 850;
+    }
+
+    .premium-chart-top {
+      position: absolute;
+      left: 16px;
+      top: 14px;
+      right: 16px;
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      pointer-events: none;
+    }
+
+    .premium-chart-top small {
+      color: rgba(255,255,255,.58);
+      display: block;
+      margin-bottom: 2px;
+    }
+
+    .premium-chart-top strong {
+      font-size: 18px;
+    }
+
+    .expense-bars {
+      display: grid;
+      gap: 12px;
+    }
+
+    .expense-bar-row {
+      display: grid;
+      grid-template-columns: 82px 1fr auto;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .expense-bar-name {
+      color: var(--muted);
+      font-size: 12px;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .expense-bar-track {
+      height: 12px;
+      border-radius: 999px;
+      background: rgba(255,255,255,.055);
+      overflow: hidden;
+      position: relative;
+    }
+
+    .expense-bar-fill {
+      height: 100%;
+      border-radius: 999px;
+      background: linear-gradient(90deg, var(--accent), var(--accent2));
+      box-shadow: 0 6px 16px rgba(91,140,255,.18);
+      animation: fillBar .65s cubic-bezier(.2,.8,.2,1) both;
+      transform-origin: left;
+    }
+
+    @keyframes fillBar {
+      from { transform: scaleX(.05); opacity: .35; }
+      to { transform: scaleX(1); opacity: 1; }
+    }
+
+    .expense-bar-value {
+      font-size: 12px;
+      font-weight: 850;
+      white-space: nowrap;
+    }
+
+    .haptic-target {
+      position: relative;
+      overflow: hidden;
+      transform: translateZ(0);
+      will-change: transform;
+    }
+
+    .haptic-target.is-pressing {
+      transform: scale(.965);
+    }
+
+    .card.haptic-target.is-pressing,
+    .mini.haptic-target.is-pressing,
+    .tx.haptic-target.is-pressing,
+    .pc-part.haptic-target.is-pressing {
+      transform: scale(.985);
+    }
+
+    .haptic-target::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(circle at var(--tap-x, 50%) var(--tap-y, 50%), rgba(255,255,255,.22), transparent 34%);
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity .28s ease;
+      z-index: 0;
+    }
+
+    .haptic-target.is-pressing::before {
+      opacity: 1;
+      transition: opacity .06s ease;
+    }
+
+    .haptic-target > * {
+      position: relative;
+      z-index: 1;
+    }
+
+    .haptic-pop {
+      animation: hapticPop .22s cubic-bezier(.2,.8,.2,1);
+    }
+
+    @keyframes hapticPop {
+      0% { transform: scale(1); }
+      45% { transform: scale(.965); }
+      100% { transform: scale(1); }
+    }
+
+    .success-pulse {
+      animation: successPulse .45s cubic-bezier(.2,.8,.2,1);
+    }
+
+    @keyframes successPulse {
+      0% { box-shadow: 0 0 0 0 rgba(74,222,128,.0); }
+      45% { box-shadow: 0 0 0 7px rgba(74,222,128,.12); }
+      100% { box-shadow: 0 0 0 0 rgba(74,222,128,.0); }
+    }
+
+
+    /* Более плавные появления поверх haptic-style версии */
+    .tab-content {
+      animation: smoothScreenIn .48s cubic-bezier(.16, 1, .3, 1);
+      will-change: opacity, transform, filter;
+    }
+
+    @keyframes smoothScreenIn {
+      0% {
+        opacity: 0;
+        transform: translateY(18px) scale(.982);
+        filter: blur(7px);
+      }
+      55% {
+        opacity: .92;
+        filter: blur(2px);
+      }
+      100% {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+        filter: blur(0);
+      }
+    }
+
+    .card,
+    .hero,
+    .mini {
+      animation: smoothCardIn .58s cubic-bezier(.16, 1, .3, 1);
+      will-change: opacity, transform;
+    }
+
+    @keyframes smoothCardIn {
+      0% {
+        opacity: 0;
+        transform: translateY(14px) scale(.986);
+      }
+      100% {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+      }
+    }
+
+    .tx,
+    .pc-part,
+    .insight,
+    .analytics-tile,
+    .chart-note-box,
+    .salary-box,
+    .plan-box,
+    .settings-box,
+    .pc-build-total {
+      animation: smoothItemIn .42s cubic-bezier(.16, 1, .3, 1);
+      will-change: opacity, transform;
+    }
+
+    @keyframes smoothItemIn {
+      0% {
+        opacity: 0;
+        transform: translateY(10px) scale(.99);
+      }
+      100% {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+      }
+    }
+
+    .bottom-nav {
+      animation: smoothNavIn .55s cubic-bezier(.16, 1, .3, 1);
+    }
+
+    @keyframes smoothNavIn {
+      0% {
+        opacity: 0;
+        transform: translateY(26px) scale(.96);
+      }
+      100% {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+      }
+    }
+
+    .chart-bar,
+    .expense-bar-fill,
+    .main-line,
+    .chart-point {
+      animation-timing-function: cubic-bezier(.16, 1, .3, 1);
+    }
+
+
+    .salary-box,
+    .plan-box,
+    .settings-box,
+    .pc-build-total,
+    .pc-part,
+    .tx,
+    .analytics-tile,
+    .chart-note-box,
+    .insight,
+    .premium-chart {
+      background:
+        linear-gradient(180deg, rgba(255,255,255,.065), rgba(255,255,255,.024)),
+        rgba(16,27,45,.34);
+      border-color: rgba(255,255,255,.12);
+      backdrop-filter: blur(20px) saturate(1.28);
+      -webkit-backdrop-filter: blur(20px) saturate(1.28);
+      box-shadow:
+        0 10px 28px rgba(0,0,0,.18),
+        inset 0 1px 0 rgba(255,255,255,.08);
+    }
+
+    input,
+    select {
+      background:
+        linear-gradient(180deg, rgba(255,255,255,.04), rgba(255,255,255,.012)),
+        rgba(6,16,28,.50);
+      border-color: rgba(255,255,255,.11);
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+    }
+
+    .card::after,
+    .mini::after {
+      content: "";
+      position: absolute;
+      left: 16px;
+      right: 16px;
+      top: 0;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,.26), transparent);
+      pointer-events: none;
+    }
+
+    .card,
+    .mini {
+      position: relative;
+    }
+
+    /* iOS Control Center style background blur */
+    body::before {
+      content: "";
+      position: fixed;
+      inset: -80px;
+      z-index: -3;
+      background:
+        radial-gradient(circle at 12% 8%, rgba(91,140,255,.38), transparent 30%),
+        radial-gradient(circle at 86% 4%, rgba(124,58,237,.34), transparent 28%),
+        radial-gradient(circle at 50% 40%, rgba(255,255,255,.05), transparent 42%),
+        radial-gradient(circle at 30% 80%, rgba(59,130,246,.12), transparent 34%);
+      filter: blur(70px) saturate(1.25);
+      transform: scale(1.08);
+      pointer-events: none;
+    }
+
+    body::after {
+      content: "";
+      position: fixed;
+      inset: 0;
+      z-index: -2;
+      backdrop-filter: blur(26px) saturate(1.45);
+      -webkit-backdrop-filter: blur(26px) saturate(1.45);
+      background:
+        linear-gradient(180deg,
+          rgba(7,16,29,.34),
+          rgba(7,16,29,.18));
+      pointer-events: none;
+    }
+
+    .app {
+      position: relative;
+      z-index: 1;
+    }
+
+    .hero,
+    .card,
+    .mini,
+    .bottom-nav,
+    .premium-chart,
+    .salary-box,
+    .plan-box,
+    .settings-box,
+    .pc-build-total,
+    .pc-part,
+    .tx,
+    .analytics-tile,
+    .chart-note-box,
+    .insight {
+      backdrop-filter: blur(30px) saturate(1.55);
+      -webkit-backdrop-filter: blur(30px) saturate(1.55);
+    }
+
+    .hero {
+      background:
+        linear-gradient(135deg,
+          rgba(37,99,235,.74),
+          rgba(79,70,229,.66) 55%,
+          rgba(17,24,39,.58));
+      border-color: rgba(255,255,255,.16);
+      box-shadow:
+        0 20px 50px rgba(0,0,0,.28),
+        inset 0 1px 0 rgba(255,255,255,.14);
+    }
+
+    .bottom-nav {
+      background:
+        linear-gradient(180deg,
+          rgba(255,255,255,.18),
+          rgba(255,255,255,.045)),
+        rgba(13,26,44,.42);
+      backdrop-filter: blur(42px) saturate(1.8);
+      -webkit-backdrop-filter: blur(42px) saturate(1.8);
+    }
+
+
+    .advisor-card {
+      background:
+        linear-gradient(135deg, rgba(91,140,255,.16), rgba(124,58,237,.11)),
+        rgba(16,27,45,.34);
+      border: 1px solid rgba(255,255,255,.13);
+      border-radius: 22px;
+      padding: 14px;
+      margin-bottom: 12px;
+      backdrop-filter: blur(26px) saturate(1.45);
+      -webkit-backdrop-filter: blur(26px) saturate(1.45);
+    }
+
+    .advisor-card h3 {
+      margin: 0 0 8px;
+      font-size: 16px;
+      display: flex;
+      align-items: center;
+      gap: 7px;
+    }
+
+    .advisor-card p {
+      margin: 0;
+      color: rgba(245,247,251,.88);
+      line-height: 1.45;
+      font-size: 14px;
+    }
+
+    .advisor-tag {
+      display: inline-block;
+      margin-top: 10px;
+      padding: 7px 10px;
+      border-radius: 999px;
+      background: rgba(255,255,255,.08);
+      color: var(--muted);
+      font-size: 12px;
+      font-weight: 800;
+    }
+
+    .advisor-list {
+      display: grid;
+      gap: 10px;
+    }
+
+    .fab {
+      position: fixed;
+      right: 24px;
+      bottom: calc(var(--safe-bottom) + 104px);
+      width: 62px;
+      height: 62px;
+      border: 0;
+      border-radius: 24px;
+      z-index: 11;
+      color: white;
+      font-size: 34px;
+      font-weight: 700;
+      line-height: 1;
+      background:
+        linear-gradient(135deg, rgba(91,140,255,.98), rgba(124,58,237,.95));
+      box-shadow:
+        0 20px 42px rgba(91,140,255,.34),
+        inset 0 1px 0 rgba(255,255,255,.28);
+      backdrop-filter: blur(18px) saturate(1.4);
+      -webkit-backdrop-filter: blur(18px) saturate(1.4);
+    }
+
+    .fab:active {
+      transform: scale(.92) rotate(8deg);
+    }
+
+    .sheet-backdrop {
+      position: fixed;
+      inset: 0;
+      z-index: 20;
+      background: rgba(0,0,0,.34);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity .28s cubic-bezier(.16, 1, .3, 1);
+    }
+
+    .sheet-backdrop.open {
+      opacity: 1;
+      pointer-events: auto;
+    }
+
+    .add-sheet {
+      position: fixed;
+      left: 12px;
+      right: 12px;
+      bottom: calc(var(--safe-bottom) + 10px);
+      max-width: 520px;
+      margin: 0 auto;
+      z-index: 21;
+      border-radius: 30px;
+      padding: 12px 18px 18px;
+      background:
+        linear-gradient(180deg, rgba(255,255,255,.13), rgba(255,255,255,.045)),
+        rgba(13,26,44,.82);
+      border: 1px solid rgba(255,255,255,.18);
+      box-shadow:
+        0 26px 70px rgba(0,0,0,.62),
+        inset 0 1px 0 rgba(255,255,255,.22);
+      backdrop-filter: blur(34px) saturate(1.65);
+      -webkit-backdrop-filter: blur(34px) saturate(1.65);
+      transform: translateY(calc(100% + 40px)) scale(.98);
+      opacity: 0;
+      pointer-events: none;
+      transition:
+        transform .38s cubic-bezier(.16, 1, .3, 1),
+        opacity .28s ease;
+    }
+
+    .add-sheet.open {
+      transform: translateY(0) scale(1);
+      opacity: 1;
+      pointer-events: auto;
+    }
+
+    .sheet-handle {
+      width: 42px;
+      height: 5px;
+      border-radius: 999px;
+      background: rgba(255,255,255,.28);
+      margin: 2px auto 14px;
+    }
+
+    .sheet-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 14px;
+    }
+
+    .sheet-header h2 {
+      margin: 0;
+    }
+
+    .sheet-close {
+      width: 38px;
+      height: 38px;
+      border: 0;
+      border-radius: 15px;
+      color: white;
+      background: rgba(255,255,255,.08);
+      font-size: 22px;
+      font-weight: 800;
+    }
+
+
+    body.sheet-open {
+      overflow: hidden;
+      position: fixed;
+      width: 100%;
+      left: 0;
+      right: 0;
+    }
+
+    body.sheet-open .app {
+      pointer-events: none;
+    }
+
+    body.sheet-open .add-sheet,
+    body.sheet-open .sheet-backdrop,
+    body.sheet-open .fab {
+      pointer-events: auto;
+    }
+
+    .recurring-item {
+      background:
+        linear-gradient(180deg, rgba(255,255,255,.07), rgba(255,255,255,.025)),
+        rgba(16,27,45,.38);
+      border: 1px solid rgba(255,255,255,.12);
+      border-radius: 18px;
+      padding: 14px;
+      margin-bottom: 10px;
+      backdrop-filter: blur(20px) saturate(1.25);
+      -webkit-backdrop-filter: blur(20px) saturate(1.25);
+    }
+
+    .recurring-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: 10px;
+    }
+
+    .recurring-title {
+      font-weight: 900;
+      margin: 0;
+    }
+
+    .recurring-sub {
+      color: var(--muted);
+      font-size: 12px;
+      margin: 4px 0 0;
+      line-height: 1.35;
+    }
+
+    .recurring-price {
+      font-weight: 900;
+      white-space: nowrap;
+      text-align: right;
+      color: white;
+    }
+
+    .recurring-actions {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 8px;
+      margin-top: 12px;
+    }
+
+    .recurring-summary {
+      background:
+        linear-gradient(135deg, rgba(91,140,255,.16), rgba(124,58,237,.10)),
+        rgba(255,255,255,.035);
+      border: 1px solid rgba(255,255,255,.12);
+      border-radius: 18px;
+      padding: 14px;
+      margin-bottom: 12px;
+    }
+
+    .recurring-summary p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 13px;
+    }
+
+    .recurring-summary strong {
+      display: block;
+      margin-top: 5px;
+      font-size: 22px;
+      color: white;
+    }
+
+    @media (max-width: 430px) {
+      .nav-btn {
+        font-size: 9px;
+        padding-left: 1px;
+        padding-right: 1px;
+      }
+
+      .nav-btn span {
+        width: 27px;
+        height: 27px;
+        font-size: 16px;
+      }
+    }
+    @media (max-width: 390px) {
+      .fab {
+        right: 18px;
+        bottom: calc(var(--safe-bottom) + 100px);
+      }
+    }
+
+    body.sheet-open {
+      overflow: hidden;
+      position: fixed;
+      width: 100%;
+      left: 0;
+      right: 0;
+    }
+
+    body.sheet-open .app {
+      pointer-events: none;
+    }
+
+    body.sheet-open .add-sheet,
+    body.sheet-open .sheet-backdrop,
+    body.sheet-open .fab {
+      pointer-events: auto;
+    }
+
+    .recurring-item {
+      background:
+        linear-gradient(180deg, rgba(255,255,255,.07), rgba(255,255,255,.025)),
+        rgba(16,27,45,.38);
+      border: 1px solid rgba(255,255,255,.12);
+      border-radius: 18px;
+      padding: 14px;
+      margin-bottom: 10px;
+      backdrop-filter: blur(20px) saturate(1.25);
+      -webkit-backdrop-filter: blur(20px) saturate(1.25);
+    }
+
+    .recurring-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: 10px;
+    }
+
+    .recurring-title {
+      font-weight: 900;
+      margin: 0;
+    }
+
+    .recurring-sub {
+      color: var(--muted);
+      font-size: 12px;
+      margin: 4px 0 0;
+      line-height: 1.35;
+    }
+
+    .recurring-price {
+      font-weight: 900;
+      white-space: nowrap;
+      text-align: right;
+      color: white;
+    }
+
+    .recurring-actions {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 8px;
+      margin-top: 12px;
+    }
+
+    .recurring-summary {
+      background:
+        linear-gradient(135deg, rgba(91,140,255,.16), rgba(124,58,237,.10)),
+        rgba(255,255,255,.035);
+      border: 1px solid rgba(255,255,255,.12);
+      border-radius: 18px;
+      padding: 14px;
+      margin-bottom: 12px;
+    }
+
+    .recurring-summary p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 13px;
+    }
+
+    .recurring-summary strong {
+      display: block;
+      margin-top: 5px;
+      font-size: 22px;
+      color: white;
+    }
+
+    @media (max-width: 430px) {
+      .nav-btn {
+        font-size: 9px;
+        padding-left: 1px;
+        padding-right: 1px;
+      }
+
+      .nav-btn span {
+        width: 27px;
+        height: 27px;
+        font-size: 16px;
+      }
+    }
+    @media (max-width: 390px) {
+      body { padding-left: 14px; padding-right: 14px; }
+      h1 { font-size: 25px; }
+      .big { font-size: 31px; }
+      .mini strong { font-size: 13px; }
+      .form-grid { grid-template-columns: 1fr; }
+      .bottom-nav { left: 10px; right: 10px; }
+    }
+  </style>
+</head>
+<body>
+  <main class="app">
+    <section class="hero">
+      <div class="top">
+        <div>
+          <p class="label">Финансовая цель</p>
+          <h1 id="goalHeader">ПК мечты</h1>
+        </div>
+        <div class="badge">💻</div>
+      </div>
+
+      <div class="big" id="savedTotal">0 ₽</div>
+      <div class="row">
+        <span class="label">Прогресс</span>
+        <strong id="progressText">0%</strong>
+      </div>
+      <div class="bar"><div class="fill" id="progressFill"></div></div>
+    </section>
+
+    <section class="grid">
+      <div class="mini">
+        <p>Осталось</p>
+        <strong id="leftAmount">0 ₽</strong>
+      </div>
+      <div class="mini">
+        <p>Траты/мес</p>
+        <strong id="monthExpenses">0 ₽</strong>
+      </div>
+      <div class="mini">
+        <p>Нужно/мес</p>
+        <strong id="needMonthly">0 ₽</strong>
+      </div>
+    </section>
+
+    <section id="add" class="tab-content">
+      <div class="card">
+        <h2>План до зарплаты</h2>
+        <div class="salary-box" id="salaryForecast"></div>
+      </div>
+
+      <div class="card">
+        <h2>Советник</h2>
+        <div id="smartAdvisorHome" class="advisor-list"></div>
+      </div>
+
+      <div class="card">
+        <h2>Последние операции</h2>
+        <div id="txList"></div>
+        <p class="hint">Чтобы добавить расход, доход или перевод в накопления — нажми большую кнопку “+”.</p>
+      </div>
+    </section>
+
+    <section id="stats" class="tab-content hidden">
+      <div class="card">
+        <h2>Статистика</h2>
+        <div id="catStats"></div>
+      </div>
+    </section>
+
+
+    <section id="analytics" class="tab-content hidden">
+      <div class="card">
+        <div class="chart-card-header">
+          <div>
+            <h2>График накоплений</h2>
+            <p class="hint" style="margin:0;">Путь от текущей суммы до цели</p>
+          </div>
+          <div class="chart-pill" id="chartProgressPill">0%</div>
+        </div>
+
+        <div class="analytics-summary">
+          <div class="analytics-tile">
+            <p>Накоплено сейчас</p>
+            <strong id="analyticsSaved">0 ₽</strong>
+          </div>
+          <div class="analytics-tile">
+            <p>Нужно в месяц</p>
+            <strong id="analyticsNeed">0 ₽</strong>
+          </div>
+        </div>
+
+        <div class="chart-legend">
+          <span class="legend-item"><span class="legend-dot"></span> прогноз</span>
+          <span class="legend-item"><span class="legend-dot current"></span> сейчас</span>
+          <span class="legend-item"><span class="legend-dot goal"></span> цель</span>
+        </div>
+
+        <div class="premium-chart">
+          <div class="premium-chart-top">
+            <div>
+              <small>Прогноз</small>
+              <strong id="premiumChartTitle">До цели</strong>
+            </div>
+            <div style="text-align:right">
+              <small>Цель</small>
+              <strong id="premiumChartGoal">0 ₽</strong>
+            </div>
+          </div>
+          <div id="savingsChart"></div>
+        </div>
+
+        <div class="chart-note">
+          <div class="chart-note-box">
+            <p>До цели осталось</p>
+            <strong id="chartLeft">0 ₽</strong>
+          </div>
+          <div class="chart-note-box">
+            <p>Месяцев до цели</p>
+            <strong id="chartMonths">0</strong>
+          </div>
+        </div>
+      </div>
+
+      <div class="card">
+        <h2>Расходы по категориям</h2>
+        <div class="expense-bars" id="premiumExpenseBars"></div>
+      </div>
+
+      <div class="card">
+        <h2>Умные подсказки</h2>
+        <div id="smartAdvisorAnalytics" class="advisor-list"></div>
+      </div>
+
+      <div class="card">
+        <h2>Аналитика расходов</h2>
+        <div id="expenseInsights"></div>
+      </div>
+    </section>
+
+    <section id="plan" class="tab-content hidden">
+      <div class="card">
+        <h2>Параметры плана</h2>
+        <div class="field">
+          <label>Цель, ₽</label>
+          <input id="goal" inputmode="decimal" />
+        </div>
+        <div class="field">
+          <label>Сейчас на накоплениях, ₽</label>
+          <input id="baseSavings" inputmode="decimal" />
+        </div>
+        <div class="field">
+          <label>Доход в месяц, ₽</label>
+          <input id="monthlyIncome" inputmode="decimal" />
+        </div>
+        <div class="field">
+          <label>Ставка накопительного счёта, % годовых</label>
+          <input id="annualRate" inputmode="decimal" />
+        </div>
+        <div class="field">
+          <label>Целевой месяц</label>
+          <input id="targetMonth" type="month" />
+        </div>
+        <button class="primary" id="saveSettings">Сохранить план</button>
+      </div>
+
+      <div class="card">
+        <h2>Прогноз</h2>
+        <div class="plan-box" id="forecast"></div>
+        <p class="hint">Расчёт примерный: он не учитывает изменение ставки, внезапные траты и изменение цен на комплектующие.</p>
+      </div>
+    </section>
+
+
+    <section id="pcbuild" class="tab-content hidden">
+      <div class="card">
+        <h2>Сборка ПК</h2>
+        <div class="pc-build-total">
+          <p>Общая стоимость сборки</p>
+          <strong id="pcBuildTotal">0 ₽</strong>
+          <p id="pcBuildHint">Добавь комплектующие, чтобы видеть итоговую цену.</p>
+        </div>
+        <div id="pcPartsList"></div>
+      </div>
+
+      <div class="card">
+        <h2>Добавить комплектующую</h2>
+
+        <div class="field">
+          <label>Название</label>
+          <input id="partName" placeholder="Например: RTX 5090" />
+        </div>
+
+        <div class="field">
+          <label>Категория</label>
+          <select id="partCategory">
+            <option>Видеокарта</option>
+            <option>Процессор</option>
+            <option>Материнская плата</option>
+            <option>Оперативная память</option>
+            <option>SSD</option>
+            <option>Блок питания</option>
+            <option>Охлаждение</option>
+            <option>Корпус</option>
+            <option>Монитор</option>
+            <option>Периферия</option>
+            <option>Другое</option>
+          </select>
+        </div>
+
+        <div class="field">
+          <label>Цена, ₽</label>
+          <input id="partPrice" inputmode="decimal" placeholder="Например: 250000" />
+        </div>
+
+        <div class="field">
+          <label>Комментарий</label>
+          <input id="partNote" placeholder="Например: купить ближе к декабрю" />
+        </div>
+
+        <button class="primary" id="addPartBtn">+ Добавить в сборку</button>
+        <p class="hint">Список комплектующих хранится на устройстве вместе с остальными данными.</p>
+      </div>
+    </section>
+
+
+    <section id="recurring" class="tab-content hidden">
+      <div class="card">
+        <h2>Регулярные платежи</h2>
+
+        <div class="recurring-summary">
+          <p>Обязательные платежи до ближайшей выплаты</p>
+          <strong id="recurringBeforePayTotal">0 ₽</strong>
+          <p id="recurringBeforePayHint">Добавь платежи, чтобы они учитывались в дневном лимите.</p>
+        </div>
+
+        <div id="recurringList"></div>
+      </div>
+
+      <div class="card">
+        <h2>Добавить платёж</h2>
+
+        <div class="field">
+          <label>Название</label>
+          <input id="recurringName" placeholder="Например: связь" />
+        </div>
+
+        <div class="field">
+          <label>Сумма, ₽</label>
+          <input id="recurringAmount" inputmode="decimal" placeholder="Например: 1200" />
+        </div>
+
+        <div class="form-grid">
+          <div class="field">
+            <label>День месяца</label>
+            <input id="recurringDay" inputmode="numeric" placeholder="5" />
+          </div>
+          <div class="field">
+            <label>Периодичность</label>
+            <select id="recurringFrequency">
+              <option value="monthly">Каждый месяц</option>
+              <option value="yearly">Раз в год</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="field" id="recurringMonthField">
+          <label>Месяц для ежегодного платежа</label>
+          <select id="recurringMonth">
+            <option value="0">Январь</option>
+            <option value="1">Февраль</option>
+            <option value="2">Март</option>
+            <option value="3">Апрель</option>
+            <option value="4">Май</option>
+            <option value="5">Июнь</option>
+            <option value="6">Июль</option>
+            <option value="7">Август</option>
+            <option value="8">Сентябрь</option>
+            <option value="9">Октябрь</option>
+            <option value="10">Ноябрь</option>
+            <option value="11">Декабрь</option>
+          </select>
+        </div>
+
+        <button class="primary" id="addRecurringBtn">+ Добавить регулярный платёж</button>
+        <p class="hint">Минимальная версия: платежи учитываются в плане до зарплаты и отображаются списком.</p>
+      </div>
+    </section>
+
+    <section id="settings" class="tab-content hidden">
+      <div class="card">
+        <h2>План до зарплаты</h2>
+
+        <div class="form-grid">
+          <div class="field">
+            <label>День зарплаты</label>
+            <input id="salaryDay" inputmode="numeric" placeholder="10" />
+          </div>
+          <div class="field">
+            <label>День аванса</label>
+            <input id="advanceDay" inputmode="numeric" placeholder="25" />
+          </div>
+        </div>
+
+        <div class="field">
+          <label>Деньги сейчас на карте, ₽</label>
+          <input id="currentCash" inputmode="decimal" placeholder="0" />
+        </div>
+
+        <div class="field">
+          <label>Обязательные траты до выплаты, ₽</label>
+          <input id="requiredBeforePay" inputmode="decimal" placeholder="0" />
+        </div>
+
+        <button class="primary" id="saveSalaryPlan">Сохранить план до зарплаты</button>
+        <p class="hint">Этот блок нужен, чтобы приложение показывало, сколько можно тратить в день до ближайшей выплаты.</p>
+      </div>
+
+      <div class="card">
+        <h2>Настройки</h2>
+
+        <div class="switch-row">
+          <div>
+            <p>Компактный режим</p>
+            <small>Уменьшает вертикальные отступы, чтобы больше помещалось на экране.</small>
+          </div>
+          <button class="switch" id="compactSwitch"></button>
+        </div>
+
+        <div class="switch-row">
+          <div>
+            <p>Показывать историю</p>
+            <small>Включает или скрывает список последних операций на главной.</small>
+          </div>
+          <button class="switch on" id="historySwitch"></button>
+        </div>
+
+        <div class="field">
+          <label>Название цели</label>
+          <input id="goalName" placeholder="ПК мечты" />
+        </div>
+
+        <button class="primary" id="saveAppSettings">Сохранить настройки</button>
+      </div>
+
+      <div class="card">
+        <h2>Данные</h2>
+        <button class="danger" id="resetBtn">Сбросить все данные</button>
+        <p class="hint">Данные хранятся на этом устройстве в браузере. Перед обновлением файла лучше не удалять старую версию приложения.</p>
+      </div>
+    </section>
+  </main>
+
+
+  <button class="fab" id="openAddSheet" aria-label="Добавить операцию">+</button>
+
+  <div class="sheet-backdrop" id="sheetBackdrop"></div>
+
+  <section class="add-sheet" id="addSheet" aria-label="Добавить операцию">
+    <div class="sheet-handle"></div>
+    <div class="sheet-header">
+      <h2>Добавить операцию</h2>
+      <button class="sheet-close" id="closeAddSheet" aria-label="Закрыть">×</button>
+    </div>
+
+    <div class="form-grid">
+      <div class="field">
+        <label>Тип</label>
+        <select id="type">
+          <option value="expense">Расход</option>
+          <option value="income">Доход</option>
+          <option value="saving">В накопления</option>
+        </select>
+      </div>
+      <div class="field">
+        <label>Категория</label>
+        <select id="category">
+          <option>Еда</option>
+          <option>Транспорт</option>
+          <option>Игры</option>
+          <option>Развлечения</option>
+          <option>Подарки</option>
+          <option>Учёба</option>
+          <option>Связь</option>
+          <option>Одежда</option>
+          <option>ПК</option>
+          <option>Другое</option>
+        </select>
+      </div>
+    </div>
+
+    <div class="field">
+      <label>Сумма</label>
+      <input id="amount" inputmode="decimal" placeholder="Например: 500" />
+    </div>
+
+    <div class="field">
+      <label>Комментарий</label>
+      <input id="note" placeholder="Например: еда после смены" />
+    </div>
+
+    <div class="field">
+      <label>Дата</label>
+      <input id="date" type="date" />
+    </div>
+
+    <button class="primary" id="addBtn">+ Добавить операцию</button>
+    <p class="hint">Зарплату добавляй как “Доход”, перевод на накопительный счёт — как “В накопления”.</p>
+  </section>
+
+  <div class="nav-shield"></div>
+
+  <nav class="bottom-nav" aria-label="Нижняя навигация">
+    <button class="nav-btn active" data-tab="add"><span>🏠</span>Главная</button>
+    <button class="nav-btn" data-tab="stats"><span>📊</span>Статы</button>
+    <button class="nav-btn" data-tab="analytics"><span>📈</span>Анализ</button>
+    <button class="nav-btn" data-tab="pcbuild"><span>💻</span>ПК</button>
+    <button class="nav-btn" data-tab="recurring"><span>🔁</span>Платежи</button>
+    <button class="nav-btn" data-tab="plan"><span>🎯</span>Цель</button>
+    <button class="nav-btn" data-tab="settings"><span>⚙️</span>Настр</button>
+  </nav>
+
+<script>
+  const STORAGE_KEY = "pc-kopilka-v3-salary-plan";
+  const OLD_KEYS = ["pc-kopilka-v3", "pc-kopilka-v2", "pc-kopilka-v1"];
+  const categories = ["Еда","Транспорт","Игры","Развлечения","Подарки","Учёба","Связь","Одежда","ПК","Другое"];
+
+  const defaultData = {
+    goalName: "ПК мечты",
+    goal: 500000,
+    baseSavings: 13071,
+    monthlyIncome: 85000,
+    annualRate: 15.1,
+    targetMonth: "2026-12",
+    compactMode: false,
+    showHistory: true,
+    salaryDay: 10,
+    advanceDay: 25,
+    currentCash: 0,
+    requiredBeforePay: 0,
+    recurringPayments: [
+      { id: crypto.randomUUID(), name: "Связь", amount: 1200, day: 5, frequency: "monthly", month: null },
+      { id: crypto.randomUUID(), name: "Универ", amount: 32000, day: 1, frequency: "yearly", month: 7 }
+    ],
+    pcParts: [
+      { id: crypto.randomUUID(), name: "RTX 5090", category: "Видеокарта", price: 250000, note: "Главная деталь для игр, стримов и монтажа" },
+      { id: crypto.randomUUID(), name: "Ryzen 9800X3D", category: "Процессор", price: 70000, note: "Мощный игровой процессор" },
+      { id: crypto.randomUUID(), name: "DDR5 64GB", category: "Оперативная память", price: 30000, note: "Запас под многозадачность" },
+      { id: crypto.randomUUID(), name: "NVMe SSD 4TB", category: "SSD", price: 35000, note: "Игры, записи и монтаж" }
+    ],
+    transactions: [
+      {
+        id: crypto.randomUUID(),
+        type: "expense",
+        amount: 154,
+        category: "Развлечения",
+        note: "cnlgaming",
+        date: today()
+      }
+    ]
+  };
+
+  let data = load();
+
+  function today() {
+    return new Date().toISOString().slice(0, 10);
+  }
+
+  function rub(value) {
+    return new Intl.NumberFormat("ru-RU", {
+      style: "currency",
+      currency: "RUB",
+      maximumFractionDigits: 0
+    }).format(Number(value) || 0);
+  }
+
+  function load() {
+    try {
+      const current = localStorage.getItem(STORAGE_KEY);
+      if (current) return { ...defaultData, ...JSON.parse(current) };
+
+      for (const key of OLD_KEYS) {
+        const old = localStorage.getItem(key);
+        if (old) return { ...defaultData, ...JSON.parse(old) };
+      }
+
+      return defaultData;
+    } catch {
+      return defaultData;
+    }
+  }
+
+  function save() {
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(data));
+  }
+
+  function monthKey(date) {
+    return date.slice(0, 7);
+  }
+
+  function monthsUntil(targetMonth) {
+    const now = new Date();
+    const target = new Date(targetMonth + "-01T00:00:00");
+    return Math.max(0, (target.getFullYear() - now.getFullYear()) * 12 + target.getMonth() - now.getMonth() + 1);
+  }
+
+  function nextPayDate() {
+    const now = new Date();
+    const candidates = [Number(data.salaryDay), Number(data.advanceDay)]
+      .filter(day => day >= 1 && day <= 31)
+      .map(day => {
+        let date = new Date(now.getFullYear(), now.getMonth(), day);
+        if (date < new Date(now.getFullYear(), now.getMonth(), now.getDate())) {
+          date = new Date(now.getFullYear(), now.getMonth() + 1, day);
+        }
+        return date;
+      })
+      .sort((a, b) => a - b);
+
+    return candidates[0] || new Date(now.getFullYear(), now.getMonth(), 10);
+  }
+
+  function daysUntil(date) {
+    const now = new Date();
+    const start = new Date(now.getFullYear(), now.getMonth(), now.getDate());
+    const target = new Date(date.getFullYear(), date.getMonth(), date.getDate());
+    return Math.max(1, Math.ceil((target - start) / 86400000));
+  }
+
+
+  function getRecurringDate(payment, baseDate = new Date()) {
+    const day = Math.min(28, Math.max(1, Number(payment.day) || 1));
+
+    if (payment.frequency === "yearly") {
+      let month = Number(payment.month);
+      if (Number.isNaN(month)) month = baseDate.getMonth();
+
+      let date = new Date(baseDate.getFullYear(), month, day);
+      const todayDate = new Date(baseDate.getFullYear(), baseDate.getMonth(), baseDate.getDate());
+
+      if (date < todayDate) {
+        date = new Date(baseDate.getFullYear() + 1, month, day);
+      }
+
+      return date;
+    }
+
+    let date = new Date(baseDate.getFullYear(), baseDate.getMonth(), day);
+    const todayDate = new Date(baseDate.getFullYear(), baseDate.getMonth(), baseDate.getDate());
+
+    if (date < todayDate) {
+      date = new Date(baseDate.getFullYear(), baseDate.getMonth() + 1, day);
+    }
+
+    return date;
+  }
+
+  function getRecurringBeforePay() {
+    if (!Array.isArray(data.recurringPayments)) data.recurringPayments = [];
+
+    const now = new Date();
+    const start = new Date(now.getFullYear(), now.getMonth(), now.getDate());
+    const payDate = nextPayDate();
+    const payDay = new Date(payDate.getFullYear(), payDate.getMonth(), payDate.getDate());
+
+    const items = data.recurringPayments
+      .map(payment => ({ ...payment, nextDate: getRecurringDate(payment, now) }))
+      .filter(payment => payment.nextDate >= start && payment.nextDate <= payDay)
+      .sort((a, b) => a.nextDate - b.nextDate);
+
+    const total = items.reduce((sum, item) => sum + Number(item.amount || 0), 0);
+
+    return { items, total };
+  }
+
+  function calcSalaryPlan() {
+    const payDate = nextPayDate();
+    const days = daysUntil(payDate);
+    const recurring = getRecurringBeforePay();
+    const requiredTotal = Number(data.requiredBeforePay) + Number(recurring.total);
+    const freeMoney = Math.max(0, Number(data.currentCash) - requiredTotal);
+    const dailyLimit = Math.floor(freeMoney / days);
+
+    return { payDate, days, freeMoney, dailyLimit, recurringTotal: recurring.total, recurringItems: recurring.items, requiredTotal };
+  }
+
+  function calc() {
+    const currentMonth = today().slice(0, 7);
+    const monthlyTx = data.transactions.filter(x => monthKey(x.date) === currentMonth);
+
+    const savedFromTx = data.transactions
+      .filter(x => x.type === "saving")
+      .reduce((s, x) => s + Number(x.amount), 0);
+
+    const totalSaved = Number(data.baseSavings) + savedFromTx;
+    const left = Math.max(0, Number(data.goal) - totalSaved);
+
+    const expenses = monthlyTx
+      .filter(x => x.type === "expense")
+      .reduce((s, x) => s + Number(x.amount), 0);
+
+    const months = monthsUntil(data.targetMonth);
+    const needMonthly = months > 0 ? Math.ceil(left / months) : left;
+
+    return {
+      totalSaved,
+      left,
+      expenses,
+      months,
+      needMonthly,
+      progress: Math.min(100, totalSaved / Number(data.goal) * 100)
+    };
+  }
+
+  function render() {
+    const s = calc();
+
+    document.getElementById("goalHeader").textContent = data.goalName || "ПК мечты";
+    document.getElementById("savedTotal").textContent = rub(s.totalSaved);
+    document.getElementById("leftAmount").textContent = rub(s.left);
+    document.getElementById("monthExpenses").textContent = rub(s.expenses);
+    document.getElementById("needMonthly").textContent = rub(s.needMonthly);
+    document.getElementById("progressText").textContent = (s.progress || 0).toFixed(1) + "%";
+    document.getElementById("progressFill").style.width = (s.progress || 0) + "%";
+
+    document.getElementById("goal").value = data.goal;
+    document.getElementById("baseSavings").value = data.baseSavings;
+    document.getElementById("monthlyIncome").value = data.monthlyIncome;
+    document.getElementById("annualRate").value = data.annualRate;
+    document.getElementById("targetMonth").value = data.targetMonth;
+    document.getElementById("goalName").value = data.goalName || "ПК мечты";
+
+    document.getElementById("salaryDay").value = data.salaryDay;
+    document.getElementById("advanceDay").value = data.advanceDay;
+    document.getElementById("currentCash").value = data.currentCash;
+    document.getElementById("requiredBeforePay").value = data.requiredBeforePay;
+
+    document.getElementById("compactSwitch").classList.toggle("on", Boolean(data.compactMode));
+    document.getElementById("historySwitch").classList.toggle("on", Boolean(data.showHistory));
+
+    renderSalaryForecast();
+    renderTransactions();
+    renderStats();
+    renderAnalytics();
+    renderSmartAdvisor();
+    renderRecurringPayments();
+    renderPcBuild();
+    renderForecast();
+    setTimeout(addHapticFeedback, 0);
+  }
+
+  function renderSalaryForecast() {
+    const salary = calcSalaryPlan();
+    const dateText = salary.payDate.toLocaleDateString("ru-RU", { day: "numeric", month: "long" });
+
+    document.getElementById("salaryForecast").innerHTML = `
+      <p>Ближайшая выплата: ${dateText}</p>
+      <strong>${salary.dailyLimit > 0 ? rub(salary.dailyLimit) : "0 ₽"} / день</strong>
+      <p>До выплаты осталось: ${salary.days} дн. Свободно после обязательных и регулярных трат: ${rub(salary.freeMoney)}.</p>
+      <p>Регулярные платежи до выплаты: ${rub(salary.recurringTotal || 0)}.</p>
+    `;
+  }
+
+  function renderTransactions() {
+    const box = document.getElementById("txList");
+
+    if (!data.showHistory) {
+      box.innerHTML = "";
+      return;
+    }
+
+    if (!data.transactions.length) {
+      box.innerHTML = '<div class="card empty">Операций пока нет. Добавь первый расход или перевод в накопления.</div>';
+      return;
+    }
+
+    box.innerHTML = data.transactions
+      .slice()
+      .sort((a,b) => b.date.localeCompare(a.date))
+      .map(tx => {
+        const sign = tx.type === "expense" ? "-" : "+";
+        const cls = tx.type;
+        const typeText = tx.type === "expense" ? "Расход" : tx.type === "income" ? "Доход" : "Накопления";
+
+        return `
+          <div class="tx">
+            <div>
+              <p class="tx-title">${tx.category}</p>
+              <p class="tx-sub">${typeText} · ${tx.note || "без комментария"} · ${tx.date}</p>
+            </div>
+            <div>
+              <div class="amount ${cls}">${sign}${rub(tx.amount)}</div>
+              <button class="delete" onclick="removeTx('${tx.id}')">×</button>
+            </div>
+          </div>
+        `;
+      }).join("");
+  }
+
+  function renderStats() {
+    const currentMonth = today().slice(0, 7);
+    const expenses = data.transactions.filter(x => x.type === "expense" && monthKey(x.date) === currentMonth);
+    const totals = categories.map(cat => ({
+      cat,
+      value: expenses.filter(x => x.category === cat).reduce((s,x) => s + Number(x.amount), 0)
+    })).filter(x => x.value > 0);
+
+    const max = Math.max(...totals.map(x => x.value), 1);
+    const box = document.getElementById("catStats");
+
+    if (!totals.length) {
+      box.innerHTML = '<div class="empty">Пока нет расходов за текущий месяц.</div>';
+      return;
+    }
+
+    box.innerHTML = totals.map(x => `
+      <div class="cat-row">
+        <div>
+          <div class="cat-name">${x.cat}</div>
+          <div class="cat-bar"><div class="cat-fill" style="width:${x.value / max * 100}%"></div></div>
+        </div>
+        <strong>${rub(x.value)}</strong>
+      </div>
+    `).join("");
+  }
+
+
+  function shortRub(value) {
+    const num = Number(value) || 0;
+    if (num >= 1000000) return Math.round(num / 100000) / 10 + "м";
+    if (num >= 1000) return Math.round(num / 1000) + "к";
+    return String(Math.round(num));
+  }
+
+  function smoothPath(points) {
+    if (points.length < 2) return "";
+    let d = `M ${points[0].x} ${points[0].y}`;
+    for (let i = 1; i < points.length; i++) {
+      const prev = points[i - 1];
+      const cur = points[i];
+      const midX = (prev.x + cur.x) / 2;
+      d += ` C ${midX} ${prev.y}, ${midX} ${cur.y}, ${cur.x} ${cur.y}`;
+    }
+    return d;
+  }
+
+  function renderPremiumExpenseBars(byCategory, totalExpenses) {
+    const box = document.getElementById("premiumExpenseBars");
+
+    if (!byCategory.length) {
+      box.innerHTML = '<div class="empty">Пока нет расходов за текущий месяц.</div>';
+      return;
+    }
+
+    const topItems = byCategory.slice(0, 6);
+    const max = Math.max(...topItems.map(x => x.value), 1);
+
+    box.innerHTML = topItems.map(item => {
+      const width = Math.max(5, Math.round(item.value / max * 100));
+      const percent = Math.round(item.value / Math.max(1, totalExpenses) * 100);
+      return `
+        <div class="expense-bar-row">
+          <div class="expense-bar-name">${item.cat}</div>
+          <div class="expense-bar-track">
+            <div class="expense-bar-fill" style="width:${width}%"></div>
+          </div>
+          <div class="expense-bar-value">${percent}%</div>
+        </div>
+      `;
+    }).join("");
+  }
+
+  function renderAnalytics() {
+    const s = calc();
+    const currentMonth = today().slice(0, 7);
+    const monthlyExpenses = data.transactions.filter(x => x.type === "expense" && monthKey(x.date) === currentMonth);
+    const totalExpenses = monthlyExpenses.reduce((sum, x) => sum + Number(x.amount), 0);
+
+    document.getElementById("analyticsSaved").textContent = rub(s.totalSaved);
+    document.getElementById("analyticsNeed").textContent = rub(s.needMonthly);
+    document.getElementById("chartProgressPill").textContent = `${(s.progress || 0).toFixed(1)}%`;
+    document.getElementById("chartLeft").textContent = rub(s.left);
+    document.getElementById("chartMonths").textContent = `${s.months} мес.`;
+    document.getElementById("premiumChartGoal").textContent = shortRub(data.goal);
+    document.getElementById("premiumChartTitle").textContent = s.left > 0 ? `${shortRub(s.left)} осталось` : "Цель достигнута";
+
+    const chart = document.getElementById("savingsChart");
+    const months = Math.max(2, Math.min(8, s.months || 8));
+    const values = [];
+
+    for (let i = 0; i < months; i++) {
+      values.push(Math.min(Number(data.goal), s.totalSaved + s.needMonthly * i));
+    }
+
+    const w = 320;
+    const h = 220;
+    const padX = 24;
+    const padTop = 54;
+    const padBottom = 34;
+    const max = Math.max(Number(data.goal), ...values, 1);
+    const min = 0;
+
+    const points = values.map((value, index) => {
+      const x = padX + (index / Math.max(1, values.length - 1)) * (w - padX * 2);
+      const usableH = h - padTop - padBottom;
+      const y = padTop + (1 - ((value - min) / (max - min))) * usableH;
+      return { x, y, value, index };
+    });
+
+    const linePath = smoothPath(points);
+    const areaPath = `${linePath} L ${points[points.length - 1].x} ${h - padBottom} L ${points[0].x} ${h - padBottom} Z`;
+    const goalY = padTop + (1 - (Number(data.goal) / max)) * (h - padTop - padBottom);
+
+    chart.innerHTML = `
+      <svg viewBox="0 0 ${w} ${h}" preserveAspectRatio="none" aria-label="График накоплений">
+        <defs>
+          <linearGradient id="premiumStroke" x1="0" y1="0" x2="1" y2="0">
+            <stop offset="0%" stop-color="#4ade80"/>
+            <stop offset="45%" stop-color="#5b8cff"/>
+            <stop offset="100%" stop-color="#7c3aed"/>
+          </linearGradient>
+          <linearGradient id="premiumArea" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0%" stop-color="#5b8cff" stop-opacity=".34"/>
+            <stop offset="60%" stop-color="#7c3aed" stop-opacity=".13"/>
+            <stop offset="100%" stop-color="#7c3aed" stop-opacity="0"/>
+          </linearGradient>
+        </defs>
+
+        <line class="grid-line" x1="${padX}" y1="${padTop + 32}" x2="${w - padX}" y2="${padTop + 32}"></line>
+        <line class="grid-line" x1="${padX}" y1="${padTop + 74}" x2="${w - padX}" y2="${padTop + 74}"></line>
+        <line class="grid-line" x1="${padX}" y1="${padTop + 116}" x2="${w - padX}" y2="${padTop + 116}"></line>
+        <line class="goal-line" x1="${padX}" y1="${goalY}" x2="${w - padX}" y2="${goalY}"></line>
+
+        <path class="area-fill" d="${areaPath}"></path>
+        <path class="main-line" d="${linePath}"></path>
+
+        ${points.map((p, i) => `
+          <circle class="chart-point ${i === 0 ? "current-point" : ""}" cx="${p.x}" cy="${p.y}" r="${i === 0 ? 5.5 : 4.5}" style="animation-delay:${i * 70}ms"></circle>
+          ${i === 0 || i === points.length - 1 ? `<text class="chart-money-label" x="${p.x}" y="${p.y - 13}" text-anchor="middle">${shortRub(p.value)}</text>` : ""}
+          <text class="chart-axis-label" x="${p.x}" y="${h - 9}" text-anchor="middle">${i === 0 ? "сейчас" : "+" + i + "м"}</text>
+        `).join("")}
+      </svg>
+    `;
+
+    const byCategory = categories.map(cat => ({
+      cat,
+      value: monthlyExpenses
+        .filter(x => x.category === cat)
+        .reduce((sum, x) => sum + Number(x.amount), 0)
+    })).filter(x => x.value > 0).sort((a, b) => b.value - a.value);
+
+    renderPremiumExpenseBars(byCategory, totalExpenses);
+
+    const top = byCategory[0];
+    const avgDaily = Math.round(totalExpenses / Math.max(1, new Date().getDate()));
+    const salary = calcSalaryPlan();
+
+    let messages = [];
+
+    if (totalExpenses === 0) {
+      messages.push("В этом месяце пока нет расходов. Когда начнёшь добавлять операции, здесь появится разбор.");
+    } else {
+      messages.push(`За текущий месяц потрачено <b>${rub(totalExpenses)}</b>. Средний расход в день: <b>${rub(avgDaily)}</b>.`);
+    }
+
+    if (top) {
+      const percent = Math.round(top.value / Math.max(1, totalExpenses) * 100);
+      messages.push(`Самая крупная категория сейчас — <b>${top.cat}</b>: ${rub(top.value)} (${percent}% расходов месяца).`);
+    }
+
+    if (salary.dailyLimit > 0) {
+      messages.push(`До ближайшей выплаты можно тратить примерно <b>${rub(salary.dailyLimit)}</b> в день, если не трогать обязательные и регулярные расходы.`);
+    } else {
+      messages.push("По плану до зарплаты свободных денег сейчас нет или они не заполнены в настройках.");
+    }
+
+    messages.push(`Для цели “${data.goalName || "ПК мечты"}” нужно откладывать около <b>${rub(s.needMonthly)}</b> в месяц.`);
+
+    document.getElementById("expenseInsights").innerHTML = messages
+      .map(text => `<div class="insight">${text}</div>`)
+      .join("");
+  }
+
+
+  function getCurrentMonthExpenses() {
+    const currentMonth = today().slice(0, 7);
+    return data.transactions.filter(x => x.type === "expense" && monthKey(x.date) === currentMonth);
+  }
+
+  function getTopExpenseCategory(expenses) {
+    const totals = categories.map(cat => ({
+      cat,
+      value: expenses
+        .filter(x => x.category === cat)
+        .reduce((sum, x) => sum + Number(x.amount), 0)
+    })).filter(x => x.value > 0).sort((a, b) => b.value - a.value);
+
+    return totals[0] || null;
+  }
+
+  function makeAdvisorCards() {
+    const s = calc();
+    const salary = calcSalaryPlan();
+    const expenses = getCurrentMonthExpenses();
+    const totalExpenses = expenses.reduce((sum, x) => sum + Number(x.amount), 0);
+    const top = getTopExpenseCategory(expenses);
+    const avgDaily = Math.round(totalExpenses / Math.max(1, new Date().getDate()));
+    const cards = [];
+
+    if (salary.dailyLimit > 0) {
+      cards.push({
+        icon: "💸",
+        title: "Лимит до выплаты",
+        text: `До ближайшей выплаты безопасный лимит — примерно ${rub(salary.dailyLimit)} в день. Если хочешь ускорить накопление на ПК, попробуй тратить на 10–15% меньше этого лимита.`,
+        tag: "до зарплаты"
+      });
+    } else {
+      cards.push({
+        icon: "⚠️",
+        title: "Заполни план до зарплаты",
+        text: "В настройках укажи деньги на карте и обязательные траты. Тогда приложение сможет считать дневной лимит и давать более точные советы.",
+        tag: "настройка"
+      });
+    }
+
+    if (s.progress < 10) {
+      cards.push({
+        icon: "🌱",
+        title: "Самый тяжёлый старт",
+        text: `Сейчас накоплено ${s.progress.toFixed(1)}% цели. Первые 10% психологически самые сложные, поэтому твоя главная задача — стабильность, а не скорость.`,
+        tag: "мотивация"
+      });
+    } else if (s.progress < 50) {
+      cards.push({
+        icon: "🔥",
+        title: "Темп уже виден",
+        text: `Ты прошёл ${s.progress.toFixed(1)}% пути. Если продолжишь откладывать около ${rub(s.needMonthly)} в месяц, цель будет двигаться предсказуемо.`,
+        tag: "прогресс"
+      });
+    } else {
+      cards.push({
+        icon: "🏁",
+        title: "Финиш становится ближе",
+        text: `Уже больше половины цели. На этом этапе особенно важно не сорваться на крупные необязательные покупки.`,
+        tag: "фокус"
+      });
+    }
+
+    if (top) {
+      const percent = Math.round(top.value / Math.max(1, totalExpenses) * 100);
+      cards.push({
+        icon: "📊",
+        title: "Главная категория расходов",
+        text: `Больше всего в этом месяце ушло на “${top.cat}” — ${rub(top.value)}, это около ${percent}% расходов. Если нужно ускорить накопления, начни именно с этой категории.`,
+        tag: "расходы"
+      });
+    } else {
+      cards.push({
+        icon: "🧾",
+        title: "Пока мало данных",
+        text: "Добавляй расходы хотя бы неделю. После этого подсказки станут намного полезнее: появятся категории, средний расход в день и слабые места бюджета.",
+        tag: "данные"
+      });
+    }
+
+    if (avgDaily > salary.dailyLimit && salary.dailyLimit > 0) {
+      cards.push({
+        icon: "🚦",
+        title: "Темп трат выше лимита",
+        text: `Средний расход сейчас ${rub(avgDaily)} в день, а безопасный лимит до выплаты — ${rub(salary.dailyLimit)}. Лучше на пару дней включить режим экономии.`,
+        tag: "важно"
+      });
+    }
+
+    if (s.needMonthly > Number(data.monthlyIncome) * 0.65) {
+      cards.push({
+        icon: "🧠",
+        title: "Цель очень напряжённая",
+        text: `Чтобы успеть, нужно откладывать ${rub(s.needMonthly)} в месяц. Это большая доля дохода, поэтому лучше заранее закладывать подарки, учёбу и непредвиденные траты.`,
+        tag: "реализм"
+      });
+    }
+
+    return cards.slice(0, 5);
+  }
+
+  function renderSmartAdvisor() {
+    const cards = makeAdvisorCards();
+
+    const htmlCards = cards.map(card => `
+      <div class="advisor-card">
+        <h3><span>${card.icon}</span>${card.title}</h3>
+        <p>${card.text}</p>
+        <span class="advisor-tag">${card.tag}</span>
+      </div>
+    `).join("");
+
+    const home = document.getElementById("smartAdvisorHome");
+    const analytics = document.getElementById("smartAdvisorAnalytics");
+
+    if (home) home.innerHTML = htmlCards.split('</div>').slice(0, 2).join('</div>') + '</div>';
+    if (analytics) analytics.innerHTML = htmlCards;
+  }
+
+
+  function renderRecurringPayments() {
+    if (!Array.isArray(data.recurringPayments)) data.recurringPayments = [];
+
+    const beforePay = getRecurringBeforePay();
+
+    document.getElementById("recurringBeforePayTotal").textContent = rub(beforePay.total);
+    document.getElementById("recurringBeforePayHint").textContent = beforePay.items.length
+      ? `До ближайшей выплаты учтено платежей: ${beforePay.items.length}.`
+      : "До ближайшей выплаты регулярных платежей нет.";
+
+    const list = document.getElementById("recurringList");
+
+    if (!data.recurringPayments.length) {
+      list.innerHTML = '<div class="empty">Регулярных платежей пока нет.</div>';
+      return;
+    }
+
+    list.innerHTML = data.recurringPayments.map(payment => {
+      const nextDate = getRecurringDate(payment);
+      const dateText = nextDate.toLocaleDateString("ru-RU", { day: "numeric", month: "long" });
+      const frequencyText = payment.frequency === "yearly" ? "раз в год" : "каждый месяц";
+
+      return `
+        <div class="recurring-item">
+          <div class="recurring-top">
+            <div>
+              <p class="recurring-title">${payment.name || "Без названия"}</p>
+              <p class="recurring-sub">${frequencyText} · следующий платёж: ${dateText}</p>
+            </div>
+            <div class="recurring-price">${rub(payment.amount || 0)}</div>
+          </div>
+          <div class="recurring-actions">
+            <button class="small-btn danger-text" onclick="deleteRecurring('${payment.id}')">Удалить</button>
+          </div>
+        </div>
+      `;
+    }).join("");
+  }
+
+  function addRecurringPayment() {
+    const name = document.getElementById("recurringName").value.trim();
+    const amount = Number(String(document.getElementById("recurringAmount").value).replace(",", "."));
+    const day = Number(document.getElementById("recurringDay").value);
+    const frequency = document.getElementById("recurringFrequency").value;
+    const month = Number(document.getElementById("recurringMonth").value);
+
+    if (!name) {
+      alert("Введи название платежа");
+      return;
+    }
+
+    if (!amount || amount <= 0) {
+      alert("Введи сумму больше нуля");
+      return;
+    }
+
+    if (!day || day < 1 || day > 31) {
+      alert("День месяца должен быть от 1 до 31");
+      return;
+    }
+
+    if (!Array.isArray(data.recurringPayments)) data.recurringPayments = [];
+
+    data.recurringPayments.push({
+      id: crypto.randomUUID(),
+      name,
+      amount,
+      day,
+      frequency,
+      month: frequency === "yearly" ? month : null
+    });
+
+    document.getElementById("recurringName").value = "";
+    document.getElementById("recurringAmount").value = "";
+    document.getElementById("recurringDay").value = "";
+
+    save();
+    render();
+    successHaptic(document.getElementById("addRecurringBtn"));
+  }
+
+  function deleteRecurring(id) {
+    if (!confirm("Удалить регулярный платёж?")) return;
+    data.recurringPayments = data.recurringPayments.filter(payment => payment.id !== id);
+    save();
+    render();
+  }
+
+  function renderPcBuild() {
+    if (!Array.isArray(data.pcParts)) data.pcParts = [];
+
+    const total = data.pcParts.reduce((sum, part) => sum + Number(part.price || 0), 0);
+    const saved = calc().totalSaved;
+    const coverage = total > 0 ? Math.min(100, saved / total * 100) : 0;
+
+    document.getElementById("pcBuildTotal").textContent = rub(total);
+    document.getElementById("pcBuildHint").textContent = total > 0
+      ? `Текущие накопления покрывают примерно ${coverage.toFixed(1)}% этой сборки.`
+      : "Добавь комплектующие, чтобы видеть итоговую цену.";
+
+    const list = document.getElementById("pcPartsList");
+
+    if (!data.pcParts.length) {
+      list.innerHTML = '<div class="empty">Комплектующих пока нет. Добавь первую деталь ниже.</div>';
+      return;
+    }
+
+    list.innerHTML = data.pcParts.map(part => `
+      <div class="pc-part">
+        <div class="pc-part-top">
+          <div>
+            <h3>${part.name || "Без названия"}</h3>
+            <small>${part.category || "Другое"} · ${part.note || "без комментария"}</small>
+          </div>
+          <div class="pc-part-price">${rub(part.price || 0)}</div>
+        </div>
+        <div class="pc-part-actions">
+          <button class="small-btn" onclick="editPart('${part.id}')">Изменить</button>
+          <button class="small-btn danger-text" onclick="deletePart('${part.id}')">Удалить</button>
+        </div>
+      </div>
+    `).join("");
+  }
+
+  function addPcPart() {
+    const name = document.getElementById("partName").value.trim();
+    const category = document.getElementById("partCategory").value;
+    const price = Number(String(document.getElementById("partPrice").value).replace(",", "."));
+    const note = document.getElementById("partNote").value.trim();
+
+    if (!name) {
+      alert("Введи название комплектующей");
+      return;
+    }
+
+    if (!price || price <= 0) {
+      alert("Введи цену больше нуля");
+      return;
+    }
+
+    if (!Array.isArray(data.pcParts)) data.pcParts = [];
+
+    data.pcParts.push({
+      id: crypto.randomUUID(),
+      name,
+      category,
+      price,
+      note
+    });
+
+    document.getElementById("partName").value = "";
+    document.getElementById("partPrice").value = "";
+    document.getElementById("partNote").value = "";
+
+    save();
+    render();
+    successHaptic(document.getElementById("addPartBtn"));
+  }
+
+  function deletePart(id) {
+    if (!confirm("Удалить эту комплектующую из сборки?")) return;
+    data.pcParts = data.pcParts.filter(part => part.id !== id);
+    save();
+    render();
+  }
+
+  function editPart(id) {
+    const part = data.pcParts.find(item => item.id === id);
+    if (!part) return;
+
+    const name = prompt("Название:", part.name);
+    if (name === null) return;
+
+    const priceRaw = prompt("Цена, ₽:", part.price);
+    if (priceRaw === null) return;
+
+    const note = prompt("Комментарий:", part.note || "");
+    if (note === null) return;
+
+    const price = Number(String(priceRaw).replace(",", "."));
+    if (!name.trim() || !price || price <= 0) {
+      alert("Название и цена должны быть заполнены корректно");
+      return;
+    }
+
+    part.name = name.trim();
+    part.price = price;
+    part.note = note.trim();
+
+    save();
+    render();
+  }
+
+  function renderForecast() {
+    const s = calc();
+    document.getElementById("forecast").innerHTML = `
+      <p>До цели осталось: <strong>${rub(s.left)}</strong></p>
+      <p>До выбранного месяца: <strong>${s.months}</strong> мес.</p>
+      <p>Чтобы успеть, нужно откладывать примерно: <strong>${rub(s.needMonthly)}</strong> в месяц.</p>
+      <p>При ставке ${data.annualRate}% годовых проценты будут немного помогать, но главный фактор — регулярные пополнения.</p>
+    `;
+  }
+
+
+  let sheetScrollY = 0;
+
+  function openAddSheet() {
+    softHaptic(8);
+    sheetScrollY = window.scrollY || document.documentElement.scrollTop || 0;
+    document.body.style.top = `-${sheetScrollY}px`;
+    document.body.classList.add("sheet-open");
+    document.getElementById("sheetBackdrop").classList.add("open");
+    document.getElementById("addSheet").classList.add("open");
+  }
+
+  function closeAddSheet() {
+    softHaptic(5);
+    document.getElementById("sheetBackdrop").classList.remove("open");
+    document.getElementById("addSheet").classList.remove("open");
+    document.body.classList.remove("sheet-open");
+    document.body.style.top = "";
+    window.scrollTo(0, sheetScrollY);
+  }
+
+  function removeTx(id) {
+    data.transactions = data.transactions.filter(x => x.id !== id);
+    save();
+    render();
+  }
+
+  function softHaptic(pattern = 8) {
+    if (window.navigator && navigator.vibrate) {
+      navigator.vibrate(pattern);
+    }
+  }
+
+  function addHapticFeedback() {
+    const selector = "button, .card, .mini, .tx, .pc-part, .analytics-tile, .chart-note-box, .insight";
+
+    document.querySelectorAll(selector).forEach(el => {
+      if (el.dataset.hapticReady === "1") return;
+      el.dataset.hapticReady = "1";
+      el.classList.add("haptic-target");
+
+      el.addEventListener("pointerdown", event => {
+        const rect = el.getBoundingClientRect();
+        el.style.setProperty("--tap-x", `${event.clientX - rect.left}px`);
+        el.style.setProperty("--tap-y", `${event.clientY - rect.top}px`);
+        el.classList.add("is-pressing");
+        softHaptic(6);
+      });
+
+      ["pointerup", "pointercancel", "pointerleave"].forEach(type => {
+        el.addEventListener(type, () => {
+          el.classList.remove("is-pressing");
+        });
+      });
+    });
+  }
+
+  function successHaptic(element) {
+    softHaptic([8, 30, 10]);
+    if (!element) return;
+    element.classList.remove("success-pulse");
+    void element.offsetWidth;
+    element.classList.add("success-pulse");
+  }
+
+  function switchTab(tabName) {
+    softHaptic();
+
+    document.querySelectorAll(".nav-btn").forEach(x => {
+      x.classList.toggle("active", x.dataset.tab === tabName);
+    });
+
+    document.querySelectorAll(".tab-content").forEach(x => {
+      x.classList.add("hidden");
+    });
+
+    const target = document.getElementById(tabName);
+    target.classList.remove("hidden");
+
+    target.style.animation = "none";
+    void target.offsetHeight;
+    target.style.animation = "smoothScreenIn .48s cubic-bezier(.16, 1, .3, 1)";
+
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  }
+
+  document.getElementById("date").value = today();
+
+  document.getElementById("addBtn").addEventListener("click", () => {
+    const amount = Number(String(document.getElementById("amount").value).replace(",", "."));
+    if (!amount || amount <= 0) {
+      alert("Введи сумму больше нуля");
+      return;
+    }
+
+    data.transactions.unshift({
+      id: crypto.randomUUID(),
+      type: document.getElementById("type").value,
+      amount,
+      category: document.getElementById("category").value,
+      note: document.getElementById("note").value.trim(),
+      date: document.getElementById("date").value || today()
+    });
+
+    document.getElementById("amount").value = "";
+    document.getElementById("note").value = "";
+
+    save();
+    render();
+    successHaptic(document.getElementById("addBtn"));
+    closeAddSheet();
+  });
+
+  document.getElementById("addPartBtn").addEventListener("click", addPcPart);
+
+  document.getElementById("saveSettings").addEventListener("click", () => {
+    data.goal = Number(String(document.getElementById("goal").value).replace(",", ".")) || 0;
+    data.baseSavings = Number(String(document.getElementById("baseSavings").value).replace(",", ".")) || 0;
+    data.monthlyIncome = Number(String(document.getElementById("monthlyIncome").value).replace(",", ".")) || 0;
+    data.annualRate = Number(String(document.getElementById("annualRate").value).replace(",", ".")) || 0;
+    data.targetMonth = document.getElementById("targetMonth").value || "2026-12";
+    save();
+    render();
+    successHaptic(document.getElementById("saveSettings"));
+    alert("План сохранён");
+  });
+
+  document.getElementById("saveSalaryPlan").addEventListener("click", () => {
+    data.salaryDay = Number(document.getElementById("salaryDay").value) || 10;
+    data.advanceDay = Number(document.getElementById("advanceDay").value) || 25;
+    data.currentCash = Number(String(document.getElementById("currentCash").value).replace(",", ".")) || 0;
+    data.requiredBeforePay = Number(String(document.getElementById("requiredBeforePay").value).replace(",", ".")) || 0;
+    save();
+    render();
+    successHaptic(document.getElementById("saveSalaryPlan"));
+    alert("План до зарплаты сохранён");
+  });
+
+  document.getElementById("saveAppSettings").addEventListener("click", () => {
+    data.goalName = document.getElementById("goalName").value.trim() || "ПК мечты";
+    save();
+    render();
+    successHaptic(document.getElementById("saveAppSettings"));
+    alert("Настройки сохранены");
+  });
+
+  document.getElementById("compactSwitch").addEventListener("click", () => {
+    data.compactMode = !data.compactMode;
+    save();
+    render();
+  });
+
+  document.getElementById("historySwitch").addEventListener("click", () => {
+    data.showHistory = !data.showHistory;
+    save();
+    render();
+  });
+
+  document.getElementById("resetBtn").addEventListener("click", () => {
+    if (confirm("Точно сбросить все данные?")) {
+      localStorage.removeItem(STORAGE_KEY);
+      data = JSON.parse(JSON.stringify(defaultData));
+      save();
+      render();
+      switchTab("add");
+    }
+  });
+
+  document.getElementById("addRecurringBtn").addEventListener("click", addRecurringPayment);
+
+  document.getElementById("openAddSheet").addEventListener("click", openAddSheet);
+  document.getElementById("closeAddSheet").addEventListener("click", closeAddSheet);
+  document.getElementById("sheetBackdrop").addEventListener("click", closeAddSheet);
+  document.addEventListener("keydown", (event) => {
+    if (event.key === "Escape" && document.getElementById("addSheet").classList.contains("open")) {
+      closeAddSheet();
+    }
+  });
+
+  document.querySelectorAll(".nav-btn").forEach(btn => {
+    btn.addEventListener("click", () => switchTab(btn.dataset.tab));
+  });
+
+  render();
+  setTimeout(addHapticFeedback, 0);
+</script>
+</body>
+</html> 
