@@ -1993,6 +1993,7 @@
       transform: scale(1.03);
       visibility: hidden;
       pointer-events: none;
+      display: none;
     }
 
     .splash-content {
@@ -2065,18 +2066,22 @@
     }
 
 
-    .nav-btn.icon-only {
-      display: grid;
-      place-items: center;
-      padding: 8px 2px;
+    /* Жёсткая защита от бесконечной загрузки */
+    .splash-screen {
+      animation: splashAutoHide 1.6s ease forwards;
     }
 
-    .nav-btn.icon-only span {
-      margin: 0 auto;
-    }
-
-    .nav-btn.icon-only::after {
-      bottom: 5px;
+    @keyframes splashAutoHide {
+      0%, 65% {
+        opacity: 1;
+        visibility: visible;
+        pointer-events: auto;
+      }
+      100% {
+        opacity: 0;
+        visibility: hidden;
+        pointer-events: none;
+      }
     }
 
     @media (max-width: 390px) {
@@ -2179,18 +2184,22 @@
     }
 
 
-    .nav-btn.icon-only {
-      display: grid;
-      place-items: center;
-      padding: 8px 2px;
+    /* Жёсткая защита от бесконечной загрузки */
+    .splash-screen {
+      animation: splashAutoHide 1.6s ease forwards;
     }
 
-    .nav-btn.icon-only span {
-      margin: 0 auto;
-    }
-
-    .nav-btn.icon-only::after {
-      bottom: 5px;
+    @keyframes splashAutoHide {
+      0%, 65% {
+        opacity: 1;
+        visibility: visible;
+        pointer-events: auto;
+      }
+      100% {
+        opacity: 0;
+        visibility: hidden;
+        pointer-events: none;
+      }
     }
 
     @media (max-width: 390px) {
@@ -2411,18 +2420,22 @@
     }
 
 
-    .nav-btn.icon-only {
-      display: grid;
-      place-items: center;
-      padding: 8px 2px;
+    /* Жёсткая защита от бесконечной загрузки */
+    .splash-screen {
+      animation: splashAutoHide 1.6s ease forwards;
     }
 
-    .nav-btn.icon-only span {
-      margin: 0 auto;
-    }
-
-    .nav-btn.icon-only::after {
-      bottom: 5px;
+    @keyframes splashAutoHide {
+      0%, 65% {
+        opacity: 1;
+        visibility: visible;
+        pointer-events: auto;
+      }
+      100% {
+        opacity: 0;
+        visibility: hidden;
+        pointer-events: none;
+      }
     }
 
     @media (max-width: 390px) {
@@ -2525,18 +2538,22 @@
     }
 
 
-    .nav-btn.icon-only {
-      display: grid;
-      place-items: center;
-      padding: 8px 2px;
+    /* Жёсткая защита от бесконечной загрузки */
+    .splash-screen {
+      animation: splashAutoHide 1.6s ease forwards;
     }
 
-    .nav-btn.icon-only span {
-      margin: 0 auto;
-    }
-
-    .nav-btn.icon-only::after {
-      bottom: 5px;
+    @keyframes splashAutoHide {
+      0%, 65% {
+        opacity: 1;
+        visibility: visible;
+        pointer-events: auto;
+      }
+      100% {
+        opacity: 0;
+        visibility: hidden;
+        pointer-events: none;
+      }
     }
 
     @media (max-width: 390px) {
@@ -2891,18 +2908,22 @@
     }
 
 
-    .nav-btn.icon-only {
-      display: grid;
-      place-items: center;
-      padding: 8px 2px;
+    /* Жёсткая защита от бесконечной загрузки */
+    .splash-screen {
+      animation: splashAutoHide 1.6s ease forwards;
     }
 
-    .nav-btn.icon-only span {
-      margin: 0 auto;
-    }
-
-    .nav-btn.icon-only::after {
-      bottom: 5px;
+    @keyframes splashAutoHide {
+      0%, 65% {
+        opacity: 1;
+        visibility: visible;
+        pointer-events: auto;
+      }
+      100% {
+        opacity: 0;
+        visibility: hidden;
+        pointer-events: none;
+      }
     }
 
     @media (max-width: 390px) {
@@ -3005,18 +3026,22 @@
     }
 
 
-    .nav-btn.icon-only {
-      display: grid;
-      place-items: center;
-      padding: 8px 2px;
+    /* Жёсткая защита от бесконечной загрузки */
+    .splash-screen {
+      animation: splashAutoHide 1.6s ease forwards;
     }
 
-    .nav-btn.icon-only span {
-      margin: 0 auto;
-    }
-
-    .nav-btn.icon-only::after {
-      bottom: 5px;
+    @keyframes splashAutoHide {
+      0%, 65% {
+        opacity: 1;
+        visibility: visible;
+        pointer-events: auto;
+      }
+      100% {
+        opacity: 0;
+        visibility: hidden;
+        pointer-events: none;
+      }
     }
 
     @media (max-width: 390px) {
@@ -3237,18 +3262,22 @@
     }
 
 
-    .nav-btn.icon-only {
-      display: grid;
-      place-items: center;
-      padding: 8px 2px;
+    /* Жёсткая защита от бесконечной загрузки */
+    .splash-screen {
+      animation: splashAutoHide 1.6s ease forwards;
     }
 
-    .nav-btn.icon-only span {
-      margin: 0 auto;
-    }
-
-    .nav-btn.icon-only::after {
-      bottom: 5px;
+    @keyframes splashAutoHide {
+      0%, 65% {
+        opacity: 1;
+        visibility: visible;
+        pointer-events: auto;
+      }
+      100% {
+        opacity: 0;
+        visibility: hidden;
+        pointer-events: none;
+      }
     }
 
     @media (max-width: 390px) {
@@ -3351,18 +3380,22 @@
     }
 
 
-    .nav-btn.icon-only {
-      display: grid;
-      place-items: center;
-      padding: 8px 2px;
+    /* Жёсткая защита от бесконечной загрузки */
+    .splash-screen {
+      animation: splashAutoHide 1.6s ease forwards;
     }
 
-    .nav-btn.icon-only span {
-      margin: 0 auto;
-    }
-
-    .nav-btn.icon-only::after {
-      bottom: 5px;
+    @keyframes splashAutoHide {
+      0%, 65% {
+        opacity: 1;
+        visibility: visible;
+        pointer-events: auto;
+      }
+      100% {
+        opacity: 0;
+        visibility: hidden;
+        pointer-events: none;
+      }
     }
 
     @media (max-width: 390px) {
@@ -3895,18 +3928,22 @@
     }
 
 
-    .nav-btn.icon-only {
-      display: grid;
-      place-items: center;
-      padding: 8px 2px;
+    /* Жёсткая защита от бесконечной загрузки */
+    .splash-screen {
+      animation: splashAutoHide 1.6s ease forwards;
     }
 
-    .nav-btn.icon-only span {
-      margin: 0 auto;
-    }
-
-    .nav-btn.icon-only::after {
-      bottom: 5px;
+    @keyframes splashAutoHide {
+      0%, 65% {
+        opacity: 1;
+        visibility: visible;
+        pointer-events: auto;
+      }
+      100% {
+        opacity: 0;
+        visibility: hidden;
+        pointer-events: none;
+      }
     }
 
     @media (max-width: 390px) {
@@ -4009,18 +4046,22 @@
     }
 
 
-    .nav-btn.icon-only {
-      display: grid;
-      place-items: center;
-      padding: 8px 2px;
+    /* Жёсткая защита от бесконечной загрузки */
+    .splash-screen {
+      animation: splashAutoHide 1.6s ease forwards;
     }
 
-    .nav-btn.icon-only span {
-      margin: 0 auto;
-    }
-
-    .nav-btn.icon-only::after {
-      bottom: 5px;
+    @keyframes splashAutoHide {
+      0%, 65% {
+        opacity: 1;
+        visibility: visible;
+        pointer-events: auto;
+      }
+      100% {
+        opacity: 0;
+        visibility: hidden;
+        pointer-events: none;
+      }
     }
 
     @media (max-width: 390px) {
@@ -4241,18 +4282,22 @@
     }
 
 
-    .nav-btn.icon-only {
-      display: grid;
-      place-items: center;
-      padding: 8px 2px;
+    /* Жёсткая защита от бесконечной загрузки */
+    .splash-screen {
+      animation: splashAutoHide 1.6s ease forwards;
     }
 
-    .nav-btn.icon-only span {
-      margin: 0 auto;
-    }
-
-    .nav-btn.icon-only::after {
-      bottom: 5px;
+    @keyframes splashAutoHide {
+      0%, 65% {
+        opacity: 1;
+        visibility: visible;
+        pointer-events: auto;
+      }
+      100% {
+        opacity: 0;
+        visibility: hidden;
+        pointer-events: none;
+      }
     }
 
     @media (max-width: 390px) {
@@ -4355,18 +4400,22 @@
     }
 
 
-    .nav-btn.icon-only {
-      display: grid;
-      place-items: center;
-      padding: 8px 2px;
+    /* Жёсткая защита от бесконечной загрузки */
+    .splash-screen {
+      animation: splashAutoHide 1.6s ease forwards;
     }
 
-    .nav-btn.icon-only span {
-      margin: 0 auto;
-    }
-
-    .nav-btn.icon-only::after {
-      bottom: 5px;
+    @keyframes splashAutoHide {
+      0%, 65% {
+        opacity: 1;
+        visibility: visible;
+        pointer-events: auto;
+      }
+      100% {
+        opacity: 0;
+        visibility: hidden;
+        pointer-events: none;
+      }
     }
 
     @media (max-width: 390px) {
@@ -4721,18 +4770,22 @@
     }
 
 
-    .nav-btn.icon-only {
-      display: grid;
-      place-items: center;
-      padding: 8px 2px;
+    /* Жёсткая защита от бесконечной загрузки */
+    .splash-screen {
+      animation: splashAutoHide 1.6s ease forwards;
     }
 
-    .nav-btn.icon-only span {
-      margin: 0 auto;
-    }
-
-    .nav-btn.icon-only::after {
-      bottom: 5px;
+    @keyframes splashAutoHide {
+      0%, 65% {
+        opacity: 1;
+        visibility: visible;
+        pointer-events: auto;
+      }
+      100% {
+        opacity: 0;
+        visibility: hidden;
+        pointer-events: none;
+      }
     }
 
     @media (max-width: 390px) {
@@ -4835,18 +4888,22 @@
     }
 
 
-    .nav-btn.icon-only {
-      display: grid;
-      place-items: center;
-      padding: 8px 2px;
+    /* Жёсткая защита от бесконечной загрузки */
+    .splash-screen {
+      animation: splashAutoHide 1.6s ease forwards;
     }
 
-    .nav-btn.icon-only span {
-      margin: 0 auto;
-    }
-
-    .nav-btn.icon-only::after {
-      bottom: 5px;
+    @keyframes splashAutoHide {
+      0%, 65% {
+        opacity: 1;
+        visibility: visible;
+        pointer-events: auto;
+      }
+      100% {
+        opacity: 0;
+        visibility: hidden;
+        pointer-events: none;
+      }
     }
 
     @media (max-width: 390px) {
@@ -5067,18 +5124,22 @@
     }
 
 
-    .nav-btn.icon-only {
-      display: grid;
-      place-items: center;
-      padding: 8px 2px;
+    /* Жёсткая защита от бесконечной загрузки */
+    .splash-screen {
+      animation: splashAutoHide 1.6s ease forwards;
     }
 
-    .nav-btn.icon-only span {
-      margin: 0 auto;
-    }
-
-    .nav-btn.icon-only::after {
-      bottom: 5px;
+    @keyframes splashAutoHide {
+      0%, 65% {
+        opacity: 1;
+        visibility: visible;
+        pointer-events: auto;
+      }
+      100% {
+        opacity: 0;
+        visibility: hidden;
+        pointer-events: none;
+      }
     }
 
     @media (max-width: 390px) {
@@ -5181,18 +5242,22 @@
     }
 
 
-    .nav-btn.icon-only {
-      display: grid;
-      place-items: center;
-      padding: 8px 2px;
+    /* Жёсткая защита от бесконечной загрузки */
+    .splash-screen {
+      animation: splashAutoHide 1.6s ease forwards;
     }
 
-    .nav-btn.icon-only span {
-      margin: 0 auto;
-    }
-
-    .nav-btn.icon-only::after {
-      bottom: 5px;
+    @keyframes splashAutoHide {
+      0%, 65% {
+        opacity: 1;
+        visibility: visible;
+        pointer-events: auto;
+      }
+      100% {
+        opacity: 0;
+        visibility: hidden;
+        pointer-events: none;
+      }
     }
 
     @media (max-width: 390px) {
@@ -5215,6 +5280,16 @@
       <div class="splash-loader"><div></div></div>
     </div>
   </div>
+
+  <script>
+    setTimeout(function () {
+      var splash = document.getElementById("splashScreen");
+      if (splash) {
+        splash.classList.add("hide");
+        splash.style.display = "none";
+      }
+    }, 1700);
+  </script>
 
   <main class="app">
     <section class="hero">
@@ -5659,12 +5734,12 @@
   <div class="nav-shield"></div>
 
   <nav class="bottom-nav" aria-label="Нижняя навигация">
-    <button class="nav-btn active icon-only" data-tab="add" aria-label="Главная" title="Главная"><span>🏠</span></button>
+    <button class="nav-btn active" data-tab="add"><span>🏠</span>Главная</button>
     <button class="nav-btn" data-tab="stats"><span>📊</span>Статы</button>
     <button class="nav-btn" data-tab="analytics"><span>📈</span>Анализ</button>
     <button class="nav-btn" data-tab="pcbuild"><span>💻</span>ПК</button>
     <button class="nav-btn" data-tab="plan"><span>🎯</span>Цель</button>
-    <button class="nav-btn icon-only" data-tab="settings" aria-label="Настройки" title="Настройки"><span>⚙️</span></button>
+    <button class="nav-btn" data-tab="settings"><span>⚙️</span>Настр</button>
   </nav>
 
 <script>
