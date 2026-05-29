@@ -2741,6 +2741,83 @@
       text-overflow: ellipsis;
     }
 
+
+    /* Improved analysis savings chart visual */
+    .analysis-chart-svg-wrap {
+      height: 230px;
+      border-radius: 24px;
+      overflow: hidden;
+      background:
+        radial-gradient(circle at 22% 18%, rgba(91,140,255,.10), transparent 32%),
+        linear-gradient(to top, rgba(255,255,255,.055) 1px, transparent 1px),
+        rgba(255,255,255,.018);
+      background-size: auto, 100% 33.333%, auto;
+      border: 1px solid rgba(255,255,255,.085);
+    }
+
+    .analysis-chart-grid {
+      stroke: rgba(255,255,255,.075);
+      stroke-width: 1;
+    }
+
+    .analysis-chart-goal {
+      stroke: rgba(255,255,255,.30);
+      stroke-width: 1.25;
+      stroke-dasharray: 8 9;
+    }
+
+    .analysis-chart-area {
+      fill: url(#analysisChartArea);
+    }
+
+    .analysis-chart-line {
+      fill: none;
+      stroke: url(#analysisChartLine);
+      stroke-width: 4.25;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+      filter: drop-shadow(0 7px 13px rgba(91,140,255,.24));
+    }
+
+    .analysis-chart-line-glow {
+      fill: none;
+      stroke: rgba(91,140,255,.18);
+      stroke-width: 10;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+      filter: blur(2px);
+    }
+
+    .analysis-chart-dot {
+      fill: rgba(245,247,251,.98);
+      stroke: #5b8cff;
+      stroke-width: 3.2;
+      filter: drop-shadow(0 4px 8px rgba(91,140,255,.22));
+    }
+
+    .analysis-chart-dot-now {
+      fill: #4ade80;
+      stroke: white;
+      stroke-width: 3.4;
+    }
+
+    .analysis-chart-dot-future {
+      fill: rgba(245,247,251,.92);
+      stroke: rgba(91,140,255,.92);
+    }
+
+    .analysis-chart-label {
+      fill: rgba(255,255,255,.62);
+      font-size: 10.5px;
+      font-weight: 800;
+    }
+
+    .analysis-chart-value {
+      fill: rgba(255,255,255,.94);
+      font-size: 11.5px;
+      font-weight: 900;
+    }
+
     @media (max-width: 390px) {
       .analysis-mini-grid {
         grid-template-columns: 1fr;
@@ -12190,6 +12267,17 @@
 
 
 
+
+  function getTargetMonthLabel() {
+    const value = data.targetMonth || "";
+    if (!value || !value.includes("-")) return "цель";
+    const [year, month] = value.split("-").map(Number);
+    if (!year || !month) return "цель";
+
+    const date = new Date(year, month - 1, 1);
+    return date.toLocaleDateString("ru-RU", { month: "short", year: "numeric" }).replace(".", "");
+  }
+
   function makeAnalysisSmoothPath(points) {
     if (!points.length) return "";
     let d = `M ${points[0].x} ${points[0].y}`;
@@ -12242,11 +12330,12 @@
       const saved = Math.max(0, Number(s.totalSaved) || 0);
       const monthly = Math.max(0, Number(s.needMonthly) || 0);
       const months = Math.max(2, Math.min(8, Number(s.months) || 8));
+      const targetLabel = getTargetMonthLabel();
 
       setText("analysisChartMain", `${shortRub(saved)} → ${shortRub(goal)}`);
       setText("analysisChartPercent", `${(s.progress || 0).toFixed(1)}%`);
       setText("analysisChartNeedMonthly", rub(s.needMonthly));
-      setText("analysisChartMonths", `${s.months} мес.`);
+      setText("analysisChartMonths", targetLabel);
 
       const values = Array.from({ length: months }, (_, i) => {
         const value = monthly > 0 ? saved + monthly * i : saved;
@@ -12255,10 +12344,10 @@
 
       const w = 360;
       const h = 220;
-      const padL = 28;
-      const padR = 28;
-      const padT = 30;
-      const padB = 34;
+      const padL = 34;
+      const padR = 34;
+      const padT = 34;
+      const padB = 42;
       const usableW = w - padL - padR;
       const usableH = h - padT - padB;
       const maxY = Math.max(goal, ...values, 1);
@@ -12274,16 +12363,19 @@
       const area = `${line} L ${points[points.length - 1].x} ${h - padB} L ${points[0].x} ${h - padB} Z`;
       const goalY = padT + (1 - goal / maxY) * usableH;
 
+      const first = points[0];
+      const last = points[points.length - 1];
+
       chartSvg.innerHTML = `
         <defs>
           <linearGradient id="analysisChartLine" x1="0" y1="0" x2="1" y2="0">
             <stop offset="0%" stop-color="#4ade80"/>
-            <stop offset="45%" stop-color="#5b8cff"/>
+            <stop offset="48%" stop-color="#5b8cff"/>
             <stop offset="100%" stop-color="#7c3aed"/>
           </linearGradient>
           <linearGradient id="analysisChartArea" x1="0" y1="0" x2="0" y2="1">
-            <stop offset="0%" stop-color="#5b8cff" stop-opacity=".28"/>
-            <stop offset="68%" stop-color="#7c3aed" stop-opacity=".09"/>
+            <stop offset="0%" stop-color="#5b8cff" stop-opacity=".22"/>
+            <stop offset="68%" stop-color="#7c3aed" stop-opacity=".08"/>
             <stop offset="100%" stop-color="#7c3aed" stop-opacity="0"/>
           </linearGradient>
         </defs>
@@ -12294,18 +12386,23 @@
         <line class="analysis-chart-goal" x1="${padL}" y1="${goalY}" x2="${w - padR}" y2="${goalY}"></line>
 
         <path class="analysis-chart-area" d="${area}"></path>
+        <path class="analysis-chart-line-glow" d="${line}"></path>
         <path class="analysis-chart-line" d="${line}"></path>
 
-        ${points.map((p, i) => `
-          <circle class="analysis-chart-dot ${i === 0 ? "analysis-chart-dot-now" : ""}" cx="${p.x}" cy="${p.y}" r="${i === 0 ? 5.5 : 4.5}"></circle>
-          ${i === 0 ? `<text class="analysis-chart-value" x="${p.x + 8}" y="${Math.max(18, p.y - 10)}" text-anchor="start">${shortRub(p.value)}</text>` : ""}
-          ${i === points.length - 1 ? `<text class="analysis-chart-value" x="${p.x - 8}" y="${Math.max(18, p.y - 10)}" text-anchor="end">${shortRub(p.value)}</text>` : ""}
-          ${(i === 0 || i === points.length - 1) ? `<text class="analysis-chart-label" x="${p.x}" y="${h - 10}" text-anchor="middle">${i === 0 ? "сейчас" : "+" + i + "м"}</text>` : ""}
-        `).join("")}
+        ${points.map((p, i) => {
+          if (i !== 0 && i !== points.length - 1 && i % 2 !== 0) return "";
+          return `
+            <circle class="analysis-chart-dot ${i === 0 ? "analysis-chart-dot-now" : "analysis-chart-dot-future"}" cx="${p.x}" cy="${p.y}" r="${i === 0 ? 5.8 : 4.6}"></circle>
+          `;
+        }).join("")}
+
+        <text class="analysis-chart-value" x="${first.x + 10}" y="${Math.max(18, first.y - 11)}" text-anchor="start">${shortRub(first.value)}</text>
+        <text class="analysis-chart-value" x="${last.x - 10}" y="${Math.max(18, last.y - 11)}" text-anchor="end">${shortRub(last.value)}</text>
+
+        <text class="analysis-chart-label" x="${padL}" y="${h - 13}" text-anchor="start">сейчас</text>
+        <text class="analysis-chart-label" x="${w - padR}" y="${h - 13}" text-anchor="end">${targetLabel}</text>
       `;
     }
-
-
 
     const bars = document.getElementById("analysisCategoryBars");
     if (bars) {
