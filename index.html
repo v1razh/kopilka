@@ -407,7 +407,7 @@
       border-radius: 30px;
       padding: 8px;
       display: grid;
-      grid-template-columns: repeat(7, 1fr);
+      grid-template-columns: repeat(6, 1fr);
       gap: 4px;
       z-index: 10;
       background:
@@ -1556,88 +1556,6 @@
     body.sheet-open .fab {
       pointer-events: auto;
     }
-
-    .recurring-item {
-      background:
-        linear-gradient(180deg, rgba(255,255,255,.07), rgba(255,255,255,.025)),
-        rgba(16,27,45,.38);
-      border: 1px solid rgba(255,255,255,.12);
-      border-radius: 18px;
-      padding: 14px;
-      margin-bottom: 10px;
-      backdrop-filter: blur(20px) saturate(1.25);
-      -webkit-backdrop-filter: blur(20px) saturate(1.25);
-    }
-
-    .recurring-top {
-      display: flex;
-      justify-content: space-between;
-      align-items: flex-start;
-      gap: 10px;
-    }
-
-    .recurring-title {
-      font-weight: 900;
-      margin: 0;
-    }
-
-    .recurring-sub {
-      color: var(--muted);
-      font-size: 12px;
-      margin: 4px 0 0;
-      line-height: 1.35;
-    }
-
-    .recurring-price {
-      font-weight: 900;
-      white-space: nowrap;
-      text-align: right;
-      color: white;
-    }
-
-    .recurring-actions {
-      display: grid;
-      grid-template-columns: 1fr;
-      gap: 8px;
-      margin-top: 12px;
-    }
-
-    .recurring-summary {
-      background:
-        linear-gradient(135deg, rgba(91,140,255,.16), rgba(124,58,237,.10)),
-        rgba(255,255,255,.035);
-      border: 1px solid rgba(255,255,255,.12);
-      border-radius: 18px;
-      padding: 14px;
-      margin-bottom: 12px;
-    }
-
-    .recurring-summary p {
-      margin: 0;
-      color: var(--muted);
-      font-size: 13px;
-    }
-
-    .recurring-summary strong {
-      display: block;
-      margin-top: 5px;
-      font-size: 22px;
-      color: white;
-    }
-
-    @media (max-width: 430px) {
-      .nav-btn {
-        font-size: 9px;
-        padding-left: 1px;
-        padding-right: 1px;
-      }
-
-      .nav-btn span {
-        width: 27px;
-        height: 27px;
-        font-size: 16px;
-      }
-    }
     @media (max-width: 390px) {
       .fab {
         right: 18px;
@@ -1661,88 +1579,6 @@
     body.sheet-open .sheet-backdrop,
     body.sheet-open .fab {
       pointer-events: auto;
-    }
-
-    .recurring-item {
-      background:
-        linear-gradient(180deg, rgba(255,255,255,.07), rgba(255,255,255,.025)),
-        rgba(16,27,45,.38);
-      border: 1px solid rgba(255,255,255,.12);
-      border-radius: 18px;
-      padding: 14px;
-      margin-bottom: 10px;
-      backdrop-filter: blur(20px) saturate(1.25);
-      -webkit-backdrop-filter: blur(20px) saturate(1.25);
-    }
-
-    .recurring-top {
-      display: flex;
-      justify-content: space-between;
-      align-items: flex-start;
-      gap: 10px;
-    }
-
-    .recurring-title {
-      font-weight: 900;
-      margin: 0;
-    }
-
-    .recurring-sub {
-      color: var(--muted);
-      font-size: 12px;
-      margin: 4px 0 0;
-      line-height: 1.35;
-    }
-
-    .recurring-price {
-      font-weight: 900;
-      white-space: nowrap;
-      text-align: right;
-      color: white;
-    }
-
-    .recurring-actions {
-      display: grid;
-      grid-template-columns: 1fr;
-      gap: 8px;
-      margin-top: 12px;
-    }
-
-    .recurring-summary {
-      background:
-        linear-gradient(135deg, rgba(91,140,255,.16), rgba(124,58,237,.10)),
-        rgba(255,255,255,.035);
-      border: 1px solid rgba(255,255,255,.12);
-      border-radius: 18px;
-      padding: 14px;
-      margin-bottom: 12px;
-    }
-
-    .recurring-summary p {
-      margin: 0;
-      color: var(--muted);
-      font-size: 13px;
-    }
-
-    .recurring-summary strong {
-      display: block;
-      margin-top: 5px;
-      font-size: 22px;
-      color: white;
-    }
-
-    @media (max-width: 430px) {
-      .nav-btn {
-        font-size: 9px;
-        padding-left: 1px;
-        padding-right: 1px;
-      }
-
-      .nav-btn span {
-        width: 27px;
-        height: 27px;
-        font-size: 16px;
-      }
     }
     @media (max-width: 390px) {
       body { padding-left: 14px; padding-right: 14px; }
@@ -1968,70 +1804,6 @@
       </div>
     </section>
 
-
-    <section id="recurring" class="tab-content hidden">
-      <div class="card">
-        <h2>Регулярные платежи</h2>
-
-        <div class="recurring-summary">
-          <p>Обязательные платежи до ближайшей выплаты</p>
-          <strong id="recurringBeforePayTotal">0 ₽</strong>
-          <p id="recurringBeforePayHint">Добавь платежи, чтобы они учитывались в дневном лимите.</p>
-        </div>
-
-        <div id="recurringList"></div>
-      </div>
-
-      <div class="card">
-        <h2>Добавить платёж</h2>
-
-        <div class="field">
-          <label>Название</label>
-          <input id="recurringName" placeholder="Например: связь" />
-        </div>
-
-        <div class="field">
-          <label>Сумма, ₽</label>
-          <input id="recurringAmount" inputmode="decimal" placeholder="Например: 1200" />
-        </div>
-
-        <div class="form-grid">
-          <div class="field">
-            <label>День месяца</label>
-            <input id="recurringDay" inputmode="numeric" placeholder="5" />
-          </div>
-          <div class="field">
-            <label>Периодичность</label>
-            <select id="recurringFrequency">
-              <option value="monthly">Каждый месяц</option>
-              <option value="yearly">Раз в год</option>
-            </select>
-          </div>
-        </div>
-
-        <div class="field" id="recurringMonthField">
-          <label>Месяц для ежегодного платежа</label>
-          <select id="recurringMonth">
-            <option value="0">Январь</option>
-            <option value="1">Февраль</option>
-            <option value="2">Март</option>
-            <option value="3">Апрель</option>
-            <option value="4">Май</option>
-            <option value="5">Июнь</option>
-            <option value="6">Июль</option>
-            <option value="7">Август</option>
-            <option value="8">Сентябрь</option>
-            <option value="9">Октябрь</option>
-            <option value="10">Ноябрь</option>
-            <option value="11">Декабрь</option>
-          </select>
-        </div>
-
-        <button class="primary" id="addRecurringBtn">+ Добавить регулярный платёж</button>
-        <p class="hint">Минимальная версия: платежи учитываются в плане до зарплаты и отображаются списком.</p>
-      </div>
-    </section>
-
     <section id="settings" class="tab-content hidden">
       <div class="card">
         <h2>План до зарплаты</h2>
@@ -2160,7 +1932,6 @@
     <button class="nav-btn" data-tab="stats"><span>📊</span>Статы</button>
     <button class="nav-btn" data-tab="analytics"><span>📈</span>Анализ</button>
     <button class="nav-btn" data-tab="pcbuild"><span>💻</span>ПК</button>
-    <button class="nav-btn" data-tab="recurring"><span>🔁</span>Платежи</button>
     <button class="nav-btn" data-tab="plan"><span>🎯</span>Цель</button>
     <button class="nav-btn" data-tab="settings"><span>⚙️</span>Настр</button>
   </nav>
@@ -2183,10 +1954,6 @@
     advanceDay: 25,
     currentCash: 0,
     requiredBeforePay: 0,
-    recurringPayments: [
-      { id: crypto.randomUUID(), name: "Связь", amount: 1200, day: 5, frequency: "monthly", month: null },
-      { id: crypto.randomUUID(), name: "Универ", amount: 32000, day: 1, frequency: "yearly", month: 7 }
-    ],
     pcParts: [
       { id: crypto.randomUUID(), name: "RTX 5090", category: "Видеокарта", price: 250000, note: "Главная деталь для игр, стримов и монтажа" },
       { id: crypto.randomUUID(), name: "Ryzen 9800X3D", category: "Процессор", price: 70000, note: "Мощный игровой процессор" },
@@ -2272,61 +2039,13 @@
     return Math.max(1, Math.ceil((target - start) / 86400000));
   }
 
-
-  function getRecurringDate(payment, baseDate = new Date()) {
-    const day = Math.min(28, Math.max(1, Number(payment.day) || 1));
-
-    if (payment.frequency === "yearly") {
-      let month = Number(payment.month);
-      if (Number.isNaN(month)) month = baseDate.getMonth();
-
-      let date = new Date(baseDate.getFullYear(), month, day);
-      const todayDate = new Date(baseDate.getFullYear(), baseDate.getMonth(), baseDate.getDate());
-
-      if (date < todayDate) {
-        date = new Date(baseDate.getFullYear() + 1, month, day);
-      }
-
-      return date;
-    }
-
-    let date = new Date(baseDate.getFullYear(), baseDate.getMonth(), day);
-    const todayDate = new Date(baseDate.getFullYear(), baseDate.getMonth(), baseDate.getDate());
-
-    if (date < todayDate) {
-      date = new Date(baseDate.getFullYear(), baseDate.getMonth() + 1, day);
-    }
-
-    return date;
-  }
-
-  function getRecurringBeforePay() {
-    if (!Array.isArray(data.recurringPayments)) data.recurringPayments = [];
-
-    const now = new Date();
-    const start = new Date(now.getFullYear(), now.getMonth(), now.getDate());
-    const payDate = nextPayDate();
-    const payDay = new Date(payDate.getFullYear(), payDate.getMonth(), payDate.getDate());
-
-    const items = data.recurringPayments
-      .map(payment => ({ ...payment, nextDate: getRecurringDate(payment, now) }))
-      .filter(payment => payment.nextDate >= start && payment.nextDate <= payDay)
-      .sort((a, b) => a.nextDate - b.nextDate);
-
-    const total = items.reduce((sum, item) => sum + Number(item.amount || 0), 0);
-
-    return { items, total };
-  }
-
   function calcSalaryPlan() {
     const payDate = nextPayDate();
     const days = daysUntil(payDate);
-    const recurring = getRecurringBeforePay();
-    const requiredTotal = Number(data.requiredBeforePay) + Number(recurring.total);
-    const freeMoney = Math.max(0, Number(data.currentCash) - requiredTotal);
+    const freeMoney = Math.max(0, Number(data.currentCash) - Number(data.requiredBeforePay));
     const dailyLimit = Math.floor(freeMoney / days);
 
-    return { payDate, days, freeMoney, dailyLimit, recurringTotal: recurring.total, recurringItems: recurring.items, requiredTotal };
+    return { payDate, days, freeMoney, dailyLimit };
   }
 
   function calc() {
@@ -2388,7 +2107,6 @@
     renderStats();
     renderAnalytics();
     renderSmartAdvisor();
-    renderRecurringPayments();
     renderPcBuild();
     renderForecast();
     setTimeout(addHapticFeedback, 0);
@@ -2401,8 +2119,7 @@
     document.getElementById("salaryForecast").innerHTML = `
       <p>Ближайшая выплата: ${dateText}</p>
       <strong>${salary.dailyLimit > 0 ? rub(salary.dailyLimit) : "0 ₽"} / день</strong>
-      <p>До выплаты осталось: ${salary.days} дн. Свободно после обязательных и регулярных трат: ${rub(salary.freeMoney)}.</p>
-      <p>Регулярные платежи до выплаты: ${rub(salary.recurringTotal || 0)}.</p>
+      <p>До выплаты осталось: ${salary.days} дн. Свободно после обязательных трат: ${rub(salary.freeMoney)}.</p>
     `;
   }
 
@@ -2614,7 +2331,7 @@
     }
 
     if (salary.dailyLimit > 0) {
-      messages.push(`До ближайшей выплаты можно тратить примерно <b>${rub(salary.dailyLimit)}</b> в день, если не трогать обязательные и регулярные расходы.`);
+      messages.push(`До ближайшей выплаты можно тратить примерно <b>${rub(salary.dailyLimit)}</b> в день, если не трогать обязательные расходы.`);
     } else {
       messages.push("По плану до зарплаты свободных денег сейчас нет или они не заполнены в настройках.");
     }
@@ -2748,92 +2465,180 @@
   }
 
 
-  function renderRecurringPayments() {
-    if (!Array.isArray(data.recurringPayments)) data.recurringPayments = [];
-
-    const beforePay = getRecurringBeforePay();
-
-    document.getElementById("recurringBeforePayTotal").textContent = rub(beforePay.total);
-    document.getElementById("recurringBeforePayHint").textContent = beforePay.items.length
-      ? `До ближайшей выплаты учтено платежей: ${beforePay.items.length}.`
-      : "До ближайшей выплаты регулярных платежей нет.";
-
-    const list = document.getElementById("recurringList");
-
-    if (!data.recurringPayments.length) {
-      list.innerHTML = '<div class="empty">Регулярных платежей пока нет.</div>';
-      return;
-    }
-
-    list.innerHTML = data.recurringPayments.map(payment => {
-      const nextDate = getRecurringDate(payment);
-      const dateText = nextDate.toLocaleDateString("ru-RU", { day: "numeric", month: "long" });
-      const frequencyText = payment.frequency === "yearly" ? "раз в год" : "каждый месяц";
-
-      return `
-        <div class="recurring-item">
-          <div class="recurring-top">
-            <div>
-              <p class="recurring-title">${payment.name || "Без названия"}</p>
-              <p class="recurring-sub">${frequencyText} · следующий платёж: ${dateText}</p>
-            </div>
-            <div class="recurring-price">${rub(payment.amount || 0)}</div>
-          </div>
-          <div class="recurring-actions">
-            <button class="small-btn danger-text" onclick="deleteRecurring('${payment.id}')">Удалить</button>
-          </div>
-        </div>
-      `;
-    }).join("");
+  function getCurrentMonthExpenses() {
+    const currentMonth = today().slice(0, 7);
+    return data.transactions.filter(x => x.type === "expense" && monthKey(x.date) === currentMonth);
   }
 
-  function addRecurringPayment() {
-    const name = document.getElementById("recurringName").value.trim();
-    const amount = Number(String(document.getElementById("recurringAmount").value).replace(",", "."));
-    const day = Number(document.getElementById("recurringDay").value);
-    const frequency = document.getElementById("recurringFrequency").value;
-    const month = Number(document.getElementById("recurringMonth").value);
-
-    if (!name) {
-      alert("Введи название платежа");
-      return;
-    }
-
-    if (!amount || amount <= 0) {
-      alert("Введи сумму больше нуля");
-      return;
-    }
-
-    if (!day || day < 1 || day > 31) {
-      alert("День месяца должен быть от 1 до 31");
-      return;
-    }
-
-    if (!Array.isArray(data.recurringPayments)) data.recurringPayments = [];
-
-    data.recurringPayments.push({
-      id: crypto.randomUUID(),
-      name,
-      amount,
-      day,
-      frequency,
-      month: frequency === "yearly" ? month : null
-    });
-
-    document.getElementById("recurringName").value = "";
-    document.getElementById("recurringAmount").value = "";
-    document.getElementById("recurringDay").value = "";
-
-    save();
-    render();
-    successHaptic(document.getElementById("addRecurringBtn"));
+  function getCurrentMonthSavings() {
+    const currentMonth = today().slice(0, 7);
+    return data.transactions
+      .filter(x => x.type === "saving" && monthKey(x.date) === currentMonth)
+      .reduce((sum, x) => sum + Number(x.amount), 0);
   }
 
-  function deleteRecurring(id) {
-    if (!confirm("Удалить регулярный платёж?")) return;
-    data.recurringPayments = data.recurringPayments.filter(payment => payment.id !== id);
-    save();
-    render();
+  function getCurrentMonthIncome() {
+    const currentMonth = today().slice(0, 7);
+    return data.transactions
+      .filter(x => x.type === "income" && monthKey(x.date) === currentMonth)
+      .reduce((sum, x) => sum + Number(x.amount), 0);
+  }
+
+  function getTopExpenseCategoryForAdvisor(expenses) {
+    const totals = categories.map(cat => ({
+      cat,
+      value: expenses
+        .filter(x => x.category === cat)
+        .reduce((sum, x) => sum + Number(x.amount), 0)
+    })).filter(x => x.value > 0).sort((a, b) => b.value - a.value);
+
+    return totals[0] || null;
+  }
+
+  function getBiggestExpense(expenses) {
+    return expenses
+      .slice()
+      .sort((a, b) => Number(b.amount) - Number(a.amount))[0] || null;
+  }
+
+  function makeSmartAdviceCards() {
+    const s = calc();
+    const salary = calcSalaryPlan();
+    const expenses = getCurrentMonthExpenses();
+    const totalExpenses = expenses.reduce((sum, x) => sum + Number(x.amount), 0);
+    const monthlySavings = getCurrentMonthSavings();
+    const monthlyIncome = getCurrentMonthIncome();
+    const top = getTopExpenseCategoryForAdvisor(expenses);
+    const biggest = getBiggestExpense(expenses);
+    const avgDaily = Math.round(totalExpenses / Math.max(1, new Date().getDate()));
+    const cards = [];
+
+    if (salary.dailyLimit > 0) {
+      cards.push({
+        icon: "💸",
+        title: "Лимит до выплаты",
+        text: `До ближайшей выплаты безопасный лимит — около ${rub(salary.dailyLimit)} в день. Если хочешь ускорить накопление, держи фактические траты ниже этого числа хотя бы на 10–15%.`,
+        tag: "до зарплаты",
+        main: true
+      });
+    } else {
+      cards.push({
+        icon: "⚠️",
+        title: "Заполни план до зарплаты",
+        text: "В настройках укажи деньги на карте и обязательные траты. Тогда советник сможет точнее считать дневной лимит и предупреждать о рисках.",
+        tag: "настройка",
+        main: true
+      });
+    }
+
+    if (salary.recurringTotal && salary.recurringTotal > 0) {
+      cards.push({
+        icon: "🔁",
+        title: "Регулярные платежи учтены",
+        text: `До ближайшей выплаты уже заложено регулярных платежей на ${rub(salary.recurringTotal)}. Не трать эти деньги случайно — они уже заняты будущими списаниями.`,
+        tag: "регулярные"
+      });
+    }
+
+    if (totalExpenses > 0 && salary.dailyLimit > 0 && avgDaily > salary.dailyLimit) {
+      cards.push({
+        icon: "🚦",
+        title: "Темп трат выше лимита",
+        text: `Сейчас средний расход ${rub(avgDaily)} в день, а безопасный лимит — ${rub(salary.dailyLimit)}. На пару дней лучше включить режим экономии.`,
+        tag: "важно",
+        main: true
+      });
+    }
+
+    if (top) {
+      const percent = Math.round(top.value / Math.max(1, totalExpenses) * 100);
+      cards.push({
+        icon: "📊",
+        title: "Главная категория расходов",
+        text: `Больше всего в этом месяце ушло на “${top.cat}” — ${rub(top.value)}, это примерно ${percent}% всех расходов. Если нужно ужаться, начинай именно отсюда.`,
+        tag: "расходы"
+      });
+    }
+
+    if (biggest) {
+      cards.push({
+        icon: "🧾",
+        title: "Самая крупная покупка",
+        text: `Самая большая операция месяца: ${rub(biggest.amount)} в категории “${biggest.category}”. Такие покупки сильнее всего сбивают план накоплений.`,
+        tag: "контроль"
+      });
+    }
+
+    if (s.progress < 10) {
+      cards.push({
+        icon: "🌱",
+        title: "Самый тяжёлый этап",
+        text: `Сейчас пройдено ${s.progress.toFixed(1)}% цели. Первые 10% копятся тяжелее всего психологически — главное не скорость, а стабильность.`,
+        tag: "мотивация"
+      });
+    } else if (s.progress < 50) {
+      cards.push({
+        icon: "🔥",
+        title: "Прогресс уже заметен",
+        text: `Ты прошёл ${s.progress.toFixed(1)}% пути. Если продолжишь откладывать около ${rub(s.needMonthly)} в месяц, цель будет двигаться предсказуемо.`,
+        tag: "прогресс"
+      });
+    } else {
+      cards.push({
+        icon: "🏁",
+        title: "Финиш ближе",
+        text: "Ты уже прошёл больше половины цели. Сейчас особенно важно не сорваться на крупные необязательные покупки.",
+        tag: "фокус"
+      });
+    }
+
+    if (s.needMonthly > Number(data.monthlyIncome) * 0.65) {
+      cards.push({
+        icon: "🧠",
+        title: "Цель напряжённая",
+        text: `Чтобы успеть к сроку, нужно откладывать около ${rub(s.needMonthly)} в месяц. Это большая доля дохода, поэтому обязательно учитывай подарки, учёбу и внезапные траты.`,
+        tag: "реализм"
+      });
+    }
+
+    if (monthlyIncome > 0) {
+      const savingsRate = Math.round(monthlySavings / Math.max(1, monthlyIncome) * 100);
+      cards.push({
+        icon: "📈",
+        title: "Норма накоплений",
+        text: `В этом месяце ты отложил ${rub(monthlySavings)} — это около ${savingsRate}% от доходов, которые внёс в приложение.`,
+        tag: "накопления"
+      });
+    }
+
+    if (expenses.length < 5) {
+      cards.push({
+        icon: "📝",
+        title: "Нужно больше данных",
+        text: "Добавь хотя бы 5–10 расходов за месяц. Тогда советы станут точнее: появятся реальные слабые места бюджета и средний расход.",
+        tag: "данные"
+      });
+    }
+
+    return cards.slice(0, 6);
+  }
+
+  function renderSmartAdvisor() {
+    const cards = makeSmartAdviceCards();
+
+    const renderCards = (items) => items.map(card => `
+      <div class="advisor-card ${card.main ? "advisor-main" : ""}">
+        <h3><span>${card.icon}</span>${card.title}</h3>
+        <p>${card.text}</p>
+        <span class="advisor-tag">${card.tag}</span>
+      </div>
+    `).join("");
+
+    const home = document.getElementById("smartAdvisorHome");
+    const analytics = document.getElementById("smartAdvisorAnalytics");
+
+    if (home) home.innerHTML = renderCards(cards.slice(0, 2));
+    if (analytics) analytics.innerHTML = renderCards(cards);
   }
 
   function renderPcBuild() {
@@ -3119,8 +2924,6 @@
     }
   });
 
-  document.getElementById("addRecurringBtn").addEventListener("click", addRecurringPayment);
-
   document.getElementById("openAddSheet").addEventListener("click", openAddSheet);
   document.getElementById("closeAddSheet").addEventListener("click", closeAddSheet);
   document.getElementById("sheetBackdrop").addEventListener("click", closeAddSheet);
@@ -3138,4 +2941,4 @@
   setTimeout(addHapticFeedback, 0);
 </script>
 </body>
-</html> 
+</html>
