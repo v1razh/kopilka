@@ -2090,127 +2090,159 @@
     }
 
 
-    .period-switch{display:grid;grid-template-columns:repeat(3,1fr);gap:6px;padding:5px;border-radius:17px;background:rgba(255,255,255,.045);border:1px solid rgba(255,255,255,.10);margin:12px 0 14px}
-    .period-btn{border:0;min-height:38px;border-radius:13px;background:transparent;color:var(--muted);font-size:12px;font-weight:900}
-    .period-btn.active{color:white;background:linear-gradient(135deg,rgba(91,140,255,.34),rgba(124,58,237,.24));box-shadow:inset 0 0 0 1px rgba(255,255,255,.08)}
-    .period-caption{margin:-4px 0 10px;color:var(--muted);font-size:12px;line-height:1.35}
-
-
-    .chart-wrap {
-      min-height: 220px;
-      height: 240px;
-      display: flex;
-      align-items: flex-end;
-      gap: 8px;
-      padding: 26px 10px 34px;
-      overflow: hidden;
-    }
-
-    .chart-bar {
-      min-height: 8px;
-      max-height: 100%;
-      flex: 1;
-    }
-
-    .chart-value {
-      position: absolute;
-      left: 50%;
-      top: -21px;
-      transform: translateX(-50%);
-      font-size: 10px;
-      font-weight: 850;
-      color: rgba(255,255,255,.88);
-      white-space: nowrap;
-      pointer-events: none;
-    }
-
-    .chart-empty {
-      width: 100%;
-      height: 100%;
-      display: grid;
-      place-items: center;
-      color: var(--muted);
-      text-align: center;
-      font-size: 13px;
-      line-height: 1.45;
-      padding: 18px;
-    }
-
-
-    .fixed-savings-chart {
-      width: 100%;
-      height: 300px;
-      border-radius: 24px;
+    /* Clean premium savings chart */
+    .clean-chart-shell {
+      margin-top: 14px;
+      border-radius: 26px;
+      padding: 14px;
       background:
-        radial-gradient(circle at 20% 10%, rgba(91,140,255,.15), transparent 28%),
-        linear-gradient(180deg, rgba(255,255,255,.045), rgba(255,255,255,.018));
-      border: 1px solid rgba(255,255,255,.10);
+        radial-gradient(circle at 18% 8%, rgba(91,140,255,.18), transparent 28%),
+        linear-gradient(180deg, rgba(255,255,255,.07), rgba(255,255,255,.025)),
+        rgba(16,27,45,.35);
+      border: 1px solid rgba(255,255,255,.12);
+      box-shadow:
+        inset 0 1px 0 rgba(255,255,255,.08),
+        0 14px 34px rgba(0,0,0,.18);
       overflow: hidden;
-      padding: 8px;
     }
 
-    .fixed-savings-chart svg {
+    .clean-chart-top {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 12px;
+      align-items: start;
+      margin-bottom: 10px;
+    }
+
+    .clean-chart-top p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 12px;
+    }
+
+    .clean-chart-top strong {
+      display: block;
+      margin-top: 4px;
+      font-size: 22px;
+      color: white;
+      letter-spacing: -.35px;
+    }
+
+    .clean-chart-pill {
+      padding: 8px 10px;
+      border-radius: 999px;
+      background: rgba(91,140,255,.18);
+      border: 1px solid rgba(91,140,255,.24);
+      font-size: 12px;
+      font-weight: 900;
+      color: white;
+      white-space: nowrap;
+    }
+
+    .clean-chart-area {
+      height: 230px;
+      position: relative;
+      border-radius: 22px;
+      background:
+        linear-gradient(to top, rgba(255,255,255,.06) 1px, transparent 1px),
+        linear-gradient(180deg, rgba(255,255,255,.035), rgba(255,255,255,.012));
+      background-size: 100% 25%;
+      border: 1px solid rgba(255,255,255,.08);
+      overflow: hidden;
+    }
+
+    .clean-chart-area svg {
       width: 100%;
       height: 100%;
       display: block;
     }
 
-    .fixed-grid-line {
+    .clean-grid {
       stroke: rgba(255,255,255,.09);
       stroke-width: 1;
     }
 
-    .fixed-goal-line {
-      stroke: rgba(255,255,255,.35);
-      stroke-width: 1.5;
-      stroke-dasharray: 6 7;
+    .clean-goal {
+      stroke: rgba(255,255,255,.38);
+      stroke-width: 1.4;
+      stroke-dasharray: 7 8;
     }
 
-    .fixed-area {
-      fill: url(#fixedAreaGradient);
-      opacity: .82;
+    .clean-area-fill {
+      fill: url(#cleanAreaGradient);
     }
 
-    .fixed-line {
+    .clean-line {
       fill: none;
-      stroke: url(#fixedLineGradient);
-      stroke-width: 4;
+      stroke: url(#cleanLineGradient);
+      stroke-width: 5;
       stroke-linecap: round;
       stroke-linejoin: round;
-      filter: drop-shadow(0 8px 12px rgba(91,140,255,.28));
+      filter: drop-shadow(0 8px 12px rgba(91,140,255,.32));
     }
 
-    .fixed-dot {
-      fill: white;
+    .clean-dot {
+      fill: #fff;
       stroke: #5b8cff;
-      stroke-width: 3;
+      stroke-width: 4;
     }
 
-    .fixed-dot-current {
+    .clean-dot-current {
       fill: #4ade80;
-      stroke: white;
+      stroke: #fff;
     }
 
-    .fixed-label {
-      fill: rgba(255,255,255,.66);
+    .clean-axis-label {
+      fill: rgba(255,255,255,.62);
       font-size: 11px;
-      font-weight: 700;
+      font-weight: 800;
     }
 
-    .fixed-money-label {
-      fill: rgba(255,255,255,.90);
+    .clean-value-label {
+      fill: rgba(255,255,255,.92);
       font-size: 12px;
       font-weight: 900;
+    }
+
+    .clean-chart-stats {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+      margin-top: 12px;
+    }
+
+    .clean-chart-stat {
+      border-radius: 18px;
+      padding: 12px;
+      background: rgba(255,255,255,.045);
+      border: 1px solid rgba(255,255,255,.09);
+      min-width: 0;
+    }
+
+    .clean-chart-stat p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 12px;
+    }
+
+    .clean-chart-stat strong {
+      display: block;
+      margin-top: 4px;
+      color: white;
+      font-size: 17px;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
     }
 
     .chart-wrap {
       height: auto !important;
       min-height: 0 !important;
-      padding: 0 !important;
       display: block !important;
-      overflow: visible !important;
+      padding: 0 !important;
       background: transparent !important;
       border: 0 !important;
+      overflow: visible !important;
     }
 
     @media (max-width: 390px) {
@@ -2338,127 +2370,159 @@
     }
 
 
-    .period-switch{display:grid;grid-template-columns:repeat(3,1fr);gap:6px;padding:5px;border-radius:17px;background:rgba(255,255,255,.045);border:1px solid rgba(255,255,255,.10);margin:12px 0 14px}
-    .period-btn{border:0;min-height:38px;border-radius:13px;background:transparent;color:var(--muted);font-size:12px;font-weight:900}
-    .period-btn.active{color:white;background:linear-gradient(135deg,rgba(91,140,255,.34),rgba(124,58,237,.24));box-shadow:inset 0 0 0 1px rgba(255,255,255,.08)}
-    .period-caption{margin:-4px 0 10px;color:var(--muted);font-size:12px;line-height:1.35}
-
-
-    .chart-wrap {
-      min-height: 220px;
-      height: 240px;
-      display: flex;
-      align-items: flex-end;
-      gap: 8px;
-      padding: 26px 10px 34px;
-      overflow: hidden;
-    }
-
-    .chart-bar {
-      min-height: 8px;
-      max-height: 100%;
-      flex: 1;
-    }
-
-    .chart-value {
-      position: absolute;
-      left: 50%;
-      top: -21px;
-      transform: translateX(-50%);
-      font-size: 10px;
-      font-weight: 850;
-      color: rgba(255,255,255,.88);
-      white-space: nowrap;
-      pointer-events: none;
-    }
-
-    .chart-empty {
-      width: 100%;
-      height: 100%;
-      display: grid;
-      place-items: center;
-      color: var(--muted);
-      text-align: center;
-      font-size: 13px;
-      line-height: 1.45;
-      padding: 18px;
-    }
-
-
-    .fixed-savings-chart {
-      width: 100%;
-      height: 300px;
-      border-radius: 24px;
+    /* Clean premium savings chart */
+    .clean-chart-shell {
+      margin-top: 14px;
+      border-radius: 26px;
+      padding: 14px;
       background:
-        radial-gradient(circle at 20% 10%, rgba(91,140,255,.15), transparent 28%),
-        linear-gradient(180deg, rgba(255,255,255,.045), rgba(255,255,255,.018));
-      border: 1px solid rgba(255,255,255,.10);
+        radial-gradient(circle at 18% 8%, rgba(91,140,255,.18), transparent 28%),
+        linear-gradient(180deg, rgba(255,255,255,.07), rgba(255,255,255,.025)),
+        rgba(16,27,45,.35);
+      border: 1px solid rgba(255,255,255,.12);
+      box-shadow:
+        inset 0 1px 0 rgba(255,255,255,.08),
+        0 14px 34px rgba(0,0,0,.18);
       overflow: hidden;
-      padding: 8px;
     }
 
-    .fixed-savings-chart svg {
+    .clean-chart-top {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 12px;
+      align-items: start;
+      margin-bottom: 10px;
+    }
+
+    .clean-chart-top p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 12px;
+    }
+
+    .clean-chart-top strong {
+      display: block;
+      margin-top: 4px;
+      font-size: 22px;
+      color: white;
+      letter-spacing: -.35px;
+    }
+
+    .clean-chart-pill {
+      padding: 8px 10px;
+      border-radius: 999px;
+      background: rgba(91,140,255,.18);
+      border: 1px solid rgba(91,140,255,.24);
+      font-size: 12px;
+      font-weight: 900;
+      color: white;
+      white-space: nowrap;
+    }
+
+    .clean-chart-area {
+      height: 230px;
+      position: relative;
+      border-radius: 22px;
+      background:
+        linear-gradient(to top, rgba(255,255,255,.06) 1px, transparent 1px),
+        linear-gradient(180deg, rgba(255,255,255,.035), rgba(255,255,255,.012));
+      background-size: 100% 25%;
+      border: 1px solid rgba(255,255,255,.08);
+      overflow: hidden;
+    }
+
+    .clean-chart-area svg {
       width: 100%;
       height: 100%;
       display: block;
     }
 
-    .fixed-grid-line {
+    .clean-grid {
       stroke: rgba(255,255,255,.09);
       stroke-width: 1;
     }
 
-    .fixed-goal-line {
-      stroke: rgba(255,255,255,.35);
-      stroke-width: 1.5;
-      stroke-dasharray: 6 7;
+    .clean-goal {
+      stroke: rgba(255,255,255,.38);
+      stroke-width: 1.4;
+      stroke-dasharray: 7 8;
     }
 
-    .fixed-area {
-      fill: url(#fixedAreaGradient);
-      opacity: .82;
+    .clean-area-fill {
+      fill: url(#cleanAreaGradient);
     }
 
-    .fixed-line {
+    .clean-line {
       fill: none;
-      stroke: url(#fixedLineGradient);
-      stroke-width: 4;
+      stroke: url(#cleanLineGradient);
+      stroke-width: 5;
       stroke-linecap: round;
       stroke-linejoin: round;
-      filter: drop-shadow(0 8px 12px rgba(91,140,255,.28));
+      filter: drop-shadow(0 8px 12px rgba(91,140,255,.32));
     }
 
-    .fixed-dot {
-      fill: white;
+    .clean-dot {
+      fill: #fff;
       stroke: #5b8cff;
-      stroke-width: 3;
+      stroke-width: 4;
     }
 
-    .fixed-dot-current {
+    .clean-dot-current {
       fill: #4ade80;
-      stroke: white;
+      stroke: #fff;
     }
 
-    .fixed-label {
-      fill: rgba(255,255,255,.66);
+    .clean-axis-label {
+      fill: rgba(255,255,255,.62);
       font-size: 11px;
-      font-weight: 700;
+      font-weight: 800;
     }
 
-    .fixed-money-label {
-      fill: rgba(255,255,255,.90);
+    .clean-value-label {
+      fill: rgba(255,255,255,.92);
       font-size: 12px;
       font-weight: 900;
+    }
+
+    .clean-chart-stats {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+      margin-top: 12px;
+    }
+
+    .clean-chart-stat {
+      border-radius: 18px;
+      padding: 12px;
+      background: rgba(255,255,255,.045);
+      border: 1px solid rgba(255,255,255,.09);
+      min-width: 0;
+    }
+
+    .clean-chart-stat p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 12px;
+    }
+
+    .clean-chart-stat strong {
+      display: block;
+      margin-top: 4px;
+      color: white;
+      font-size: 17px;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
     }
 
     .chart-wrap {
       height: auto !important;
       min-height: 0 !important;
-      padding: 0 !important;
       display: block !important;
-      overflow: visible !important;
+      padding: 0 !important;
       background: transparent !important;
       border: 0 !important;
+      overflow: visible !important;
     }
 
     @media (max-width: 390px) {
@@ -2704,127 +2768,159 @@
     }
 
 
-    .period-switch{display:grid;grid-template-columns:repeat(3,1fr);gap:6px;padding:5px;border-radius:17px;background:rgba(255,255,255,.045);border:1px solid rgba(255,255,255,.10);margin:12px 0 14px}
-    .period-btn{border:0;min-height:38px;border-radius:13px;background:transparent;color:var(--muted);font-size:12px;font-weight:900}
-    .period-btn.active{color:white;background:linear-gradient(135deg,rgba(91,140,255,.34),rgba(124,58,237,.24));box-shadow:inset 0 0 0 1px rgba(255,255,255,.08)}
-    .period-caption{margin:-4px 0 10px;color:var(--muted);font-size:12px;line-height:1.35}
-
-
-    .chart-wrap {
-      min-height: 220px;
-      height: 240px;
-      display: flex;
-      align-items: flex-end;
-      gap: 8px;
-      padding: 26px 10px 34px;
-      overflow: hidden;
-    }
-
-    .chart-bar {
-      min-height: 8px;
-      max-height: 100%;
-      flex: 1;
-    }
-
-    .chart-value {
-      position: absolute;
-      left: 50%;
-      top: -21px;
-      transform: translateX(-50%);
-      font-size: 10px;
-      font-weight: 850;
-      color: rgba(255,255,255,.88);
-      white-space: nowrap;
-      pointer-events: none;
-    }
-
-    .chart-empty {
-      width: 100%;
-      height: 100%;
-      display: grid;
-      place-items: center;
-      color: var(--muted);
-      text-align: center;
-      font-size: 13px;
-      line-height: 1.45;
-      padding: 18px;
-    }
-
-
-    .fixed-savings-chart {
-      width: 100%;
-      height: 300px;
-      border-radius: 24px;
+    /* Clean premium savings chart */
+    .clean-chart-shell {
+      margin-top: 14px;
+      border-radius: 26px;
+      padding: 14px;
       background:
-        radial-gradient(circle at 20% 10%, rgba(91,140,255,.15), transparent 28%),
-        linear-gradient(180deg, rgba(255,255,255,.045), rgba(255,255,255,.018));
-      border: 1px solid rgba(255,255,255,.10);
+        radial-gradient(circle at 18% 8%, rgba(91,140,255,.18), transparent 28%),
+        linear-gradient(180deg, rgba(255,255,255,.07), rgba(255,255,255,.025)),
+        rgba(16,27,45,.35);
+      border: 1px solid rgba(255,255,255,.12);
+      box-shadow:
+        inset 0 1px 0 rgba(255,255,255,.08),
+        0 14px 34px rgba(0,0,0,.18);
       overflow: hidden;
-      padding: 8px;
     }
 
-    .fixed-savings-chart svg {
+    .clean-chart-top {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 12px;
+      align-items: start;
+      margin-bottom: 10px;
+    }
+
+    .clean-chart-top p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 12px;
+    }
+
+    .clean-chart-top strong {
+      display: block;
+      margin-top: 4px;
+      font-size: 22px;
+      color: white;
+      letter-spacing: -.35px;
+    }
+
+    .clean-chart-pill {
+      padding: 8px 10px;
+      border-radius: 999px;
+      background: rgba(91,140,255,.18);
+      border: 1px solid rgba(91,140,255,.24);
+      font-size: 12px;
+      font-weight: 900;
+      color: white;
+      white-space: nowrap;
+    }
+
+    .clean-chart-area {
+      height: 230px;
+      position: relative;
+      border-radius: 22px;
+      background:
+        linear-gradient(to top, rgba(255,255,255,.06) 1px, transparent 1px),
+        linear-gradient(180deg, rgba(255,255,255,.035), rgba(255,255,255,.012));
+      background-size: 100% 25%;
+      border: 1px solid rgba(255,255,255,.08);
+      overflow: hidden;
+    }
+
+    .clean-chart-area svg {
       width: 100%;
       height: 100%;
       display: block;
     }
 
-    .fixed-grid-line {
+    .clean-grid {
       stroke: rgba(255,255,255,.09);
       stroke-width: 1;
     }
 
-    .fixed-goal-line {
-      stroke: rgba(255,255,255,.35);
-      stroke-width: 1.5;
-      stroke-dasharray: 6 7;
+    .clean-goal {
+      stroke: rgba(255,255,255,.38);
+      stroke-width: 1.4;
+      stroke-dasharray: 7 8;
     }
 
-    .fixed-area {
-      fill: url(#fixedAreaGradient);
-      opacity: .82;
+    .clean-area-fill {
+      fill: url(#cleanAreaGradient);
     }
 
-    .fixed-line {
+    .clean-line {
       fill: none;
-      stroke: url(#fixedLineGradient);
-      stroke-width: 4;
+      stroke: url(#cleanLineGradient);
+      stroke-width: 5;
       stroke-linecap: round;
       stroke-linejoin: round;
-      filter: drop-shadow(0 8px 12px rgba(91,140,255,.28));
+      filter: drop-shadow(0 8px 12px rgba(91,140,255,.32));
     }
 
-    .fixed-dot {
-      fill: white;
+    .clean-dot {
+      fill: #fff;
       stroke: #5b8cff;
-      stroke-width: 3;
+      stroke-width: 4;
     }
 
-    .fixed-dot-current {
+    .clean-dot-current {
       fill: #4ade80;
-      stroke: white;
+      stroke: #fff;
     }
 
-    .fixed-label {
-      fill: rgba(255,255,255,.66);
+    .clean-axis-label {
+      fill: rgba(255,255,255,.62);
       font-size: 11px;
-      font-weight: 700;
+      font-weight: 800;
     }
 
-    .fixed-money-label {
-      fill: rgba(255,255,255,.90);
+    .clean-value-label {
+      fill: rgba(255,255,255,.92);
       font-size: 12px;
       font-weight: 900;
+    }
+
+    .clean-chart-stats {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+      margin-top: 12px;
+    }
+
+    .clean-chart-stat {
+      border-radius: 18px;
+      padding: 12px;
+      background: rgba(255,255,255,.045);
+      border: 1px solid rgba(255,255,255,.09);
+      min-width: 0;
+    }
+
+    .clean-chart-stat p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 12px;
+    }
+
+    .clean-chart-stat strong {
+      display: block;
+      margin-top: 4px;
+      color: white;
+      font-size: 17px;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
     }
 
     .chart-wrap {
       height: auto !important;
       min-height: 0 !important;
-      padding: 0 !important;
       display: block !important;
-      overflow: visible !important;
+      padding: 0 !important;
       background: transparent !important;
       border: 0 !important;
+      overflow: visible !important;
     }
 
     @media (max-width: 390px) {
@@ -2952,127 +3048,159 @@
     }
 
 
-    .period-switch{display:grid;grid-template-columns:repeat(3,1fr);gap:6px;padding:5px;border-radius:17px;background:rgba(255,255,255,.045);border:1px solid rgba(255,255,255,.10);margin:12px 0 14px}
-    .period-btn{border:0;min-height:38px;border-radius:13px;background:transparent;color:var(--muted);font-size:12px;font-weight:900}
-    .period-btn.active{color:white;background:linear-gradient(135deg,rgba(91,140,255,.34),rgba(124,58,237,.24));box-shadow:inset 0 0 0 1px rgba(255,255,255,.08)}
-    .period-caption{margin:-4px 0 10px;color:var(--muted);font-size:12px;line-height:1.35}
-
-
-    .chart-wrap {
-      min-height: 220px;
-      height: 240px;
-      display: flex;
-      align-items: flex-end;
-      gap: 8px;
-      padding: 26px 10px 34px;
-      overflow: hidden;
-    }
-
-    .chart-bar {
-      min-height: 8px;
-      max-height: 100%;
-      flex: 1;
-    }
-
-    .chart-value {
-      position: absolute;
-      left: 50%;
-      top: -21px;
-      transform: translateX(-50%);
-      font-size: 10px;
-      font-weight: 850;
-      color: rgba(255,255,255,.88);
-      white-space: nowrap;
-      pointer-events: none;
-    }
-
-    .chart-empty {
-      width: 100%;
-      height: 100%;
-      display: grid;
-      place-items: center;
-      color: var(--muted);
-      text-align: center;
-      font-size: 13px;
-      line-height: 1.45;
-      padding: 18px;
-    }
-
-
-    .fixed-savings-chart {
-      width: 100%;
-      height: 300px;
-      border-radius: 24px;
+    /* Clean premium savings chart */
+    .clean-chart-shell {
+      margin-top: 14px;
+      border-radius: 26px;
+      padding: 14px;
       background:
-        radial-gradient(circle at 20% 10%, rgba(91,140,255,.15), transparent 28%),
-        linear-gradient(180deg, rgba(255,255,255,.045), rgba(255,255,255,.018));
-      border: 1px solid rgba(255,255,255,.10);
+        radial-gradient(circle at 18% 8%, rgba(91,140,255,.18), transparent 28%),
+        linear-gradient(180deg, rgba(255,255,255,.07), rgba(255,255,255,.025)),
+        rgba(16,27,45,.35);
+      border: 1px solid rgba(255,255,255,.12);
+      box-shadow:
+        inset 0 1px 0 rgba(255,255,255,.08),
+        0 14px 34px rgba(0,0,0,.18);
       overflow: hidden;
-      padding: 8px;
     }
 
-    .fixed-savings-chart svg {
+    .clean-chart-top {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 12px;
+      align-items: start;
+      margin-bottom: 10px;
+    }
+
+    .clean-chart-top p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 12px;
+    }
+
+    .clean-chart-top strong {
+      display: block;
+      margin-top: 4px;
+      font-size: 22px;
+      color: white;
+      letter-spacing: -.35px;
+    }
+
+    .clean-chart-pill {
+      padding: 8px 10px;
+      border-radius: 999px;
+      background: rgba(91,140,255,.18);
+      border: 1px solid rgba(91,140,255,.24);
+      font-size: 12px;
+      font-weight: 900;
+      color: white;
+      white-space: nowrap;
+    }
+
+    .clean-chart-area {
+      height: 230px;
+      position: relative;
+      border-radius: 22px;
+      background:
+        linear-gradient(to top, rgba(255,255,255,.06) 1px, transparent 1px),
+        linear-gradient(180deg, rgba(255,255,255,.035), rgba(255,255,255,.012));
+      background-size: 100% 25%;
+      border: 1px solid rgba(255,255,255,.08);
+      overflow: hidden;
+    }
+
+    .clean-chart-area svg {
       width: 100%;
       height: 100%;
       display: block;
     }
 
-    .fixed-grid-line {
+    .clean-grid {
       stroke: rgba(255,255,255,.09);
       stroke-width: 1;
     }
 
-    .fixed-goal-line {
-      stroke: rgba(255,255,255,.35);
-      stroke-width: 1.5;
-      stroke-dasharray: 6 7;
+    .clean-goal {
+      stroke: rgba(255,255,255,.38);
+      stroke-width: 1.4;
+      stroke-dasharray: 7 8;
     }
 
-    .fixed-area {
-      fill: url(#fixedAreaGradient);
-      opacity: .82;
+    .clean-area-fill {
+      fill: url(#cleanAreaGradient);
     }
 
-    .fixed-line {
+    .clean-line {
       fill: none;
-      stroke: url(#fixedLineGradient);
-      stroke-width: 4;
+      stroke: url(#cleanLineGradient);
+      stroke-width: 5;
       stroke-linecap: round;
       stroke-linejoin: round;
-      filter: drop-shadow(0 8px 12px rgba(91,140,255,.28));
+      filter: drop-shadow(0 8px 12px rgba(91,140,255,.32));
     }
 
-    .fixed-dot {
-      fill: white;
+    .clean-dot {
+      fill: #fff;
       stroke: #5b8cff;
-      stroke-width: 3;
+      stroke-width: 4;
     }
 
-    .fixed-dot-current {
+    .clean-dot-current {
       fill: #4ade80;
-      stroke: white;
+      stroke: #fff;
     }
 
-    .fixed-label {
-      fill: rgba(255,255,255,.66);
+    .clean-axis-label {
+      fill: rgba(255,255,255,.62);
       font-size: 11px;
-      font-weight: 700;
+      font-weight: 800;
     }
 
-    .fixed-money-label {
-      fill: rgba(255,255,255,.90);
+    .clean-value-label {
+      fill: rgba(255,255,255,.92);
       font-size: 12px;
       font-weight: 900;
+    }
+
+    .clean-chart-stats {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+      margin-top: 12px;
+    }
+
+    .clean-chart-stat {
+      border-radius: 18px;
+      padding: 12px;
+      background: rgba(255,255,255,.045);
+      border: 1px solid rgba(255,255,255,.09);
+      min-width: 0;
+    }
+
+    .clean-chart-stat p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 12px;
+    }
+
+    .clean-chart-stat strong {
+      display: block;
+      margin-top: 4px;
+      color: white;
+      font-size: 17px;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
     }
 
     .chart-wrap {
       height: auto !important;
       min-height: 0 !important;
-      padding: 0 !important;
       display: block !important;
-      overflow: visible !important;
+      padding: 0 !important;
       background: transparent !important;
       border: 0 !important;
+      overflow: visible !important;
     }
 
     @media (max-width: 390px) {
@@ -3452,127 +3580,159 @@
     }
 
 
-    .period-switch{display:grid;grid-template-columns:repeat(3,1fr);gap:6px;padding:5px;border-radius:17px;background:rgba(255,255,255,.045);border:1px solid rgba(255,255,255,.10);margin:12px 0 14px}
-    .period-btn{border:0;min-height:38px;border-radius:13px;background:transparent;color:var(--muted);font-size:12px;font-weight:900}
-    .period-btn.active{color:white;background:linear-gradient(135deg,rgba(91,140,255,.34),rgba(124,58,237,.24));box-shadow:inset 0 0 0 1px rgba(255,255,255,.08)}
-    .period-caption{margin:-4px 0 10px;color:var(--muted);font-size:12px;line-height:1.35}
-
-
-    .chart-wrap {
-      min-height: 220px;
-      height: 240px;
-      display: flex;
-      align-items: flex-end;
-      gap: 8px;
-      padding: 26px 10px 34px;
-      overflow: hidden;
-    }
-
-    .chart-bar {
-      min-height: 8px;
-      max-height: 100%;
-      flex: 1;
-    }
-
-    .chart-value {
-      position: absolute;
-      left: 50%;
-      top: -21px;
-      transform: translateX(-50%);
-      font-size: 10px;
-      font-weight: 850;
-      color: rgba(255,255,255,.88);
-      white-space: nowrap;
-      pointer-events: none;
-    }
-
-    .chart-empty {
-      width: 100%;
-      height: 100%;
-      display: grid;
-      place-items: center;
-      color: var(--muted);
-      text-align: center;
-      font-size: 13px;
-      line-height: 1.45;
-      padding: 18px;
-    }
-
-
-    .fixed-savings-chart {
-      width: 100%;
-      height: 300px;
-      border-radius: 24px;
+    /* Clean premium savings chart */
+    .clean-chart-shell {
+      margin-top: 14px;
+      border-radius: 26px;
+      padding: 14px;
       background:
-        radial-gradient(circle at 20% 10%, rgba(91,140,255,.15), transparent 28%),
-        linear-gradient(180deg, rgba(255,255,255,.045), rgba(255,255,255,.018));
-      border: 1px solid rgba(255,255,255,.10);
+        radial-gradient(circle at 18% 8%, rgba(91,140,255,.18), transparent 28%),
+        linear-gradient(180deg, rgba(255,255,255,.07), rgba(255,255,255,.025)),
+        rgba(16,27,45,.35);
+      border: 1px solid rgba(255,255,255,.12);
+      box-shadow:
+        inset 0 1px 0 rgba(255,255,255,.08),
+        0 14px 34px rgba(0,0,0,.18);
       overflow: hidden;
-      padding: 8px;
     }
 
-    .fixed-savings-chart svg {
+    .clean-chart-top {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 12px;
+      align-items: start;
+      margin-bottom: 10px;
+    }
+
+    .clean-chart-top p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 12px;
+    }
+
+    .clean-chart-top strong {
+      display: block;
+      margin-top: 4px;
+      font-size: 22px;
+      color: white;
+      letter-spacing: -.35px;
+    }
+
+    .clean-chart-pill {
+      padding: 8px 10px;
+      border-radius: 999px;
+      background: rgba(91,140,255,.18);
+      border: 1px solid rgba(91,140,255,.24);
+      font-size: 12px;
+      font-weight: 900;
+      color: white;
+      white-space: nowrap;
+    }
+
+    .clean-chart-area {
+      height: 230px;
+      position: relative;
+      border-radius: 22px;
+      background:
+        linear-gradient(to top, rgba(255,255,255,.06) 1px, transparent 1px),
+        linear-gradient(180deg, rgba(255,255,255,.035), rgba(255,255,255,.012));
+      background-size: 100% 25%;
+      border: 1px solid rgba(255,255,255,.08);
+      overflow: hidden;
+    }
+
+    .clean-chart-area svg {
       width: 100%;
       height: 100%;
       display: block;
     }
 
-    .fixed-grid-line {
+    .clean-grid {
       stroke: rgba(255,255,255,.09);
       stroke-width: 1;
     }
 
-    .fixed-goal-line {
-      stroke: rgba(255,255,255,.35);
-      stroke-width: 1.5;
-      stroke-dasharray: 6 7;
+    .clean-goal {
+      stroke: rgba(255,255,255,.38);
+      stroke-width: 1.4;
+      stroke-dasharray: 7 8;
     }
 
-    .fixed-area {
-      fill: url(#fixedAreaGradient);
-      opacity: .82;
+    .clean-area-fill {
+      fill: url(#cleanAreaGradient);
     }
 
-    .fixed-line {
+    .clean-line {
       fill: none;
-      stroke: url(#fixedLineGradient);
-      stroke-width: 4;
+      stroke: url(#cleanLineGradient);
+      stroke-width: 5;
       stroke-linecap: round;
       stroke-linejoin: round;
-      filter: drop-shadow(0 8px 12px rgba(91,140,255,.28));
+      filter: drop-shadow(0 8px 12px rgba(91,140,255,.32));
     }
 
-    .fixed-dot {
-      fill: white;
+    .clean-dot {
+      fill: #fff;
       stroke: #5b8cff;
-      stroke-width: 3;
+      stroke-width: 4;
     }
 
-    .fixed-dot-current {
+    .clean-dot-current {
       fill: #4ade80;
-      stroke: white;
+      stroke: #fff;
     }
 
-    .fixed-label {
-      fill: rgba(255,255,255,.66);
+    .clean-axis-label {
+      fill: rgba(255,255,255,.62);
       font-size: 11px;
-      font-weight: 700;
+      font-weight: 800;
     }
 
-    .fixed-money-label {
-      fill: rgba(255,255,255,.90);
+    .clean-value-label {
+      fill: rgba(255,255,255,.92);
       font-size: 12px;
       font-weight: 900;
+    }
+
+    .clean-chart-stats {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+      margin-top: 12px;
+    }
+
+    .clean-chart-stat {
+      border-radius: 18px;
+      padding: 12px;
+      background: rgba(255,255,255,.045);
+      border: 1px solid rgba(255,255,255,.09);
+      min-width: 0;
+    }
+
+    .clean-chart-stat p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 12px;
+    }
+
+    .clean-chart-stat strong {
+      display: block;
+      margin-top: 4px;
+      color: white;
+      font-size: 17px;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
     }
 
     .chart-wrap {
       height: auto !important;
       min-height: 0 !important;
-      padding: 0 !important;
       display: block !important;
-      overflow: visible !important;
+      padding: 0 !important;
       background: transparent !important;
       border: 0 !important;
+      overflow: visible !important;
     }
 
     @media (max-width: 390px) {
@@ -3700,127 +3860,159 @@
     }
 
 
-    .period-switch{display:grid;grid-template-columns:repeat(3,1fr);gap:6px;padding:5px;border-radius:17px;background:rgba(255,255,255,.045);border:1px solid rgba(255,255,255,.10);margin:12px 0 14px}
-    .period-btn{border:0;min-height:38px;border-radius:13px;background:transparent;color:var(--muted);font-size:12px;font-weight:900}
-    .period-btn.active{color:white;background:linear-gradient(135deg,rgba(91,140,255,.34),rgba(124,58,237,.24));box-shadow:inset 0 0 0 1px rgba(255,255,255,.08)}
-    .period-caption{margin:-4px 0 10px;color:var(--muted);font-size:12px;line-height:1.35}
-
-
-    .chart-wrap {
-      min-height: 220px;
-      height: 240px;
-      display: flex;
-      align-items: flex-end;
-      gap: 8px;
-      padding: 26px 10px 34px;
-      overflow: hidden;
-    }
-
-    .chart-bar {
-      min-height: 8px;
-      max-height: 100%;
-      flex: 1;
-    }
-
-    .chart-value {
-      position: absolute;
-      left: 50%;
-      top: -21px;
-      transform: translateX(-50%);
-      font-size: 10px;
-      font-weight: 850;
-      color: rgba(255,255,255,.88);
-      white-space: nowrap;
-      pointer-events: none;
-    }
-
-    .chart-empty {
-      width: 100%;
-      height: 100%;
-      display: grid;
-      place-items: center;
-      color: var(--muted);
-      text-align: center;
-      font-size: 13px;
-      line-height: 1.45;
-      padding: 18px;
-    }
-
-
-    .fixed-savings-chart {
-      width: 100%;
-      height: 300px;
-      border-radius: 24px;
+    /* Clean premium savings chart */
+    .clean-chart-shell {
+      margin-top: 14px;
+      border-radius: 26px;
+      padding: 14px;
       background:
-        radial-gradient(circle at 20% 10%, rgba(91,140,255,.15), transparent 28%),
-        linear-gradient(180deg, rgba(255,255,255,.045), rgba(255,255,255,.018));
-      border: 1px solid rgba(255,255,255,.10);
+        radial-gradient(circle at 18% 8%, rgba(91,140,255,.18), transparent 28%),
+        linear-gradient(180deg, rgba(255,255,255,.07), rgba(255,255,255,.025)),
+        rgba(16,27,45,.35);
+      border: 1px solid rgba(255,255,255,.12);
+      box-shadow:
+        inset 0 1px 0 rgba(255,255,255,.08),
+        0 14px 34px rgba(0,0,0,.18);
       overflow: hidden;
-      padding: 8px;
     }
 
-    .fixed-savings-chart svg {
+    .clean-chart-top {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 12px;
+      align-items: start;
+      margin-bottom: 10px;
+    }
+
+    .clean-chart-top p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 12px;
+    }
+
+    .clean-chart-top strong {
+      display: block;
+      margin-top: 4px;
+      font-size: 22px;
+      color: white;
+      letter-spacing: -.35px;
+    }
+
+    .clean-chart-pill {
+      padding: 8px 10px;
+      border-radius: 999px;
+      background: rgba(91,140,255,.18);
+      border: 1px solid rgba(91,140,255,.24);
+      font-size: 12px;
+      font-weight: 900;
+      color: white;
+      white-space: nowrap;
+    }
+
+    .clean-chart-area {
+      height: 230px;
+      position: relative;
+      border-radius: 22px;
+      background:
+        linear-gradient(to top, rgba(255,255,255,.06) 1px, transparent 1px),
+        linear-gradient(180deg, rgba(255,255,255,.035), rgba(255,255,255,.012));
+      background-size: 100% 25%;
+      border: 1px solid rgba(255,255,255,.08);
+      overflow: hidden;
+    }
+
+    .clean-chart-area svg {
       width: 100%;
       height: 100%;
       display: block;
     }
 
-    .fixed-grid-line {
+    .clean-grid {
       stroke: rgba(255,255,255,.09);
       stroke-width: 1;
     }
 
-    .fixed-goal-line {
-      stroke: rgba(255,255,255,.35);
-      stroke-width: 1.5;
-      stroke-dasharray: 6 7;
+    .clean-goal {
+      stroke: rgba(255,255,255,.38);
+      stroke-width: 1.4;
+      stroke-dasharray: 7 8;
     }
 
-    .fixed-area {
-      fill: url(#fixedAreaGradient);
-      opacity: .82;
+    .clean-area-fill {
+      fill: url(#cleanAreaGradient);
     }
 
-    .fixed-line {
+    .clean-line {
       fill: none;
-      stroke: url(#fixedLineGradient);
-      stroke-width: 4;
+      stroke: url(#cleanLineGradient);
+      stroke-width: 5;
       stroke-linecap: round;
       stroke-linejoin: round;
-      filter: drop-shadow(0 8px 12px rgba(91,140,255,.28));
+      filter: drop-shadow(0 8px 12px rgba(91,140,255,.32));
     }
 
-    .fixed-dot {
-      fill: white;
+    .clean-dot {
+      fill: #fff;
       stroke: #5b8cff;
-      stroke-width: 3;
+      stroke-width: 4;
     }
 
-    .fixed-dot-current {
+    .clean-dot-current {
       fill: #4ade80;
-      stroke: white;
+      stroke: #fff;
     }
 
-    .fixed-label {
-      fill: rgba(255,255,255,.66);
+    .clean-axis-label {
+      fill: rgba(255,255,255,.62);
       font-size: 11px;
-      font-weight: 700;
+      font-weight: 800;
     }
 
-    .fixed-money-label {
-      fill: rgba(255,255,255,.90);
+    .clean-value-label {
+      fill: rgba(255,255,255,.92);
       font-size: 12px;
       font-weight: 900;
+    }
+
+    .clean-chart-stats {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+      margin-top: 12px;
+    }
+
+    .clean-chart-stat {
+      border-radius: 18px;
+      padding: 12px;
+      background: rgba(255,255,255,.045);
+      border: 1px solid rgba(255,255,255,.09);
+      min-width: 0;
+    }
+
+    .clean-chart-stat p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 12px;
+    }
+
+    .clean-chart-stat strong {
+      display: block;
+      margin-top: 4px;
+      color: white;
+      font-size: 17px;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
     }
 
     .chart-wrap {
       height: auto !important;
       min-height: 0 !important;
-      padding: 0 !important;
       display: block !important;
-      overflow: visible !important;
+      padding: 0 !important;
       background: transparent !important;
       border: 0 !important;
+      overflow: visible !important;
     }
 
     @media (max-width: 390px) {
@@ -4066,127 +4258,159 @@
     }
 
 
-    .period-switch{display:grid;grid-template-columns:repeat(3,1fr);gap:6px;padding:5px;border-radius:17px;background:rgba(255,255,255,.045);border:1px solid rgba(255,255,255,.10);margin:12px 0 14px}
-    .period-btn{border:0;min-height:38px;border-radius:13px;background:transparent;color:var(--muted);font-size:12px;font-weight:900}
-    .period-btn.active{color:white;background:linear-gradient(135deg,rgba(91,140,255,.34),rgba(124,58,237,.24));box-shadow:inset 0 0 0 1px rgba(255,255,255,.08)}
-    .period-caption{margin:-4px 0 10px;color:var(--muted);font-size:12px;line-height:1.35}
-
-
-    .chart-wrap {
-      min-height: 220px;
-      height: 240px;
-      display: flex;
-      align-items: flex-end;
-      gap: 8px;
-      padding: 26px 10px 34px;
-      overflow: hidden;
-    }
-
-    .chart-bar {
-      min-height: 8px;
-      max-height: 100%;
-      flex: 1;
-    }
-
-    .chart-value {
-      position: absolute;
-      left: 50%;
-      top: -21px;
-      transform: translateX(-50%);
-      font-size: 10px;
-      font-weight: 850;
-      color: rgba(255,255,255,.88);
-      white-space: nowrap;
-      pointer-events: none;
-    }
-
-    .chart-empty {
-      width: 100%;
-      height: 100%;
-      display: grid;
-      place-items: center;
-      color: var(--muted);
-      text-align: center;
-      font-size: 13px;
-      line-height: 1.45;
-      padding: 18px;
-    }
-
-
-    .fixed-savings-chart {
-      width: 100%;
-      height: 300px;
-      border-radius: 24px;
+    /* Clean premium savings chart */
+    .clean-chart-shell {
+      margin-top: 14px;
+      border-radius: 26px;
+      padding: 14px;
       background:
-        radial-gradient(circle at 20% 10%, rgba(91,140,255,.15), transparent 28%),
-        linear-gradient(180deg, rgba(255,255,255,.045), rgba(255,255,255,.018));
-      border: 1px solid rgba(255,255,255,.10);
+        radial-gradient(circle at 18% 8%, rgba(91,140,255,.18), transparent 28%),
+        linear-gradient(180deg, rgba(255,255,255,.07), rgba(255,255,255,.025)),
+        rgba(16,27,45,.35);
+      border: 1px solid rgba(255,255,255,.12);
+      box-shadow:
+        inset 0 1px 0 rgba(255,255,255,.08),
+        0 14px 34px rgba(0,0,0,.18);
       overflow: hidden;
-      padding: 8px;
     }
 
-    .fixed-savings-chart svg {
+    .clean-chart-top {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 12px;
+      align-items: start;
+      margin-bottom: 10px;
+    }
+
+    .clean-chart-top p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 12px;
+    }
+
+    .clean-chart-top strong {
+      display: block;
+      margin-top: 4px;
+      font-size: 22px;
+      color: white;
+      letter-spacing: -.35px;
+    }
+
+    .clean-chart-pill {
+      padding: 8px 10px;
+      border-radius: 999px;
+      background: rgba(91,140,255,.18);
+      border: 1px solid rgba(91,140,255,.24);
+      font-size: 12px;
+      font-weight: 900;
+      color: white;
+      white-space: nowrap;
+    }
+
+    .clean-chart-area {
+      height: 230px;
+      position: relative;
+      border-radius: 22px;
+      background:
+        linear-gradient(to top, rgba(255,255,255,.06) 1px, transparent 1px),
+        linear-gradient(180deg, rgba(255,255,255,.035), rgba(255,255,255,.012));
+      background-size: 100% 25%;
+      border: 1px solid rgba(255,255,255,.08);
+      overflow: hidden;
+    }
+
+    .clean-chart-area svg {
       width: 100%;
       height: 100%;
       display: block;
     }
 
-    .fixed-grid-line {
+    .clean-grid {
       stroke: rgba(255,255,255,.09);
       stroke-width: 1;
     }
 
-    .fixed-goal-line {
-      stroke: rgba(255,255,255,.35);
-      stroke-width: 1.5;
-      stroke-dasharray: 6 7;
+    .clean-goal {
+      stroke: rgba(255,255,255,.38);
+      stroke-width: 1.4;
+      stroke-dasharray: 7 8;
     }
 
-    .fixed-area {
-      fill: url(#fixedAreaGradient);
-      opacity: .82;
+    .clean-area-fill {
+      fill: url(#cleanAreaGradient);
     }
 
-    .fixed-line {
+    .clean-line {
       fill: none;
-      stroke: url(#fixedLineGradient);
-      stroke-width: 4;
+      stroke: url(#cleanLineGradient);
+      stroke-width: 5;
       stroke-linecap: round;
       stroke-linejoin: round;
-      filter: drop-shadow(0 8px 12px rgba(91,140,255,.28));
+      filter: drop-shadow(0 8px 12px rgba(91,140,255,.32));
     }
 
-    .fixed-dot {
-      fill: white;
+    .clean-dot {
+      fill: #fff;
       stroke: #5b8cff;
-      stroke-width: 3;
+      stroke-width: 4;
     }
 
-    .fixed-dot-current {
+    .clean-dot-current {
       fill: #4ade80;
-      stroke: white;
+      stroke: #fff;
     }
 
-    .fixed-label {
-      fill: rgba(255,255,255,.66);
+    .clean-axis-label {
+      fill: rgba(255,255,255,.62);
       font-size: 11px;
-      font-weight: 700;
+      font-weight: 800;
     }
 
-    .fixed-money-label {
-      fill: rgba(255,255,255,.90);
+    .clean-value-label {
+      fill: rgba(255,255,255,.92);
       font-size: 12px;
       font-weight: 900;
+    }
+
+    .clean-chart-stats {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+      margin-top: 12px;
+    }
+
+    .clean-chart-stat {
+      border-radius: 18px;
+      padding: 12px;
+      background: rgba(255,255,255,.045);
+      border: 1px solid rgba(255,255,255,.09);
+      min-width: 0;
+    }
+
+    .clean-chart-stat p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 12px;
+    }
+
+    .clean-chart-stat strong {
+      display: block;
+      margin-top: 4px;
+      color: white;
+      font-size: 17px;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
     }
 
     .chart-wrap {
       height: auto !important;
       min-height: 0 !important;
-      padding: 0 !important;
       display: block !important;
-      overflow: visible !important;
+      padding: 0 !important;
       background: transparent !important;
       border: 0 !important;
+      overflow: visible !important;
     }
 
     @media (max-width: 390px) {
@@ -4314,127 +4538,159 @@
     }
 
 
-    .period-switch{display:grid;grid-template-columns:repeat(3,1fr);gap:6px;padding:5px;border-radius:17px;background:rgba(255,255,255,.045);border:1px solid rgba(255,255,255,.10);margin:12px 0 14px}
-    .period-btn{border:0;min-height:38px;border-radius:13px;background:transparent;color:var(--muted);font-size:12px;font-weight:900}
-    .period-btn.active{color:white;background:linear-gradient(135deg,rgba(91,140,255,.34),rgba(124,58,237,.24));box-shadow:inset 0 0 0 1px rgba(255,255,255,.08)}
-    .period-caption{margin:-4px 0 10px;color:var(--muted);font-size:12px;line-height:1.35}
-
-
-    .chart-wrap {
-      min-height: 220px;
-      height: 240px;
-      display: flex;
-      align-items: flex-end;
-      gap: 8px;
-      padding: 26px 10px 34px;
-      overflow: hidden;
-    }
-
-    .chart-bar {
-      min-height: 8px;
-      max-height: 100%;
-      flex: 1;
-    }
-
-    .chart-value {
-      position: absolute;
-      left: 50%;
-      top: -21px;
-      transform: translateX(-50%);
-      font-size: 10px;
-      font-weight: 850;
-      color: rgba(255,255,255,.88);
-      white-space: nowrap;
-      pointer-events: none;
-    }
-
-    .chart-empty {
-      width: 100%;
-      height: 100%;
-      display: grid;
-      place-items: center;
-      color: var(--muted);
-      text-align: center;
-      font-size: 13px;
-      line-height: 1.45;
-      padding: 18px;
-    }
-
-
-    .fixed-savings-chart {
-      width: 100%;
-      height: 300px;
-      border-radius: 24px;
+    /* Clean premium savings chart */
+    .clean-chart-shell {
+      margin-top: 14px;
+      border-radius: 26px;
+      padding: 14px;
       background:
-        radial-gradient(circle at 20% 10%, rgba(91,140,255,.15), transparent 28%),
-        linear-gradient(180deg, rgba(255,255,255,.045), rgba(255,255,255,.018));
-      border: 1px solid rgba(255,255,255,.10);
+        radial-gradient(circle at 18% 8%, rgba(91,140,255,.18), transparent 28%),
+        linear-gradient(180deg, rgba(255,255,255,.07), rgba(255,255,255,.025)),
+        rgba(16,27,45,.35);
+      border: 1px solid rgba(255,255,255,.12);
+      box-shadow:
+        inset 0 1px 0 rgba(255,255,255,.08),
+        0 14px 34px rgba(0,0,0,.18);
       overflow: hidden;
-      padding: 8px;
     }
 
-    .fixed-savings-chart svg {
+    .clean-chart-top {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 12px;
+      align-items: start;
+      margin-bottom: 10px;
+    }
+
+    .clean-chart-top p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 12px;
+    }
+
+    .clean-chart-top strong {
+      display: block;
+      margin-top: 4px;
+      font-size: 22px;
+      color: white;
+      letter-spacing: -.35px;
+    }
+
+    .clean-chart-pill {
+      padding: 8px 10px;
+      border-radius: 999px;
+      background: rgba(91,140,255,.18);
+      border: 1px solid rgba(91,140,255,.24);
+      font-size: 12px;
+      font-weight: 900;
+      color: white;
+      white-space: nowrap;
+    }
+
+    .clean-chart-area {
+      height: 230px;
+      position: relative;
+      border-radius: 22px;
+      background:
+        linear-gradient(to top, rgba(255,255,255,.06) 1px, transparent 1px),
+        linear-gradient(180deg, rgba(255,255,255,.035), rgba(255,255,255,.012));
+      background-size: 100% 25%;
+      border: 1px solid rgba(255,255,255,.08);
+      overflow: hidden;
+    }
+
+    .clean-chart-area svg {
       width: 100%;
       height: 100%;
       display: block;
     }
 
-    .fixed-grid-line {
+    .clean-grid {
       stroke: rgba(255,255,255,.09);
       stroke-width: 1;
     }
 
-    .fixed-goal-line {
-      stroke: rgba(255,255,255,.35);
-      stroke-width: 1.5;
-      stroke-dasharray: 6 7;
+    .clean-goal {
+      stroke: rgba(255,255,255,.38);
+      stroke-width: 1.4;
+      stroke-dasharray: 7 8;
     }
 
-    .fixed-area {
-      fill: url(#fixedAreaGradient);
-      opacity: .82;
+    .clean-area-fill {
+      fill: url(#cleanAreaGradient);
     }
 
-    .fixed-line {
+    .clean-line {
       fill: none;
-      stroke: url(#fixedLineGradient);
-      stroke-width: 4;
+      stroke: url(#cleanLineGradient);
+      stroke-width: 5;
       stroke-linecap: round;
       stroke-linejoin: round;
-      filter: drop-shadow(0 8px 12px rgba(91,140,255,.28));
+      filter: drop-shadow(0 8px 12px rgba(91,140,255,.32));
     }
 
-    .fixed-dot {
-      fill: white;
+    .clean-dot {
+      fill: #fff;
       stroke: #5b8cff;
-      stroke-width: 3;
+      stroke-width: 4;
     }
 
-    .fixed-dot-current {
+    .clean-dot-current {
       fill: #4ade80;
-      stroke: white;
+      stroke: #fff;
     }
 
-    .fixed-label {
-      fill: rgba(255,255,255,.66);
+    .clean-axis-label {
+      fill: rgba(255,255,255,.62);
       font-size: 11px;
-      font-weight: 700;
+      font-weight: 800;
     }
 
-    .fixed-money-label {
-      fill: rgba(255,255,255,.90);
+    .clean-value-label {
+      fill: rgba(255,255,255,.92);
       font-size: 12px;
       font-weight: 900;
+    }
+
+    .clean-chart-stats {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+      margin-top: 12px;
+    }
+
+    .clean-chart-stat {
+      border-radius: 18px;
+      padding: 12px;
+      background: rgba(255,255,255,.045);
+      border: 1px solid rgba(255,255,255,.09);
+      min-width: 0;
+    }
+
+    .clean-chart-stat p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 12px;
+    }
+
+    .clean-chart-stat strong {
+      display: block;
+      margin-top: 4px;
+      color: white;
+      font-size: 17px;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
     }
 
     .chart-wrap {
       height: auto !important;
       min-height: 0 !important;
-      padding: 0 !important;
       display: block !important;
-      overflow: visible !important;
+      padding: 0 !important;
       background: transparent !important;
       border: 0 !important;
+      overflow: visible !important;
     }
 
     @media (max-width: 390px) {
@@ -4992,127 +5248,159 @@
     }
 
 
-    .period-switch{display:grid;grid-template-columns:repeat(3,1fr);gap:6px;padding:5px;border-radius:17px;background:rgba(255,255,255,.045);border:1px solid rgba(255,255,255,.10);margin:12px 0 14px}
-    .period-btn{border:0;min-height:38px;border-radius:13px;background:transparent;color:var(--muted);font-size:12px;font-weight:900}
-    .period-btn.active{color:white;background:linear-gradient(135deg,rgba(91,140,255,.34),rgba(124,58,237,.24));box-shadow:inset 0 0 0 1px rgba(255,255,255,.08)}
-    .period-caption{margin:-4px 0 10px;color:var(--muted);font-size:12px;line-height:1.35}
-
-
-    .chart-wrap {
-      min-height: 220px;
-      height: 240px;
-      display: flex;
-      align-items: flex-end;
-      gap: 8px;
-      padding: 26px 10px 34px;
-      overflow: hidden;
-    }
-
-    .chart-bar {
-      min-height: 8px;
-      max-height: 100%;
-      flex: 1;
-    }
-
-    .chart-value {
-      position: absolute;
-      left: 50%;
-      top: -21px;
-      transform: translateX(-50%);
-      font-size: 10px;
-      font-weight: 850;
-      color: rgba(255,255,255,.88);
-      white-space: nowrap;
-      pointer-events: none;
-    }
-
-    .chart-empty {
-      width: 100%;
-      height: 100%;
-      display: grid;
-      place-items: center;
-      color: var(--muted);
-      text-align: center;
-      font-size: 13px;
-      line-height: 1.45;
-      padding: 18px;
-    }
-
-
-    .fixed-savings-chart {
-      width: 100%;
-      height: 300px;
-      border-radius: 24px;
+    /* Clean premium savings chart */
+    .clean-chart-shell {
+      margin-top: 14px;
+      border-radius: 26px;
+      padding: 14px;
       background:
-        radial-gradient(circle at 20% 10%, rgba(91,140,255,.15), transparent 28%),
-        linear-gradient(180deg, rgba(255,255,255,.045), rgba(255,255,255,.018));
-      border: 1px solid rgba(255,255,255,.10);
+        radial-gradient(circle at 18% 8%, rgba(91,140,255,.18), transparent 28%),
+        linear-gradient(180deg, rgba(255,255,255,.07), rgba(255,255,255,.025)),
+        rgba(16,27,45,.35);
+      border: 1px solid rgba(255,255,255,.12);
+      box-shadow:
+        inset 0 1px 0 rgba(255,255,255,.08),
+        0 14px 34px rgba(0,0,0,.18);
       overflow: hidden;
-      padding: 8px;
     }
 
-    .fixed-savings-chart svg {
+    .clean-chart-top {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 12px;
+      align-items: start;
+      margin-bottom: 10px;
+    }
+
+    .clean-chart-top p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 12px;
+    }
+
+    .clean-chart-top strong {
+      display: block;
+      margin-top: 4px;
+      font-size: 22px;
+      color: white;
+      letter-spacing: -.35px;
+    }
+
+    .clean-chart-pill {
+      padding: 8px 10px;
+      border-radius: 999px;
+      background: rgba(91,140,255,.18);
+      border: 1px solid rgba(91,140,255,.24);
+      font-size: 12px;
+      font-weight: 900;
+      color: white;
+      white-space: nowrap;
+    }
+
+    .clean-chart-area {
+      height: 230px;
+      position: relative;
+      border-radius: 22px;
+      background:
+        linear-gradient(to top, rgba(255,255,255,.06) 1px, transparent 1px),
+        linear-gradient(180deg, rgba(255,255,255,.035), rgba(255,255,255,.012));
+      background-size: 100% 25%;
+      border: 1px solid rgba(255,255,255,.08);
+      overflow: hidden;
+    }
+
+    .clean-chart-area svg {
       width: 100%;
       height: 100%;
       display: block;
     }
 
-    .fixed-grid-line {
+    .clean-grid {
       stroke: rgba(255,255,255,.09);
       stroke-width: 1;
     }
 
-    .fixed-goal-line {
-      stroke: rgba(255,255,255,.35);
-      stroke-width: 1.5;
-      stroke-dasharray: 6 7;
+    .clean-goal {
+      stroke: rgba(255,255,255,.38);
+      stroke-width: 1.4;
+      stroke-dasharray: 7 8;
     }
 
-    .fixed-area {
-      fill: url(#fixedAreaGradient);
-      opacity: .82;
+    .clean-area-fill {
+      fill: url(#cleanAreaGradient);
     }
 
-    .fixed-line {
+    .clean-line {
       fill: none;
-      stroke: url(#fixedLineGradient);
-      stroke-width: 4;
+      stroke: url(#cleanLineGradient);
+      stroke-width: 5;
       stroke-linecap: round;
       stroke-linejoin: round;
-      filter: drop-shadow(0 8px 12px rgba(91,140,255,.28));
+      filter: drop-shadow(0 8px 12px rgba(91,140,255,.32));
     }
 
-    .fixed-dot {
-      fill: white;
+    .clean-dot {
+      fill: #fff;
       stroke: #5b8cff;
-      stroke-width: 3;
+      stroke-width: 4;
     }
 
-    .fixed-dot-current {
+    .clean-dot-current {
       fill: #4ade80;
-      stroke: white;
+      stroke: #fff;
     }
 
-    .fixed-label {
-      fill: rgba(255,255,255,.66);
+    .clean-axis-label {
+      fill: rgba(255,255,255,.62);
       font-size: 11px;
-      font-weight: 700;
+      font-weight: 800;
     }
 
-    .fixed-money-label {
-      fill: rgba(255,255,255,.90);
+    .clean-value-label {
+      fill: rgba(255,255,255,.92);
       font-size: 12px;
       font-weight: 900;
+    }
+
+    .clean-chart-stats {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+      margin-top: 12px;
+    }
+
+    .clean-chart-stat {
+      border-radius: 18px;
+      padding: 12px;
+      background: rgba(255,255,255,.045);
+      border: 1px solid rgba(255,255,255,.09);
+      min-width: 0;
+    }
+
+    .clean-chart-stat p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 12px;
+    }
+
+    .clean-chart-stat strong {
+      display: block;
+      margin-top: 4px;
+      color: white;
+      font-size: 17px;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
     }
 
     .chart-wrap {
       height: auto !important;
       min-height: 0 !important;
-      padding: 0 !important;
       display: block !important;
-      overflow: visible !important;
+      padding: 0 !important;
       background: transparent !important;
       border: 0 !important;
+      overflow: visible !important;
     }
 
     @media (max-width: 390px) {
@@ -5240,127 +5528,159 @@
     }
 
 
-    .period-switch{display:grid;grid-template-columns:repeat(3,1fr);gap:6px;padding:5px;border-radius:17px;background:rgba(255,255,255,.045);border:1px solid rgba(255,255,255,.10);margin:12px 0 14px}
-    .period-btn{border:0;min-height:38px;border-radius:13px;background:transparent;color:var(--muted);font-size:12px;font-weight:900}
-    .period-btn.active{color:white;background:linear-gradient(135deg,rgba(91,140,255,.34),rgba(124,58,237,.24));box-shadow:inset 0 0 0 1px rgba(255,255,255,.08)}
-    .period-caption{margin:-4px 0 10px;color:var(--muted);font-size:12px;line-height:1.35}
-
-
-    .chart-wrap {
-      min-height: 220px;
-      height: 240px;
-      display: flex;
-      align-items: flex-end;
-      gap: 8px;
-      padding: 26px 10px 34px;
-      overflow: hidden;
-    }
-
-    .chart-bar {
-      min-height: 8px;
-      max-height: 100%;
-      flex: 1;
-    }
-
-    .chart-value {
-      position: absolute;
-      left: 50%;
-      top: -21px;
-      transform: translateX(-50%);
-      font-size: 10px;
-      font-weight: 850;
-      color: rgba(255,255,255,.88);
-      white-space: nowrap;
-      pointer-events: none;
-    }
-
-    .chart-empty {
-      width: 100%;
-      height: 100%;
-      display: grid;
-      place-items: center;
-      color: var(--muted);
-      text-align: center;
-      font-size: 13px;
-      line-height: 1.45;
-      padding: 18px;
-    }
-
-
-    .fixed-savings-chart {
-      width: 100%;
-      height: 300px;
-      border-radius: 24px;
+    /* Clean premium savings chart */
+    .clean-chart-shell {
+      margin-top: 14px;
+      border-radius: 26px;
+      padding: 14px;
       background:
-        radial-gradient(circle at 20% 10%, rgba(91,140,255,.15), transparent 28%),
-        linear-gradient(180deg, rgba(255,255,255,.045), rgba(255,255,255,.018));
-      border: 1px solid rgba(255,255,255,.10);
+        radial-gradient(circle at 18% 8%, rgba(91,140,255,.18), transparent 28%),
+        linear-gradient(180deg, rgba(255,255,255,.07), rgba(255,255,255,.025)),
+        rgba(16,27,45,.35);
+      border: 1px solid rgba(255,255,255,.12);
+      box-shadow:
+        inset 0 1px 0 rgba(255,255,255,.08),
+        0 14px 34px rgba(0,0,0,.18);
       overflow: hidden;
-      padding: 8px;
     }
 
-    .fixed-savings-chart svg {
+    .clean-chart-top {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 12px;
+      align-items: start;
+      margin-bottom: 10px;
+    }
+
+    .clean-chart-top p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 12px;
+    }
+
+    .clean-chart-top strong {
+      display: block;
+      margin-top: 4px;
+      font-size: 22px;
+      color: white;
+      letter-spacing: -.35px;
+    }
+
+    .clean-chart-pill {
+      padding: 8px 10px;
+      border-radius: 999px;
+      background: rgba(91,140,255,.18);
+      border: 1px solid rgba(91,140,255,.24);
+      font-size: 12px;
+      font-weight: 900;
+      color: white;
+      white-space: nowrap;
+    }
+
+    .clean-chart-area {
+      height: 230px;
+      position: relative;
+      border-radius: 22px;
+      background:
+        linear-gradient(to top, rgba(255,255,255,.06) 1px, transparent 1px),
+        linear-gradient(180deg, rgba(255,255,255,.035), rgba(255,255,255,.012));
+      background-size: 100% 25%;
+      border: 1px solid rgba(255,255,255,.08);
+      overflow: hidden;
+    }
+
+    .clean-chart-area svg {
       width: 100%;
       height: 100%;
       display: block;
     }
 
-    .fixed-grid-line {
+    .clean-grid {
       stroke: rgba(255,255,255,.09);
       stroke-width: 1;
     }
 
-    .fixed-goal-line {
-      stroke: rgba(255,255,255,.35);
-      stroke-width: 1.5;
-      stroke-dasharray: 6 7;
+    .clean-goal {
+      stroke: rgba(255,255,255,.38);
+      stroke-width: 1.4;
+      stroke-dasharray: 7 8;
     }
 
-    .fixed-area {
-      fill: url(#fixedAreaGradient);
-      opacity: .82;
+    .clean-area-fill {
+      fill: url(#cleanAreaGradient);
     }
 
-    .fixed-line {
+    .clean-line {
       fill: none;
-      stroke: url(#fixedLineGradient);
-      stroke-width: 4;
+      stroke: url(#cleanLineGradient);
+      stroke-width: 5;
       stroke-linecap: round;
       stroke-linejoin: round;
-      filter: drop-shadow(0 8px 12px rgba(91,140,255,.28));
+      filter: drop-shadow(0 8px 12px rgba(91,140,255,.32));
     }
 
-    .fixed-dot {
-      fill: white;
+    .clean-dot {
+      fill: #fff;
       stroke: #5b8cff;
-      stroke-width: 3;
+      stroke-width: 4;
     }
 
-    .fixed-dot-current {
+    .clean-dot-current {
       fill: #4ade80;
-      stroke: white;
+      stroke: #fff;
     }
 
-    .fixed-label {
-      fill: rgba(255,255,255,.66);
+    .clean-axis-label {
+      fill: rgba(255,255,255,.62);
       font-size: 11px;
-      font-weight: 700;
+      font-weight: 800;
     }
 
-    .fixed-money-label {
-      fill: rgba(255,255,255,.90);
+    .clean-value-label {
+      fill: rgba(255,255,255,.92);
       font-size: 12px;
       font-weight: 900;
+    }
+
+    .clean-chart-stats {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+      margin-top: 12px;
+    }
+
+    .clean-chart-stat {
+      border-radius: 18px;
+      padding: 12px;
+      background: rgba(255,255,255,.045);
+      border: 1px solid rgba(255,255,255,.09);
+      min-width: 0;
+    }
+
+    .clean-chart-stat p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 12px;
+    }
+
+    .clean-chart-stat strong {
+      display: block;
+      margin-top: 4px;
+      color: white;
+      font-size: 17px;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
     }
 
     .chart-wrap {
       height: auto !important;
       min-height: 0 !important;
-      padding: 0 !important;
       display: block !important;
-      overflow: visible !important;
+      padding: 0 !important;
       background: transparent !important;
       border: 0 !important;
+      overflow: visible !important;
     }
 
     @media (max-width: 390px) {
@@ -5606,127 +5926,159 @@
     }
 
 
-    .period-switch{display:grid;grid-template-columns:repeat(3,1fr);gap:6px;padding:5px;border-radius:17px;background:rgba(255,255,255,.045);border:1px solid rgba(255,255,255,.10);margin:12px 0 14px}
-    .period-btn{border:0;min-height:38px;border-radius:13px;background:transparent;color:var(--muted);font-size:12px;font-weight:900}
-    .period-btn.active{color:white;background:linear-gradient(135deg,rgba(91,140,255,.34),rgba(124,58,237,.24));box-shadow:inset 0 0 0 1px rgba(255,255,255,.08)}
-    .period-caption{margin:-4px 0 10px;color:var(--muted);font-size:12px;line-height:1.35}
-
-
-    .chart-wrap {
-      min-height: 220px;
-      height: 240px;
-      display: flex;
-      align-items: flex-end;
-      gap: 8px;
-      padding: 26px 10px 34px;
-      overflow: hidden;
-    }
-
-    .chart-bar {
-      min-height: 8px;
-      max-height: 100%;
-      flex: 1;
-    }
-
-    .chart-value {
-      position: absolute;
-      left: 50%;
-      top: -21px;
-      transform: translateX(-50%);
-      font-size: 10px;
-      font-weight: 850;
-      color: rgba(255,255,255,.88);
-      white-space: nowrap;
-      pointer-events: none;
-    }
-
-    .chart-empty {
-      width: 100%;
-      height: 100%;
-      display: grid;
-      place-items: center;
-      color: var(--muted);
-      text-align: center;
-      font-size: 13px;
-      line-height: 1.45;
-      padding: 18px;
-    }
-
-
-    .fixed-savings-chart {
-      width: 100%;
-      height: 300px;
-      border-radius: 24px;
+    /* Clean premium savings chart */
+    .clean-chart-shell {
+      margin-top: 14px;
+      border-radius: 26px;
+      padding: 14px;
       background:
-        radial-gradient(circle at 20% 10%, rgba(91,140,255,.15), transparent 28%),
-        linear-gradient(180deg, rgba(255,255,255,.045), rgba(255,255,255,.018));
-      border: 1px solid rgba(255,255,255,.10);
+        radial-gradient(circle at 18% 8%, rgba(91,140,255,.18), transparent 28%),
+        linear-gradient(180deg, rgba(255,255,255,.07), rgba(255,255,255,.025)),
+        rgba(16,27,45,.35);
+      border: 1px solid rgba(255,255,255,.12);
+      box-shadow:
+        inset 0 1px 0 rgba(255,255,255,.08),
+        0 14px 34px rgba(0,0,0,.18);
       overflow: hidden;
-      padding: 8px;
     }
 
-    .fixed-savings-chart svg {
+    .clean-chart-top {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 12px;
+      align-items: start;
+      margin-bottom: 10px;
+    }
+
+    .clean-chart-top p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 12px;
+    }
+
+    .clean-chart-top strong {
+      display: block;
+      margin-top: 4px;
+      font-size: 22px;
+      color: white;
+      letter-spacing: -.35px;
+    }
+
+    .clean-chart-pill {
+      padding: 8px 10px;
+      border-radius: 999px;
+      background: rgba(91,140,255,.18);
+      border: 1px solid rgba(91,140,255,.24);
+      font-size: 12px;
+      font-weight: 900;
+      color: white;
+      white-space: nowrap;
+    }
+
+    .clean-chart-area {
+      height: 230px;
+      position: relative;
+      border-radius: 22px;
+      background:
+        linear-gradient(to top, rgba(255,255,255,.06) 1px, transparent 1px),
+        linear-gradient(180deg, rgba(255,255,255,.035), rgba(255,255,255,.012));
+      background-size: 100% 25%;
+      border: 1px solid rgba(255,255,255,.08);
+      overflow: hidden;
+    }
+
+    .clean-chart-area svg {
       width: 100%;
       height: 100%;
       display: block;
     }
 
-    .fixed-grid-line {
+    .clean-grid {
       stroke: rgba(255,255,255,.09);
       stroke-width: 1;
     }
 
-    .fixed-goal-line {
-      stroke: rgba(255,255,255,.35);
-      stroke-width: 1.5;
-      stroke-dasharray: 6 7;
+    .clean-goal {
+      stroke: rgba(255,255,255,.38);
+      stroke-width: 1.4;
+      stroke-dasharray: 7 8;
     }
 
-    .fixed-area {
-      fill: url(#fixedAreaGradient);
-      opacity: .82;
+    .clean-area-fill {
+      fill: url(#cleanAreaGradient);
     }
 
-    .fixed-line {
+    .clean-line {
       fill: none;
-      stroke: url(#fixedLineGradient);
-      stroke-width: 4;
+      stroke: url(#cleanLineGradient);
+      stroke-width: 5;
       stroke-linecap: round;
       stroke-linejoin: round;
-      filter: drop-shadow(0 8px 12px rgba(91,140,255,.28));
+      filter: drop-shadow(0 8px 12px rgba(91,140,255,.32));
     }
 
-    .fixed-dot {
-      fill: white;
+    .clean-dot {
+      fill: #fff;
       stroke: #5b8cff;
-      stroke-width: 3;
+      stroke-width: 4;
     }
 
-    .fixed-dot-current {
+    .clean-dot-current {
       fill: #4ade80;
-      stroke: white;
+      stroke: #fff;
     }
 
-    .fixed-label {
-      fill: rgba(255,255,255,.66);
+    .clean-axis-label {
+      fill: rgba(255,255,255,.62);
       font-size: 11px;
-      font-weight: 700;
+      font-weight: 800;
     }
 
-    .fixed-money-label {
-      fill: rgba(255,255,255,.90);
+    .clean-value-label {
+      fill: rgba(255,255,255,.92);
       font-size: 12px;
       font-weight: 900;
+    }
+
+    .clean-chart-stats {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+      margin-top: 12px;
+    }
+
+    .clean-chart-stat {
+      border-radius: 18px;
+      padding: 12px;
+      background: rgba(255,255,255,.045);
+      border: 1px solid rgba(255,255,255,.09);
+      min-width: 0;
+    }
+
+    .clean-chart-stat p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 12px;
+    }
+
+    .clean-chart-stat strong {
+      display: block;
+      margin-top: 4px;
+      color: white;
+      font-size: 17px;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
     }
 
     .chart-wrap {
       height: auto !important;
       min-height: 0 !important;
-      padding: 0 !important;
       display: block !important;
-      overflow: visible !important;
+      padding: 0 !important;
       background: transparent !important;
       border: 0 !important;
+      overflow: visible !important;
     }
 
     @media (max-width: 390px) {
@@ -5854,127 +6206,159 @@
     }
 
 
-    .period-switch{display:grid;grid-template-columns:repeat(3,1fr);gap:6px;padding:5px;border-radius:17px;background:rgba(255,255,255,.045);border:1px solid rgba(255,255,255,.10);margin:12px 0 14px}
-    .period-btn{border:0;min-height:38px;border-radius:13px;background:transparent;color:var(--muted);font-size:12px;font-weight:900}
-    .period-btn.active{color:white;background:linear-gradient(135deg,rgba(91,140,255,.34),rgba(124,58,237,.24));box-shadow:inset 0 0 0 1px rgba(255,255,255,.08)}
-    .period-caption{margin:-4px 0 10px;color:var(--muted);font-size:12px;line-height:1.35}
-
-
-    .chart-wrap {
-      min-height: 220px;
-      height: 240px;
-      display: flex;
-      align-items: flex-end;
-      gap: 8px;
-      padding: 26px 10px 34px;
-      overflow: hidden;
-    }
-
-    .chart-bar {
-      min-height: 8px;
-      max-height: 100%;
-      flex: 1;
-    }
-
-    .chart-value {
-      position: absolute;
-      left: 50%;
-      top: -21px;
-      transform: translateX(-50%);
-      font-size: 10px;
-      font-weight: 850;
-      color: rgba(255,255,255,.88);
-      white-space: nowrap;
-      pointer-events: none;
-    }
-
-    .chart-empty {
-      width: 100%;
-      height: 100%;
-      display: grid;
-      place-items: center;
-      color: var(--muted);
-      text-align: center;
-      font-size: 13px;
-      line-height: 1.45;
-      padding: 18px;
-    }
-
-
-    .fixed-savings-chart {
-      width: 100%;
-      height: 300px;
-      border-radius: 24px;
+    /* Clean premium savings chart */
+    .clean-chart-shell {
+      margin-top: 14px;
+      border-radius: 26px;
+      padding: 14px;
       background:
-        radial-gradient(circle at 20% 10%, rgba(91,140,255,.15), transparent 28%),
-        linear-gradient(180deg, rgba(255,255,255,.045), rgba(255,255,255,.018));
-      border: 1px solid rgba(255,255,255,.10);
+        radial-gradient(circle at 18% 8%, rgba(91,140,255,.18), transparent 28%),
+        linear-gradient(180deg, rgba(255,255,255,.07), rgba(255,255,255,.025)),
+        rgba(16,27,45,.35);
+      border: 1px solid rgba(255,255,255,.12);
+      box-shadow:
+        inset 0 1px 0 rgba(255,255,255,.08),
+        0 14px 34px rgba(0,0,0,.18);
       overflow: hidden;
-      padding: 8px;
     }
 
-    .fixed-savings-chart svg {
+    .clean-chart-top {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 12px;
+      align-items: start;
+      margin-bottom: 10px;
+    }
+
+    .clean-chart-top p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 12px;
+    }
+
+    .clean-chart-top strong {
+      display: block;
+      margin-top: 4px;
+      font-size: 22px;
+      color: white;
+      letter-spacing: -.35px;
+    }
+
+    .clean-chart-pill {
+      padding: 8px 10px;
+      border-radius: 999px;
+      background: rgba(91,140,255,.18);
+      border: 1px solid rgba(91,140,255,.24);
+      font-size: 12px;
+      font-weight: 900;
+      color: white;
+      white-space: nowrap;
+    }
+
+    .clean-chart-area {
+      height: 230px;
+      position: relative;
+      border-radius: 22px;
+      background:
+        linear-gradient(to top, rgba(255,255,255,.06) 1px, transparent 1px),
+        linear-gradient(180deg, rgba(255,255,255,.035), rgba(255,255,255,.012));
+      background-size: 100% 25%;
+      border: 1px solid rgba(255,255,255,.08);
+      overflow: hidden;
+    }
+
+    .clean-chart-area svg {
       width: 100%;
       height: 100%;
       display: block;
     }
 
-    .fixed-grid-line {
+    .clean-grid {
       stroke: rgba(255,255,255,.09);
       stroke-width: 1;
     }
 
-    .fixed-goal-line {
-      stroke: rgba(255,255,255,.35);
-      stroke-width: 1.5;
-      stroke-dasharray: 6 7;
+    .clean-goal {
+      stroke: rgba(255,255,255,.38);
+      stroke-width: 1.4;
+      stroke-dasharray: 7 8;
     }
 
-    .fixed-area {
-      fill: url(#fixedAreaGradient);
-      opacity: .82;
+    .clean-area-fill {
+      fill: url(#cleanAreaGradient);
     }
 
-    .fixed-line {
+    .clean-line {
       fill: none;
-      stroke: url(#fixedLineGradient);
-      stroke-width: 4;
+      stroke: url(#cleanLineGradient);
+      stroke-width: 5;
       stroke-linecap: round;
       stroke-linejoin: round;
-      filter: drop-shadow(0 8px 12px rgba(91,140,255,.28));
+      filter: drop-shadow(0 8px 12px rgba(91,140,255,.32));
     }
 
-    .fixed-dot {
-      fill: white;
+    .clean-dot {
+      fill: #fff;
       stroke: #5b8cff;
-      stroke-width: 3;
+      stroke-width: 4;
     }
 
-    .fixed-dot-current {
+    .clean-dot-current {
       fill: #4ade80;
-      stroke: white;
+      stroke: #fff;
     }
 
-    .fixed-label {
-      fill: rgba(255,255,255,.66);
+    .clean-axis-label {
+      fill: rgba(255,255,255,.62);
       font-size: 11px;
-      font-weight: 700;
+      font-weight: 800;
     }
 
-    .fixed-money-label {
-      fill: rgba(255,255,255,.90);
+    .clean-value-label {
+      fill: rgba(255,255,255,.92);
       font-size: 12px;
       font-weight: 900;
+    }
+
+    .clean-chart-stats {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+      margin-top: 12px;
+    }
+
+    .clean-chart-stat {
+      border-radius: 18px;
+      padding: 12px;
+      background: rgba(255,255,255,.045);
+      border: 1px solid rgba(255,255,255,.09);
+      min-width: 0;
+    }
+
+    .clean-chart-stat p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 12px;
+    }
+
+    .clean-chart-stat strong {
+      display: block;
+      margin-top: 4px;
+      color: white;
+      font-size: 17px;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
     }
 
     .chart-wrap {
       height: auto !important;
       min-height: 0 !important;
-      padding: 0 !important;
       display: block !important;
-      overflow: visible !important;
+      padding: 0 !important;
       background: transparent !important;
       border: 0 !important;
+      overflow: visible !important;
     }
 
     @media (max-width: 390px) {
@@ -6354,127 +6738,159 @@
     }
 
 
-    .period-switch{display:grid;grid-template-columns:repeat(3,1fr);gap:6px;padding:5px;border-radius:17px;background:rgba(255,255,255,.045);border:1px solid rgba(255,255,255,.10);margin:12px 0 14px}
-    .period-btn{border:0;min-height:38px;border-radius:13px;background:transparent;color:var(--muted);font-size:12px;font-weight:900}
-    .period-btn.active{color:white;background:linear-gradient(135deg,rgba(91,140,255,.34),rgba(124,58,237,.24));box-shadow:inset 0 0 0 1px rgba(255,255,255,.08)}
-    .period-caption{margin:-4px 0 10px;color:var(--muted);font-size:12px;line-height:1.35}
-
-
-    .chart-wrap {
-      min-height: 220px;
-      height: 240px;
-      display: flex;
-      align-items: flex-end;
-      gap: 8px;
-      padding: 26px 10px 34px;
-      overflow: hidden;
-    }
-
-    .chart-bar {
-      min-height: 8px;
-      max-height: 100%;
-      flex: 1;
-    }
-
-    .chart-value {
-      position: absolute;
-      left: 50%;
-      top: -21px;
-      transform: translateX(-50%);
-      font-size: 10px;
-      font-weight: 850;
-      color: rgba(255,255,255,.88);
-      white-space: nowrap;
-      pointer-events: none;
-    }
-
-    .chart-empty {
-      width: 100%;
-      height: 100%;
-      display: grid;
-      place-items: center;
-      color: var(--muted);
-      text-align: center;
-      font-size: 13px;
-      line-height: 1.45;
-      padding: 18px;
-    }
-
-
-    .fixed-savings-chart {
-      width: 100%;
-      height: 300px;
-      border-radius: 24px;
+    /* Clean premium savings chart */
+    .clean-chart-shell {
+      margin-top: 14px;
+      border-radius: 26px;
+      padding: 14px;
       background:
-        radial-gradient(circle at 20% 10%, rgba(91,140,255,.15), transparent 28%),
-        linear-gradient(180deg, rgba(255,255,255,.045), rgba(255,255,255,.018));
-      border: 1px solid rgba(255,255,255,.10);
+        radial-gradient(circle at 18% 8%, rgba(91,140,255,.18), transparent 28%),
+        linear-gradient(180deg, rgba(255,255,255,.07), rgba(255,255,255,.025)),
+        rgba(16,27,45,.35);
+      border: 1px solid rgba(255,255,255,.12);
+      box-shadow:
+        inset 0 1px 0 rgba(255,255,255,.08),
+        0 14px 34px rgba(0,0,0,.18);
       overflow: hidden;
-      padding: 8px;
     }
 
-    .fixed-savings-chart svg {
+    .clean-chart-top {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 12px;
+      align-items: start;
+      margin-bottom: 10px;
+    }
+
+    .clean-chart-top p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 12px;
+    }
+
+    .clean-chart-top strong {
+      display: block;
+      margin-top: 4px;
+      font-size: 22px;
+      color: white;
+      letter-spacing: -.35px;
+    }
+
+    .clean-chart-pill {
+      padding: 8px 10px;
+      border-radius: 999px;
+      background: rgba(91,140,255,.18);
+      border: 1px solid rgba(91,140,255,.24);
+      font-size: 12px;
+      font-weight: 900;
+      color: white;
+      white-space: nowrap;
+    }
+
+    .clean-chart-area {
+      height: 230px;
+      position: relative;
+      border-radius: 22px;
+      background:
+        linear-gradient(to top, rgba(255,255,255,.06) 1px, transparent 1px),
+        linear-gradient(180deg, rgba(255,255,255,.035), rgba(255,255,255,.012));
+      background-size: 100% 25%;
+      border: 1px solid rgba(255,255,255,.08);
+      overflow: hidden;
+    }
+
+    .clean-chart-area svg {
       width: 100%;
       height: 100%;
       display: block;
     }
 
-    .fixed-grid-line {
+    .clean-grid {
       stroke: rgba(255,255,255,.09);
       stroke-width: 1;
     }
 
-    .fixed-goal-line {
-      stroke: rgba(255,255,255,.35);
-      stroke-width: 1.5;
-      stroke-dasharray: 6 7;
+    .clean-goal {
+      stroke: rgba(255,255,255,.38);
+      stroke-width: 1.4;
+      stroke-dasharray: 7 8;
     }
 
-    .fixed-area {
-      fill: url(#fixedAreaGradient);
-      opacity: .82;
+    .clean-area-fill {
+      fill: url(#cleanAreaGradient);
     }
 
-    .fixed-line {
+    .clean-line {
       fill: none;
-      stroke: url(#fixedLineGradient);
-      stroke-width: 4;
+      stroke: url(#cleanLineGradient);
+      stroke-width: 5;
       stroke-linecap: round;
       stroke-linejoin: round;
-      filter: drop-shadow(0 8px 12px rgba(91,140,255,.28));
+      filter: drop-shadow(0 8px 12px rgba(91,140,255,.32));
     }
 
-    .fixed-dot {
-      fill: white;
+    .clean-dot {
+      fill: #fff;
       stroke: #5b8cff;
-      stroke-width: 3;
+      stroke-width: 4;
     }
 
-    .fixed-dot-current {
+    .clean-dot-current {
       fill: #4ade80;
-      stroke: white;
+      stroke: #fff;
     }
 
-    .fixed-label {
-      fill: rgba(255,255,255,.66);
+    .clean-axis-label {
+      fill: rgba(255,255,255,.62);
       font-size: 11px;
-      font-weight: 700;
+      font-weight: 800;
     }
 
-    .fixed-money-label {
-      fill: rgba(255,255,255,.90);
+    .clean-value-label {
+      fill: rgba(255,255,255,.92);
       font-size: 12px;
       font-weight: 900;
+    }
+
+    .clean-chart-stats {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+      margin-top: 12px;
+    }
+
+    .clean-chart-stat {
+      border-radius: 18px;
+      padding: 12px;
+      background: rgba(255,255,255,.045);
+      border: 1px solid rgba(255,255,255,.09);
+      min-width: 0;
+    }
+
+    .clean-chart-stat p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 12px;
+    }
+
+    .clean-chart-stat strong {
+      display: block;
+      margin-top: 4px;
+      color: white;
+      font-size: 17px;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
     }
 
     .chart-wrap {
       height: auto !important;
       min-height: 0 !important;
-      padding: 0 !important;
       display: block !important;
-      overflow: visible !important;
+      padding: 0 !important;
       background: transparent !important;
       border: 0 !important;
+      overflow: visible !important;
     }
 
     @media (max-width: 390px) {
@@ -6602,127 +7018,159 @@
     }
 
 
-    .period-switch{display:grid;grid-template-columns:repeat(3,1fr);gap:6px;padding:5px;border-radius:17px;background:rgba(255,255,255,.045);border:1px solid rgba(255,255,255,.10);margin:12px 0 14px}
-    .period-btn{border:0;min-height:38px;border-radius:13px;background:transparent;color:var(--muted);font-size:12px;font-weight:900}
-    .period-btn.active{color:white;background:linear-gradient(135deg,rgba(91,140,255,.34),rgba(124,58,237,.24));box-shadow:inset 0 0 0 1px rgba(255,255,255,.08)}
-    .period-caption{margin:-4px 0 10px;color:var(--muted);font-size:12px;line-height:1.35}
-
-
-    .chart-wrap {
-      min-height: 220px;
-      height: 240px;
-      display: flex;
-      align-items: flex-end;
-      gap: 8px;
-      padding: 26px 10px 34px;
-      overflow: hidden;
-    }
-
-    .chart-bar {
-      min-height: 8px;
-      max-height: 100%;
-      flex: 1;
-    }
-
-    .chart-value {
-      position: absolute;
-      left: 50%;
-      top: -21px;
-      transform: translateX(-50%);
-      font-size: 10px;
-      font-weight: 850;
-      color: rgba(255,255,255,.88);
-      white-space: nowrap;
-      pointer-events: none;
-    }
-
-    .chart-empty {
-      width: 100%;
-      height: 100%;
-      display: grid;
-      place-items: center;
-      color: var(--muted);
-      text-align: center;
-      font-size: 13px;
-      line-height: 1.45;
-      padding: 18px;
-    }
-
-
-    .fixed-savings-chart {
-      width: 100%;
-      height: 300px;
-      border-radius: 24px;
+    /* Clean premium savings chart */
+    .clean-chart-shell {
+      margin-top: 14px;
+      border-radius: 26px;
+      padding: 14px;
       background:
-        radial-gradient(circle at 20% 10%, rgba(91,140,255,.15), transparent 28%),
-        linear-gradient(180deg, rgba(255,255,255,.045), rgba(255,255,255,.018));
-      border: 1px solid rgba(255,255,255,.10);
+        radial-gradient(circle at 18% 8%, rgba(91,140,255,.18), transparent 28%),
+        linear-gradient(180deg, rgba(255,255,255,.07), rgba(255,255,255,.025)),
+        rgba(16,27,45,.35);
+      border: 1px solid rgba(255,255,255,.12);
+      box-shadow:
+        inset 0 1px 0 rgba(255,255,255,.08),
+        0 14px 34px rgba(0,0,0,.18);
       overflow: hidden;
-      padding: 8px;
     }
 
-    .fixed-savings-chart svg {
+    .clean-chart-top {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 12px;
+      align-items: start;
+      margin-bottom: 10px;
+    }
+
+    .clean-chart-top p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 12px;
+    }
+
+    .clean-chart-top strong {
+      display: block;
+      margin-top: 4px;
+      font-size: 22px;
+      color: white;
+      letter-spacing: -.35px;
+    }
+
+    .clean-chart-pill {
+      padding: 8px 10px;
+      border-radius: 999px;
+      background: rgba(91,140,255,.18);
+      border: 1px solid rgba(91,140,255,.24);
+      font-size: 12px;
+      font-weight: 900;
+      color: white;
+      white-space: nowrap;
+    }
+
+    .clean-chart-area {
+      height: 230px;
+      position: relative;
+      border-radius: 22px;
+      background:
+        linear-gradient(to top, rgba(255,255,255,.06) 1px, transparent 1px),
+        linear-gradient(180deg, rgba(255,255,255,.035), rgba(255,255,255,.012));
+      background-size: 100% 25%;
+      border: 1px solid rgba(255,255,255,.08);
+      overflow: hidden;
+    }
+
+    .clean-chart-area svg {
       width: 100%;
       height: 100%;
       display: block;
     }
 
-    .fixed-grid-line {
+    .clean-grid {
       stroke: rgba(255,255,255,.09);
       stroke-width: 1;
     }
 
-    .fixed-goal-line {
-      stroke: rgba(255,255,255,.35);
-      stroke-width: 1.5;
-      stroke-dasharray: 6 7;
+    .clean-goal {
+      stroke: rgba(255,255,255,.38);
+      stroke-width: 1.4;
+      stroke-dasharray: 7 8;
     }
 
-    .fixed-area {
-      fill: url(#fixedAreaGradient);
-      opacity: .82;
+    .clean-area-fill {
+      fill: url(#cleanAreaGradient);
     }
 
-    .fixed-line {
+    .clean-line {
       fill: none;
-      stroke: url(#fixedLineGradient);
-      stroke-width: 4;
+      stroke: url(#cleanLineGradient);
+      stroke-width: 5;
       stroke-linecap: round;
       stroke-linejoin: round;
-      filter: drop-shadow(0 8px 12px rgba(91,140,255,.28));
+      filter: drop-shadow(0 8px 12px rgba(91,140,255,.32));
     }
 
-    .fixed-dot {
-      fill: white;
+    .clean-dot {
+      fill: #fff;
       stroke: #5b8cff;
-      stroke-width: 3;
+      stroke-width: 4;
     }
 
-    .fixed-dot-current {
+    .clean-dot-current {
       fill: #4ade80;
-      stroke: white;
+      stroke: #fff;
     }
 
-    .fixed-label {
-      fill: rgba(255,255,255,.66);
+    .clean-axis-label {
+      fill: rgba(255,255,255,.62);
       font-size: 11px;
-      font-weight: 700;
+      font-weight: 800;
     }
 
-    .fixed-money-label {
-      fill: rgba(255,255,255,.90);
+    .clean-value-label {
+      fill: rgba(255,255,255,.92);
       font-size: 12px;
       font-weight: 900;
+    }
+
+    .clean-chart-stats {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+      margin-top: 12px;
+    }
+
+    .clean-chart-stat {
+      border-radius: 18px;
+      padding: 12px;
+      background: rgba(255,255,255,.045);
+      border: 1px solid rgba(255,255,255,.09);
+      min-width: 0;
+    }
+
+    .clean-chart-stat p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 12px;
+    }
+
+    .clean-chart-stat strong {
+      display: block;
+      margin-top: 4px;
+      color: white;
+      font-size: 17px;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
     }
 
     .chart-wrap {
       height: auto !important;
       min-height: 0 !important;
-      padding: 0 !important;
       display: block !important;
-      overflow: visible !important;
+      padding: 0 !important;
       background: transparent !important;
       border: 0 !important;
+      overflow: visible !important;
     }
 
     @media (max-width: 390px) {
@@ -6968,127 +7416,159 @@
     }
 
 
-    .period-switch{display:grid;grid-template-columns:repeat(3,1fr);gap:6px;padding:5px;border-radius:17px;background:rgba(255,255,255,.045);border:1px solid rgba(255,255,255,.10);margin:12px 0 14px}
-    .period-btn{border:0;min-height:38px;border-radius:13px;background:transparent;color:var(--muted);font-size:12px;font-weight:900}
-    .period-btn.active{color:white;background:linear-gradient(135deg,rgba(91,140,255,.34),rgba(124,58,237,.24));box-shadow:inset 0 0 0 1px rgba(255,255,255,.08)}
-    .period-caption{margin:-4px 0 10px;color:var(--muted);font-size:12px;line-height:1.35}
-
-
-    .chart-wrap {
-      min-height: 220px;
-      height: 240px;
-      display: flex;
-      align-items: flex-end;
-      gap: 8px;
-      padding: 26px 10px 34px;
-      overflow: hidden;
-    }
-
-    .chart-bar {
-      min-height: 8px;
-      max-height: 100%;
-      flex: 1;
-    }
-
-    .chart-value {
-      position: absolute;
-      left: 50%;
-      top: -21px;
-      transform: translateX(-50%);
-      font-size: 10px;
-      font-weight: 850;
-      color: rgba(255,255,255,.88);
-      white-space: nowrap;
-      pointer-events: none;
-    }
-
-    .chart-empty {
-      width: 100%;
-      height: 100%;
-      display: grid;
-      place-items: center;
-      color: var(--muted);
-      text-align: center;
-      font-size: 13px;
-      line-height: 1.45;
-      padding: 18px;
-    }
-
-
-    .fixed-savings-chart {
-      width: 100%;
-      height: 300px;
-      border-radius: 24px;
+    /* Clean premium savings chart */
+    .clean-chart-shell {
+      margin-top: 14px;
+      border-radius: 26px;
+      padding: 14px;
       background:
-        radial-gradient(circle at 20% 10%, rgba(91,140,255,.15), transparent 28%),
-        linear-gradient(180deg, rgba(255,255,255,.045), rgba(255,255,255,.018));
-      border: 1px solid rgba(255,255,255,.10);
+        radial-gradient(circle at 18% 8%, rgba(91,140,255,.18), transparent 28%),
+        linear-gradient(180deg, rgba(255,255,255,.07), rgba(255,255,255,.025)),
+        rgba(16,27,45,.35);
+      border: 1px solid rgba(255,255,255,.12);
+      box-shadow:
+        inset 0 1px 0 rgba(255,255,255,.08),
+        0 14px 34px rgba(0,0,0,.18);
       overflow: hidden;
-      padding: 8px;
     }
 
-    .fixed-savings-chart svg {
+    .clean-chart-top {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 12px;
+      align-items: start;
+      margin-bottom: 10px;
+    }
+
+    .clean-chart-top p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 12px;
+    }
+
+    .clean-chart-top strong {
+      display: block;
+      margin-top: 4px;
+      font-size: 22px;
+      color: white;
+      letter-spacing: -.35px;
+    }
+
+    .clean-chart-pill {
+      padding: 8px 10px;
+      border-radius: 999px;
+      background: rgba(91,140,255,.18);
+      border: 1px solid rgba(91,140,255,.24);
+      font-size: 12px;
+      font-weight: 900;
+      color: white;
+      white-space: nowrap;
+    }
+
+    .clean-chart-area {
+      height: 230px;
+      position: relative;
+      border-radius: 22px;
+      background:
+        linear-gradient(to top, rgba(255,255,255,.06) 1px, transparent 1px),
+        linear-gradient(180deg, rgba(255,255,255,.035), rgba(255,255,255,.012));
+      background-size: 100% 25%;
+      border: 1px solid rgba(255,255,255,.08);
+      overflow: hidden;
+    }
+
+    .clean-chart-area svg {
       width: 100%;
       height: 100%;
       display: block;
     }
 
-    .fixed-grid-line {
+    .clean-grid {
       stroke: rgba(255,255,255,.09);
       stroke-width: 1;
     }
 
-    .fixed-goal-line {
-      stroke: rgba(255,255,255,.35);
-      stroke-width: 1.5;
-      stroke-dasharray: 6 7;
+    .clean-goal {
+      stroke: rgba(255,255,255,.38);
+      stroke-width: 1.4;
+      stroke-dasharray: 7 8;
     }
 
-    .fixed-area {
-      fill: url(#fixedAreaGradient);
-      opacity: .82;
+    .clean-area-fill {
+      fill: url(#cleanAreaGradient);
     }
 
-    .fixed-line {
+    .clean-line {
       fill: none;
-      stroke: url(#fixedLineGradient);
-      stroke-width: 4;
+      stroke: url(#cleanLineGradient);
+      stroke-width: 5;
       stroke-linecap: round;
       stroke-linejoin: round;
-      filter: drop-shadow(0 8px 12px rgba(91,140,255,.28));
+      filter: drop-shadow(0 8px 12px rgba(91,140,255,.32));
     }
 
-    .fixed-dot {
-      fill: white;
+    .clean-dot {
+      fill: #fff;
       stroke: #5b8cff;
-      stroke-width: 3;
+      stroke-width: 4;
     }
 
-    .fixed-dot-current {
+    .clean-dot-current {
       fill: #4ade80;
-      stroke: white;
+      stroke: #fff;
     }
 
-    .fixed-label {
-      fill: rgba(255,255,255,.66);
+    .clean-axis-label {
+      fill: rgba(255,255,255,.62);
       font-size: 11px;
-      font-weight: 700;
+      font-weight: 800;
     }
 
-    .fixed-money-label {
-      fill: rgba(255,255,255,.90);
+    .clean-value-label {
+      fill: rgba(255,255,255,.92);
       font-size: 12px;
       font-weight: 900;
+    }
+
+    .clean-chart-stats {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+      margin-top: 12px;
+    }
+
+    .clean-chart-stat {
+      border-radius: 18px;
+      padding: 12px;
+      background: rgba(255,255,255,.045);
+      border: 1px solid rgba(255,255,255,.09);
+      min-width: 0;
+    }
+
+    .clean-chart-stat p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 12px;
+    }
+
+    .clean-chart-stat strong {
+      display: block;
+      margin-top: 4px;
+      color: white;
+      font-size: 17px;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
     }
 
     .chart-wrap {
       height: auto !important;
       min-height: 0 !important;
-      padding: 0 !important;
       display: block !important;
-      overflow: visible !important;
+      padding: 0 !important;
       background: transparent !important;
       border: 0 !important;
+      overflow: visible !important;
     }
 
     @media (max-width: 390px) {
@@ -7216,127 +7696,159 @@
     }
 
 
-    .period-switch{display:grid;grid-template-columns:repeat(3,1fr);gap:6px;padding:5px;border-radius:17px;background:rgba(255,255,255,.045);border:1px solid rgba(255,255,255,.10);margin:12px 0 14px}
-    .period-btn{border:0;min-height:38px;border-radius:13px;background:transparent;color:var(--muted);font-size:12px;font-weight:900}
-    .period-btn.active{color:white;background:linear-gradient(135deg,rgba(91,140,255,.34),rgba(124,58,237,.24));box-shadow:inset 0 0 0 1px rgba(255,255,255,.08)}
-    .period-caption{margin:-4px 0 10px;color:var(--muted);font-size:12px;line-height:1.35}
-
-
-    .chart-wrap {
-      min-height: 220px;
-      height: 240px;
-      display: flex;
-      align-items: flex-end;
-      gap: 8px;
-      padding: 26px 10px 34px;
-      overflow: hidden;
-    }
-
-    .chart-bar {
-      min-height: 8px;
-      max-height: 100%;
-      flex: 1;
-    }
-
-    .chart-value {
-      position: absolute;
-      left: 50%;
-      top: -21px;
-      transform: translateX(-50%);
-      font-size: 10px;
-      font-weight: 850;
-      color: rgba(255,255,255,.88);
-      white-space: nowrap;
-      pointer-events: none;
-    }
-
-    .chart-empty {
-      width: 100%;
-      height: 100%;
-      display: grid;
-      place-items: center;
-      color: var(--muted);
-      text-align: center;
-      font-size: 13px;
-      line-height: 1.45;
-      padding: 18px;
-    }
-
-
-    .fixed-savings-chart {
-      width: 100%;
-      height: 300px;
-      border-radius: 24px;
+    /* Clean premium savings chart */
+    .clean-chart-shell {
+      margin-top: 14px;
+      border-radius: 26px;
+      padding: 14px;
       background:
-        radial-gradient(circle at 20% 10%, rgba(91,140,255,.15), transparent 28%),
-        linear-gradient(180deg, rgba(255,255,255,.045), rgba(255,255,255,.018));
-      border: 1px solid rgba(255,255,255,.10);
+        radial-gradient(circle at 18% 8%, rgba(91,140,255,.18), transparent 28%),
+        linear-gradient(180deg, rgba(255,255,255,.07), rgba(255,255,255,.025)),
+        rgba(16,27,45,.35);
+      border: 1px solid rgba(255,255,255,.12);
+      box-shadow:
+        inset 0 1px 0 rgba(255,255,255,.08),
+        0 14px 34px rgba(0,0,0,.18);
       overflow: hidden;
-      padding: 8px;
     }
 
-    .fixed-savings-chart svg {
+    .clean-chart-top {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 12px;
+      align-items: start;
+      margin-bottom: 10px;
+    }
+
+    .clean-chart-top p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 12px;
+    }
+
+    .clean-chart-top strong {
+      display: block;
+      margin-top: 4px;
+      font-size: 22px;
+      color: white;
+      letter-spacing: -.35px;
+    }
+
+    .clean-chart-pill {
+      padding: 8px 10px;
+      border-radius: 999px;
+      background: rgba(91,140,255,.18);
+      border: 1px solid rgba(91,140,255,.24);
+      font-size: 12px;
+      font-weight: 900;
+      color: white;
+      white-space: nowrap;
+    }
+
+    .clean-chart-area {
+      height: 230px;
+      position: relative;
+      border-radius: 22px;
+      background:
+        linear-gradient(to top, rgba(255,255,255,.06) 1px, transparent 1px),
+        linear-gradient(180deg, rgba(255,255,255,.035), rgba(255,255,255,.012));
+      background-size: 100% 25%;
+      border: 1px solid rgba(255,255,255,.08);
+      overflow: hidden;
+    }
+
+    .clean-chart-area svg {
       width: 100%;
       height: 100%;
       display: block;
     }
 
-    .fixed-grid-line {
+    .clean-grid {
       stroke: rgba(255,255,255,.09);
       stroke-width: 1;
     }
 
-    .fixed-goal-line {
-      stroke: rgba(255,255,255,.35);
-      stroke-width: 1.5;
-      stroke-dasharray: 6 7;
+    .clean-goal {
+      stroke: rgba(255,255,255,.38);
+      stroke-width: 1.4;
+      stroke-dasharray: 7 8;
     }
 
-    .fixed-area {
-      fill: url(#fixedAreaGradient);
-      opacity: .82;
+    .clean-area-fill {
+      fill: url(#cleanAreaGradient);
     }
 
-    .fixed-line {
+    .clean-line {
       fill: none;
-      stroke: url(#fixedLineGradient);
-      stroke-width: 4;
+      stroke: url(#cleanLineGradient);
+      stroke-width: 5;
       stroke-linecap: round;
       stroke-linejoin: round;
-      filter: drop-shadow(0 8px 12px rgba(91,140,255,.28));
+      filter: drop-shadow(0 8px 12px rgba(91,140,255,.32));
     }
 
-    .fixed-dot {
-      fill: white;
+    .clean-dot {
+      fill: #fff;
       stroke: #5b8cff;
-      stroke-width: 3;
+      stroke-width: 4;
     }
 
-    .fixed-dot-current {
+    .clean-dot-current {
       fill: #4ade80;
-      stroke: white;
+      stroke: #fff;
     }
 
-    .fixed-label {
-      fill: rgba(255,255,255,.66);
+    .clean-axis-label {
+      fill: rgba(255,255,255,.62);
       font-size: 11px;
-      font-weight: 700;
+      font-weight: 800;
     }
 
-    .fixed-money-label {
-      fill: rgba(255,255,255,.90);
+    .clean-value-label {
+      fill: rgba(255,255,255,.92);
       font-size: 12px;
       font-weight: 900;
+    }
+
+    .clean-chart-stats {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+      margin-top: 12px;
+    }
+
+    .clean-chart-stat {
+      border-radius: 18px;
+      padding: 12px;
+      background: rgba(255,255,255,.045);
+      border: 1px solid rgba(255,255,255,.09);
+      min-width: 0;
+    }
+
+    .clean-chart-stat p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 12px;
+    }
+
+    .clean-chart-stat strong {
+      display: block;
+      margin-top: 4px;
+      color: white;
+      font-size: 17px;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
     }
 
     .chart-wrap {
       height: auto !important;
       min-height: 0 !important;
-      padding: 0 !important;
       display: block !important;
-      overflow: visible !important;
+      padding: 0 !important;
       background: transparent !important;
       border: 0 !important;
+      overflow: visible !important;
     }
 
     @media (max-width: 390px) {
@@ -7407,13 +7919,6 @@
           <button class="quick-action" id="quickIncome"><span>💰</span>Доход</button>
           <button class="quick-action" id="quickSaving"><span>🏦</span>В накопления</button>
         </div>
-
-        <div class="period-switch">
-          <button class="period-btn" data-period="week">Неделя</button>
-          <button class="period-btn active" data-period="month">Месяц</button>
-          <button class="period-btn" data-period="all">Всё время</button>
-        </div>
-        <p class="period-caption" id="periodCaption">Показаны данные за текущий месяц</p>
 
         <div class="dashboard-summary">
           <div class="dashboard-summary-item">
@@ -7828,7 +8333,6 @@
     targetMonth: "2026-12",
     compactMode: false,
     showHistory: true,
-    dashboardPeriod: "month",
     salaryDay: 10,
     advanceDay: 25,
     currentCash: 0,
@@ -8082,81 +8586,52 @@
   }
 
 
-
-  function getPeriodRange(period) {
-    const now = new Date();
-    const todayStart = new Date(now.getFullYear(), now.getMonth(), now.getDate());
-    if (period === "week") {
-      const start = new Date(todayStart);
-      start.setDate(start.getDate() - 6);
-      return { start, label: "Показаны данные за последние 7 дней" };
-    }
-    if (period === "all") return { start: null, label: "Показаны данные за всё время" };
-    return { start: new Date(now.getFullYear(), now.getMonth(), 1), label: "Показаны данные за текущий месяц" };
-  }
-
-  function isTransactionInPeriod(tx, period) {
-    if (period === "all") return true;
-    const range = getPeriodRange(period);
-    const txDate = new Date((tx.date || today()) + "T00:00:00");
-    return !range.start || txDate >= range.start;
-  }
-
-  function switchDashboardPeriod(period) {
-    data.dashboardPeriod = period;
-    save();
-    render();
-  }
-
   function renderDashboard() {
     const statusEl = document.getElementById("dashboardStatus");
     if (!statusEl) return;
 
     const s = calc();
     const salary = calcSalaryPlan();
-    const period = data.dashboardPeriod || "month";
-    const range = getPeriodRange(period);
-    const filtered = data.transactions.filter(tx => isTransactionInPeriod(tx, period));
+    const currentMonth = today().slice(0, 7);
 
-    const periodExpenses = filtered.filter(x => x.type === "expense").reduce((sum, x) => sum + Number(x.amount), 0);
-    const periodSavings = filtered.filter(x => x.type === "saving").reduce((sum, x) => sum + Number(x.amount), 0);
+    const monthExpenses = data.transactions
+      .filter(x => x.type === "expense" && monthKey(x.date) === currentMonth)
+      .reduce((sum, x) => sum + Number(x.amount), 0);
+
+    const monthSavings = data.transactions
+      .filter(x => x.type === "saving" && monthKey(x.date) === currentMonth)
+      .reduce((sum, x) => sum + Number(x.amount), 0);
 
     const payDateText = salary.payDate.toLocaleDateString("ru-RU", { day: "numeric", month: "long" });
+
     statusEl.textContent = `До ближайшей выплаты ${salary.days} дн. · ${payDateText}`;
-
-    const periodCaption = document.getElementById("periodCaption");
-    if (periodCaption) periodCaption.textContent = range.label;
-
-    document.querySelectorAll(".period-btn").forEach(btn => {
-      btn.classList.toggle("active", btn.dataset.period === period);
-    });
 
     document.getElementById("todayLimitMain").textContent = salary.dailyLimit > 0 ? rub(salary.dailyLimit) : "0 ₽";
     document.getElementById("todayLimitSub").textContent = salary.dailyLimit > 0
       ? `Свободно после обязательных трат: ${rub(salary.freeMoney)}. Регулярные платежи уже учтены.`
       : "Заполни деньги на карте и обязательные траты в настройках.";
 
-    document.getElementById("dashMonthExpenses").textContent = rub(periodExpenses);
-    document.getElementById("dashMonthSavings").textContent = rub(periodSavings);
+    document.getElementById("dashMonthExpenses").textContent = rub(monthExpenses);
+    document.getElementById("dashMonthSavings").textContent = rub(monthSavings);
     document.getElementById("dashLeftToGoal").textContent = rub(s.left);
 
-    const days = period === "week" ? 7 : Math.max(1, new Date().getDate());
-    const avgDaily = Math.round(periodExpenses / days);
+    const avgDaily = Math.round(monthExpenses / Math.max(1, new Date().getDate()));
 
     let title = "Совет дня";
     let text = "";
+
     if (salary.dailyLimit <= 0) {
       title = "Настрой план";
       text = "Заполни деньги на карте, день зарплаты и обязательные траты — главная вкладка начнёт показывать реальный дневной лимит.";
-    } else if (avgDaily > salary.dailyLimit && period !== "all") {
+    } else if (avgDaily > salary.dailyLimit) {
       title = "Сбавь темп";
       text = `Средний расход ${rub(avgDaily)} в день выше лимита ${rub(salary.dailyLimit)}. Сегодня лучше оставить траты только на нужное.`;
-    } else if (periodSavings <= 0) {
+    } else if (monthSavings <= 0) {
       title = "Сделай первый перевод";
-      text = "За выбранный период ещё нет перевода в накопления. Даже небольшая сумма усилит ощущение прогресса.";
+      text = "В этом месяце ещё нет перевода в накопления. Даже небольшая сумма усилит ощущение прогресса к ПК.";
     } else {
       title = "Темп хороший";
-      text = `За выбранный период ты отложил ${rub(periodSavings)}. Продолжай держать расходы ниже дневного лимита.`;
+      text = `Ты уже отложил ${rub(monthSavings)} в этом месяце. Продолжай держать расходы ниже дневного лимита.`;
     }
 
     document.getElementById("mainAdviceTitle").textContent = title;
@@ -8398,10 +8873,8 @@
     `;
   }
 
-  function makeSmoothSvgPath(points) {
+  function cleanSvgPath(points) {
     if (!points.length) return "";
-    if (points.length === 1) return `M ${points[0].x} ${points[0].y}`;
-
     let d = `M ${points[0].x} ${points[0].y}`;
     for (let i = 1; i < points.length; i++) {
       const prev = points[i - 1];
@@ -8446,59 +8919,79 @@
         values.push(Math.max(0, value));
       }
 
-      const w = 340;
-      const h = 240;
-      const padL = 34;
-      const padR = 24;
-      const padT = 38;
+      const w = 360;
+      const h = 220;
+      const padL = 28;
+      const padR = 28;
+      const padT = 26;
       const padB = 34;
       const usableW = w - padL - padR;
       const usableH = h - padT - padB;
       const maxValue = Math.max(goal, ...values, 1);
 
-      const points = values.map((value, index) => {
-        const x = padL + (index / Math.max(1, values.length - 1)) * usableW;
-        const y = padT + (1 - value / maxValue) * usableH;
-        return { x, y, value, index };
-      });
+      const points = values.map((value, index) => ({
+        x: padL + (index / Math.max(1, values.length - 1)) * usableW,
+        y: padT + (1 - value / maxValue) * usableH,
+        value,
+        index
+      }));
 
-      const linePath = makeSmoothSvgPath(points);
-      const areaPath = `${linePath} L ${points[points.length - 1].x} ${h - padB} L ${points[0].x} ${h - padB} Z`;
+      const path = cleanSvgPath(points);
+      const area = `${path} L ${points[points.length - 1].x} ${h - padB} L ${points[0].x} ${h - padB} Z`;
       const goalY = padT + (1 - goal / maxValue) * usableH;
 
       chart.innerHTML = `
-        <div class="fixed-savings-chart">
-          <svg viewBox="0 0 ${w} ${h}" preserveAspectRatio="none" aria-label="График накоплений">
-            <defs>
-              <linearGradient id="fixedLineGradient" x1="0" y1="0" x2="1" y2="0">
-                <stop offset="0%" stop-color="#4ade80"/>
-                <stop offset="45%" stop-color="#5b8cff"/>
-                <stop offset="100%" stop-color="#7c3aed"/>
-              </linearGradient>
-              <linearGradient id="fixedAreaGradient" x1="0" y1="0" x2="0" y2="1">
-                <stop offset="0%" stop-color="#5b8cff" stop-opacity=".30"/>
-                <stop offset="70%" stop-color="#7c3aed" stop-opacity=".08"/>
-                <stop offset="100%" stop-color="#7c3aed" stop-opacity="0"/>
-              </linearGradient>
-            </defs>
+        <div class="clean-chart-shell">
+          <div class="clean-chart-top">
+            <div>
+              <p>Прогноз накоплений</p>
+              <strong>${rub(totalSaved)} → ${rub(goal)}</strong>
+            </div>
+            <div class="clean-chart-pill">${(s.progress || 0).toFixed(1)}%</div>
+          </div>
 
-            <line class="fixed-grid-line" x1="${padL}" y1="${padT}" x2="${w - padR}" y2="${padT}"></line>
-            <line class="fixed-grid-line" x1="${padL}" y1="${padT + usableH / 3}" x2="${w - padR}" y2="${padT + usableH / 3}"></line>
-            <line class="fixed-grid-line" x1="${padL}" y1="${padT + usableH * 2 / 3}" x2="${w - padR}" y2="${padT + usableH * 2 / 3}"></line>
-            <line class="fixed-grid-line" x1="${padL}" y1="${h - padB}" x2="${w - padR}" y2="${h - padB}"></line>
-            <line class="fixed-goal-line" x1="${padL}" y1="${goalY}" x2="${w - padR}" y2="${goalY}"></line>
+          <div class="clean-chart-area">
+            <svg viewBox="0 0 ${w} ${h}" preserveAspectRatio="none" aria-label="График накоплений">
+              <defs>
+                <linearGradient id="cleanLineGradient" x1="0" y1="0" x2="1" y2="0">
+                  <stop offset="0%" stop-color="#4ade80"/>
+                  <stop offset="42%" stop-color="#5b8cff"/>
+                  <stop offset="100%" stop-color="#7c3aed"/>
+                </linearGradient>
+                <linearGradient id="cleanAreaGradient" x1="0" y1="0" x2="0" y2="1">
+                  <stop offset="0%" stop-color="#5b8cff" stop-opacity=".28"/>
+                  <stop offset="58%" stop-color="#7c3aed" stop-opacity=".10"/>
+                  <stop offset="100%" stop-color="#7c3aed" stop-opacity="0"/>
+                </linearGradient>
+              </defs>
 
-            <path class="fixed-area" d="${areaPath}"></path>
-            <path class="fixed-line" d="${linePath}"></path>
+              <line class="clean-grid" x1="${padL}" y1="${padT}" x2="${w - padR}" y2="${padT}"></line>
+              <line class="clean-grid" x1="${padL}" y1="${padT + usableH / 2}" x2="${w - padR}" y2="${padT + usableH / 2}"></line>
+              <line class="clean-grid" x1="${padL}" y1="${h - padB}" x2="${w - padR}" y2="${h - padB}"></line>
+              <line class="clean-goal" x1="${padL}" y1="${goalY}" x2="${w - padR}" y2="${goalY}"></line>
 
-            ${points.map((p, i) => `
-              <circle class="fixed-dot ${i === 0 ? "fixed-dot-current" : ""}" cx="${p.x}" cy="${p.y}" r="${i === 0 ? 5.5 : 4.5}"></circle>
-              ${i === 0 || i === points.length - 1 ? `<text class="fixed-money-label" x="${p.x}" y="${Math.max(16, p.y - 12)}" text-anchor="middle">${shortRub(p.value)}</text>` : ""}
-              <text class="fixed-label" x="${p.x}" y="${h - 10}" text-anchor="middle">${i === 0 ? "сейчас" : "+" + i + "м"}</text>
-            `).join("")}
+              <path class="clean-area-fill" d="${area}"></path>
+              <path class="clean-line" d="${path}"></path>
 
-            <text class="fixed-label" x="${w - padR}" y="${Math.max(14, goalY - 7)}" text-anchor="end">цель ${shortRub(goal)}</text>
-          </svg>
+              ${points.map((p, i) => `
+                <circle class="clean-dot ${i === 0 ? "clean-dot-current" : ""}" cx="${p.x}" cy="${p.y}" r="${i === 0 ? 5.5 : 4.5}"></circle>
+                ${i === 0 ? `<text class="clean-value-label" x="${p.x + 4}" y="${Math.min(h - 48, p.y - 12)}" text-anchor="start">${shortRub(p.value)}</text>` : ""}
+                ${i === points.length - 1 ? `<text class="clean-value-label" x="${p.x - 4}" y="${Math.max(16, p.y - 12)}" text-anchor="end">${shortRub(p.value)}</text>` : ""}
+                ${(i === 0 || i === points.length - 1 || i === Math.floor(points.length / 2)) ? `<text class="clean-axis-label" x="${p.x}" y="${h - 11}" text-anchor="middle">${i === 0 ? "сейчас" : "+" + i + "м"}</text>` : ""}
+              `).join("")}
+            </svg>
+          </div>
+
+          <div class="clean-chart-stats">
+            <div class="clean-chart-stat">
+              <p>Осталось</p>
+              <strong>${rub(s.left)}</strong>
+            </div>
+            <div class="clean-chart-stat">
+              <p>До цели</p>
+              <strong>${s.months} мес.</strong>
+            </div>
+          </div>
         </div>
       `;
     }
@@ -9304,10 +9797,6 @@
     if (event.key === "Escape" && document.getElementById("addSheet").classList.contains("open")) {
       closeAddSheet();
     }
-  });
-
-  document.querySelectorAll(".period-btn").forEach(btn => {
-    btn.addEventListener("click", () => switchDashboardPeriod(btn.dataset.period));
   });
 
   document.querySelectorAll(".nav-btn").forEach(btn => {
