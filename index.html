@@ -2245,6 +2245,190 @@
       overflow: visible !important;
     }
 
+
+    /* Hard reset for old broken chart versions */
+    #savingsChart,
+    #savingsChart * {
+      box-sizing: border-box;
+    }
+
+    #savingsChart .chart-bar,
+    #savingsChart .chart-value,
+    #savingsChart .fixed-savings-chart,
+    #savingsChart .premium-chart,
+    #savingsChart .fixed-label,
+    #savingsChart .fixed-money-label,
+    #savingsChart .clean-chart-shell,
+    #savingsChart .clean-chart-shell * {
+      all: unset;
+      box-sizing: border-box;
+    }
+
+    #savingsChart {
+      display: block !important;
+      height: auto !important;
+      min-height: 0 !important;
+      padding: 0 !important;
+      margin: 0 !important;
+      background: transparent !important;
+      border: 0 !important;
+      overflow: visible !important;
+    }
+
+    .kopilka-chart {
+      margin-top: 14px;
+      border-radius: 26px;
+      padding: 16px;
+      background:
+        radial-gradient(circle at 18% 0%, rgba(91,140,255,.18), transparent 34%),
+        linear-gradient(180deg, rgba(255,255,255,.075), rgba(255,255,255,.025)),
+        rgba(16,27,45,.42);
+      border: 1px solid rgba(255,255,255,.13);
+      box-shadow:
+        0 14px 36px rgba(0,0,0,.18),
+        inset 0 1px 0 rgba(255,255,255,.09);
+      overflow: hidden;
+    }
+
+    .kopilka-chart-head {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: 12px;
+      margin-bottom: 12px;
+    }
+
+    .kopilka-chart-head p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 12px;
+      line-height: 1.35;
+    }
+
+    .kopilka-chart-head strong {
+      display: block;
+      margin-top: 5px;
+      color: white;
+      font-size: 22px;
+      line-height: 1.05;
+      letter-spacing: -.35px;
+    }
+
+    .kopilka-chart-badge {
+      flex: 0 0 auto;
+      padding: 8px 11px;
+      border-radius: 999px;
+      background: rgba(91,140,255,.18);
+      border: 1px solid rgba(91,140,255,.25);
+      color: white;
+      font-size: 12px;
+      font-weight: 900;
+      white-space: nowrap;
+    }
+
+    .kopilka-chart-canvas {
+      position: relative;
+      height: 220px;
+      border-radius: 22px;
+      background:
+        linear-gradient(to top, rgba(255,255,255,.07) 1px, transparent 1px),
+        rgba(255,255,255,.025);
+      background-size: 100% 33.333%;
+      border: 1px solid rgba(255,255,255,.09);
+      overflow: hidden;
+    }
+
+    .kopilka-chart-canvas svg {
+      display: block;
+      width: 100%;
+      height: 100%;
+    }
+
+    .kopilka-grid {
+      stroke: rgba(255,255,255,.10);
+      stroke-width: 1;
+    }
+
+    .kopilka-goal-line {
+      stroke: rgba(255,255,255,.35);
+      stroke-width: 1.5;
+      stroke-dasharray: 7 8;
+    }
+
+    .kopilka-area {
+      fill: url(#kopilkaArea);
+    }
+
+    .kopilka-line {
+      fill: none;
+      stroke: url(#kopilkaLine);
+      stroke-width: 5;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+      filter: drop-shadow(0 8px 14px rgba(91,140,255,.30));
+    }
+
+    .kopilka-dot {
+      fill: #ffffff;
+      stroke: #5b8cff;
+      stroke-width: 4;
+    }
+
+    .kopilka-dot-now {
+      fill: #4ade80;
+      stroke: white;
+      stroke-width: 4;
+    }
+
+    .kopilka-axis-text {
+      fill: rgba(255,255,255,.62);
+      font-size: 11px;
+      font-weight: 800;
+    }
+
+    .kopilka-value-text {
+      fill: rgba(255,255,255,.92);
+      font-size: 12px;
+      font-weight: 900;
+    }
+
+    .kopilka-chart-footer {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+      margin-top: 12px;
+    }
+
+    .kopilka-chart-mini {
+      border-radius: 18px;
+      padding: 12px;
+      background: rgba(255,255,255,.045);
+      border: 1px solid rgba(255,255,255,.09);
+      min-width: 0;
+    }
+
+    .kopilka-chart-mini p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 12px;
+    }
+
+    .kopilka-chart-mini strong {
+      display: block;
+      margin-top: 5px;
+      color: white;
+      font-size: 16px;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+
+    #chartLeft,
+    #chartMonths {
+      /* values kept for compatibility; duplicate boxes are visually handled by the new chart */
+    }
+
     @media (max-width: 390px) {
       .pc-stage-actions {
         grid-template-columns: 1fr;
@@ -2523,6 +2707,190 @@
       background: transparent !important;
       border: 0 !important;
       overflow: visible !important;
+    }
+
+
+    /* Hard reset for old broken chart versions */
+    #savingsChart,
+    #savingsChart * {
+      box-sizing: border-box;
+    }
+
+    #savingsChart .chart-bar,
+    #savingsChart .chart-value,
+    #savingsChart .fixed-savings-chart,
+    #savingsChart .premium-chart,
+    #savingsChart .fixed-label,
+    #savingsChart .fixed-money-label,
+    #savingsChart .clean-chart-shell,
+    #savingsChart .clean-chart-shell * {
+      all: unset;
+      box-sizing: border-box;
+    }
+
+    #savingsChart {
+      display: block !important;
+      height: auto !important;
+      min-height: 0 !important;
+      padding: 0 !important;
+      margin: 0 !important;
+      background: transparent !important;
+      border: 0 !important;
+      overflow: visible !important;
+    }
+
+    .kopilka-chart {
+      margin-top: 14px;
+      border-radius: 26px;
+      padding: 16px;
+      background:
+        radial-gradient(circle at 18% 0%, rgba(91,140,255,.18), transparent 34%),
+        linear-gradient(180deg, rgba(255,255,255,.075), rgba(255,255,255,.025)),
+        rgba(16,27,45,.42);
+      border: 1px solid rgba(255,255,255,.13);
+      box-shadow:
+        0 14px 36px rgba(0,0,0,.18),
+        inset 0 1px 0 rgba(255,255,255,.09);
+      overflow: hidden;
+    }
+
+    .kopilka-chart-head {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: 12px;
+      margin-bottom: 12px;
+    }
+
+    .kopilka-chart-head p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 12px;
+      line-height: 1.35;
+    }
+
+    .kopilka-chart-head strong {
+      display: block;
+      margin-top: 5px;
+      color: white;
+      font-size: 22px;
+      line-height: 1.05;
+      letter-spacing: -.35px;
+    }
+
+    .kopilka-chart-badge {
+      flex: 0 0 auto;
+      padding: 8px 11px;
+      border-radius: 999px;
+      background: rgba(91,140,255,.18);
+      border: 1px solid rgba(91,140,255,.25);
+      color: white;
+      font-size: 12px;
+      font-weight: 900;
+      white-space: nowrap;
+    }
+
+    .kopilka-chart-canvas {
+      position: relative;
+      height: 220px;
+      border-radius: 22px;
+      background:
+        linear-gradient(to top, rgba(255,255,255,.07) 1px, transparent 1px),
+        rgba(255,255,255,.025);
+      background-size: 100% 33.333%;
+      border: 1px solid rgba(255,255,255,.09);
+      overflow: hidden;
+    }
+
+    .kopilka-chart-canvas svg {
+      display: block;
+      width: 100%;
+      height: 100%;
+    }
+
+    .kopilka-grid {
+      stroke: rgba(255,255,255,.10);
+      stroke-width: 1;
+    }
+
+    .kopilka-goal-line {
+      stroke: rgba(255,255,255,.35);
+      stroke-width: 1.5;
+      stroke-dasharray: 7 8;
+    }
+
+    .kopilka-area {
+      fill: url(#kopilkaArea);
+    }
+
+    .kopilka-line {
+      fill: none;
+      stroke: url(#kopilkaLine);
+      stroke-width: 5;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+      filter: drop-shadow(0 8px 14px rgba(91,140,255,.30));
+    }
+
+    .kopilka-dot {
+      fill: #ffffff;
+      stroke: #5b8cff;
+      stroke-width: 4;
+    }
+
+    .kopilka-dot-now {
+      fill: #4ade80;
+      stroke: white;
+      stroke-width: 4;
+    }
+
+    .kopilka-axis-text {
+      fill: rgba(255,255,255,.62);
+      font-size: 11px;
+      font-weight: 800;
+    }
+
+    .kopilka-value-text {
+      fill: rgba(255,255,255,.92);
+      font-size: 12px;
+      font-weight: 900;
+    }
+
+    .kopilka-chart-footer {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+      margin-top: 12px;
+    }
+
+    .kopilka-chart-mini {
+      border-radius: 18px;
+      padding: 12px;
+      background: rgba(255,255,255,.045);
+      border: 1px solid rgba(255,255,255,.09);
+      min-width: 0;
+    }
+
+    .kopilka-chart-mini p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 12px;
+    }
+
+    .kopilka-chart-mini strong {
+      display: block;
+      margin-top: 5px;
+      color: white;
+      font-size: 16px;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+
+    #chartLeft,
+    #chartMonths {
+      /* values kept for compatibility; duplicate boxes are visually handled by the new chart */
     }
 
     @media (max-width: 390px) {
@@ -2923,6 +3291,190 @@
       overflow: visible !important;
     }
 
+
+    /* Hard reset for old broken chart versions */
+    #savingsChart,
+    #savingsChart * {
+      box-sizing: border-box;
+    }
+
+    #savingsChart .chart-bar,
+    #savingsChart .chart-value,
+    #savingsChart .fixed-savings-chart,
+    #savingsChart .premium-chart,
+    #savingsChart .fixed-label,
+    #savingsChart .fixed-money-label,
+    #savingsChart .clean-chart-shell,
+    #savingsChart .clean-chart-shell * {
+      all: unset;
+      box-sizing: border-box;
+    }
+
+    #savingsChart {
+      display: block !important;
+      height: auto !important;
+      min-height: 0 !important;
+      padding: 0 !important;
+      margin: 0 !important;
+      background: transparent !important;
+      border: 0 !important;
+      overflow: visible !important;
+    }
+
+    .kopilka-chart {
+      margin-top: 14px;
+      border-radius: 26px;
+      padding: 16px;
+      background:
+        radial-gradient(circle at 18% 0%, rgba(91,140,255,.18), transparent 34%),
+        linear-gradient(180deg, rgba(255,255,255,.075), rgba(255,255,255,.025)),
+        rgba(16,27,45,.42);
+      border: 1px solid rgba(255,255,255,.13);
+      box-shadow:
+        0 14px 36px rgba(0,0,0,.18),
+        inset 0 1px 0 rgba(255,255,255,.09);
+      overflow: hidden;
+    }
+
+    .kopilka-chart-head {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: 12px;
+      margin-bottom: 12px;
+    }
+
+    .kopilka-chart-head p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 12px;
+      line-height: 1.35;
+    }
+
+    .kopilka-chart-head strong {
+      display: block;
+      margin-top: 5px;
+      color: white;
+      font-size: 22px;
+      line-height: 1.05;
+      letter-spacing: -.35px;
+    }
+
+    .kopilka-chart-badge {
+      flex: 0 0 auto;
+      padding: 8px 11px;
+      border-radius: 999px;
+      background: rgba(91,140,255,.18);
+      border: 1px solid rgba(91,140,255,.25);
+      color: white;
+      font-size: 12px;
+      font-weight: 900;
+      white-space: nowrap;
+    }
+
+    .kopilka-chart-canvas {
+      position: relative;
+      height: 220px;
+      border-radius: 22px;
+      background:
+        linear-gradient(to top, rgba(255,255,255,.07) 1px, transparent 1px),
+        rgba(255,255,255,.025);
+      background-size: 100% 33.333%;
+      border: 1px solid rgba(255,255,255,.09);
+      overflow: hidden;
+    }
+
+    .kopilka-chart-canvas svg {
+      display: block;
+      width: 100%;
+      height: 100%;
+    }
+
+    .kopilka-grid {
+      stroke: rgba(255,255,255,.10);
+      stroke-width: 1;
+    }
+
+    .kopilka-goal-line {
+      stroke: rgba(255,255,255,.35);
+      stroke-width: 1.5;
+      stroke-dasharray: 7 8;
+    }
+
+    .kopilka-area {
+      fill: url(#kopilkaArea);
+    }
+
+    .kopilka-line {
+      fill: none;
+      stroke: url(#kopilkaLine);
+      stroke-width: 5;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+      filter: drop-shadow(0 8px 14px rgba(91,140,255,.30));
+    }
+
+    .kopilka-dot {
+      fill: #ffffff;
+      stroke: #5b8cff;
+      stroke-width: 4;
+    }
+
+    .kopilka-dot-now {
+      fill: #4ade80;
+      stroke: white;
+      stroke-width: 4;
+    }
+
+    .kopilka-axis-text {
+      fill: rgba(255,255,255,.62);
+      font-size: 11px;
+      font-weight: 800;
+    }
+
+    .kopilka-value-text {
+      fill: rgba(255,255,255,.92);
+      font-size: 12px;
+      font-weight: 900;
+    }
+
+    .kopilka-chart-footer {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+      margin-top: 12px;
+    }
+
+    .kopilka-chart-mini {
+      border-radius: 18px;
+      padding: 12px;
+      background: rgba(255,255,255,.045);
+      border: 1px solid rgba(255,255,255,.09);
+      min-width: 0;
+    }
+
+    .kopilka-chart-mini p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 12px;
+    }
+
+    .kopilka-chart-mini strong {
+      display: block;
+      margin-top: 5px;
+      color: white;
+      font-size: 16px;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+
+    #chartLeft,
+    #chartMonths {
+      /* values kept for compatibility; duplicate boxes are visually handled by the new chart */
+    }
+
     @media (max-width: 390px) {
       .pc-stage-actions {
         grid-template-columns: 1fr;
@@ -3201,6 +3753,190 @@
       background: transparent !important;
       border: 0 !important;
       overflow: visible !important;
+    }
+
+
+    /* Hard reset for old broken chart versions */
+    #savingsChart,
+    #savingsChart * {
+      box-sizing: border-box;
+    }
+
+    #savingsChart .chart-bar,
+    #savingsChart .chart-value,
+    #savingsChart .fixed-savings-chart,
+    #savingsChart .premium-chart,
+    #savingsChart .fixed-label,
+    #savingsChart .fixed-money-label,
+    #savingsChart .clean-chart-shell,
+    #savingsChart .clean-chart-shell * {
+      all: unset;
+      box-sizing: border-box;
+    }
+
+    #savingsChart {
+      display: block !important;
+      height: auto !important;
+      min-height: 0 !important;
+      padding: 0 !important;
+      margin: 0 !important;
+      background: transparent !important;
+      border: 0 !important;
+      overflow: visible !important;
+    }
+
+    .kopilka-chart {
+      margin-top: 14px;
+      border-radius: 26px;
+      padding: 16px;
+      background:
+        radial-gradient(circle at 18% 0%, rgba(91,140,255,.18), transparent 34%),
+        linear-gradient(180deg, rgba(255,255,255,.075), rgba(255,255,255,.025)),
+        rgba(16,27,45,.42);
+      border: 1px solid rgba(255,255,255,.13);
+      box-shadow:
+        0 14px 36px rgba(0,0,0,.18),
+        inset 0 1px 0 rgba(255,255,255,.09);
+      overflow: hidden;
+    }
+
+    .kopilka-chart-head {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: 12px;
+      margin-bottom: 12px;
+    }
+
+    .kopilka-chart-head p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 12px;
+      line-height: 1.35;
+    }
+
+    .kopilka-chart-head strong {
+      display: block;
+      margin-top: 5px;
+      color: white;
+      font-size: 22px;
+      line-height: 1.05;
+      letter-spacing: -.35px;
+    }
+
+    .kopilka-chart-badge {
+      flex: 0 0 auto;
+      padding: 8px 11px;
+      border-radius: 999px;
+      background: rgba(91,140,255,.18);
+      border: 1px solid rgba(91,140,255,.25);
+      color: white;
+      font-size: 12px;
+      font-weight: 900;
+      white-space: nowrap;
+    }
+
+    .kopilka-chart-canvas {
+      position: relative;
+      height: 220px;
+      border-radius: 22px;
+      background:
+        linear-gradient(to top, rgba(255,255,255,.07) 1px, transparent 1px),
+        rgba(255,255,255,.025);
+      background-size: 100% 33.333%;
+      border: 1px solid rgba(255,255,255,.09);
+      overflow: hidden;
+    }
+
+    .kopilka-chart-canvas svg {
+      display: block;
+      width: 100%;
+      height: 100%;
+    }
+
+    .kopilka-grid {
+      stroke: rgba(255,255,255,.10);
+      stroke-width: 1;
+    }
+
+    .kopilka-goal-line {
+      stroke: rgba(255,255,255,.35);
+      stroke-width: 1.5;
+      stroke-dasharray: 7 8;
+    }
+
+    .kopilka-area {
+      fill: url(#kopilkaArea);
+    }
+
+    .kopilka-line {
+      fill: none;
+      stroke: url(#kopilkaLine);
+      stroke-width: 5;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+      filter: drop-shadow(0 8px 14px rgba(91,140,255,.30));
+    }
+
+    .kopilka-dot {
+      fill: #ffffff;
+      stroke: #5b8cff;
+      stroke-width: 4;
+    }
+
+    .kopilka-dot-now {
+      fill: #4ade80;
+      stroke: white;
+      stroke-width: 4;
+    }
+
+    .kopilka-axis-text {
+      fill: rgba(255,255,255,.62);
+      font-size: 11px;
+      font-weight: 800;
+    }
+
+    .kopilka-value-text {
+      fill: rgba(255,255,255,.92);
+      font-size: 12px;
+      font-weight: 900;
+    }
+
+    .kopilka-chart-footer {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+      margin-top: 12px;
+    }
+
+    .kopilka-chart-mini {
+      border-radius: 18px;
+      padding: 12px;
+      background: rgba(255,255,255,.045);
+      border: 1px solid rgba(255,255,255,.09);
+      min-width: 0;
+    }
+
+    .kopilka-chart-mini p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 12px;
+    }
+
+    .kopilka-chart-mini strong {
+      display: block;
+      margin-top: 5px;
+      color: white;
+      font-size: 16px;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+
+    #chartLeft,
+    #chartMonths {
+      /* values kept for compatibility; duplicate boxes are visually handled by the new chart */
     }
 
     @media (max-width: 390px) {
@@ -3735,6 +4471,190 @@
       overflow: visible !important;
     }
 
+
+    /* Hard reset for old broken chart versions */
+    #savingsChart,
+    #savingsChart * {
+      box-sizing: border-box;
+    }
+
+    #savingsChart .chart-bar,
+    #savingsChart .chart-value,
+    #savingsChart .fixed-savings-chart,
+    #savingsChart .premium-chart,
+    #savingsChart .fixed-label,
+    #savingsChart .fixed-money-label,
+    #savingsChart .clean-chart-shell,
+    #savingsChart .clean-chart-shell * {
+      all: unset;
+      box-sizing: border-box;
+    }
+
+    #savingsChart {
+      display: block !important;
+      height: auto !important;
+      min-height: 0 !important;
+      padding: 0 !important;
+      margin: 0 !important;
+      background: transparent !important;
+      border: 0 !important;
+      overflow: visible !important;
+    }
+
+    .kopilka-chart {
+      margin-top: 14px;
+      border-radius: 26px;
+      padding: 16px;
+      background:
+        radial-gradient(circle at 18% 0%, rgba(91,140,255,.18), transparent 34%),
+        linear-gradient(180deg, rgba(255,255,255,.075), rgba(255,255,255,.025)),
+        rgba(16,27,45,.42);
+      border: 1px solid rgba(255,255,255,.13);
+      box-shadow:
+        0 14px 36px rgba(0,0,0,.18),
+        inset 0 1px 0 rgba(255,255,255,.09);
+      overflow: hidden;
+    }
+
+    .kopilka-chart-head {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: 12px;
+      margin-bottom: 12px;
+    }
+
+    .kopilka-chart-head p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 12px;
+      line-height: 1.35;
+    }
+
+    .kopilka-chart-head strong {
+      display: block;
+      margin-top: 5px;
+      color: white;
+      font-size: 22px;
+      line-height: 1.05;
+      letter-spacing: -.35px;
+    }
+
+    .kopilka-chart-badge {
+      flex: 0 0 auto;
+      padding: 8px 11px;
+      border-radius: 999px;
+      background: rgba(91,140,255,.18);
+      border: 1px solid rgba(91,140,255,.25);
+      color: white;
+      font-size: 12px;
+      font-weight: 900;
+      white-space: nowrap;
+    }
+
+    .kopilka-chart-canvas {
+      position: relative;
+      height: 220px;
+      border-radius: 22px;
+      background:
+        linear-gradient(to top, rgba(255,255,255,.07) 1px, transparent 1px),
+        rgba(255,255,255,.025);
+      background-size: 100% 33.333%;
+      border: 1px solid rgba(255,255,255,.09);
+      overflow: hidden;
+    }
+
+    .kopilka-chart-canvas svg {
+      display: block;
+      width: 100%;
+      height: 100%;
+    }
+
+    .kopilka-grid {
+      stroke: rgba(255,255,255,.10);
+      stroke-width: 1;
+    }
+
+    .kopilka-goal-line {
+      stroke: rgba(255,255,255,.35);
+      stroke-width: 1.5;
+      stroke-dasharray: 7 8;
+    }
+
+    .kopilka-area {
+      fill: url(#kopilkaArea);
+    }
+
+    .kopilka-line {
+      fill: none;
+      stroke: url(#kopilkaLine);
+      stroke-width: 5;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+      filter: drop-shadow(0 8px 14px rgba(91,140,255,.30));
+    }
+
+    .kopilka-dot {
+      fill: #ffffff;
+      stroke: #5b8cff;
+      stroke-width: 4;
+    }
+
+    .kopilka-dot-now {
+      fill: #4ade80;
+      stroke: white;
+      stroke-width: 4;
+    }
+
+    .kopilka-axis-text {
+      fill: rgba(255,255,255,.62);
+      font-size: 11px;
+      font-weight: 800;
+    }
+
+    .kopilka-value-text {
+      fill: rgba(255,255,255,.92);
+      font-size: 12px;
+      font-weight: 900;
+    }
+
+    .kopilka-chart-footer {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+      margin-top: 12px;
+    }
+
+    .kopilka-chart-mini {
+      border-radius: 18px;
+      padding: 12px;
+      background: rgba(255,255,255,.045);
+      border: 1px solid rgba(255,255,255,.09);
+      min-width: 0;
+    }
+
+    .kopilka-chart-mini p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 12px;
+    }
+
+    .kopilka-chart-mini strong {
+      display: block;
+      margin-top: 5px;
+      color: white;
+      font-size: 16px;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+
+    #chartLeft,
+    #chartMonths {
+      /* values kept for compatibility; duplicate boxes are visually handled by the new chart */
+    }
+
     @media (max-width: 390px) {
       .pc-stage-actions {
         grid-template-columns: 1fr;
@@ -4013,6 +4933,190 @@
       background: transparent !important;
       border: 0 !important;
       overflow: visible !important;
+    }
+
+
+    /* Hard reset for old broken chart versions */
+    #savingsChart,
+    #savingsChart * {
+      box-sizing: border-box;
+    }
+
+    #savingsChart .chart-bar,
+    #savingsChart .chart-value,
+    #savingsChart .fixed-savings-chart,
+    #savingsChart .premium-chart,
+    #savingsChart .fixed-label,
+    #savingsChart .fixed-money-label,
+    #savingsChart .clean-chart-shell,
+    #savingsChart .clean-chart-shell * {
+      all: unset;
+      box-sizing: border-box;
+    }
+
+    #savingsChart {
+      display: block !important;
+      height: auto !important;
+      min-height: 0 !important;
+      padding: 0 !important;
+      margin: 0 !important;
+      background: transparent !important;
+      border: 0 !important;
+      overflow: visible !important;
+    }
+
+    .kopilka-chart {
+      margin-top: 14px;
+      border-radius: 26px;
+      padding: 16px;
+      background:
+        radial-gradient(circle at 18% 0%, rgba(91,140,255,.18), transparent 34%),
+        linear-gradient(180deg, rgba(255,255,255,.075), rgba(255,255,255,.025)),
+        rgba(16,27,45,.42);
+      border: 1px solid rgba(255,255,255,.13);
+      box-shadow:
+        0 14px 36px rgba(0,0,0,.18),
+        inset 0 1px 0 rgba(255,255,255,.09);
+      overflow: hidden;
+    }
+
+    .kopilka-chart-head {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: 12px;
+      margin-bottom: 12px;
+    }
+
+    .kopilka-chart-head p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 12px;
+      line-height: 1.35;
+    }
+
+    .kopilka-chart-head strong {
+      display: block;
+      margin-top: 5px;
+      color: white;
+      font-size: 22px;
+      line-height: 1.05;
+      letter-spacing: -.35px;
+    }
+
+    .kopilka-chart-badge {
+      flex: 0 0 auto;
+      padding: 8px 11px;
+      border-radius: 999px;
+      background: rgba(91,140,255,.18);
+      border: 1px solid rgba(91,140,255,.25);
+      color: white;
+      font-size: 12px;
+      font-weight: 900;
+      white-space: nowrap;
+    }
+
+    .kopilka-chart-canvas {
+      position: relative;
+      height: 220px;
+      border-radius: 22px;
+      background:
+        linear-gradient(to top, rgba(255,255,255,.07) 1px, transparent 1px),
+        rgba(255,255,255,.025);
+      background-size: 100% 33.333%;
+      border: 1px solid rgba(255,255,255,.09);
+      overflow: hidden;
+    }
+
+    .kopilka-chart-canvas svg {
+      display: block;
+      width: 100%;
+      height: 100%;
+    }
+
+    .kopilka-grid {
+      stroke: rgba(255,255,255,.10);
+      stroke-width: 1;
+    }
+
+    .kopilka-goal-line {
+      stroke: rgba(255,255,255,.35);
+      stroke-width: 1.5;
+      stroke-dasharray: 7 8;
+    }
+
+    .kopilka-area {
+      fill: url(#kopilkaArea);
+    }
+
+    .kopilka-line {
+      fill: none;
+      stroke: url(#kopilkaLine);
+      stroke-width: 5;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+      filter: drop-shadow(0 8px 14px rgba(91,140,255,.30));
+    }
+
+    .kopilka-dot {
+      fill: #ffffff;
+      stroke: #5b8cff;
+      stroke-width: 4;
+    }
+
+    .kopilka-dot-now {
+      fill: #4ade80;
+      stroke: white;
+      stroke-width: 4;
+    }
+
+    .kopilka-axis-text {
+      fill: rgba(255,255,255,.62);
+      font-size: 11px;
+      font-weight: 800;
+    }
+
+    .kopilka-value-text {
+      fill: rgba(255,255,255,.92);
+      font-size: 12px;
+      font-weight: 900;
+    }
+
+    .kopilka-chart-footer {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+      margin-top: 12px;
+    }
+
+    .kopilka-chart-mini {
+      border-radius: 18px;
+      padding: 12px;
+      background: rgba(255,255,255,.045);
+      border: 1px solid rgba(255,255,255,.09);
+      min-width: 0;
+    }
+
+    .kopilka-chart-mini p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 12px;
+    }
+
+    .kopilka-chart-mini strong {
+      display: block;
+      margin-top: 5px;
+      color: white;
+      font-size: 16px;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+
+    #chartLeft,
+    #chartMonths {
+      /* values kept for compatibility; duplicate boxes are visually handled by the new chart */
     }
 
     @media (max-width: 390px) {
@@ -4413,6 +5517,190 @@
       overflow: visible !important;
     }
 
+
+    /* Hard reset for old broken chart versions */
+    #savingsChart,
+    #savingsChart * {
+      box-sizing: border-box;
+    }
+
+    #savingsChart .chart-bar,
+    #savingsChart .chart-value,
+    #savingsChart .fixed-savings-chart,
+    #savingsChart .premium-chart,
+    #savingsChart .fixed-label,
+    #savingsChart .fixed-money-label,
+    #savingsChart .clean-chart-shell,
+    #savingsChart .clean-chart-shell * {
+      all: unset;
+      box-sizing: border-box;
+    }
+
+    #savingsChart {
+      display: block !important;
+      height: auto !important;
+      min-height: 0 !important;
+      padding: 0 !important;
+      margin: 0 !important;
+      background: transparent !important;
+      border: 0 !important;
+      overflow: visible !important;
+    }
+
+    .kopilka-chart {
+      margin-top: 14px;
+      border-radius: 26px;
+      padding: 16px;
+      background:
+        radial-gradient(circle at 18% 0%, rgba(91,140,255,.18), transparent 34%),
+        linear-gradient(180deg, rgba(255,255,255,.075), rgba(255,255,255,.025)),
+        rgba(16,27,45,.42);
+      border: 1px solid rgba(255,255,255,.13);
+      box-shadow:
+        0 14px 36px rgba(0,0,0,.18),
+        inset 0 1px 0 rgba(255,255,255,.09);
+      overflow: hidden;
+    }
+
+    .kopilka-chart-head {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: 12px;
+      margin-bottom: 12px;
+    }
+
+    .kopilka-chart-head p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 12px;
+      line-height: 1.35;
+    }
+
+    .kopilka-chart-head strong {
+      display: block;
+      margin-top: 5px;
+      color: white;
+      font-size: 22px;
+      line-height: 1.05;
+      letter-spacing: -.35px;
+    }
+
+    .kopilka-chart-badge {
+      flex: 0 0 auto;
+      padding: 8px 11px;
+      border-radius: 999px;
+      background: rgba(91,140,255,.18);
+      border: 1px solid rgba(91,140,255,.25);
+      color: white;
+      font-size: 12px;
+      font-weight: 900;
+      white-space: nowrap;
+    }
+
+    .kopilka-chart-canvas {
+      position: relative;
+      height: 220px;
+      border-radius: 22px;
+      background:
+        linear-gradient(to top, rgba(255,255,255,.07) 1px, transparent 1px),
+        rgba(255,255,255,.025);
+      background-size: 100% 33.333%;
+      border: 1px solid rgba(255,255,255,.09);
+      overflow: hidden;
+    }
+
+    .kopilka-chart-canvas svg {
+      display: block;
+      width: 100%;
+      height: 100%;
+    }
+
+    .kopilka-grid {
+      stroke: rgba(255,255,255,.10);
+      stroke-width: 1;
+    }
+
+    .kopilka-goal-line {
+      stroke: rgba(255,255,255,.35);
+      stroke-width: 1.5;
+      stroke-dasharray: 7 8;
+    }
+
+    .kopilka-area {
+      fill: url(#kopilkaArea);
+    }
+
+    .kopilka-line {
+      fill: none;
+      stroke: url(#kopilkaLine);
+      stroke-width: 5;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+      filter: drop-shadow(0 8px 14px rgba(91,140,255,.30));
+    }
+
+    .kopilka-dot {
+      fill: #ffffff;
+      stroke: #5b8cff;
+      stroke-width: 4;
+    }
+
+    .kopilka-dot-now {
+      fill: #4ade80;
+      stroke: white;
+      stroke-width: 4;
+    }
+
+    .kopilka-axis-text {
+      fill: rgba(255,255,255,.62);
+      font-size: 11px;
+      font-weight: 800;
+    }
+
+    .kopilka-value-text {
+      fill: rgba(255,255,255,.92);
+      font-size: 12px;
+      font-weight: 900;
+    }
+
+    .kopilka-chart-footer {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+      margin-top: 12px;
+    }
+
+    .kopilka-chart-mini {
+      border-radius: 18px;
+      padding: 12px;
+      background: rgba(255,255,255,.045);
+      border: 1px solid rgba(255,255,255,.09);
+      min-width: 0;
+    }
+
+    .kopilka-chart-mini p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 12px;
+    }
+
+    .kopilka-chart-mini strong {
+      display: block;
+      margin-top: 5px;
+      color: white;
+      font-size: 16px;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+
+    #chartLeft,
+    #chartMonths {
+      /* values kept for compatibility; duplicate boxes are visually handled by the new chart */
+    }
+
     @media (max-width: 390px) {
       .pc-stage-actions {
         grid-template-columns: 1fr;
@@ -4691,6 +5979,190 @@
       background: transparent !important;
       border: 0 !important;
       overflow: visible !important;
+    }
+
+
+    /* Hard reset for old broken chart versions */
+    #savingsChart,
+    #savingsChart * {
+      box-sizing: border-box;
+    }
+
+    #savingsChart .chart-bar,
+    #savingsChart .chart-value,
+    #savingsChart .fixed-savings-chart,
+    #savingsChart .premium-chart,
+    #savingsChart .fixed-label,
+    #savingsChart .fixed-money-label,
+    #savingsChart .clean-chart-shell,
+    #savingsChart .clean-chart-shell * {
+      all: unset;
+      box-sizing: border-box;
+    }
+
+    #savingsChart {
+      display: block !important;
+      height: auto !important;
+      min-height: 0 !important;
+      padding: 0 !important;
+      margin: 0 !important;
+      background: transparent !important;
+      border: 0 !important;
+      overflow: visible !important;
+    }
+
+    .kopilka-chart {
+      margin-top: 14px;
+      border-radius: 26px;
+      padding: 16px;
+      background:
+        radial-gradient(circle at 18% 0%, rgba(91,140,255,.18), transparent 34%),
+        linear-gradient(180deg, rgba(255,255,255,.075), rgba(255,255,255,.025)),
+        rgba(16,27,45,.42);
+      border: 1px solid rgba(255,255,255,.13);
+      box-shadow:
+        0 14px 36px rgba(0,0,0,.18),
+        inset 0 1px 0 rgba(255,255,255,.09);
+      overflow: hidden;
+    }
+
+    .kopilka-chart-head {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: 12px;
+      margin-bottom: 12px;
+    }
+
+    .kopilka-chart-head p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 12px;
+      line-height: 1.35;
+    }
+
+    .kopilka-chart-head strong {
+      display: block;
+      margin-top: 5px;
+      color: white;
+      font-size: 22px;
+      line-height: 1.05;
+      letter-spacing: -.35px;
+    }
+
+    .kopilka-chart-badge {
+      flex: 0 0 auto;
+      padding: 8px 11px;
+      border-radius: 999px;
+      background: rgba(91,140,255,.18);
+      border: 1px solid rgba(91,140,255,.25);
+      color: white;
+      font-size: 12px;
+      font-weight: 900;
+      white-space: nowrap;
+    }
+
+    .kopilka-chart-canvas {
+      position: relative;
+      height: 220px;
+      border-radius: 22px;
+      background:
+        linear-gradient(to top, rgba(255,255,255,.07) 1px, transparent 1px),
+        rgba(255,255,255,.025);
+      background-size: 100% 33.333%;
+      border: 1px solid rgba(255,255,255,.09);
+      overflow: hidden;
+    }
+
+    .kopilka-chart-canvas svg {
+      display: block;
+      width: 100%;
+      height: 100%;
+    }
+
+    .kopilka-grid {
+      stroke: rgba(255,255,255,.10);
+      stroke-width: 1;
+    }
+
+    .kopilka-goal-line {
+      stroke: rgba(255,255,255,.35);
+      stroke-width: 1.5;
+      stroke-dasharray: 7 8;
+    }
+
+    .kopilka-area {
+      fill: url(#kopilkaArea);
+    }
+
+    .kopilka-line {
+      fill: none;
+      stroke: url(#kopilkaLine);
+      stroke-width: 5;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+      filter: drop-shadow(0 8px 14px rgba(91,140,255,.30));
+    }
+
+    .kopilka-dot {
+      fill: #ffffff;
+      stroke: #5b8cff;
+      stroke-width: 4;
+    }
+
+    .kopilka-dot-now {
+      fill: #4ade80;
+      stroke: white;
+      stroke-width: 4;
+    }
+
+    .kopilka-axis-text {
+      fill: rgba(255,255,255,.62);
+      font-size: 11px;
+      font-weight: 800;
+    }
+
+    .kopilka-value-text {
+      fill: rgba(255,255,255,.92);
+      font-size: 12px;
+      font-weight: 900;
+    }
+
+    .kopilka-chart-footer {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+      margin-top: 12px;
+    }
+
+    .kopilka-chart-mini {
+      border-radius: 18px;
+      padding: 12px;
+      background: rgba(255,255,255,.045);
+      border: 1px solid rgba(255,255,255,.09);
+      min-width: 0;
+    }
+
+    .kopilka-chart-mini p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 12px;
+    }
+
+    .kopilka-chart-mini strong {
+      display: block;
+      margin-top: 5px;
+      color: white;
+      font-size: 16px;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+
+    #chartLeft,
+    #chartMonths {
+      /* values kept for compatibility; duplicate boxes are visually handled by the new chart */
     }
 
     @media (max-width: 390px) {
@@ -5403,6 +6875,190 @@
       overflow: visible !important;
     }
 
+
+    /* Hard reset for old broken chart versions */
+    #savingsChart,
+    #savingsChart * {
+      box-sizing: border-box;
+    }
+
+    #savingsChart .chart-bar,
+    #savingsChart .chart-value,
+    #savingsChart .fixed-savings-chart,
+    #savingsChart .premium-chart,
+    #savingsChart .fixed-label,
+    #savingsChart .fixed-money-label,
+    #savingsChart .clean-chart-shell,
+    #savingsChart .clean-chart-shell * {
+      all: unset;
+      box-sizing: border-box;
+    }
+
+    #savingsChart {
+      display: block !important;
+      height: auto !important;
+      min-height: 0 !important;
+      padding: 0 !important;
+      margin: 0 !important;
+      background: transparent !important;
+      border: 0 !important;
+      overflow: visible !important;
+    }
+
+    .kopilka-chart {
+      margin-top: 14px;
+      border-radius: 26px;
+      padding: 16px;
+      background:
+        radial-gradient(circle at 18% 0%, rgba(91,140,255,.18), transparent 34%),
+        linear-gradient(180deg, rgba(255,255,255,.075), rgba(255,255,255,.025)),
+        rgba(16,27,45,.42);
+      border: 1px solid rgba(255,255,255,.13);
+      box-shadow:
+        0 14px 36px rgba(0,0,0,.18),
+        inset 0 1px 0 rgba(255,255,255,.09);
+      overflow: hidden;
+    }
+
+    .kopilka-chart-head {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: 12px;
+      margin-bottom: 12px;
+    }
+
+    .kopilka-chart-head p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 12px;
+      line-height: 1.35;
+    }
+
+    .kopilka-chart-head strong {
+      display: block;
+      margin-top: 5px;
+      color: white;
+      font-size: 22px;
+      line-height: 1.05;
+      letter-spacing: -.35px;
+    }
+
+    .kopilka-chart-badge {
+      flex: 0 0 auto;
+      padding: 8px 11px;
+      border-radius: 999px;
+      background: rgba(91,140,255,.18);
+      border: 1px solid rgba(91,140,255,.25);
+      color: white;
+      font-size: 12px;
+      font-weight: 900;
+      white-space: nowrap;
+    }
+
+    .kopilka-chart-canvas {
+      position: relative;
+      height: 220px;
+      border-radius: 22px;
+      background:
+        linear-gradient(to top, rgba(255,255,255,.07) 1px, transparent 1px),
+        rgba(255,255,255,.025);
+      background-size: 100% 33.333%;
+      border: 1px solid rgba(255,255,255,.09);
+      overflow: hidden;
+    }
+
+    .kopilka-chart-canvas svg {
+      display: block;
+      width: 100%;
+      height: 100%;
+    }
+
+    .kopilka-grid {
+      stroke: rgba(255,255,255,.10);
+      stroke-width: 1;
+    }
+
+    .kopilka-goal-line {
+      stroke: rgba(255,255,255,.35);
+      stroke-width: 1.5;
+      stroke-dasharray: 7 8;
+    }
+
+    .kopilka-area {
+      fill: url(#kopilkaArea);
+    }
+
+    .kopilka-line {
+      fill: none;
+      stroke: url(#kopilkaLine);
+      stroke-width: 5;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+      filter: drop-shadow(0 8px 14px rgba(91,140,255,.30));
+    }
+
+    .kopilka-dot {
+      fill: #ffffff;
+      stroke: #5b8cff;
+      stroke-width: 4;
+    }
+
+    .kopilka-dot-now {
+      fill: #4ade80;
+      stroke: white;
+      stroke-width: 4;
+    }
+
+    .kopilka-axis-text {
+      fill: rgba(255,255,255,.62);
+      font-size: 11px;
+      font-weight: 800;
+    }
+
+    .kopilka-value-text {
+      fill: rgba(255,255,255,.92);
+      font-size: 12px;
+      font-weight: 900;
+    }
+
+    .kopilka-chart-footer {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+      margin-top: 12px;
+    }
+
+    .kopilka-chart-mini {
+      border-radius: 18px;
+      padding: 12px;
+      background: rgba(255,255,255,.045);
+      border: 1px solid rgba(255,255,255,.09);
+      min-width: 0;
+    }
+
+    .kopilka-chart-mini p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 12px;
+    }
+
+    .kopilka-chart-mini strong {
+      display: block;
+      margin-top: 5px;
+      color: white;
+      font-size: 16px;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+
+    #chartLeft,
+    #chartMonths {
+      /* values kept for compatibility; duplicate boxes are visually handled by the new chart */
+    }
+
     @media (max-width: 390px) {
       .pc-stage-actions {
         grid-template-columns: 1fr;
@@ -5681,6 +7337,190 @@
       background: transparent !important;
       border: 0 !important;
       overflow: visible !important;
+    }
+
+
+    /* Hard reset for old broken chart versions */
+    #savingsChart,
+    #savingsChart * {
+      box-sizing: border-box;
+    }
+
+    #savingsChart .chart-bar,
+    #savingsChart .chart-value,
+    #savingsChart .fixed-savings-chart,
+    #savingsChart .premium-chart,
+    #savingsChart .fixed-label,
+    #savingsChart .fixed-money-label,
+    #savingsChart .clean-chart-shell,
+    #savingsChart .clean-chart-shell * {
+      all: unset;
+      box-sizing: border-box;
+    }
+
+    #savingsChart {
+      display: block !important;
+      height: auto !important;
+      min-height: 0 !important;
+      padding: 0 !important;
+      margin: 0 !important;
+      background: transparent !important;
+      border: 0 !important;
+      overflow: visible !important;
+    }
+
+    .kopilka-chart {
+      margin-top: 14px;
+      border-radius: 26px;
+      padding: 16px;
+      background:
+        radial-gradient(circle at 18% 0%, rgba(91,140,255,.18), transparent 34%),
+        linear-gradient(180deg, rgba(255,255,255,.075), rgba(255,255,255,.025)),
+        rgba(16,27,45,.42);
+      border: 1px solid rgba(255,255,255,.13);
+      box-shadow:
+        0 14px 36px rgba(0,0,0,.18),
+        inset 0 1px 0 rgba(255,255,255,.09);
+      overflow: hidden;
+    }
+
+    .kopilka-chart-head {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: 12px;
+      margin-bottom: 12px;
+    }
+
+    .kopilka-chart-head p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 12px;
+      line-height: 1.35;
+    }
+
+    .kopilka-chart-head strong {
+      display: block;
+      margin-top: 5px;
+      color: white;
+      font-size: 22px;
+      line-height: 1.05;
+      letter-spacing: -.35px;
+    }
+
+    .kopilka-chart-badge {
+      flex: 0 0 auto;
+      padding: 8px 11px;
+      border-radius: 999px;
+      background: rgba(91,140,255,.18);
+      border: 1px solid rgba(91,140,255,.25);
+      color: white;
+      font-size: 12px;
+      font-weight: 900;
+      white-space: nowrap;
+    }
+
+    .kopilka-chart-canvas {
+      position: relative;
+      height: 220px;
+      border-radius: 22px;
+      background:
+        linear-gradient(to top, rgba(255,255,255,.07) 1px, transparent 1px),
+        rgba(255,255,255,.025);
+      background-size: 100% 33.333%;
+      border: 1px solid rgba(255,255,255,.09);
+      overflow: hidden;
+    }
+
+    .kopilka-chart-canvas svg {
+      display: block;
+      width: 100%;
+      height: 100%;
+    }
+
+    .kopilka-grid {
+      stroke: rgba(255,255,255,.10);
+      stroke-width: 1;
+    }
+
+    .kopilka-goal-line {
+      stroke: rgba(255,255,255,.35);
+      stroke-width: 1.5;
+      stroke-dasharray: 7 8;
+    }
+
+    .kopilka-area {
+      fill: url(#kopilkaArea);
+    }
+
+    .kopilka-line {
+      fill: none;
+      stroke: url(#kopilkaLine);
+      stroke-width: 5;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+      filter: drop-shadow(0 8px 14px rgba(91,140,255,.30));
+    }
+
+    .kopilka-dot {
+      fill: #ffffff;
+      stroke: #5b8cff;
+      stroke-width: 4;
+    }
+
+    .kopilka-dot-now {
+      fill: #4ade80;
+      stroke: white;
+      stroke-width: 4;
+    }
+
+    .kopilka-axis-text {
+      fill: rgba(255,255,255,.62);
+      font-size: 11px;
+      font-weight: 800;
+    }
+
+    .kopilka-value-text {
+      fill: rgba(255,255,255,.92);
+      font-size: 12px;
+      font-weight: 900;
+    }
+
+    .kopilka-chart-footer {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+      margin-top: 12px;
+    }
+
+    .kopilka-chart-mini {
+      border-radius: 18px;
+      padding: 12px;
+      background: rgba(255,255,255,.045);
+      border: 1px solid rgba(255,255,255,.09);
+      min-width: 0;
+    }
+
+    .kopilka-chart-mini p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 12px;
+    }
+
+    .kopilka-chart-mini strong {
+      display: block;
+      margin-top: 5px;
+      color: white;
+      font-size: 16px;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+
+    #chartLeft,
+    #chartMonths {
+      /* values kept for compatibility; duplicate boxes are visually handled by the new chart */
     }
 
     @media (max-width: 390px) {
@@ -6081,6 +7921,190 @@
       overflow: visible !important;
     }
 
+
+    /* Hard reset for old broken chart versions */
+    #savingsChart,
+    #savingsChart * {
+      box-sizing: border-box;
+    }
+
+    #savingsChart .chart-bar,
+    #savingsChart .chart-value,
+    #savingsChart .fixed-savings-chart,
+    #savingsChart .premium-chart,
+    #savingsChart .fixed-label,
+    #savingsChart .fixed-money-label,
+    #savingsChart .clean-chart-shell,
+    #savingsChart .clean-chart-shell * {
+      all: unset;
+      box-sizing: border-box;
+    }
+
+    #savingsChart {
+      display: block !important;
+      height: auto !important;
+      min-height: 0 !important;
+      padding: 0 !important;
+      margin: 0 !important;
+      background: transparent !important;
+      border: 0 !important;
+      overflow: visible !important;
+    }
+
+    .kopilka-chart {
+      margin-top: 14px;
+      border-radius: 26px;
+      padding: 16px;
+      background:
+        radial-gradient(circle at 18% 0%, rgba(91,140,255,.18), transparent 34%),
+        linear-gradient(180deg, rgba(255,255,255,.075), rgba(255,255,255,.025)),
+        rgba(16,27,45,.42);
+      border: 1px solid rgba(255,255,255,.13);
+      box-shadow:
+        0 14px 36px rgba(0,0,0,.18),
+        inset 0 1px 0 rgba(255,255,255,.09);
+      overflow: hidden;
+    }
+
+    .kopilka-chart-head {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: 12px;
+      margin-bottom: 12px;
+    }
+
+    .kopilka-chart-head p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 12px;
+      line-height: 1.35;
+    }
+
+    .kopilka-chart-head strong {
+      display: block;
+      margin-top: 5px;
+      color: white;
+      font-size: 22px;
+      line-height: 1.05;
+      letter-spacing: -.35px;
+    }
+
+    .kopilka-chart-badge {
+      flex: 0 0 auto;
+      padding: 8px 11px;
+      border-radius: 999px;
+      background: rgba(91,140,255,.18);
+      border: 1px solid rgba(91,140,255,.25);
+      color: white;
+      font-size: 12px;
+      font-weight: 900;
+      white-space: nowrap;
+    }
+
+    .kopilka-chart-canvas {
+      position: relative;
+      height: 220px;
+      border-radius: 22px;
+      background:
+        linear-gradient(to top, rgba(255,255,255,.07) 1px, transparent 1px),
+        rgba(255,255,255,.025);
+      background-size: 100% 33.333%;
+      border: 1px solid rgba(255,255,255,.09);
+      overflow: hidden;
+    }
+
+    .kopilka-chart-canvas svg {
+      display: block;
+      width: 100%;
+      height: 100%;
+    }
+
+    .kopilka-grid {
+      stroke: rgba(255,255,255,.10);
+      stroke-width: 1;
+    }
+
+    .kopilka-goal-line {
+      stroke: rgba(255,255,255,.35);
+      stroke-width: 1.5;
+      stroke-dasharray: 7 8;
+    }
+
+    .kopilka-area {
+      fill: url(#kopilkaArea);
+    }
+
+    .kopilka-line {
+      fill: none;
+      stroke: url(#kopilkaLine);
+      stroke-width: 5;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+      filter: drop-shadow(0 8px 14px rgba(91,140,255,.30));
+    }
+
+    .kopilka-dot {
+      fill: #ffffff;
+      stroke: #5b8cff;
+      stroke-width: 4;
+    }
+
+    .kopilka-dot-now {
+      fill: #4ade80;
+      stroke: white;
+      stroke-width: 4;
+    }
+
+    .kopilka-axis-text {
+      fill: rgba(255,255,255,.62);
+      font-size: 11px;
+      font-weight: 800;
+    }
+
+    .kopilka-value-text {
+      fill: rgba(255,255,255,.92);
+      font-size: 12px;
+      font-weight: 900;
+    }
+
+    .kopilka-chart-footer {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+      margin-top: 12px;
+    }
+
+    .kopilka-chart-mini {
+      border-radius: 18px;
+      padding: 12px;
+      background: rgba(255,255,255,.045);
+      border: 1px solid rgba(255,255,255,.09);
+      min-width: 0;
+    }
+
+    .kopilka-chart-mini p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 12px;
+    }
+
+    .kopilka-chart-mini strong {
+      display: block;
+      margin-top: 5px;
+      color: white;
+      font-size: 16px;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+
+    #chartLeft,
+    #chartMonths {
+      /* values kept for compatibility; duplicate boxes are visually handled by the new chart */
+    }
+
     @media (max-width: 390px) {
       .pc-stage-actions {
         grid-template-columns: 1fr;
@@ -6359,6 +8383,190 @@
       background: transparent !important;
       border: 0 !important;
       overflow: visible !important;
+    }
+
+
+    /* Hard reset for old broken chart versions */
+    #savingsChart,
+    #savingsChart * {
+      box-sizing: border-box;
+    }
+
+    #savingsChart .chart-bar,
+    #savingsChart .chart-value,
+    #savingsChart .fixed-savings-chart,
+    #savingsChart .premium-chart,
+    #savingsChart .fixed-label,
+    #savingsChart .fixed-money-label,
+    #savingsChart .clean-chart-shell,
+    #savingsChart .clean-chart-shell * {
+      all: unset;
+      box-sizing: border-box;
+    }
+
+    #savingsChart {
+      display: block !important;
+      height: auto !important;
+      min-height: 0 !important;
+      padding: 0 !important;
+      margin: 0 !important;
+      background: transparent !important;
+      border: 0 !important;
+      overflow: visible !important;
+    }
+
+    .kopilka-chart {
+      margin-top: 14px;
+      border-radius: 26px;
+      padding: 16px;
+      background:
+        radial-gradient(circle at 18% 0%, rgba(91,140,255,.18), transparent 34%),
+        linear-gradient(180deg, rgba(255,255,255,.075), rgba(255,255,255,.025)),
+        rgba(16,27,45,.42);
+      border: 1px solid rgba(255,255,255,.13);
+      box-shadow:
+        0 14px 36px rgba(0,0,0,.18),
+        inset 0 1px 0 rgba(255,255,255,.09);
+      overflow: hidden;
+    }
+
+    .kopilka-chart-head {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: 12px;
+      margin-bottom: 12px;
+    }
+
+    .kopilka-chart-head p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 12px;
+      line-height: 1.35;
+    }
+
+    .kopilka-chart-head strong {
+      display: block;
+      margin-top: 5px;
+      color: white;
+      font-size: 22px;
+      line-height: 1.05;
+      letter-spacing: -.35px;
+    }
+
+    .kopilka-chart-badge {
+      flex: 0 0 auto;
+      padding: 8px 11px;
+      border-radius: 999px;
+      background: rgba(91,140,255,.18);
+      border: 1px solid rgba(91,140,255,.25);
+      color: white;
+      font-size: 12px;
+      font-weight: 900;
+      white-space: nowrap;
+    }
+
+    .kopilka-chart-canvas {
+      position: relative;
+      height: 220px;
+      border-radius: 22px;
+      background:
+        linear-gradient(to top, rgba(255,255,255,.07) 1px, transparent 1px),
+        rgba(255,255,255,.025);
+      background-size: 100% 33.333%;
+      border: 1px solid rgba(255,255,255,.09);
+      overflow: hidden;
+    }
+
+    .kopilka-chart-canvas svg {
+      display: block;
+      width: 100%;
+      height: 100%;
+    }
+
+    .kopilka-grid {
+      stroke: rgba(255,255,255,.10);
+      stroke-width: 1;
+    }
+
+    .kopilka-goal-line {
+      stroke: rgba(255,255,255,.35);
+      stroke-width: 1.5;
+      stroke-dasharray: 7 8;
+    }
+
+    .kopilka-area {
+      fill: url(#kopilkaArea);
+    }
+
+    .kopilka-line {
+      fill: none;
+      stroke: url(#kopilkaLine);
+      stroke-width: 5;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+      filter: drop-shadow(0 8px 14px rgba(91,140,255,.30));
+    }
+
+    .kopilka-dot {
+      fill: #ffffff;
+      stroke: #5b8cff;
+      stroke-width: 4;
+    }
+
+    .kopilka-dot-now {
+      fill: #4ade80;
+      stroke: white;
+      stroke-width: 4;
+    }
+
+    .kopilka-axis-text {
+      fill: rgba(255,255,255,.62);
+      font-size: 11px;
+      font-weight: 800;
+    }
+
+    .kopilka-value-text {
+      fill: rgba(255,255,255,.92);
+      font-size: 12px;
+      font-weight: 900;
+    }
+
+    .kopilka-chart-footer {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+      margin-top: 12px;
+    }
+
+    .kopilka-chart-mini {
+      border-radius: 18px;
+      padding: 12px;
+      background: rgba(255,255,255,.045);
+      border: 1px solid rgba(255,255,255,.09);
+      min-width: 0;
+    }
+
+    .kopilka-chart-mini p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 12px;
+    }
+
+    .kopilka-chart-mini strong {
+      display: block;
+      margin-top: 5px;
+      color: white;
+      font-size: 16px;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+
+    #chartLeft,
+    #chartMonths {
+      /* values kept for compatibility; duplicate boxes are visually handled by the new chart */
     }
 
     @media (max-width: 390px) {
@@ -6893,6 +9101,190 @@
       overflow: visible !important;
     }
 
+
+    /* Hard reset for old broken chart versions */
+    #savingsChart,
+    #savingsChart * {
+      box-sizing: border-box;
+    }
+
+    #savingsChart .chart-bar,
+    #savingsChart .chart-value,
+    #savingsChart .fixed-savings-chart,
+    #savingsChart .premium-chart,
+    #savingsChart .fixed-label,
+    #savingsChart .fixed-money-label,
+    #savingsChart .clean-chart-shell,
+    #savingsChart .clean-chart-shell * {
+      all: unset;
+      box-sizing: border-box;
+    }
+
+    #savingsChart {
+      display: block !important;
+      height: auto !important;
+      min-height: 0 !important;
+      padding: 0 !important;
+      margin: 0 !important;
+      background: transparent !important;
+      border: 0 !important;
+      overflow: visible !important;
+    }
+
+    .kopilka-chart {
+      margin-top: 14px;
+      border-radius: 26px;
+      padding: 16px;
+      background:
+        radial-gradient(circle at 18% 0%, rgba(91,140,255,.18), transparent 34%),
+        linear-gradient(180deg, rgba(255,255,255,.075), rgba(255,255,255,.025)),
+        rgba(16,27,45,.42);
+      border: 1px solid rgba(255,255,255,.13);
+      box-shadow:
+        0 14px 36px rgba(0,0,0,.18),
+        inset 0 1px 0 rgba(255,255,255,.09);
+      overflow: hidden;
+    }
+
+    .kopilka-chart-head {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: 12px;
+      margin-bottom: 12px;
+    }
+
+    .kopilka-chart-head p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 12px;
+      line-height: 1.35;
+    }
+
+    .kopilka-chart-head strong {
+      display: block;
+      margin-top: 5px;
+      color: white;
+      font-size: 22px;
+      line-height: 1.05;
+      letter-spacing: -.35px;
+    }
+
+    .kopilka-chart-badge {
+      flex: 0 0 auto;
+      padding: 8px 11px;
+      border-radius: 999px;
+      background: rgba(91,140,255,.18);
+      border: 1px solid rgba(91,140,255,.25);
+      color: white;
+      font-size: 12px;
+      font-weight: 900;
+      white-space: nowrap;
+    }
+
+    .kopilka-chart-canvas {
+      position: relative;
+      height: 220px;
+      border-radius: 22px;
+      background:
+        linear-gradient(to top, rgba(255,255,255,.07) 1px, transparent 1px),
+        rgba(255,255,255,.025);
+      background-size: 100% 33.333%;
+      border: 1px solid rgba(255,255,255,.09);
+      overflow: hidden;
+    }
+
+    .kopilka-chart-canvas svg {
+      display: block;
+      width: 100%;
+      height: 100%;
+    }
+
+    .kopilka-grid {
+      stroke: rgba(255,255,255,.10);
+      stroke-width: 1;
+    }
+
+    .kopilka-goal-line {
+      stroke: rgba(255,255,255,.35);
+      stroke-width: 1.5;
+      stroke-dasharray: 7 8;
+    }
+
+    .kopilka-area {
+      fill: url(#kopilkaArea);
+    }
+
+    .kopilka-line {
+      fill: none;
+      stroke: url(#kopilkaLine);
+      stroke-width: 5;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+      filter: drop-shadow(0 8px 14px rgba(91,140,255,.30));
+    }
+
+    .kopilka-dot {
+      fill: #ffffff;
+      stroke: #5b8cff;
+      stroke-width: 4;
+    }
+
+    .kopilka-dot-now {
+      fill: #4ade80;
+      stroke: white;
+      stroke-width: 4;
+    }
+
+    .kopilka-axis-text {
+      fill: rgba(255,255,255,.62);
+      font-size: 11px;
+      font-weight: 800;
+    }
+
+    .kopilka-value-text {
+      fill: rgba(255,255,255,.92);
+      font-size: 12px;
+      font-weight: 900;
+    }
+
+    .kopilka-chart-footer {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+      margin-top: 12px;
+    }
+
+    .kopilka-chart-mini {
+      border-radius: 18px;
+      padding: 12px;
+      background: rgba(255,255,255,.045);
+      border: 1px solid rgba(255,255,255,.09);
+      min-width: 0;
+    }
+
+    .kopilka-chart-mini p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 12px;
+    }
+
+    .kopilka-chart-mini strong {
+      display: block;
+      margin-top: 5px;
+      color: white;
+      font-size: 16px;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+
+    #chartLeft,
+    #chartMonths {
+      /* values kept for compatibility; duplicate boxes are visually handled by the new chart */
+    }
+
     @media (max-width: 390px) {
       .pc-stage-actions {
         grid-template-columns: 1fr;
@@ -7171,6 +9563,190 @@
       background: transparent !important;
       border: 0 !important;
       overflow: visible !important;
+    }
+
+
+    /* Hard reset for old broken chart versions */
+    #savingsChart,
+    #savingsChart * {
+      box-sizing: border-box;
+    }
+
+    #savingsChart .chart-bar,
+    #savingsChart .chart-value,
+    #savingsChart .fixed-savings-chart,
+    #savingsChart .premium-chart,
+    #savingsChart .fixed-label,
+    #savingsChart .fixed-money-label,
+    #savingsChart .clean-chart-shell,
+    #savingsChart .clean-chart-shell * {
+      all: unset;
+      box-sizing: border-box;
+    }
+
+    #savingsChart {
+      display: block !important;
+      height: auto !important;
+      min-height: 0 !important;
+      padding: 0 !important;
+      margin: 0 !important;
+      background: transparent !important;
+      border: 0 !important;
+      overflow: visible !important;
+    }
+
+    .kopilka-chart {
+      margin-top: 14px;
+      border-radius: 26px;
+      padding: 16px;
+      background:
+        radial-gradient(circle at 18% 0%, rgba(91,140,255,.18), transparent 34%),
+        linear-gradient(180deg, rgba(255,255,255,.075), rgba(255,255,255,.025)),
+        rgba(16,27,45,.42);
+      border: 1px solid rgba(255,255,255,.13);
+      box-shadow:
+        0 14px 36px rgba(0,0,0,.18),
+        inset 0 1px 0 rgba(255,255,255,.09);
+      overflow: hidden;
+    }
+
+    .kopilka-chart-head {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: 12px;
+      margin-bottom: 12px;
+    }
+
+    .kopilka-chart-head p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 12px;
+      line-height: 1.35;
+    }
+
+    .kopilka-chart-head strong {
+      display: block;
+      margin-top: 5px;
+      color: white;
+      font-size: 22px;
+      line-height: 1.05;
+      letter-spacing: -.35px;
+    }
+
+    .kopilka-chart-badge {
+      flex: 0 0 auto;
+      padding: 8px 11px;
+      border-radius: 999px;
+      background: rgba(91,140,255,.18);
+      border: 1px solid rgba(91,140,255,.25);
+      color: white;
+      font-size: 12px;
+      font-weight: 900;
+      white-space: nowrap;
+    }
+
+    .kopilka-chart-canvas {
+      position: relative;
+      height: 220px;
+      border-radius: 22px;
+      background:
+        linear-gradient(to top, rgba(255,255,255,.07) 1px, transparent 1px),
+        rgba(255,255,255,.025);
+      background-size: 100% 33.333%;
+      border: 1px solid rgba(255,255,255,.09);
+      overflow: hidden;
+    }
+
+    .kopilka-chart-canvas svg {
+      display: block;
+      width: 100%;
+      height: 100%;
+    }
+
+    .kopilka-grid {
+      stroke: rgba(255,255,255,.10);
+      stroke-width: 1;
+    }
+
+    .kopilka-goal-line {
+      stroke: rgba(255,255,255,.35);
+      stroke-width: 1.5;
+      stroke-dasharray: 7 8;
+    }
+
+    .kopilka-area {
+      fill: url(#kopilkaArea);
+    }
+
+    .kopilka-line {
+      fill: none;
+      stroke: url(#kopilkaLine);
+      stroke-width: 5;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+      filter: drop-shadow(0 8px 14px rgba(91,140,255,.30));
+    }
+
+    .kopilka-dot {
+      fill: #ffffff;
+      stroke: #5b8cff;
+      stroke-width: 4;
+    }
+
+    .kopilka-dot-now {
+      fill: #4ade80;
+      stroke: white;
+      stroke-width: 4;
+    }
+
+    .kopilka-axis-text {
+      fill: rgba(255,255,255,.62);
+      font-size: 11px;
+      font-weight: 800;
+    }
+
+    .kopilka-value-text {
+      fill: rgba(255,255,255,.92);
+      font-size: 12px;
+      font-weight: 900;
+    }
+
+    .kopilka-chart-footer {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+      margin-top: 12px;
+    }
+
+    .kopilka-chart-mini {
+      border-radius: 18px;
+      padding: 12px;
+      background: rgba(255,255,255,.045);
+      border: 1px solid rgba(255,255,255,.09);
+      min-width: 0;
+    }
+
+    .kopilka-chart-mini p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 12px;
+    }
+
+    .kopilka-chart-mini strong {
+      display: block;
+      margin-top: 5px;
+      color: white;
+      font-size: 16px;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+
+    #chartLeft,
+    #chartMonths {
+      /* values kept for compatibility; duplicate boxes are visually handled by the new chart */
     }
 
     @media (max-width: 390px) {
@@ -7571,6 +10147,190 @@
       overflow: visible !important;
     }
 
+
+    /* Hard reset for old broken chart versions */
+    #savingsChart,
+    #savingsChart * {
+      box-sizing: border-box;
+    }
+
+    #savingsChart .chart-bar,
+    #savingsChart .chart-value,
+    #savingsChart .fixed-savings-chart,
+    #savingsChart .premium-chart,
+    #savingsChart .fixed-label,
+    #savingsChart .fixed-money-label,
+    #savingsChart .clean-chart-shell,
+    #savingsChart .clean-chart-shell * {
+      all: unset;
+      box-sizing: border-box;
+    }
+
+    #savingsChart {
+      display: block !important;
+      height: auto !important;
+      min-height: 0 !important;
+      padding: 0 !important;
+      margin: 0 !important;
+      background: transparent !important;
+      border: 0 !important;
+      overflow: visible !important;
+    }
+
+    .kopilka-chart {
+      margin-top: 14px;
+      border-radius: 26px;
+      padding: 16px;
+      background:
+        radial-gradient(circle at 18% 0%, rgba(91,140,255,.18), transparent 34%),
+        linear-gradient(180deg, rgba(255,255,255,.075), rgba(255,255,255,.025)),
+        rgba(16,27,45,.42);
+      border: 1px solid rgba(255,255,255,.13);
+      box-shadow:
+        0 14px 36px rgba(0,0,0,.18),
+        inset 0 1px 0 rgba(255,255,255,.09);
+      overflow: hidden;
+    }
+
+    .kopilka-chart-head {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: 12px;
+      margin-bottom: 12px;
+    }
+
+    .kopilka-chart-head p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 12px;
+      line-height: 1.35;
+    }
+
+    .kopilka-chart-head strong {
+      display: block;
+      margin-top: 5px;
+      color: white;
+      font-size: 22px;
+      line-height: 1.05;
+      letter-spacing: -.35px;
+    }
+
+    .kopilka-chart-badge {
+      flex: 0 0 auto;
+      padding: 8px 11px;
+      border-radius: 999px;
+      background: rgba(91,140,255,.18);
+      border: 1px solid rgba(91,140,255,.25);
+      color: white;
+      font-size: 12px;
+      font-weight: 900;
+      white-space: nowrap;
+    }
+
+    .kopilka-chart-canvas {
+      position: relative;
+      height: 220px;
+      border-radius: 22px;
+      background:
+        linear-gradient(to top, rgba(255,255,255,.07) 1px, transparent 1px),
+        rgba(255,255,255,.025);
+      background-size: 100% 33.333%;
+      border: 1px solid rgba(255,255,255,.09);
+      overflow: hidden;
+    }
+
+    .kopilka-chart-canvas svg {
+      display: block;
+      width: 100%;
+      height: 100%;
+    }
+
+    .kopilka-grid {
+      stroke: rgba(255,255,255,.10);
+      stroke-width: 1;
+    }
+
+    .kopilka-goal-line {
+      stroke: rgba(255,255,255,.35);
+      stroke-width: 1.5;
+      stroke-dasharray: 7 8;
+    }
+
+    .kopilka-area {
+      fill: url(#kopilkaArea);
+    }
+
+    .kopilka-line {
+      fill: none;
+      stroke: url(#kopilkaLine);
+      stroke-width: 5;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+      filter: drop-shadow(0 8px 14px rgba(91,140,255,.30));
+    }
+
+    .kopilka-dot {
+      fill: #ffffff;
+      stroke: #5b8cff;
+      stroke-width: 4;
+    }
+
+    .kopilka-dot-now {
+      fill: #4ade80;
+      stroke: white;
+      stroke-width: 4;
+    }
+
+    .kopilka-axis-text {
+      fill: rgba(255,255,255,.62);
+      font-size: 11px;
+      font-weight: 800;
+    }
+
+    .kopilka-value-text {
+      fill: rgba(255,255,255,.92);
+      font-size: 12px;
+      font-weight: 900;
+    }
+
+    .kopilka-chart-footer {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+      margin-top: 12px;
+    }
+
+    .kopilka-chart-mini {
+      border-radius: 18px;
+      padding: 12px;
+      background: rgba(255,255,255,.045);
+      border: 1px solid rgba(255,255,255,.09);
+      min-width: 0;
+    }
+
+    .kopilka-chart-mini p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 12px;
+    }
+
+    .kopilka-chart-mini strong {
+      display: block;
+      margin-top: 5px;
+      color: white;
+      font-size: 16px;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+
+    #chartLeft,
+    #chartMonths {
+      /* values kept for compatibility; duplicate boxes are visually handled by the new chart */
+    }
+
     @media (max-width: 390px) {
       .pc-stage-actions {
         grid-template-columns: 1fr;
@@ -7849,6 +10609,190 @@
       background: transparent !important;
       border: 0 !important;
       overflow: visible !important;
+    }
+
+
+    /* Hard reset for old broken chart versions */
+    #savingsChart,
+    #savingsChart * {
+      box-sizing: border-box;
+    }
+
+    #savingsChart .chart-bar,
+    #savingsChart .chart-value,
+    #savingsChart .fixed-savings-chart,
+    #savingsChart .premium-chart,
+    #savingsChart .fixed-label,
+    #savingsChart .fixed-money-label,
+    #savingsChart .clean-chart-shell,
+    #savingsChart .clean-chart-shell * {
+      all: unset;
+      box-sizing: border-box;
+    }
+
+    #savingsChart {
+      display: block !important;
+      height: auto !important;
+      min-height: 0 !important;
+      padding: 0 !important;
+      margin: 0 !important;
+      background: transparent !important;
+      border: 0 !important;
+      overflow: visible !important;
+    }
+
+    .kopilka-chart {
+      margin-top: 14px;
+      border-radius: 26px;
+      padding: 16px;
+      background:
+        radial-gradient(circle at 18% 0%, rgba(91,140,255,.18), transparent 34%),
+        linear-gradient(180deg, rgba(255,255,255,.075), rgba(255,255,255,.025)),
+        rgba(16,27,45,.42);
+      border: 1px solid rgba(255,255,255,.13);
+      box-shadow:
+        0 14px 36px rgba(0,0,0,.18),
+        inset 0 1px 0 rgba(255,255,255,.09);
+      overflow: hidden;
+    }
+
+    .kopilka-chart-head {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: 12px;
+      margin-bottom: 12px;
+    }
+
+    .kopilka-chart-head p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 12px;
+      line-height: 1.35;
+    }
+
+    .kopilka-chart-head strong {
+      display: block;
+      margin-top: 5px;
+      color: white;
+      font-size: 22px;
+      line-height: 1.05;
+      letter-spacing: -.35px;
+    }
+
+    .kopilka-chart-badge {
+      flex: 0 0 auto;
+      padding: 8px 11px;
+      border-radius: 999px;
+      background: rgba(91,140,255,.18);
+      border: 1px solid rgba(91,140,255,.25);
+      color: white;
+      font-size: 12px;
+      font-weight: 900;
+      white-space: nowrap;
+    }
+
+    .kopilka-chart-canvas {
+      position: relative;
+      height: 220px;
+      border-radius: 22px;
+      background:
+        linear-gradient(to top, rgba(255,255,255,.07) 1px, transparent 1px),
+        rgba(255,255,255,.025);
+      background-size: 100% 33.333%;
+      border: 1px solid rgba(255,255,255,.09);
+      overflow: hidden;
+    }
+
+    .kopilka-chart-canvas svg {
+      display: block;
+      width: 100%;
+      height: 100%;
+    }
+
+    .kopilka-grid {
+      stroke: rgba(255,255,255,.10);
+      stroke-width: 1;
+    }
+
+    .kopilka-goal-line {
+      stroke: rgba(255,255,255,.35);
+      stroke-width: 1.5;
+      stroke-dasharray: 7 8;
+    }
+
+    .kopilka-area {
+      fill: url(#kopilkaArea);
+    }
+
+    .kopilka-line {
+      fill: none;
+      stroke: url(#kopilkaLine);
+      stroke-width: 5;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+      filter: drop-shadow(0 8px 14px rgba(91,140,255,.30));
+    }
+
+    .kopilka-dot {
+      fill: #ffffff;
+      stroke: #5b8cff;
+      stroke-width: 4;
+    }
+
+    .kopilka-dot-now {
+      fill: #4ade80;
+      stroke: white;
+      stroke-width: 4;
+    }
+
+    .kopilka-axis-text {
+      fill: rgba(255,255,255,.62);
+      font-size: 11px;
+      font-weight: 800;
+    }
+
+    .kopilka-value-text {
+      fill: rgba(255,255,255,.92);
+      font-size: 12px;
+      font-weight: 900;
+    }
+
+    .kopilka-chart-footer {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+      margin-top: 12px;
+    }
+
+    .kopilka-chart-mini {
+      border-radius: 18px;
+      padding: 12px;
+      background: rgba(255,255,255,.045);
+      border: 1px solid rgba(255,255,255,.09);
+      min-width: 0;
+    }
+
+    .kopilka-chart-mini p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 12px;
+    }
+
+    .kopilka-chart-mini strong {
+      display: block;
+      margin-top: 5px;
+      color: white;
+      font-size: 16px;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+
+    #chartLeft,
+    #chartMonths {
+      /* values kept for compatibility; duplicate boxes are visually handled by the new chart */
     }
 
     @media (max-width: 390px) {
@@ -8885,11 +11829,22 @@
     return d;
   }
 
+  function kopilkaPath(points) {
+    if (!points.length) return "";
+    let d = `M ${points[0].x} ${points[0].y}`;
+
+    for (let i = 1; i < points.length; i++) {
+      const prev = points[i - 1];
+      const cur = points[i];
+      const midX = (prev.x + cur.x) / 2;
+      d += ` C ${midX} ${prev.y}, ${midX} ${cur.y}, ${cur.x} ${cur.y}`;
+    }
+
+    return d;
+  }
+
   function renderAnalytics() {
     const s = calc();
-    const currentMonth = today().slice(0, 7);
-    const monthlyExpenses = data.transactions.filter(x => x.type === "expense" && monthKey(x.date) === currentMonth);
-    const totalExpenses = monthlyExpenses.reduce((sum, x) => sum + Number(x.amount || 0), 0);
 
     const setText = (id, value) => {
       const el = document.getElementById(id);
@@ -8905,89 +11860,83 @@
     setText("premiumChartTitle", s.left > 0 ? `${shortRub(s.left)} осталось` : "Цель достигнута");
 
     const chart = document.getElementById("savingsChart");
+
     if (chart) {
       const goal = Math.max(1, Number(data.goal) || 1);
-      const totalSaved = Math.max(0, Number(s.totalSaved) || 0);
-      const needMonthly = Math.max(0, Number(s.needMonthly) || 0);
+      const saved = Math.max(0, Number(s.totalSaved) || 0);
+      const monthly = Math.max(0, Number(s.needMonthly) || 0);
       const months = Math.max(2, Math.min(8, Number(s.months) || 8));
 
-      const values = [];
-      for (let i = 0; i < months; i++) {
-        const value = needMonthly > 0
-          ? Math.min(goal, totalSaved + needMonthly * i)
-          : totalSaved;
-        values.push(Math.max(0, value));
-      }
+      const values = Array.from({ length: months }, (_, i) => {
+        const value = monthly > 0 ? saved + monthly * i : saved;
+        return Math.min(goal, Math.max(0, value));
+      });
 
       const w = 360;
       const h = 220;
-      const padL = 28;
-      const padR = 28;
-      const padT = 26;
-      const padB = 34;
-      const usableW = w - padL - padR;
-      const usableH = h - padT - padB;
-      const maxValue = Math.max(goal, ...values, 1);
+      const pad = { left: 28, right: 28, top: 30, bottom: 32 };
+      const usableW = w - pad.left - pad.right;
+      const usableH = h - pad.top - pad.bottom;
+      const maxY = Math.max(goal, ...values, 1);
 
-      const points = values.map((value, index) => ({
-        x: padL + (index / Math.max(1, values.length - 1)) * usableW,
-        y: padT + (1 - value / maxValue) * usableH,
-        value,
-        index
-      }));
+      const points = values.map((value, i) => {
+        const x = pad.left + (i / Math.max(1, values.length - 1)) * usableW;
+        const y = pad.top + (1 - value / maxY) * usableH;
+        return { x, y, value, i };
+      });
 
-      const path = cleanSvgPath(points);
-      const area = `${path} L ${points[points.length - 1].x} ${h - padB} L ${points[0].x} ${h - padB} Z`;
-      const goalY = padT + (1 - goal / maxValue) * usableH;
+      const line = kopilkaPath(points);
+      const area = `${line} L ${points[points.length - 1].x} ${h - pad.bottom} L ${points[0].x} ${h - pad.bottom} Z`;
+      const goalY = pad.top + (1 - goal / maxY) * usableH;
 
       chart.innerHTML = `
-        <div class="clean-chart-shell">
-          <div class="clean-chart-top">
+        <div class="kopilka-chart">
+          <div class="kopilka-chart-head">
             <div>
               <p>Прогноз накоплений</p>
-              <strong>${rub(totalSaved)} → ${rub(goal)}</strong>
+              <strong>${shortRub(saved)} → ${shortRub(goal)}</strong>
             </div>
-            <div class="clean-chart-pill">${(s.progress || 0).toFixed(1)}%</div>
+            <div class="kopilka-chart-badge">${(s.progress || 0).toFixed(1)}%</div>
           </div>
 
-          <div class="clean-chart-area">
-            <svg viewBox="0 0 ${w} ${h}" preserveAspectRatio="none" aria-label="График накоплений">
+          <div class="kopilka-chart-canvas">
+            <svg viewBox="0 0 ${w} ${h}" preserveAspectRatio="none">
               <defs>
-                <linearGradient id="cleanLineGradient" x1="0" y1="0" x2="1" y2="0">
+                <linearGradient id="kopilkaLine" x1="0" y1="0" x2="1" y2="0">
                   <stop offset="0%" stop-color="#4ade80"/>
-                  <stop offset="42%" stop-color="#5b8cff"/>
+                  <stop offset="45%" stop-color="#5b8cff"/>
                   <stop offset="100%" stop-color="#7c3aed"/>
                 </linearGradient>
-                <linearGradient id="cleanAreaGradient" x1="0" y1="0" x2="0" y2="1">
+                <linearGradient id="kopilkaArea" x1="0" y1="0" x2="0" y2="1">
                   <stop offset="0%" stop-color="#5b8cff" stop-opacity=".28"/>
-                  <stop offset="58%" stop-color="#7c3aed" stop-opacity=".10"/>
+                  <stop offset="65%" stop-color="#7c3aed" stop-opacity=".10"/>
                   <stop offset="100%" stop-color="#7c3aed" stop-opacity="0"/>
                 </linearGradient>
               </defs>
 
-              <line class="clean-grid" x1="${padL}" y1="${padT}" x2="${w - padR}" y2="${padT}"></line>
-              <line class="clean-grid" x1="${padL}" y1="${padT + usableH / 2}" x2="${w - padR}" y2="${padT + usableH / 2}"></line>
-              <line class="clean-grid" x1="${padL}" y1="${h - padB}" x2="${w - padR}" y2="${h - padB}"></line>
-              <line class="clean-goal" x1="${padL}" y1="${goalY}" x2="${w - padR}" y2="${goalY}"></line>
+              <line class="kopilka-grid" x1="${pad.left}" y1="${pad.top}" x2="${w - pad.right}" y2="${pad.top}"></line>
+              <line class="kopilka-grid" x1="${pad.left}" y1="${pad.top + usableH / 2}" x2="${w - pad.right}" y2="${pad.top + usableH / 2}"></line>
+              <line class="kopilka-grid" x1="${pad.left}" y1="${h - pad.bottom}" x2="${w - pad.right}" y2="${h - pad.bottom}"></line>
+              <line class="kopilka-goal-line" x1="${pad.left}" y1="${goalY}" x2="${w - pad.right}" y2="${goalY}"></line>
 
-              <path class="clean-area-fill" d="${area}"></path>
-              <path class="clean-line" d="${path}"></path>
+              <path class="kopilka-area" d="${area}"></path>
+              <path class="kopilka-line" d="${line}"></path>
 
               ${points.map((p, i) => `
-                <circle class="clean-dot ${i === 0 ? "clean-dot-current" : ""}" cx="${p.x}" cy="${p.y}" r="${i === 0 ? 5.5 : 4.5}"></circle>
-                ${i === 0 ? `<text class="clean-value-label" x="${p.x + 4}" y="${Math.min(h - 48, p.y - 12)}" text-anchor="start">${shortRub(p.value)}</text>` : ""}
-                ${i === points.length - 1 ? `<text class="clean-value-label" x="${p.x - 4}" y="${Math.max(16, p.y - 12)}" text-anchor="end">${shortRub(p.value)}</text>` : ""}
-                ${(i === 0 || i === points.length - 1 || i === Math.floor(points.length / 2)) ? `<text class="clean-axis-label" x="${p.x}" y="${h - 11}" text-anchor="middle">${i === 0 ? "сейчас" : "+" + i + "м"}</text>` : ""}
+                <circle class="kopilka-dot ${i === 0 ? "kopilka-dot-now" : ""}" cx="${p.x}" cy="${p.y}" r="${i === 0 ? 5.5 : 4.5}"></circle>
+                ${i === 0 ? `<text class="kopilka-value-text" x="${p.x + 8}" y="${Math.max(18, p.y - 10)}" text-anchor="start">${shortRub(p.value)}</text>` : ""}
+                ${i === points.length - 1 ? `<text class="kopilka-value-text" x="${p.x - 8}" y="${Math.max(18, p.y - 10)}" text-anchor="end">${shortRub(p.value)}</text>` : ""}
+                ${(i === 0 || i === points.length - 1) ? `<text class="kopilka-axis-text" x="${p.x}" y="${h - 10}" text-anchor="middle">${i === 0 ? "сейчас" : "+" + i + "м"}</text>` : ""}
               `).join("")}
             </svg>
           </div>
 
-          <div class="clean-chart-stats">
-            <div class="clean-chart-stat">
+          <div class="kopilka-chart-footer">
+            <div class="kopilka-chart-mini">
               <p>Осталось</p>
               <strong>${rub(s.left)}</strong>
             </div>
-            <div class="clean-chart-stat">
+            <div class="kopilka-chart-mini">
               <p>До цели</p>
               <strong>${s.months} мес.</strong>
             </div>
@@ -8995,6 +11944,10 @@
         </div>
       `;
     }
+
+    const currentMonth = today().slice(0, 7);
+    const monthlyExpenses = data.transactions.filter(x => x.type === "expense" && monthKey(x.date) === currentMonth);
+    const totalExpenses = monthlyExpenses.reduce((sum, x) => sum + Number(x.amount || 0), 0);
 
     const byCategory = categories.map(cat => ({
       cat,
