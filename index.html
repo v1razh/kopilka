@@ -2429,6 +2429,183 @@
       /* values kept for compatibility; duplicate boxes are visually handled by the new chart */
     }
 
+
+    /* Unified Analysis block */
+    .analysis-main-card {
+      background:
+        radial-gradient(circle at 18% 0%, rgba(91,140,255,.16), transparent 32%),
+        linear-gradient(180deg, rgba(255,255,255,.075), rgba(255,255,255,.025)),
+        rgba(16,27,45,.40);
+      border: 1px solid rgba(255,255,255,.13);
+      border-radius: 28px;
+      padding: 18px;
+      margin-bottom: 14px;
+      box-shadow:
+        0 16px 42px rgba(0,0,0,.22),
+        inset 0 1px 0 rgba(255,255,255,.10);
+      backdrop-filter: blur(24px) saturate(1.35);
+      -webkit-backdrop-filter: blur(24px) saturate(1.35);
+    }
+
+    .analysis-main-head {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: 12px;
+      margin-bottom: 16px;
+    }
+
+    .analysis-main-head h2 {
+      margin: 0;
+      font-size: 24px;
+    }
+
+    .analysis-main-head p {
+      margin: 5px 0 0;
+      color: var(--muted);
+      font-size: 13px;
+      line-height: 1.4;
+    }
+
+    .analysis-main-pill {
+      padding: 8px 11px;
+      border-radius: 999px;
+      background: rgba(91,140,255,.16);
+      border: 1px solid rgba(91,140,255,.24);
+      color: white;
+      font-size: 12px;
+      font-weight: 900;
+      white-space: nowrap;
+    }
+
+    .analysis-mini-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+      margin-bottom: 14px;
+    }
+
+    .analysis-mini {
+      min-width: 0;
+      border-radius: 19px;
+      padding: 13px;
+      background: rgba(255,255,255,.045);
+      border: 1px solid rgba(255,255,255,.10);
+    }
+
+    .analysis-mini p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 12px;
+      line-height: 1.35;
+    }
+
+    .analysis-mini strong {
+      display: block;
+      margin-top: 6px;
+      color: white;
+      font-size: 17px;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .analysis-divider {
+      height: 1px;
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,.13), transparent);
+      margin: 16px 0;
+    }
+
+    .analysis-section-title {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 12px;
+      margin: 0 0 12px;
+    }
+
+    .analysis-section-title span {
+      color: white;
+      font-size: 16px;
+      font-weight: 900;
+    }
+
+    .analysis-section-title small {
+      color: var(--muted);
+      font-size: 12px;
+      font-weight: 800;
+    }
+
+    .analysis-bars {
+      display: grid;
+      gap: 11px;
+    }
+
+    .analysis-bar-row {
+      display: grid;
+      grid-template-columns: 86px 1fr auto;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .analysis-bar-name {
+      color: var(--muted);
+      font-size: 12px;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .analysis-bar-track {
+      height: 12px;
+      border-radius: 999px;
+      background: rgba(255,255,255,.07);
+      overflow: hidden;
+    }
+
+    .analysis-bar-fill {
+      height: 100%;
+      border-radius: 999px;
+      background: linear-gradient(90deg, var(--accent), var(--accent2));
+      box-shadow: 0 6px 16px rgba(91,140,255,.18);
+    }
+
+    .analysis-bar-value {
+      color: white;
+      font-size: 12px;
+      font-weight: 900;
+      white-space: nowrap;
+    }
+
+    .analysis-advice-list {
+      display: grid;
+      gap: 10px;
+    }
+
+    .analysis-advice {
+      border-radius: 18px;
+      padding: 13px;
+      background: rgba(255,255,255,.045);
+      border: 1px solid rgba(255,255,255,.10);
+      color: rgba(245,247,251,.88);
+      font-size: 14px;
+      line-height: 1.45;
+    }
+
+    .analysis-advice b {
+      color: white;
+    }
+
+    @media (max-width: 390px) {
+      .analysis-mini-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .analysis-bar-row {
+        grid-template-columns: 76px 1fr auto;
+      }
+    }
+
     @media (max-width: 390px) {
       .pc-stage-actions {
         grid-template-columns: 1fr;
@@ -10936,7 +11113,68 @@
     </section>
 
 
-        <section id="pcbuild" class="tab-content hidden">
+    
+    <section id="analytics" class="tab-content hidden">
+      <div class="analysis-main-card">
+        <div class="analysis-main-head">
+          <div>
+            <h2>Анализ</h2>
+            <p>Единая сводка: расходы, накопления, категории и советы.</p>
+          </div>
+          <div class="analysis-main-pill" id="analysisPeriodPill">Месяц</div>
+        </div>
+
+        <div class="analysis-mini-grid">
+          <div class="analysis-mini">
+            <p>Потрачено за месяц</p>
+            <strong id="analysisTotalExpenses">0 ₽</strong>
+          </div>
+
+          <div class="analysis-mini">
+            <p>Средний расход в день</p>
+            <strong id="analysisAvgDaily">0 ₽</strong>
+          </div>
+
+          <div class="analysis-mini">
+            <p>Топ категория</p>
+            <strong id="analysisTopCategory">—</strong>
+          </div>
+
+          <div class="analysis-mini">
+            <p>Самая большая покупка</p>
+            <strong id="analysisBiggestExpense">—</strong>
+          </div>
+
+          <div class="analysis-mini">
+            <p>Отложено за месяц</p>
+            <strong id="analysisMonthSavings">0 ₽</strong>
+          </div>
+
+          <div class="analysis-mini">
+            <p>До цели осталось</p>
+            <strong id="analysisLeftGoal">0 ₽</strong>
+          </div>
+        </div>
+
+        <div class="analysis-divider"></div>
+
+        <div class="analysis-section-title">
+          <span>Расходы по категориям</span>
+          <small>текущий месяц</small>
+        </div>
+        <div class="analysis-bars" id="analysisCategoryBars"></div>
+
+        <div class="analysis-divider"></div>
+
+        <div class="analysis-section-title">
+          <span>Советы</span>
+          <small>автоанализ</small>
+        </div>
+        <div class="analysis-advice-list" id="analysisAdviceList"></div>
+      </div>
+    </section>
+
+    <section id="pcbuild" class="tab-content hidden">
       <div class="card">
         <h2>Сборка ПК</h2>
 
@@ -11771,150 +12009,87 @@
     return d;
   }
 
+
   function renderAnalytics() {
+    const currentMonth = today().slice(0, 7);
+    const monthTx = data.transactions.filter(x => monthKey(x.date) === currentMonth);
+    const expenses = monthTx.filter(x => x.type === "expense");
+    const savings = monthTx.filter(x => x.type === "saving");
+
+    const totalExpenses = expenses.reduce((sum, x) => sum + Number(x.amount || 0), 0);
+    const totalSavings = savings.reduce((sum, x) => sum + Number(x.amount || 0), 0);
+    const avgDaily = Math.round(totalExpenses / Math.max(1, new Date().getDate()));
     const s = calc();
+    const salary = calcSalaryPlan();
+
+    const byCategory = categories.map(cat => ({
+      cat,
+      value: expenses
+        .filter(x => x.category === cat)
+        .reduce((sum, x) => sum + Number(x.amount || 0), 0)
+    })).filter(x => x.value > 0).sort((a, b) => b.value - a.value);
+
+    const top = byCategory[0] || null;
+    const biggest = expenses.slice().sort((a, b) => Number(b.amount || 0) - Number(a.amount || 0))[0] || null;
 
     const setText = (id, value) => {
       const el = document.getElementById(id);
       if (el) el.textContent = value;
     };
 
-    setText("analyticsSaved", rub(s.totalSaved));
-    setText("analyticsNeed", rub(s.needMonthly));
-    setText("chartProgressPill", `${(s.progress || 0).toFixed(1)}%`);
-    setText("chartLeft", rub(s.left));
-    setText("chartMonths", `${s.months} мес.`);
-    setText("premiumChartGoal", shortRub(data.goal));
-    setText("premiumChartTitle", s.left > 0 ? `${shortRub(s.left)} осталось` : "Цель достигнута");
+    setText("analysisTotalExpenses", rub(totalExpenses));
+    setText("analysisAvgDaily", rub(avgDaily));
+    setText("analysisTopCategory", top ? top.cat : "—");
+    setText("analysisBiggestExpense", biggest ? rub(biggest.amount) : "—");
+    setText("analysisMonthSavings", rub(totalSavings));
+    setText("analysisLeftGoal", rub(s.left));
 
-    const chart = document.getElementById("savingsChart");
-
-    if (chart) {
-      const goal = Math.max(1, Number(data.goal) || 1);
-      const saved = Math.max(0, Number(s.totalSaved) || 0);
-      const monthly = Math.max(0, Number(s.needMonthly) || 0);
-      const months = Math.max(2, Math.min(8, Number(s.months) || 8));
-
-      const values = Array.from({ length: months }, (_, i) => {
-        const value = monthly > 0 ? saved + monthly * i : saved;
-        return Math.min(goal, Math.max(0, value));
-      });
-
-      const w = 360;
-      const h = 220;
-      const pad = { left: 28, right: 28, top: 30, bottom: 32 };
-      const usableW = w - pad.left - pad.right;
-      const usableH = h - pad.top - pad.bottom;
-      const maxY = Math.max(goal, ...values, 1);
-
-      const points = values.map((value, i) => {
-        const x = pad.left + (i / Math.max(1, values.length - 1)) * usableW;
-        const y = pad.top + (1 - value / maxY) * usableH;
-        return { x, y, value, i };
-      });
-
-      const line = kopilkaPath(points);
-      const area = `${line} L ${points[points.length - 1].x} ${h - pad.bottom} L ${points[0].x} ${h - pad.bottom} Z`;
-      const goalY = pad.top + (1 - goal / maxY) * usableH;
-
-      chart.innerHTML = `
-        <div class="kopilka-chart">
-          <div class="kopilka-chart-head">
-            <div>
-              <p>Прогноз накоплений</p>
-              <strong>${shortRub(saved)} → ${shortRub(goal)}</strong>
+    const bars = document.getElementById("analysisCategoryBars");
+    if (bars) {
+      if (!byCategory.length) {
+        bars.innerHTML = '<div class="empty">Расходов за текущий месяц пока нет.</div>';
+      } else {
+        const max = Math.max(...byCategory.map(x => x.value), 1);
+        bars.innerHTML = byCategory.slice(0, 6).map(item => {
+          const width = Math.max(6, Math.round(item.value / max * 100));
+          const percent = Math.round(item.value / Math.max(1, totalExpenses) * 100);
+          return `
+            <div class="analysis-bar-row">
+              <div class="analysis-bar-name">${item.cat}</div>
+              <div class="analysis-bar-track">
+                <div class="analysis-bar-fill" style="width:${width}%"></div>
+              </div>
+              <div class="analysis-bar-value">${percent}%</div>
             </div>
-            <div class="kopilka-chart-badge">${(s.progress || 0).toFixed(1)}%</div>
-          </div>
-
-          <div class="kopilka-chart-canvas">
-            <svg viewBox="0 0 ${w} ${h}" preserveAspectRatio="none">
-              <defs>
-                <linearGradient id="kopilkaLine" x1="0" y1="0" x2="1" y2="0">
-                  <stop offset="0%" stop-color="#4ade80"/>
-                  <stop offset="45%" stop-color="#5b8cff"/>
-                  <stop offset="100%" stop-color="#7c3aed"/>
-                </linearGradient>
-                <linearGradient id="kopilkaArea" x1="0" y1="0" x2="0" y2="1">
-                  <stop offset="0%" stop-color="#5b8cff" stop-opacity=".28"/>
-                  <stop offset="65%" stop-color="#7c3aed" stop-opacity=".10"/>
-                  <stop offset="100%" stop-color="#7c3aed" stop-opacity="0"/>
-                </linearGradient>
-              </defs>
-
-              <line class="kopilka-grid" x1="${pad.left}" y1="${pad.top}" x2="${w - pad.right}" y2="${pad.top}"></line>
-              <line class="kopilka-grid" x1="${pad.left}" y1="${pad.top + usableH / 2}" x2="${w - pad.right}" y2="${pad.top + usableH / 2}"></line>
-              <line class="kopilka-grid" x1="${pad.left}" y1="${h - pad.bottom}" x2="${w - pad.right}" y2="${h - pad.bottom}"></line>
-              <line class="kopilka-goal-line" x1="${pad.left}" y1="${goalY}" x2="${w - pad.right}" y2="${goalY}"></line>
-
-              <path class="kopilka-area" d="${area}"></path>
-              <path class="kopilka-line" d="${line}"></path>
-
-              ${points.map((p, i) => `
-                <circle class="kopilka-dot ${i === 0 ? "kopilka-dot-now" : ""}" cx="${p.x}" cy="${p.y}" r="${i === 0 ? 5.5 : 4.5}"></circle>
-                ${i === 0 ? `<text class="kopilka-value-text" x="${p.x + 8}" y="${Math.max(18, p.y - 10)}" text-anchor="start">${shortRub(p.value)}</text>` : ""}
-                ${i === points.length - 1 ? `<text class="kopilka-value-text" x="${p.x - 8}" y="${Math.max(18, p.y - 10)}" text-anchor="end">${shortRub(p.value)}</text>` : ""}
-                ${(i === 0 || i === points.length - 1) ? `<text class="kopilka-axis-text" x="${p.x}" y="${h - 10}" text-anchor="middle">${i === 0 ? "сейчас" : "+" + i + "м"}</text>` : ""}
-              `).join("")}
-            </svg>
-          </div>
-
-          <div class="kopilka-chart-footer">
-            <div class="kopilka-chart-mini">
-              <p>Осталось</p>
-              <strong>${rub(s.left)}</strong>
-            </div>
-            <div class="kopilka-chart-mini">
-              <p>До цели</p>
-              <strong>${s.months} мес.</strong>
-            </div>
-          </div>
-        </div>
-      `;
+          `;
+        }).join("");
+      }
     }
 
-    const currentMonth = today().slice(0, 7);
-    const monthlyExpenses = data.transactions.filter(x => x.type === "expense" && monthKey(x.date) === currentMonth);
-    const totalExpenses = monthlyExpenses.reduce((sum, x) => sum + Number(x.amount || 0), 0);
-
-    const byCategory = categories.map(cat => ({
-      cat,
-      value: monthlyExpenses
-        .filter(x => x.category === cat)
-        .reduce((sum, x) => sum + Number(x.amount || 0), 0)
-    })).filter(x => x.value > 0).sort((a, b) => b.value - a.value);
-
-    if (typeof renderPremiumExpenseBars === "function") {
-      renderPremiumExpenseBars(byCategory, totalExpenses);
-    }
-
-    const top = byCategory[0];
-    const avgDaily = Math.round(totalExpenses / Math.max(1, new Date().getDate()));
-    const salary = calcSalaryPlan();
-    const messages = [];
+    const advice = [];
 
     if (totalExpenses === 0) {
-      messages.push("В этом месяце пока нет расходов. Когда начнёшь добавлять операции, здесь появится разбор.");
+      advice.push("Добавь несколько расходов — тогда анализ покажет реальные слабые места бюджета.");
     } else {
-      messages.push(`За текущий месяц потрачено <b>${rub(totalExpenses)}</b>. Средний расход в день: <b>${rub(avgDaily)}</b>.`);
+      advice.push(`За текущий месяц потрачено <b>${rub(totalExpenses)}</b>, средний расход — <b>${rub(avgDaily)}</b> в день.`);
     }
 
     if (top) {
-      const percent = Math.round(top.value / Math.max(1, totalExpenses) * 100);
-      messages.push(`Самая крупная категория сейчас — <b>${top.cat}</b>: ${rub(top.value)} (${percent}% расходов месяца).`);
+      const economy = Math.round(top.value * 0.25);
+      advice.push(`Самая затратная категория — <b>${top.cat}</b>. Если сократить её на 25%, можно освободить примерно <b>${rub(economy)}</b>.`);
     }
 
-    if (salary.dailyLimit > 0) {
-      messages.push(`До ближайшей выплаты можно тратить примерно <b>${rub(salary.dailyLimit)}</b> в день, если не трогать обязательные и регулярные расходы.`);
-    } else {
-      messages.push("По плану до зарплаты свободных денег сейчас нет или они не заполнены в настройках.");
+    if (salary.dailyLimit > 0 && avgDaily > salary.dailyLimit) {
+      advice.push(`Темп трат выше безопасного лимита до выплаты: <b>${rub(avgDaily)}</b> против <b>${rub(salary.dailyLimit)}</b> в день.`);
+    } else if (salary.dailyLimit > 0) {
+      advice.push(`Дневной лимит до выплаты выглядит спокойнее: можно тратить около <b>${rub(salary.dailyLimit)}</b> в день.`);
     }
 
-    messages.push(`Для цели “${data.goalName || "ПК мечты"}” нужно откладывать около <b>${rub(s.needMonthly)}</b> в месяц.`);
+    advice.push(`До цели осталось <b>${rub(s.left)}</b>. Для текущего срока нужно откладывать около <b>${rub(s.needMonthly)}</b> в месяц.`);
 
-    const insights = document.getElementById("expenseInsights");
-    if (insights) {
-      insights.innerHTML = messages.map(text => `<div class="insight">${text}</div>`).join("");
+    const adviceBox = document.getElementById("analysisAdviceList");
+    if (adviceBox) {
+      adviceBox.innerHTML = advice.map(text => `<div class="analysis-advice">${text}</div>`).join("");
     }
   }
 
