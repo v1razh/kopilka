@@ -1556,6 +1556,99 @@
     body.sheet-open .fab {
       pointer-events: auto;
     }
+
+    .settings-tabs {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 8px;
+      margin-bottom: 14px;
+      padding: 5px;
+      border-radius: 18px;
+      background: rgba(255,255,255,.045);
+      border: 1px solid var(--border);
+    }
+
+    .settings-tab-btn {
+      border: 0;
+      border-radius: 14px;
+      min-height: 42px;
+      color: var(--muted);
+      background: transparent;
+      font-weight: 900;
+      font-size: 13px;
+    }
+
+    .settings-tab-btn.active {
+      color: white;
+      background: linear-gradient(135deg, rgba(91,140,255,.32), rgba(124,58,237,.22));
+      box-shadow: inset 0 0 0 1px rgba(255,255,255,.08);
+    }
+
+    .settings-panel.hidden {
+      display: none;
+    }
+
+    .recurring-item {
+      background:
+        linear-gradient(180deg, rgba(255,255,255,.07), rgba(255,255,255,.025)),
+        rgba(16,27,45,.38);
+      border: 1px solid rgba(255,255,255,.12);
+      border-radius: 18px;
+      padding: 14px;
+      margin-bottom: 10px;
+      backdrop-filter: blur(20px) saturate(1.25);
+      -webkit-backdrop-filter: blur(20px) saturate(1.25);
+    }
+
+    .recurring-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: 10px;
+    }
+
+    .recurring-title {
+      font-weight: 900;
+      margin: 0;
+    }
+
+    .recurring-sub {
+      color: var(--muted);
+      font-size: 12px;
+      margin: 4px 0 0;
+      line-height: 1.35;
+    }
+
+    .recurring-price {
+      font-weight: 900;
+      white-space: nowrap;
+      text-align: right;
+      color: white;
+    }
+
+    .recurring-summary {
+      background:
+        linear-gradient(135deg, rgba(91,140,255,.16), rgba(124,58,237,.10)),
+        rgba(255,255,255,.035);
+      border: 1px solid rgba(255,255,255,.12);
+      border-radius: 18px;
+      padding: 14px;
+      margin-bottom: 12px;
+    }
+
+    .recurring-summary p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 13px;
+    }
+
+    .recurring-summary strong {
+      display: block;
+      margin-top: 5px;
+      font-size: 22px;
+      color: white;
+    }
+
     @media (max-width: 390px) {
       .fab {
         right: 18px;
@@ -1580,6 +1673,99 @@
     body.sheet-open .fab {
       pointer-events: auto;
     }
+
+    .settings-tabs {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 8px;
+      margin-bottom: 14px;
+      padding: 5px;
+      border-radius: 18px;
+      background: rgba(255,255,255,.045);
+      border: 1px solid var(--border);
+    }
+
+    .settings-tab-btn {
+      border: 0;
+      border-radius: 14px;
+      min-height: 42px;
+      color: var(--muted);
+      background: transparent;
+      font-weight: 900;
+      font-size: 13px;
+    }
+
+    .settings-tab-btn.active {
+      color: white;
+      background: linear-gradient(135deg, rgba(91,140,255,.32), rgba(124,58,237,.22));
+      box-shadow: inset 0 0 0 1px rgba(255,255,255,.08);
+    }
+
+    .settings-panel.hidden {
+      display: none;
+    }
+
+    .recurring-item {
+      background:
+        linear-gradient(180deg, rgba(255,255,255,.07), rgba(255,255,255,.025)),
+        rgba(16,27,45,.38);
+      border: 1px solid rgba(255,255,255,.12);
+      border-radius: 18px;
+      padding: 14px;
+      margin-bottom: 10px;
+      backdrop-filter: blur(20px) saturate(1.25);
+      -webkit-backdrop-filter: blur(20px) saturate(1.25);
+    }
+
+    .recurring-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: 10px;
+    }
+
+    .recurring-title {
+      font-weight: 900;
+      margin: 0;
+    }
+
+    .recurring-sub {
+      color: var(--muted);
+      font-size: 12px;
+      margin: 4px 0 0;
+      line-height: 1.35;
+    }
+
+    .recurring-price {
+      font-weight: 900;
+      white-space: nowrap;
+      text-align: right;
+      color: white;
+    }
+
+    .recurring-summary {
+      background:
+        linear-gradient(135deg, rgba(91,140,255,.16), rgba(124,58,237,.10)),
+        rgba(255,255,255,.035);
+      border: 1px solid rgba(255,255,255,.12);
+      border-radius: 18px;
+      padding: 14px;
+      margin-bottom: 12px;
+    }
+
+    .recurring-summary p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 13px;
+    }
+
+    .recurring-summary strong {
+      display: block;
+      margin-top: 5px;
+      font-size: 22px;
+      color: white;
+    }
+
     @media (max-width: 390px) {
       body { padding-left: 14px; padding-right: 14px; }
       h1 { font-size: 25px; }
@@ -1806,64 +1992,128 @@
 
     <section id="settings" class="tab-content hidden">
       <div class="card">
-        <h2>План до зарплаты</h2>
-
-        <div class="form-grid">
-          <div class="field">
-            <label>День зарплаты</label>
-            <input id="salaryDay" inputmode="numeric" placeholder="10" />
-          </div>
-          <div class="field">
-            <label>День аванса</label>
-            <input id="advanceDay" inputmode="numeric" placeholder="25" />
-          </div>
-        </div>
-
-        <div class="field">
-          <label>Деньги сейчас на карте, ₽</label>
-          <input id="currentCash" inputmode="decimal" placeholder="0" />
-        </div>
-
-        <div class="field">
-          <label>Обязательные траты до выплаты, ₽</label>
-          <input id="requiredBeforePay" inputmode="decimal" placeholder="0" />
-        </div>
-
-        <button class="primary" id="saveSalaryPlan">Сохранить план до зарплаты</button>
-        <p class="hint">Этот блок нужен, чтобы приложение показывало, сколько можно тратить в день до ближайшей выплаты.</p>
-      </div>
-
-      <div class="card">
         <h2>Настройки</h2>
 
-        <div class="switch-row">
-          <div>
-            <p>Компактный режим</p>
-            <small>Уменьшает вертикальные отступы, чтобы больше помещалось на экране.</small>
+        <div class="settings-tabs">
+          <button class="settings-tab-btn active" data-settings-tab="mainSettings">Основные</button>
+          <button class="settings-tab-btn" data-settings-tab="regularSettings">Регулярные</button>
+        </div>
+
+        <div id="mainSettings" class="settings-panel">
+          <h2>План до зарплаты</h2>
+
+          <div class="form-grid">
+            <div class="field">
+              <label>День зарплаты</label>
+              <input id="salaryDay" inputmode="numeric" placeholder="10" />
+            </div>
+            <div class="field">
+              <label>День аванса</label>
+              <input id="advanceDay" inputmode="numeric" placeholder="25" />
+            </div>
           </div>
-          <button class="switch" id="compactSwitch"></button>
-        </div>
 
-        <div class="switch-row">
-          <div>
-            <p>Показывать историю</p>
-            <small>Включает или скрывает список последних операций на главной.</small>
+          <div class="field">
+            <label>Деньги сейчас на карте, ₽</label>
+            <input id="currentCash" inputmode="decimal" placeholder="0" />
           </div>
-          <button class="switch on" id="historySwitch"></button>
+
+          <div class="field">
+            <label>Обязательные траты до выплаты, ₽</label>
+            <input id="requiredBeforePay" inputmode="decimal" placeholder="0" />
+          </div>
+
+          <button class="primary" id="saveSalaryPlan">Сохранить план до зарплаты</button>
+          <p class="hint">Регулярные платежи из соседней вкладки тоже учитываются в дневном лимите.</p>
+
+          <div style="height:14px"></div>
+
+          <div class="switch-row">
+            <div>
+              <p>Компактный режим</p>
+              <small>Уменьшает вертикальные отступы, чтобы больше помещалось на экране.</small>
+            </div>
+            <button class="switch" id="compactSwitch"></button>
+          </div>
+
+          <div class="switch-row">
+            <div>
+              <p>Показывать историю</p>
+              <small>Включает или скрывает список последних операций на главной.</small>
+            </div>
+            <button class="switch on" id="historySwitch"></button>
+          </div>
+
+          <div class="field">
+            <label>Название цели</label>
+            <input id="goalName" placeholder="ПК мечты" />
+          </div>
+
+          <button class="primary" id="saveAppSettings">Сохранить настройки</button>
         </div>
 
-        <div class="field">
-          <label>Название цели</label>
-          <input id="goalName" placeholder="ПК мечты" />
-        </div>
+        <div id="regularSettings" class="settings-panel hidden">
+          <h2>Регулярные платежи</h2>
 
-        <button class="primary" id="saveAppSettings">Сохранить настройки</button>
+          <div class="recurring-summary">
+            <p>Регулярные платежи до ближайшей выплаты</p>
+            <strong id="recurringBeforePayTotal">0 ₽</strong>
+            <p id="recurringBeforePayHint">Добавь платежи, чтобы они учитывались в дневном лимите.</p>
+          </div>
+
+          <div id="recurringList"></div>
+
+          <div class="field">
+            <label>Название</label>
+            <input id="recurringName" placeholder="Например: связь" />
+          </div>
+
+          <div class="field">
+            <label>Сумма, ₽</label>
+            <input id="recurringAmount" inputmode="decimal" placeholder="Например: 1200" />
+          </div>
+
+          <div class="form-grid">
+            <div class="field">
+              <label>День месяца</label>
+              <input id="recurringDay" inputmode="numeric" placeholder="5" />
+            </div>
+            <div class="field">
+              <label>Периодичность</label>
+              <select id="recurringFrequency">
+                <option value="monthly">Каждый месяц</option>
+                <option value="yearly">Раз в год</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="field">
+            <label>Месяц для ежегодного платежа</label>
+            <select id="recurringMonth">
+              <option value="0">Январь</option>
+              <option value="1">Февраль</option>
+              <option value="2">Март</option>
+              <option value="3">Апрель</option>
+              <option value="4">Май</option>
+              <option value="5">Июнь</option>
+              <option value="6">Июль</option>
+              <option value="7">Август</option>
+              <option value="8">Сентябрь</option>
+              <option value="9">Октябрь</option>
+              <option value="10">Ноябрь</option>
+              <option value="11">Декабрь</option>
+            </select>
+          </div>
+
+          <button class="primary" id="addRecurringBtn">+ Добавить регулярный платёж</button>
+          <p class="hint">Например: связь каждый месяц, универ раз в год в августе, подписка каждый месяц.</p>
+        </div>
       </div>
 
       <div class="card">
         <h2>Данные</h2>
         <button class="danger" id="resetBtn">Сбросить все данные</button>
-        <p class="hint">Данные хранятся на этом устройстве в браузере. Перед обновлением файла лучше не удалять старую версию приложения.</p>
+        <p class="hint">Данные хранятся на этом устройстве в браузере.</p>
       </div>
     </section>
   </main>
@@ -1954,6 +2204,10 @@
     advanceDay: 25,
     currentCash: 0,
     requiredBeforePay: 0,
+    recurringPayments: [
+      { id: crypto.randomUUID(), name: "Связь", amount: 1200, day: 5, frequency: "monthly", month: null },
+      { id: crypto.randomUUID(), name: "Универ", amount: 32000, day: 1, frequency: "yearly", month: 7 }
+    ],
     pcParts: [
       { id: crypto.randomUUID(), name: "RTX 5090", category: "Видеокарта", price: 250000, note: "Главная деталь для игр, стримов и монтажа" },
       { id: crypto.randomUUID(), name: "Ryzen 9800X3D", category: "Процессор", price: 70000, note: "Мощный игровой процессор" },
@@ -2039,13 +2293,61 @@
     return Math.max(1, Math.ceil((target - start) / 86400000));
   }
 
+
+  function getRecurringDate(payment, baseDate = new Date()) {
+    const day = Math.min(28, Math.max(1, Number(payment.day) || 1));
+
+    if (payment.frequency === "yearly") {
+      let month = Number(payment.month);
+      if (Number.isNaN(month)) month = baseDate.getMonth();
+
+      let date = new Date(baseDate.getFullYear(), month, day);
+      const todayDate = new Date(baseDate.getFullYear(), baseDate.getMonth(), baseDate.getDate());
+
+      if (date < todayDate) {
+        date = new Date(baseDate.getFullYear() + 1, month, day);
+      }
+
+      return date;
+    }
+
+    let date = new Date(baseDate.getFullYear(), baseDate.getMonth(), day);
+    const todayDate = new Date(baseDate.getFullYear(), baseDate.getMonth(), baseDate.getDate());
+
+    if (date < todayDate) {
+      date = new Date(baseDate.getFullYear(), baseDate.getMonth() + 1, day);
+    }
+
+    return date;
+  }
+
+  function getRecurringBeforePay() {
+    if (!Array.isArray(data.recurringPayments)) data.recurringPayments = [];
+
+    const now = new Date();
+    const start = new Date(now.getFullYear(), now.getMonth(), now.getDate());
+    const payDate = nextPayDate();
+    const payDay = new Date(payDate.getFullYear(), payDate.getMonth(), payDate.getDate());
+
+    const items = data.recurringPayments
+      .map(payment => ({ ...payment, nextDate: getRecurringDate(payment, now) }))
+      .filter(payment => payment.nextDate >= start && payment.nextDate <= payDay)
+      .sort((a, b) => a.nextDate - b.nextDate);
+
+    const total = items.reduce((sum, item) => sum + Number(item.amount || 0), 0);
+
+    return { items, total };
+  }
+
   function calcSalaryPlan() {
     const payDate = nextPayDate();
     const days = daysUntil(payDate);
-    const freeMoney = Math.max(0, Number(data.currentCash) - Number(data.requiredBeforePay));
+    const recurring = getRecurringBeforePay();
+    const requiredTotal = Number(data.requiredBeforePay) + Number(recurring.total);
+    const freeMoney = Math.max(0, Number(data.currentCash) - requiredTotal);
     const dailyLimit = Math.floor(freeMoney / days);
 
-    return { payDate, days, freeMoney, dailyLimit };
+    return { payDate, days, freeMoney, dailyLimit, recurringTotal: recurring.total, recurringItems: recurring.items, requiredTotal };
   }
 
   function calc() {
@@ -2107,6 +2409,7 @@
     renderStats();
     renderAnalytics();
     renderSmartAdvisor();
+    renderRecurringPayments();
     renderPcBuild();
     renderForecast();
     setTimeout(addHapticFeedback, 0);
@@ -2119,7 +2422,7 @@
     document.getElementById("salaryForecast").innerHTML = `
       <p>Ближайшая выплата: ${dateText}</p>
       <strong>${salary.dailyLimit > 0 ? rub(salary.dailyLimit) : "0 ₽"} / день</strong>
-      <p>До выплаты осталось: ${salary.days} дн. Свободно после обязательных трат: ${rub(salary.freeMoney)}.</p>
+      <p>До выплаты осталось: ${salary.days} дн. Свободно после обязательных и регулярных трат: ${rub(salary.freeMoney)}.</p><p>Регулярные платежи до выплаты: ${rub(salary.recurringTotal || 0)}.</p>
     `;
   }
 
@@ -2641,6 +2944,106 @@
     if (analytics) analytics.innerHTML = renderCards(cards);
   }
 
+
+  function renderRecurringPayments() {
+    if (!Array.isArray(data.recurringPayments)) data.recurringPayments = [];
+
+    const beforePay = getRecurringBeforePay();
+    const totalEl = document.getElementById("recurringBeforePayTotal");
+    const hintEl = document.getElementById("recurringBeforePayHint");
+    const list = document.getElementById("recurringList");
+
+    if (!totalEl || !hintEl || !list) return;
+
+    totalEl.textContent = rub(beforePay.total);
+    hintEl.textContent = beforePay.items.length
+      ? `До ближайшей выплаты учтено платежей: ${beforePay.items.length}.`
+      : "До ближайшей выплаты регулярных платежей нет.";
+
+    if (!data.recurringPayments.length) {
+      list.innerHTML = '<div class="empty">Регулярных платежей пока нет.</div>';
+      return;
+    }
+
+    list.innerHTML = data.recurringPayments.map(payment => {
+      const nextDate = getRecurringDate(payment);
+      const dateText = nextDate.toLocaleDateString("ru-RU", { day: "numeric", month: "long" });
+      const frequencyText = payment.frequency === "yearly" ? "раз в год" : "каждый месяц";
+
+      return `
+        <div class="recurring-item">
+          <div class="recurring-top">
+            <div>
+              <p class="recurring-title">${payment.name || "Без названия"}</p>
+              <p class="recurring-sub">${frequencyText} · следующий платёж: ${dateText}</p>
+            </div>
+            <div class="recurring-price">${rub(payment.amount || 0)}</div>
+          </div>
+          <button class="small-btn danger-text" onclick="deleteRecurring('${payment.id}')" style="margin-top:12px;width:100%">Удалить</button>
+        </div>
+      `;
+    }).join("");
+  }
+
+  function addRecurringPayment() {
+    const name = document.getElementById("recurringName").value.trim();
+    const amount = Number(String(document.getElementById("recurringAmount").value).replace(",", "."));
+    const day = Number(document.getElementById("recurringDay").value);
+    const frequency = document.getElementById("recurringFrequency").value;
+    const month = Number(document.getElementById("recurringMonth").value);
+
+    if (!name) {
+      alert("Введи название платежа");
+      return;
+    }
+
+    if (!amount || amount <= 0) {
+      alert("Введи сумму больше нуля");
+      return;
+    }
+
+    if (!day || day < 1 || day > 31) {
+      alert("День месяца должен быть от 1 до 31");
+      return;
+    }
+
+    if (!Array.isArray(data.recurringPayments)) data.recurringPayments = [];
+
+    data.recurringPayments.push({
+      id: crypto.randomUUID(),
+      name,
+      amount,
+      day,
+      frequency,
+      month: frequency === "yearly" ? month : null
+    });
+
+    document.getElementById("recurringName").value = "";
+    document.getElementById("recurringAmount").value = "";
+    document.getElementById("recurringDay").value = "";
+
+    save();
+    render();
+    const btn = document.getElementById("addRecurringBtn");
+    if (btn && typeof successHaptic === "function") successHaptic(btn);
+  }
+
+  function deleteRecurring(id) {
+    if (!confirm("Удалить регулярный платёж?")) return;
+    data.recurringPayments = data.recurringPayments.filter(payment => payment.id !== id);
+    save();
+    render();
+  }
+
+  function switchSettingsTab(tabId) {
+    document.querySelectorAll(".settings-tab-btn").forEach(btn => {
+      btn.classList.toggle("active", btn.dataset.settingsTab === tabId);
+    });
+    document.querySelectorAll(".settings-panel").forEach(panel => {
+      panel.classList.toggle("hidden", panel.id !== tabId);
+    });
+  }
+
   function renderPcBuild() {
     if (!Array.isArray(data.pcParts)) data.pcParts = [];
 
@@ -2922,6 +3325,11 @@
       render();
       switchTab("add");
     }
+  });
+
+  document.getElementById("addRecurringBtn").addEventListener("click", addRecurringPayment);
+  document.querySelectorAll(".settings-tab-btn").forEach(btn => {
+    btn.addEventListener("click", () => switchSettingsTab(btn.dataset.settingsTab));
   });
 
   document.getElementById("openAddSheet").addEventListener("click", openAddSheet);
