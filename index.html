@@ -1716,8 +1716,292 @@
       line-height: 1.45;
     }
 
+
+    .dashboard-hello {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: 12px;
+      margin-bottom: 14px;
+    }
+
+    .dashboard-hello h2 {
+      margin: 0 0 4px;
+      font-size: 24px;
+    }
+
+    .dashboard-hello p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 13px;
+      line-height: 1.4;
+    }
+
+    .today-card {
+      background:
+        linear-gradient(135deg, rgba(91,140,255,.24), rgba(124,58,237,.16)),
+        rgba(16,27,45,.42);
+      border: 1px solid rgba(255,255,255,.14);
+      border-radius: 26px;
+      padding: 18px;
+      margin-bottom: 14px;
+      box-shadow:
+        0 18px 42px rgba(91,140,255,.10),
+        inset 0 1px 0 rgba(255,255,255,.10);
+    }
+
+    .today-card p {
+      margin: 0;
+      color: rgba(245,247,251,.74);
+      font-size: 13px;
+    }
+
+    .today-card strong {
+      display: block;
+      margin: 6px 0 8px;
+      font-size: 34px;
+      letter-spacing: -1px;
+      color: white;
+      line-height: 1.05;
+    }
+
+    .today-card small {
+      color: var(--muted);
+      line-height: 1.4;
+      display: block;
+    }
+
+    .quick-actions {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 10px;
+      margin-bottom: 14px;
+    }
+
+    .quick-action {
+      border: 1px solid rgba(255,255,255,.12);
+      border-radius: 20px;
+      min-height: 74px;
+      padding: 10px 6px;
+      color: white;
+      font-weight: 900;
+      background:
+        linear-gradient(180deg, rgba(255,255,255,.08), rgba(255,255,255,.025)),
+        rgba(16,27,45,.38);
+      backdrop-filter: blur(18px) saturate(1.25);
+      -webkit-backdrop-filter: blur(18px) saturate(1.25);
+    }
+
+    .quick-action span {
+      display: block;
+      font-size: 23px;
+      margin-bottom: 5px;
+    }
+
+    .dashboard-summary {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 10px;
+      margin-bottom: 14px;
+    }
+
+    .dashboard-summary-item {
+      background: rgba(255,255,255,.045);
+      border: 1px solid rgba(255,255,255,.10);
+      border-radius: 18px;
+      padding: 12px;
+      min-width: 0;
+    }
+
+    .dashboard-summary-item p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 12px;
+    }
+
+    .dashboard-summary-item strong {
+      display: block;
+      margin-top: 5px;
+      font-size: 15px;
+      color: white;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .main-advice {
+      background:
+        linear-gradient(135deg, rgba(74,222,128,.13), rgba(91,140,255,.12)),
+        rgba(16,27,45,.36);
+      border: 1px solid rgba(255,255,255,.13);
+      border-radius: 22px;
+      padding: 14px;
+      margin-bottom: 14px;
+    }
+
+    .main-advice h3 {
+      margin: 0 0 7px;
+      font-size: 16px;
+    }
+
+    .main-advice p {
+      margin: 0;
+      color: rgba(245,247,251,.86);
+      font-size: 14px;
+      line-height: 1.45;
+    }
+
+    @media (max-width: 390px) {
+      .quick-actions,
+      .dashboard-summary {
+        grid-template-columns: 1fr;
+      }
+    }
+
     @media (max-width: 390px) {
       .advanced-analytics-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+
+    .dashboard-hello {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: 12px;
+      margin-bottom: 14px;
+    }
+
+    .dashboard-hello h2 {
+      margin: 0 0 4px;
+      font-size: 24px;
+    }
+
+    .dashboard-hello p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 13px;
+      line-height: 1.4;
+    }
+
+    .today-card {
+      background:
+        linear-gradient(135deg, rgba(91,140,255,.24), rgba(124,58,237,.16)),
+        rgba(16,27,45,.42);
+      border: 1px solid rgba(255,255,255,.14);
+      border-radius: 26px;
+      padding: 18px;
+      margin-bottom: 14px;
+      box-shadow:
+        0 18px 42px rgba(91,140,255,.10),
+        inset 0 1px 0 rgba(255,255,255,.10);
+    }
+
+    .today-card p {
+      margin: 0;
+      color: rgba(245,247,251,.74);
+      font-size: 13px;
+    }
+
+    .today-card strong {
+      display: block;
+      margin: 6px 0 8px;
+      font-size: 34px;
+      letter-spacing: -1px;
+      color: white;
+      line-height: 1.05;
+    }
+
+    .today-card small {
+      color: var(--muted);
+      line-height: 1.4;
+      display: block;
+    }
+
+    .quick-actions {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 10px;
+      margin-bottom: 14px;
+    }
+
+    .quick-action {
+      border: 1px solid rgba(255,255,255,.12);
+      border-radius: 20px;
+      min-height: 74px;
+      padding: 10px 6px;
+      color: white;
+      font-weight: 900;
+      background:
+        linear-gradient(180deg, rgba(255,255,255,.08), rgba(255,255,255,.025)),
+        rgba(16,27,45,.38);
+      backdrop-filter: blur(18px) saturate(1.25);
+      -webkit-backdrop-filter: blur(18px) saturate(1.25);
+    }
+
+    .quick-action span {
+      display: block;
+      font-size: 23px;
+      margin-bottom: 5px;
+    }
+
+    .dashboard-summary {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 10px;
+      margin-bottom: 14px;
+    }
+
+    .dashboard-summary-item {
+      background: rgba(255,255,255,.045);
+      border: 1px solid rgba(255,255,255,.10);
+      border-radius: 18px;
+      padding: 12px;
+      min-width: 0;
+    }
+
+    .dashboard-summary-item p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 12px;
+    }
+
+    .dashboard-summary-item strong {
+      display: block;
+      margin-top: 5px;
+      font-size: 15px;
+      color: white;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .main-advice {
+      background:
+        linear-gradient(135deg, rgba(74,222,128,.13), rgba(91,140,255,.12)),
+        rgba(16,27,45,.36);
+      border: 1px solid rgba(255,255,255,.13);
+      border-radius: 22px;
+      padding: 14px;
+      margin-bottom: 14px;
+    }
+
+    .main-advice h3 {
+      margin: 0 0 7px;
+      font-size: 16px;
+    }
+
+    .main-advice p {
+      margin: 0;
+      color: rgba(245,247,251,.86);
+      font-size: 14px;
+      line-height: 1.45;
+    }
+
+    @media (max-width: 390px) {
+      .quick-actions,
+      .dashboard-summary {
         grid-template-columns: 1fr;
       }
     }
@@ -1906,8 +2190,292 @@
       line-height: 1.45;
     }
 
+
+    .dashboard-hello {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: 12px;
+      margin-bottom: 14px;
+    }
+
+    .dashboard-hello h2 {
+      margin: 0 0 4px;
+      font-size: 24px;
+    }
+
+    .dashboard-hello p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 13px;
+      line-height: 1.4;
+    }
+
+    .today-card {
+      background:
+        linear-gradient(135deg, rgba(91,140,255,.24), rgba(124,58,237,.16)),
+        rgba(16,27,45,.42);
+      border: 1px solid rgba(255,255,255,.14);
+      border-radius: 26px;
+      padding: 18px;
+      margin-bottom: 14px;
+      box-shadow:
+        0 18px 42px rgba(91,140,255,.10),
+        inset 0 1px 0 rgba(255,255,255,.10);
+    }
+
+    .today-card p {
+      margin: 0;
+      color: rgba(245,247,251,.74);
+      font-size: 13px;
+    }
+
+    .today-card strong {
+      display: block;
+      margin: 6px 0 8px;
+      font-size: 34px;
+      letter-spacing: -1px;
+      color: white;
+      line-height: 1.05;
+    }
+
+    .today-card small {
+      color: var(--muted);
+      line-height: 1.4;
+      display: block;
+    }
+
+    .quick-actions {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 10px;
+      margin-bottom: 14px;
+    }
+
+    .quick-action {
+      border: 1px solid rgba(255,255,255,.12);
+      border-radius: 20px;
+      min-height: 74px;
+      padding: 10px 6px;
+      color: white;
+      font-weight: 900;
+      background:
+        linear-gradient(180deg, rgba(255,255,255,.08), rgba(255,255,255,.025)),
+        rgba(16,27,45,.38);
+      backdrop-filter: blur(18px) saturate(1.25);
+      -webkit-backdrop-filter: blur(18px) saturate(1.25);
+    }
+
+    .quick-action span {
+      display: block;
+      font-size: 23px;
+      margin-bottom: 5px;
+    }
+
+    .dashboard-summary {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 10px;
+      margin-bottom: 14px;
+    }
+
+    .dashboard-summary-item {
+      background: rgba(255,255,255,.045);
+      border: 1px solid rgba(255,255,255,.10);
+      border-radius: 18px;
+      padding: 12px;
+      min-width: 0;
+    }
+
+    .dashboard-summary-item p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 12px;
+    }
+
+    .dashboard-summary-item strong {
+      display: block;
+      margin-top: 5px;
+      font-size: 15px;
+      color: white;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .main-advice {
+      background:
+        linear-gradient(135deg, rgba(74,222,128,.13), rgba(91,140,255,.12)),
+        rgba(16,27,45,.36);
+      border: 1px solid rgba(255,255,255,.13);
+      border-radius: 22px;
+      padding: 14px;
+      margin-bottom: 14px;
+    }
+
+    .main-advice h3 {
+      margin: 0 0 7px;
+      font-size: 16px;
+    }
+
+    .main-advice p {
+      margin: 0;
+      color: rgba(245,247,251,.86);
+      font-size: 14px;
+      line-height: 1.45;
+    }
+
+    @media (max-width: 390px) {
+      .quick-actions,
+      .dashboard-summary {
+        grid-template-columns: 1fr;
+      }
+    }
+
     @media (max-width: 390px) {
       .advanced-analytics-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+
+    .dashboard-hello {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: 12px;
+      margin-bottom: 14px;
+    }
+
+    .dashboard-hello h2 {
+      margin: 0 0 4px;
+      font-size: 24px;
+    }
+
+    .dashboard-hello p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 13px;
+      line-height: 1.4;
+    }
+
+    .today-card {
+      background:
+        linear-gradient(135deg, rgba(91,140,255,.24), rgba(124,58,237,.16)),
+        rgba(16,27,45,.42);
+      border: 1px solid rgba(255,255,255,.14);
+      border-radius: 26px;
+      padding: 18px;
+      margin-bottom: 14px;
+      box-shadow:
+        0 18px 42px rgba(91,140,255,.10),
+        inset 0 1px 0 rgba(255,255,255,.10);
+    }
+
+    .today-card p {
+      margin: 0;
+      color: rgba(245,247,251,.74);
+      font-size: 13px;
+    }
+
+    .today-card strong {
+      display: block;
+      margin: 6px 0 8px;
+      font-size: 34px;
+      letter-spacing: -1px;
+      color: white;
+      line-height: 1.05;
+    }
+
+    .today-card small {
+      color: var(--muted);
+      line-height: 1.4;
+      display: block;
+    }
+
+    .quick-actions {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 10px;
+      margin-bottom: 14px;
+    }
+
+    .quick-action {
+      border: 1px solid rgba(255,255,255,.12);
+      border-radius: 20px;
+      min-height: 74px;
+      padding: 10px 6px;
+      color: white;
+      font-weight: 900;
+      background:
+        linear-gradient(180deg, rgba(255,255,255,.08), rgba(255,255,255,.025)),
+        rgba(16,27,45,.38);
+      backdrop-filter: blur(18px) saturate(1.25);
+      -webkit-backdrop-filter: blur(18px) saturate(1.25);
+    }
+
+    .quick-action span {
+      display: block;
+      font-size: 23px;
+      margin-bottom: 5px;
+    }
+
+    .dashboard-summary {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 10px;
+      margin-bottom: 14px;
+    }
+
+    .dashboard-summary-item {
+      background: rgba(255,255,255,.045);
+      border: 1px solid rgba(255,255,255,.10);
+      border-radius: 18px;
+      padding: 12px;
+      min-width: 0;
+    }
+
+    .dashboard-summary-item p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 12px;
+    }
+
+    .dashboard-summary-item strong {
+      display: block;
+      margin-top: 5px;
+      font-size: 15px;
+      color: white;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .main-advice {
+      background:
+        linear-gradient(135deg, rgba(74,222,128,.13), rgba(91,140,255,.12)),
+        rgba(16,27,45,.36);
+      border: 1px solid rgba(255,255,255,.13);
+      border-radius: 22px;
+      padding: 14px;
+      margin-bottom: 14px;
+    }
+
+    .main-advice h3 {
+      margin: 0 0 7px;
+      font-size: 16px;
+    }
+
+    .main-advice p {
+      margin: 0;
+      color: rgba(245,247,251,.86);
+      font-size: 14px;
+      line-height: 1.45;
+    }
+
+    @media (max-width: 390px) {
+      .quick-actions,
+      .dashboard-summary {
         grid-template-columns: 1fr;
       }
     }
@@ -1956,15 +2524,47 @@
       </div>
     </section>
 
-    <section id="add" class="tab-content">
+        <section id="add" class="tab-content">
       <div class="card">
-        <h2>План до зарплаты</h2>
-        <div class="salary-box" id="salaryForecast"></div>
-      </div>
+        <div class="dashboard-hello">
+          <div>
+            <h2>Привет, Александр 👋</h2>
+            <p id="dashboardStatus">Сегодняшний финансовый статус</p>
+          </div>
+          <div class="badge">⚡</div>
+        </div>
 
-      <div class="card">
-        <h2>Советник</h2>
-        <div id="smartAdvisorHome" class="advisor-list"></div>
+        <div class="today-card">
+          <p>Можно потратить сегодня</p>
+          <strong id="todayLimitMain">0 ₽</strong>
+          <small id="todayLimitSub">Расчёт появится после заполнения плана до зарплаты.</small>
+        </div>
+
+        <div class="quick-actions">
+          <button class="quick-action" id="quickExpense"><span>💸</span>Расход</button>
+          <button class="quick-action" id="quickIncome"><span>💰</span>Доход</button>
+          <button class="quick-action" id="quickSaving"><span>🏦</span>В накопления</button>
+        </div>
+
+        <div class="dashboard-summary">
+          <div class="dashboard-summary-item">
+            <p>Потрачено</p>
+            <strong id="dashMonthExpenses">0 ₽</strong>
+          </div>
+          <div class="dashboard-summary-item">
+            <p>Отложено</p>
+            <strong id="dashMonthSavings">0 ₽</strong>
+          </div>
+          <div class="dashboard-summary-item">
+            <p>До ПК</p>
+            <strong id="dashLeftToGoal">0 ₽</strong>
+          </div>
+        </div>
+
+        <div class="main-advice">
+          <h3 id="mainAdviceTitle">Совет дня</h3>
+          <p id="mainAdviceText">Добавь расходы и план до зарплаты — тогда совет станет точнее.</p>
+        </div>
       </div>
 
       <div class="card">
@@ -2555,6 +3155,7 @@
     document.getElementById("compactSwitch").classList.toggle("on", Boolean(data.compactMode));
     document.getElementById("historySwitch").classList.toggle("on", Boolean(data.showHistory));
 
+    renderDashboard();
     renderSalaryForecast();
     renderTransactions();
     renderStats();
@@ -2565,6 +3166,65 @@
     renderPcBuild();
     renderForecast();
     setTimeout(addHapticFeedback, 0);
+  }
+
+
+  function renderDashboard() {
+    const statusEl = document.getElementById("dashboardStatus");
+    if (!statusEl) return;
+
+    const s = calc();
+    const salary = calcSalaryPlan();
+    const currentMonth = today().slice(0, 7);
+
+    const monthExpenses = data.transactions
+      .filter(x => x.type === "expense" && monthKey(x.date) === currentMonth)
+      .reduce((sum, x) => sum + Number(x.amount), 0);
+
+    const monthSavings = data.transactions
+      .filter(x => x.type === "saving" && monthKey(x.date) === currentMonth)
+      .reduce((sum, x) => sum + Number(x.amount), 0);
+
+    const payDateText = salary.payDate.toLocaleDateString("ru-RU", { day: "numeric", month: "long" });
+
+    statusEl.textContent = `До ближайшей выплаты ${salary.days} дн. · ${payDateText}`;
+
+    document.getElementById("todayLimitMain").textContent = salary.dailyLimit > 0 ? rub(salary.dailyLimit) : "0 ₽";
+    document.getElementById("todayLimitSub").textContent = salary.dailyLimit > 0
+      ? `Свободно после обязательных трат: ${rub(salary.freeMoney)}. Регулярные платежи уже учтены.`
+      : "Заполни деньги на карте и обязательные траты в настройках.";
+
+    document.getElementById("dashMonthExpenses").textContent = rub(monthExpenses);
+    document.getElementById("dashMonthSavings").textContent = rub(monthSavings);
+    document.getElementById("dashLeftToGoal").textContent = rub(s.left);
+
+    const avgDaily = Math.round(monthExpenses / Math.max(1, new Date().getDate()));
+
+    let title = "Совет дня";
+    let text = "";
+
+    if (salary.dailyLimit <= 0) {
+      title = "Настрой план";
+      text = "Заполни деньги на карте, день зарплаты и обязательные траты — главная вкладка начнёт показывать реальный дневной лимит.";
+    } else if (avgDaily > salary.dailyLimit) {
+      title = "Сбавь темп";
+      text = `Средний расход ${rub(avgDaily)} в день выше лимита ${rub(salary.dailyLimit)}. Сегодня лучше оставить траты только на нужное.`;
+    } else if (monthSavings <= 0) {
+      title = "Сделай первый перевод";
+      text = "В этом месяце ещё нет перевода в накопления. Даже небольшая сумма усилит ощущение прогресса к ПК.";
+    } else {
+      title = "Темп хороший";
+      text = `Ты уже отложил ${rub(monthSavings)} в этом месяце. Продолжай держать расходы ниже дневного лимита.`;
+    }
+
+    document.getElementById("mainAdviceTitle").textContent = title;
+    document.getElementById("mainAdviceText").textContent = text;
+  }
+
+  function openAddSheetWithType(type) {
+    const typeEl = document.getElementById("type");
+    if (typeEl) typeEl.value = type;
+    openAddSheet();
   }
 
   function renderSalaryForecast() {
@@ -3585,6 +4245,10 @@
   document.querySelectorAll(".settings-tab-btn").forEach(btn => {
     btn.addEventListener("click", () => switchSettingsTab(btn.dataset.settingsTab));
   });
+
+  document.getElementById("quickExpense").addEventListener("click", () => openAddSheetWithType("expense"));
+  document.getElementById("quickIncome").addEventListener("click", () => openAddSheetWithType("income"));
+  document.getElementById("quickSaving").addEventListener("click", () => openAddSheetWithType("saving"));
 
   document.getElementById("openAddSheet").addEventListener("click", openAddSheet);
   document.getElementById("closeAddSheet").addEventListener("click", closeAddSheet);
