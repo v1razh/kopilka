@@ -1649,6 +1649,79 @@
       color: white;
     }
 
+
+    .advanced-analytics-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+      margin-bottom: 14px;
+    }
+
+    .advanced-tile {
+      background:
+        linear-gradient(180deg, rgba(255,255,255,.07), rgba(255,255,255,.025)),
+        rgba(16,27,45,.38);
+      border: 1px solid rgba(255,255,255,.12);
+      border-radius: 18px;
+      padding: 14px;
+      min-width: 0;
+      backdrop-filter: blur(18px) saturate(1.25);
+      -webkit-backdrop-filter: blur(18px) saturate(1.25);
+    }
+
+    .advanced-tile p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 12px;
+      line-height: 1.35;
+    }
+
+    .advanced-tile strong {
+      display: block;
+      margin-top: 6px;
+      font-size: 17px;
+      color: white;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .advanced-tile small {
+      display: block;
+      margin-top: 4px;
+      color: var(--muted);
+      font-size: 11px;
+      line-height: 1.35;
+    }
+
+    .analytics-warning {
+      background:
+        linear-gradient(135deg, rgba(251,113,133,.16), rgba(251,191,36,.08)),
+        rgba(16,27,45,.35);
+      border: 1px solid rgba(251,113,133,.18);
+      border-radius: 18px;
+      padding: 14px;
+      margin-bottom: 10px;
+      line-height: 1.45;
+    }
+
+    .analytics-good {
+      background:
+        linear-gradient(135deg, rgba(74,222,128,.14), rgba(91,140,255,.08)),
+        rgba(16,27,45,.35);
+      border: 1px solid rgba(74,222,128,.16);
+      border-radius: 18px;
+      padding: 14px;
+      margin-bottom: 10px;
+      line-height: 1.45;
+    }
+
+    @media (max-width: 390px) {
+      .advanced-analytics-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
     @media (max-width: 390px) {
       .fab {
         right: 18px;
@@ -1764,6 +1837,79 @@
       margin-top: 5px;
       font-size: 22px;
       color: white;
+    }
+
+
+    .advanced-analytics-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+      margin-bottom: 14px;
+    }
+
+    .advanced-tile {
+      background:
+        linear-gradient(180deg, rgba(255,255,255,.07), rgba(255,255,255,.025)),
+        rgba(16,27,45,.38);
+      border: 1px solid rgba(255,255,255,.12);
+      border-radius: 18px;
+      padding: 14px;
+      min-width: 0;
+      backdrop-filter: blur(18px) saturate(1.25);
+      -webkit-backdrop-filter: blur(18px) saturate(1.25);
+    }
+
+    .advanced-tile p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 12px;
+      line-height: 1.35;
+    }
+
+    .advanced-tile strong {
+      display: block;
+      margin-top: 6px;
+      font-size: 17px;
+      color: white;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .advanced-tile small {
+      display: block;
+      margin-top: 4px;
+      color: var(--muted);
+      font-size: 11px;
+      line-height: 1.35;
+    }
+
+    .analytics-warning {
+      background:
+        linear-gradient(135deg, rgba(251,113,133,.16), rgba(251,191,36,.08)),
+        rgba(16,27,45,.35);
+      border: 1px solid rgba(251,113,133,.18);
+      border-radius: 18px;
+      padding: 14px;
+      margin-bottom: 10px;
+      line-height: 1.45;
+    }
+
+    .analytics-good {
+      background:
+        linear-gradient(135deg, rgba(74,222,128,.14), rgba(91,140,255,.08)),
+        rgba(16,27,45,.35);
+      border: 1px solid rgba(74,222,128,.16);
+      border-radius: 18px;
+      padding: 14px;
+      margin-bottom: 10px;
+      line-height: 1.45;
+    }
+
+    @media (max-width: 390px) {
+      .advanced-analytics-grid {
+        grid-template-columns: 1fr;
+      }
     }
 
     @media (max-width: 390px) {
@@ -1892,6 +2038,11 @@
       <div class="card">
         <h2>Расходы по категориям</h2>
         <div class="expense-bars" id="premiumExpenseBars"></div>
+      </div>
+
+      <div class="card">
+        <h2>Продвинутая аналитика</h2>
+        <div id="advancedAnalytics"></div>
       </div>
 
       <div class="card">
@@ -2408,6 +2559,7 @@
     renderTransactions();
     renderStats();
     renderAnalytics();
+    renderAdvancedAnalytics();
     renderSmartAdvisor();
     renderRecurringPayments();
     renderPcBuild();
@@ -2533,6 +2685,108 @@
         </div>
       `;
     }).join("");
+  }
+
+
+  function renderAdvancedAnalytics() {
+    const box = document.getElementById("advancedAnalytics");
+    if (!box) return;
+
+    const currentMonth = today().slice(0, 7);
+    const expenses = data.transactions.filter(x => x.type === "expense" && monthKey(x.date) === currentMonth);
+    const savings = data.transactions.filter(x => x.type === "saving" && monthKey(x.date) === currentMonth);
+    const income = data.transactions.filter(x => x.type === "income" && monthKey(x.date) === currentMonth);
+
+    const totalExpenses = expenses.reduce((sum, x) => sum + Number(x.amount), 0);
+    const totalSavings = savings.reduce((sum, x) => sum + Number(x.amount), 0);
+    const totalIncome = income.reduce((sum, x) => sum + Number(x.amount), 0);
+    const currentDay = Math.max(1, new Date().getDate());
+    const avgDaily = Math.round(totalExpenses / currentDay);
+
+    const byCategory = categories.map(cat => ({
+      cat,
+      value: expenses
+        .filter(x => x.category === cat)
+        .reduce((sum, x) => sum + Number(x.amount), 0)
+    })).filter(x => x.value > 0).sort((a, b) => b.value - a.value);
+
+    const topCategory = byCategory[0] || null;
+
+    const byDayMap = {};
+    expenses.forEach(x => {
+      byDayMap[x.date] = (byDayMap[x.date] || 0) + Number(x.amount);
+    });
+
+    const topDayEntry = Object.entries(byDayMap).sort((a, b) => b[1] - a[1])[0] || null;
+    const topDayDate = topDayEntry ? new Date(topDayEntry[0] + "T00:00:00") : null;
+    const topDayText = topDayDate
+      ? topDayDate.toLocaleDateString("ru-RU", { day: "numeric", month: "long" })
+      : "нет данных";
+
+    const biggestExpense = expenses.slice().sort((a, b) => Number(b.amount) - Number(a.amount))[0] || null;
+    const savingsRate = totalIncome > 0 ? Math.round(totalSavings / totalIncome * 100) : 0;
+
+    const salary = calcSalaryPlan();
+    const risk = salary.dailyLimit > 0 && avgDaily > salary.dailyLimit;
+    const economyPotential = topCategory ? Math.round(topCategory.value * 0.25) : 0;
+
+    let conclusion = "";
+    let conclusionClass = "analytics-good";
+
+    if (!expenses.length) {
+      conclusion = "Пока мало данных для анализа. Добавь несколько расходов — и приложение начнёт показывать слабые места бюджета.";
+    } else if (risk) {
+      conclusionClass = "analytics-warning";
+      conclusion = `Сейчас средний расход выше безопасного лимита до выплаты. Лучше временно снизить траты примерно на ${rub(Math.max(0, avgDaily - salary.dailyLimit))} в день.`;
+    } else if (topCategory && economyPotential > 0) {
+      conclusion = `Если сократить категорию “${topCategory.cat}” на 25%, можно высвободить примерно ${rub(economyPotential)} в этом месяце.`;
+    } else {
+      conclusion = "Темп выглядит спокойно. Продолжай регулярно вносить расходы, чтобы аналитика становилась точнее.";
+    }
+
+    box.innerHTML = `
+      <div class="advanced-analytics-grid">
+        <div class="advanced-tile">
+          <p>Самая затратная категория</p>
+          <strong>${topCategory ? topCategory.cat : "нет данных"}</strong>
+          <small>${topCategory ? rub(topCategory.value) : "добавь расходы"}</small>
+        </div>
+
+        <div class="advanced-tile">
+          <p>Самый дорогой день</p>
+          <strong>${topDayText}</strong>
+          <small>${topDayEntry ? rub(topDayEntry[1]) : "добавь расходы"}</small>
+        </div>
+
+        <div class="advanced-tile">
+          <p>Средний расход в день</p>
+          <strong>${rub(avgDaily)}</strong>
+          <small>за текущий месяц</small>
+        </div>
+
+        <div class="advanced-tile">
+          <p>Самая большая покупка</p>
+          <strong>${biggestExpense ? rub(biggestExpense.amount) : "нет данных"}</strong>
+          <small>${biggestExpense ? biggestExpense.category + " · " + (biggestExpense.note || "без комментария") : "добавь расходы"}</small>
+        </div>
+
+        <div class="advanced-tile">
+          <p>Отложено за месяц</p>
+          <strong>${rub(totalSavings)}</strong>
+          <small>${totalIncome > 0 ? savingsRate + "% от доходов" : "доходы не внесены"}</small>
+        </div>
+
+        <div class="advanced-tile">
+          <p>Потенциал экономии</p>
+          <strong>${rub(economyPotential)}</strong>
+          <small>${topCategory ? "если урезать “" + topCategory.cat + "” на 25%" : "пока нет данных"}</small>
+        </div>
+      </div>
+
+      <div class="${conclusionClass}">
+        ${conclusion}
+      </div>
+    `;
   }
 
   function renderAnalytics() {
