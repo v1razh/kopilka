@@ -1993,6 +1993,7 @@
       transform: scale(1.03);
       visibility: hidden;
       pointer-events: none;
+      display: none;
     }
 
     .splash-content {
@@ -2062,6 +2063,25 @@
     @keyframes splashLoad {
       0% { transform: translateX(-105%); }
       100% { transform: translateX(260%); }
+    }
+
+
+    /* Жёсткая защита от бесконечной загрузки */
+    .splash-screen {
+      animation: splashAutoHide 1.6s ease forwards;
+    }
+
+    @keyframes splashAutoHide {
+      0%, 65% {
+        opacity: 1;
+        visibility: visible;
+        pointer-events: auto;
+      }
+      100% {
+        opacity: 0;
+        visibility: hidden;
+        pointer-events: none;
+      }
     }
 
     @media (max-width: 390px) {
@@ -2161,6 +2181,25 @@
     @keyframes splashLoad {
       0% { transform: translateX(-105%); }
       100% { transform: translateX(260%); }
+    }
+
+
+    /* Жёсткая защита от бесконечной загрузки */
+    .splash-screen {
+      animation: splashAutoHide 1.6s ease forwards;
+    }
+
+    @keyframes splashAutoHide {
+      0%, 65% {
+        opacity: 1;
+        visibility: visible;
+        pointer-events: auto;
+      }
+      100% {
+        opacity: 0;
+        visibility: hidden;
+        pointer-events: none;
+      }
     }
 
     @media (max-width: 390px) {
@@ -2380,6 +2419,25 @@
       100% { transform: translateX(260%); }
     }
 
+
+    /* Жёсткая защита от бесконечной загрузки */
+    .splash-screen {
+      animation: splashAutoHide 1.6s ease forwards;
+    }
+
+    @keyframes splashAutoHide {
+      0%, 65% {
+        opacity: 1;
+        visibility: visible;
+        pointer-events: auto;
+      }
+      100% {
+        opacity: 0;
+        visibility: hidden;
+        pointer-events: none;
+      }
+    }
+
     @media (max-width: 390px) {
       .pc-stage-actions {
         grid-template-columns: 1fr;
@@ -2477,6 +2535,25 @@
     @keyframes splashLoad {
       0% { transform: translateX(-105%); }
       100% { transform: translateX(260%); }
+    }
+
+
+    /* Жёсткая защита от бесконечной загрузки */
+    .splash-screen {
+      animation: splashAutoHide 1.6s ease forwards;
+    }
+
+    @keyframes splashAutoHide {
+      0%, 65% {
+        opacity: 1;
+        visibility: visible;
+        pointer-events: auto;
+      }
+      100% {
+        opacity: 0;
+        visibility: hidden;
+        pointer-events: none;
+      }
     }
 
     @media (max-width: 390px) {
@@ -2830,6 +2907,25 @@
       100% { transform: translateX(260%); }
     }
 
+
+    /* Жёсткая защита от бесконечной загрузки */
+    .splash-screen {
+      animation: splashAutoHide 1.6s ease forwards;
+    }
+
+    @keyframes splashAutoHide {
+      0%, 65% {
+        opacity: 1;
+        visibility: visible;
+        pointer-events: auto;
+      }
+      100% {
+        opacity: 0;
+        visibility: hidden;
+        pointer-events: none;
+      }
+    }
+
     @media (max-width: 390px) {
       .pc-stage-actions {
         grid-template-columns: 1fr;
@@ -2927,6 +3023,25 @@
     @keyframes splashLoad {
       0% { transform: translateX(-105%); }
       100% { transform: translateX(260%); }
+    }
+
+
+    /* Жёсткая защита от бесконечной загрузки */
+    .splash-screen {
+      animation: splashAutoHide 1.6s ease forwards;
+    }
+
+    @keyframes splashAutoHide {
+      0%, 65% {
+        opacity: 1;
+        visibility: visible;
+        pointer-events: auto;
+      }
+      100% {
+        opacity: 0;
+        visibility: hidden;
+        pointer-events: none;
+      }
     }
 
     @media (max-width: 390px) {
@@ -3146,6 +3261,25 @@
       100% { transform: translateX(260%); }
     }
 
+
+    /* Жёсткая защита от бесконечной загрузки */
+    .splash-screen {
+      animation: splashAutoHide 1.6s ease forwards;
+    }
+
+    @keyframes splashAutoHide {
+      0%, 65% {
+        opacity: 1;
+        visibility: visible;
+        pointer-events: auto;
+      }
+      100% {
+        opacity: 0;
+        visibility: hidden;
+        pointer-events: none;
+      }
+    }
+
     @media (max-width: 390px) {
       .pc-stage-actions {
         grid-template-columns: 1fr;
@@ -3243,6 +3377,25 @@
     @keyframes splashLoad {
       0% { transform: translateX(-105%); }
       100% { transform: translateX(260%); }
+    }
+
+
+    /* Жёсткая защита от бесконечной загрузки */
+    .splash-screen {
+      animation: splashAutoHide 1.6s ease forwards;
+    }
+
+    @keyframes splashAutoHide {
+      0%, 65% {
+        opacity: 1;
+        visibility: visible;
+        pointer-events: auto;
+      }
+      100% {
+        opacity: 0;
+        visibility: hidden;
+        pointer-events: none;
+      }
     }
 
     @media (max-width: 390px) {
@@ -3774,6 +3927,25 @@
       100% { transform: translateX(260%); }
     }
 
+
+    /* Жёсткая защита от бесконечной загрузки */
+    .splash-screen {
+      animation: splashAutoHide 1.6s ease forwards;
+    }
+
+    @keyframes splashAutoHide {
+      0%, 65% {
+        opacity: 1;
+        visibility: visible;
+        pointer-events: auto;
+      }
+      100% {
+        opacity: 0;
+        visibility: hidden;
+        pointer-events: none;
+      }
+    }
+
     @media (max-width: 390px) {
       .pc-stage-actions {
         grid-template-columns: 1fr;
@@ -3871,6 +4043,25 @@
     @keyframes splashLoad {
       0% { transform: translateX(-105%); }
       100% { transform: translateX(260%); }
+    }
+
+
+    /* Жёсткая защита от бесконечной загрузки */
+    .splash-screen {
+      animation: splashAutoHide 1.6s ease forwards;
+    }
+
+    @keyframes splashAutoHide {
+      0%, 65% {
+        opacity: 1;
+        visibility: visible;
+        pointer-events: auto;
+      }
+      100% {
+        opacity: 0;
+        visibility: hidden;
+        pointer-events: none;
+      }
     }
 
     @media (max-width: 390px) {
@@ -4090,6 +4281,25 @@
       100% { transform: translateX(260%); }
     }
 
+
+    /* Жёсткая защита от бесконечной загрузки */
+    .splash-screen {
+      animation: splashAutoHide 1.6s ease forwards;
+    }
+
+    @keyframes splashAutoHide {
+      0%, 65% {
+        opacity: 1;
+        visibility: visible;
+        pointer-events: auto;
+      }
+      100% {
+        opacity: 0;
+        visibility: hidden;
+        pointer-events: none;
+      }
+    }
+
     @media (max-width: 390px) {
       .pc-stage-actions {
         grid-template-columns: 1fr;
@@ -4187,6 +4397,25 @@
     @keyframes splashLoad {
       0% { transform: translateX(-105%); }
       100% { transform: translateX(260%); }
+    }
+
+
+    /* Жёсткая защита от бесконечной загрузки */
+    .splash-screen {
+      animation: splashAutoHide 1.6s ease forwards;
+    }
+
+    @keyframes splashAutoHide {
+      0%, 65% {
+        opacity: 1;
+        visibility: visible;
+        pointer-events: auto;
+      }
+      100% {
+        opacity: 0;
+        visibility: hidden;
+        pointer-events: none;
+      }
     }
 
     @media (max-width: 390px) {
@@ -4540,6 +4769,25 @@
       100% { transform: translateX(260%); }
     }
 
+
+    /* Жёсткая защита от бесконечной загрузки */
+    .splash-screen {
+      animation: splashAutoHide 1.6s ease forwards;
+    }
+
+    @keyframes splashAutoHide {
+      0%, 65% {
+        opacity: 1;
+        visibility: visible;
+        pointer-events: auto;
+      }
+      100% {
+        opacity: 0;
+        visibility: hidden;
+        pointer-events: none;
+      }
+    }
+
     @media (max-width: 390px) {
       .pc-stage-actions {
         grid-template-columns: 1fr;
@@ -4637,6 +4885,25 @@
     @keyframes splashLoad {
       0% { transform: translateX(-105%); }
       100% { transform: translateX(260%); }
+    }
+
+
+    /* Жёсткая защита от бесконечной загрузки */
+    .splash-screen {
+      animation: splashAutoHide 1.6s ease forwards;
+    }
+
+    @keyframes splashAutoHide {
+      0%, 65% {
+        opacity: 1;
+        visibility: visible;
+        pointer-events: auto;
+      }
+      100% {
+        opacity: 0;
+        visibility: hidden;
+        pointer-events: none;
+      }
     }
 
     @media (max-width: 390px) {
@@ -4856,6 +5123,25 @@
       100% { transform: translateX(260%); }
     }
 
+
+    /* Жёсткая защита от бесконечной загрузки */
+    .splash-screen {
+      animation: splashAutoHide 1.6s ease forwards;
+    }
+
+    @keyframes splashAutoHide {
+      0%, 65% {
+        opacity: 1;
+        visibility: visible;
+        pointer-events: auto;
+      }
+      100% {
+        opacity: 0;
+        visibility: hidden;
+        pointer-events: none;
+      }
+    }
+
     @media (max-width: 390px) {
       .pc-stage-actions {
         grid-template-columns: 1fr;
@@ -4955,6 +5241,25 @@
       100% { transform: translateX(260%); }
     }
 
+
+    /* Жёсткая защита от бесконечной загрузки */
+    .splash-screen {
+      animation: splashAutoHide 1.6s ease forwards;
+    }
+
+    @keyframes splashAutoHide {
+      0%, 65% {
+        opacity: 1;
+        visibility: visible;
+        pointer-events: auto;
+      }
+      100% {
+        opacity: 0;
+        visibility: hidden;
+        pointer-events: none;
+      }
+    }
+
     @media (max-width: 390px) {
       body { padding-left: 14px; padding-right: 14px; }
       h1 { font-size: 25px; }
@@ -4975,6 +5280,16 @@
       <div class="splash-loader"><div></div></div>
     </div>
   </div>
+
+  <script>
+    setTimeout(function () {
+      var splash = document.getElementById("splashScreen");
+      if (splash) {
+        splash.classList.add("hide");
+        splash.style.display = "none";
+      }
+    }, 1700);
+  </script>
 
   <main class="app">
     <section class="hero">
