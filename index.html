@@ -38,7 +38,7 @@
       color: var(--text);
       min-height: 100vh;
       padding:
-        calc(var(--safe-top) + 26px)
+        calc(var(--safe-top) + 18px)
         18px
         calc(var(--safe-bottom) + 150px);
       background:
@@ -12346,6 +12346,427 @@
       white-space: nowrap;
     }
 
+
+    /* ===== Goal-first dark premium home redesign ===== */
+    .home-redesign {
+      animation: smoothScreenIn .48s cubic-bezier(.16, 1, .3, 1);
+    }
+
+    .home-redesign-head {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: 18px;
+      margin: 6px 0 18px;
+    }
+
+    .home-redesign-head h2 {
+      margin: 0;
+      font-size: 34px;
+      line-height: 1.08;
+      letter-spacing: -.8px;
+    }
+
+    .home-redesign-head p {
+      margin: 8px 0 0;
+      color: rgba(245,247,251,.58);
+      font-size: 15px;
+      font-weight: 700;
+    }
+
+    .home-redesign-badge {
+      width: 64px;
+      height: 64px;
+      border-radius: 24px;
+      display: grid;
+      place-items: center;
+      font-size: 31px;
+      background: linear-gradient(180deg, rgba(255,255,255,.10), rgba(255,255,255,.035));
+      border: 1px solid rgba(255,255,255,.13);
+      box-shadow: inset 0 1px 0 rgba(255,255,255,.12), 0 18px 36px rgba(0,0,0,.28);
+      flex: 0 0 auto;
+    }
+
+    .goal-hero-card {
+      position: relative;
+      overflow: hidden;
+      padding: 24px;
+      margin-bottom: 16px;
+      border-radius: 34px;
+      background:
+        radial-gradient(circle at 92% 12%, rgba(124,58,237,.34), transparent 32%),
+        radial-gradient(circle at 8% 0%, rgba(91,140,255,.20), transparent 30%),
+        linear-gradient(135deg, rgba(25,16,55,.88), rgba(10,23,43,.86) 54%, rgba(12,26,48,.92));
+      border: 1px solid rgba(139,92,246,.38);
+      box-shadow:
+        0 26px 70px rgba(0,0,0,.38),
+        0 0 36px rgba(124,58,237,.16),
+        inset 0 1px 0 rgba(255,255,255,.12);
+    }
+
+    .goal-hero-card::before {
+      content: "";
+      position: absolute;
+      right: -84px;
+      top: -84px;
+      width: 230px;
+      height: 230px;
+      border-radius: 999px;
+      background: rgba(255,255,255,.055);
+      pointer-events: none;
+    }
+
+    .goal-hero-row {
+      position: relative;
+      z-index: 1;
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: 18px;
+    }
+
+    .goal-kicker {
+      color: rgba(216,180,254,.78);
+      font-size: 13px;
+      font-weight: 950;
+      letter-spacing: 1px;
+      margin-bottom: 12px;
+    }
+
+    .goal-hero-title {
+      margin: 0;
+      font-size: 26px;
+      line-height: 1.12;
+      letter-spacing: -.5px;
+      color: #fff;
+    }
+
+    .goal-jar {
+      width: 104px;
+      height: 104px;
+      flex: 0 0 auto;
+      border-radius: 28px;
+      display: grid;
+      place-items: center;
+      background:
+        radial-gradient(circle at 50% 20%, rgba(255,255,255,.18), transparent 40%),
+        linear-gradient(180deg, rgba(255,255,255,.11), rgba(255,255,255,.04));
+      border: 1px solid rgba(255,255,255,.12);
+      box-shadow: inset 0 1px 0 rgba(255,255,255,.16), 0 18px 34px rgba(0,0,0,.28);
+    }
+
+    .goal-jar-glass {
+      font-size: 54px;
+      filter: drop-shadow(0 10px 18px rgba(255,194,64,.22));
+    }
+
+    .goal-hero-money {
+      position: relative;
+      z-index: 1;
+      margin-top: 22px;
+      font-size: 54px;
+      line-height: .95;
+      font-weight: 1000;
+      letter-spacing: -2.4px;
+      color: white;
+      text-shadow: 0 14px 34px rgba(0,0,0,.25);
+    }
+
+    .goal-hero-sub {
+      position: relative;
+      z-index: 1;
+      margin-top: 10px;
+      color: rgba(245,247,251,.62);
+      font-size: 17px;
+      font-weight: 750;
+    }
+
+    .goal-hero-progress {
+      position: relative;
+      z-index: 1;
+      height: 15px;
+      margin-top: 22px;
+      border-radius: 999px;
+      overflow: hidden;
+      background: rgba(255,255,255,.085);
+    }
+
+    .goal-hero-fill {
+      height: 100%;
+      width: 0%;
+      border-radius: 999px;
+      background: linear-gradient(90deg, #8b5cf6, #7c3aed, #5b8cff);
+      box-shadow: 0 0 24px rgba(139,92,246,.38);
+      transition: width .55s cubic-bezier(.16,1,.3,1);
+    }
+
+    .goal-hero-bottom {
+      position: relative;
+      z-index: 1;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 12px;
+      margin-top: 12px;
+    }
+
+    .goal-hero-bottom strong {
+      color: #9f67ff;
+      font-size: 25px;
+      font-weight: 1000;
+    }
+
+    .goal-hero-bottom span {
+      color: rgba(245,247,251,.62);
+      font-weight: 850;
+      text-align: right;
+    }
+
+    .goal-hero-advice {
+      position: relative;
+      z-index: 1;
+      margin-top: 18px;
+      padding: 15px;
+      border-radius: 20px;
+      background: rgba(255,255,255,.055);
+      border: 1px solid rgba(255,255,255,.09);
+      color: rgba(245,247,251,.88);
+      line-height: 1.4;
+      font-weight: 700;
+    }
+
+    .today-dark-card {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 16px;
+      align-items: center;
+      margin-bottom: 16px;
+      padding: 21px;
+      border-radius: 30px;
+      background:
+        radial-gradient(circle at 100% 0%, rgba(91,140,255,.16), transparent 34%),
+        linear-gradient(180deg, rgba(255,255,255,.07), rgba(255,255,255,.023)),
+        rgba(16,27,45,.42);
+      border: 1px solid rgba(255,255,255,.12);
+      box-shadow: 0 18px 44px rgba(0,0,0,.25), inset 0 1px 0 rgba(255,255,255,.09);
+    }
+
+    .today-dark-main p {
+      margin: 0;
+      color: rgba(245,247,251,.70);
+      font-size: 14px;
+      font-weight: 800;
+    }
+
+    .info-dot {
+      display: inline-grid;
+      place-items: center;
+      width: 18px;
+      height: 18px;
+      margin-left: 4px;
+      border-radius: 50%;
+      border: 1px solid rgba(255,255,255,.24);
+      color: rgba(245,247,251,.72);
+      font-size: 11px;
+    }
+
+    .today-dark-main strong {
+      display: block;
+      margin-top: 10px;
+      color: white;
+      font-size: 45px;
+      line-height: 1;
+      letter-spacing: -1.6px;
+    }
+
+    .today-dark-main small {
+      display: block;
+      margin-top: 9px;
+      color: rgba(245,247,251,.54);
+      font-size: 13px;
+      line-height: 1.35;
+    }
+
+    .today-free-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 10px;
+      margin-top: 15px;
+      padding-top: 14px;
+      border-top: 1px solid rgba(255,255,255,.08);
+    }
+
+    .today-free-row span {
+      color: rgba(245,247,251,.76);
+      font-size: 13px;
+      line-height: 1.25;
+    }
+
+    .today-free-row span::first-letter {
+      color: #4ade80;
+    }
+
+    .today-free-row b {
+      color: #4ade80;
+      font-size: 18px;
+      white-space: nowrap;
+    }
+
+    .today-dark-ring {
+      --ring: 0;
+      width: 106px;
+      height: 106px;
+      border-radius: 50%;
+      display: grid;
+      place-items: center;
+      background:
+        radial-gradient(circle at center, rgba(13,19,36,1) 55%, transparent 56%),
+        conic-gradient(#4ade80 calc(var(--ring) * 1%), rgba(255,255,255,.08) 0);
+      box-shadow: inset 0 1px 0 rgba(255,255,255,.08), 0 14px 28px rgba(0,0,0,.24);
+    }
+
+    .today-dark-ring div {
+      text-align: center;
+    }
+
+    .today-dark-ring b {
+      display: block;
+      color: #4ade80;
+      font-size: 21px;
+      line-height: 1;
+    }
+
+    .today-dark-ring span {
+      display: block;
+      margin-top: 4px;
+      color: rgba(245,247,251,.58);
+      font-size: 11px;
+      font-weight: 800;
+    }
+
+    .dashboard-cards-redesign {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 11px;
+      margin-bottom: 16px;
+    }
+
+    .dash-red-card {
+      min-width: 0;
+      padding: 15px;
+      border-radius: 24px;
+      background:
+        linear-gradient(180deg, rgba(255,255,255,.075), rgba(255,255,255,.024)),
+        rgba(16,27,45,.38);
+      border: 1px solid rgba(255,255,255,.115);
+      box-shadow: 0 14px 34px rgba(0,0,0,.20), inset 0 1px 0 rgba(255,255,255,.08);
+    }
+
+    .dash-red-icon {
+      width: 42px;
+      height: 42px;
+      border-radius: 16px;
+      display: grid;
+      place-items: center;
+      margin-bottom: 13px;
+      font-size: 20px;
+      font-weight: 900;
+    }
+
+    .dash-red-icon.green { background: rgba(74,222,128,.20); color: #86efac; }
+    .dash-red-icon.orange { background: rgba(251,146,60,.19); color: #fdba74; }
+    .dash-red-icon.blue { background: rgba(96,165,250,.20); color: #93c5fd; }
+
+    .dash-red-card p {
+      margin: 0;
+      color: rgba(245,247,251,.70);
+      font-size: 13px;
+      line-height: 1.25;
+    }
+
+    .dash-red-card strong {
+      display: block;
+      margin-top: 8px;
+      color: white;
+      font-size: 19px;
+      line-height: 1.05;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .dash-red-card small {
+      display: block;
+      margin-top: 6px;
+      color: rgba(245,247,251,.50);
+      font-size: 11px;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .dash-red-line {
+      height: 7px;
+      margin-top: 12px;
+      border-radius: 999px;
+      overflow: hidden;
+      background: rgba(255,255,255,.08);
+    }
+
+    .dash-red-line i {
+      display: block;
+      width: 28%;
+      height: 100%;
+      border-radius: 999px;
+      background: #4ade80;
+    }
+
+    .dash-red-line.orange i { background: #fb923c; width: 19%; }
+    .dash-red-line.blue i { background: #5b8cff; }
+
+    .main-advice-redesign {
+      display: grid;
+      grid-template-columns: auto 1fr;
+      gap: 14px;
+      align-items: center;
+      border-radius: 28px !important;
+      padding: 18px !important;
+      background:
+        radial-gradient(circle at 8% 50%, rgba(74,222,128,.18), transparent 30%),
+        linear-gradient(135deg, rgba(74,222,128,.10), rgba(91,140,255,.08)),
+        rgba(16,27,45,.38) !important;
+    }
+
+    .advice-red-icon {
+      width: 56px;
+      height: 56px;
+      border-radius: 22px;
+      display: grid;
+      place-items: center;
+      background: rgba(74,222,128,.16);
+      font-size: 28px;
+    }
+
+    .quick-actions-redesign {
+      margin-top: 2px;
+    }
+
+    .recent-redesign {
+      border-radius: 28px !important;
+    }
+
+    @media (max-width: 390px) {
+      .goal-hero-money { font-size: 46px; }
+      .goal-jar { width: 82px; height: 82px; }
+      .goal-jar-glass { font-size: 42px; }
+      .today-dark-card { grid-template-columns: 1fr; }
+      .today-dark-ring { justify-self: end; margin-top: -8px; }
+      .dashboard-cards-redesign { gap: 8px; }
+      .dash-red-card { padding: 12px; }
+      .dash-red-card strong { font-size: 16px; }
+    }
+
 </style>
 </head>
 <body>
@@ -12353,106 +12774,108 @@
   </div>
 
   <main class="app">
-    <section class="hero">
-      <div class="top">
+<section id="add" class="tab-content home-redesign">
+      <div class="home-redesign-head">
         <div>
-          <p class="label">Финансовая цель</p>
-          <h1 id="goalHeader">ПК мечты</h1>
+          <h2>Привет,<br>Александр 👋</h2>
+          <p id="dashboardStatus">Твой финансовый статус</p>
         </div>
-        <div class="badge">💻</div>
+        <div class="home-redesign-badge">⚡</div>
       </div>
 
-      <div class="big" id="savedTotal">0 ₽</div>
-      <div class="row">
-        <span class="label">Прогресс</span>
-        <strong id="progressText">0%</strong>
-      </div>
-      <div class="bar"><div class="fill" id="progressFill"></div></div>
-    </section>
-
-    <section class="grid">
-      <div class="mini">
-        <p>Осталось</p>
-        <strong id="leftAmount">0 ₽</strong>
-      </div>
-      <div class="mini">
-        <p>Траты/мес</p>
-        <strong id="monthExpenses">0 ₽</strong>
-      </div>
-      <div class="mini">
-        <p>Нужно/мес</p>
-        <strong id="needMonthly">0 ₽</strong>
-      </div>
-    </section>
-
-        <section id="add" class="tab-content">
-      <div class="card">
-        <div class="dashboard-hello">
+      <div class="goal-hero-card">
+        <div class="goal-hero-row">
           <div>
-            <h2>Привет, Александр 👋</h2>
-            <p id="dashboardStatus">Сегодняшний финансовый статус</p>
+            <div class="goal-kicker">🎯 ТВОЯ ЦЕЛЬ</div>
+            <h1 class="goal-hero-title" id="goalNameHero">Копилка</h1>
           </div>
-          <div class="badge">⚡</div>
+          <div class="goal-jar" aria-hidden="true">
+            <div class="goal-jar-glass">🪙</div>
+          </div>
         </div>
 
-        <div class="today-card">
-          <p>Можно потратить сегодня</p>
+        <div class="goal-hero-money" id="goalSavedHero">0 ₽</div>
+        <div class="goal-hero-sub">из <span id="goalTotalHero">0 ₽</span></div>
+
+        <div class="goal-hero-progress">
+          <div class="goal-hero-fill" id="goalProgressFill"></div>
+        </div>
+
+        <div class="goal-hero-bottom">
+          <strong id="goalPercentHero">0%</strong>
+          <span id="goalLeftHero">Осталось 0 ₽</span>
+        </div>
+
+        <div class="goal-hero-advice" id="goalHeroAdvice">
+          ✨ Ты на правильном пути! Держи фокус, и цель станет ближе.
+        </div>
+      </div>
+
+      <div class="today-dark-card">
+        <div class="today-dark-main">
+          <p>Можно потратить сегодня <span class="info-dot">i</span></p>
           <strong id="todayLimitMain">0 ₽</strong>
           <small id="todayLimitSub">Расчёт появится после заполнения плана до зарплаты.</small>
 
-          <div class="free-money-line">
-            <span>Свободно после обязательных трат</span>
+          <div class="today-free-row">
+            <span>● Свободно после обязательных трат</span>
             <b id="freeAfterRequiredMain">0 ₽</b>
           </div>
         </div>
 
-        <div class="quick-actions">
-          <button class="quick-action" id="quickExpense"><span>💸</span>Расход</button>
-          <button class="quick-action" id="quickIncome"><span>💰</span>Доход</button>
-          <button class="quick-action" id="quickSaving"><span>🏦</span>В накопления</button>
-        </div>
-
-        <div class="dashboard-money-group">
-          <div class="dashboard-period-switch">
-            <button type="button" class="dashboard-period-btn" data-dashboard-period="week">Неделя</button>
-            <button type="button" class="dashboard-period-btn active" data-dashboard-period="month">Месяц</button>
-            <button type="button" class="dashboard-period-btn" data-dashboard-period="all">Всё время</button>
-          </div>
-
-          <div class="dashboard-summary dashboard-summary-money">
-            <div class="dashboard-summary-item">
-              <p>Потрачено</p>
-              <strong id="dashMonthExpenses">0 ₽</strong>
-              <span class="dashboard-summary-caption" id="dashExpensesCaption">за месяц</span>
-            </div>
-
-            <div class="dashboard-summary-item">
-              <p>Отложено</p>
-              <strong id="dashMonthSavings">0 ₽</strong>
-              <span class="dashboard-summary-caption" id="dashSavingsCaption">за месяц</span>
-            </div>
-          </div>
-        </div>
-
-        <div class="dashboard-streak-card">
+        <div class="today-dark-ring" id="todayDarkRing" style="--ring:0;">
           <div>
-            <p>Дней подряд без лишних трат</p>
-            <strong id="dashNoSpendDays">0 дн.</strong>
-            <span class="dashboard-summary-caption">личный streak 🔥</span>
+            <b id="todayPercent">0%</b>
+            <span>от плана</span>
           </div>
-          <div class="dashboard-streak-icon">🔥</div>
-        </div>
-
-        <div class="main-advice">
-          <h3 id="mainAdviceTitle">Совет дня</h3>
-          <p id="mainAdviceText">Добавь расходы и план до зарплаты — тогда совет станет точнее.</p>
         </div>
       </div>
 
-      <div class="card">
-        <h2>Последние операции</h2>
-        <div id="txList"></div>
-        <p class="hint">Чтобы добавить расход, доход или перевод в накопления — нажми большую кнопку “+”.</p>
+      <div class="dashboard-cards-redesign">
+        <div class="dash-red-card">
+          <div class="dash-red-icon green">↙</div>
+          <p>Потрачено</p>
+          <strong id="dashMonthExpenses">0 ₽</strong>
+          <small id="dashExpensesCaption">за месяц</small>
+          <div class="dash-red-line"><i id="dashExpenseLine"></i></div>
+        </div>
+
+        <div class="dash-red-card">
+          <div class="dash-red-icon orange">🐷</div>
+          <p>Отложено</p>
+          <strong id="dashMonthSavings">0 ₽</strong>
+          <small id="dashSavingsCaption">за месяц</small>
+          <div class="dash-red-line orange"><i id="dashSavingLine"></i></div>
+        </div>
+
+        <div class="dash-red-card">
+          <div class="dash-red-icon blue">🛡</div>
+          <p>Без лишних трат</p>
+          <strong id="dashNoSpendDays">0 дн.</strong>
+          <small>подряд</small>
+          <div class="dash-red-line blue"><i style="width:40%"></i></div>
+        </div>
+      </div>
+
+      <div class="main-advice main-advice-redesign">
+        <div class="advice-red-icon">💡</div>
+        <div>
+          <h3 id="mainAdviceTitle">Совет дня</h3>
+          <p id="mainAdviceText">Добавь данные — приложение подскажет, как лучше двигаться к цели.</p>
+        </div>
+      </div>
+
+      <div class="quick-actions quick-actions-redesign">
+        <button class="quick-action" id="quickExpense"><span>💸</span>Расход</button>
+        <button class="quick-action" id="quickIncome"><span>💰</span>Доход</button>
+        <button class="quick-action" id="quickSaving"><span>🏦</span>В накопления</button>
+      </div>
+
+      <div class="card recent-redesign">
+        <div class="row">
+          <h2 style="margin:0">Последние операции</h2>
+        </div>
+        <div id="recentTransactions" class="empty">Чтобы добавить расход, доход или перевод в накопления — нажми большую кнопку “+”.</div>
       </div>
     </section>
 
@@ -13215,6 +13638,23 @@ function render() {
     const s = calc();
     const salary = calcSalaryPlan();
     const period = data.dashboardPeriod || "month";
+
+    const totalSavedHero = Number(s.totalSaved || 0);
+    const goalHero = Math.max(1, Number(data.goal || 0));
+    const progressHero = Math.max(0, Math.min(100, Math.round((totalSavedHero / goalHero) * 100)));
+
+    setText("goalNameHero", data.goalName || "Копилка");
+    setText("goalSavedHero", rub(totalSavedHero));
+    setText("goalTotalHero", rub(goalHero));
+    setText("goalPercentHero", `${progressHero}%`);
+    setText("goalLeftHero", `Осталось ${rub(Math.max(0, goalHero - totalSavedHero))}`);
+    const goalFill = document.getElementById("goalProgressFill");
+    if (goalFill) goalFill.style.width = `${progressHero}%`;
+
+    setText("todayPercent", `${progressHero}%`);
+    const todayRing = document.getElementById("todayDarkRing");
+    if (todayRing) todayRing.style.setProperty("--ring", progressHero);
+
 
     const periodExpenses = (data.transactions || [])
       .filter(x => x.type === "expense" && isTransactionInDashboardPeriod(x, period))
@@ -14758,6 +15198,30 @@ function renderAnalytics() {
   setTimeout(addHapticFeedback, 0);
 
   document.addEventListener("DOMContentLoaded", initAnalysisPeriodSwitch);
+
+  function updateGoalFirstHomeFallback() {
+    try {
+      const saved = Number((typeof calc === "function" ? calc().totalSaved : 0) || 0);
+      const goal = Math.max(1, Number(data.goal || 0));
+      const percent = Math.max(0, Math.min(100, Math.round(saved / goal * 100)));
+      const set = (id, value) => {
+        const el = document.getElementById(id);
+        if (el) el.textContent = value;
+      };
+      set("goalNameHero", data.goalName || "Копилка");
+      set("goalSavedHero", typeof rub === "function" ? rub(saved) : saved + " ₽");
+      set("goalTotalHero", typeof rub === "function" ? rub(goal) : goal + " ₽");
+      set("goalPercentHero", percent + "%");
+      set("goalLeftHero", "Осталось " + (typeof rub === "function" ? rub(Math.max(0, goal - saved)) : Math.max(0, goal - saved) + " ₽"));
+      const fill = document.getElementById("goalProgressFill");
+      if (fill) fill.style.width = percent + "%";
+      const ring = document.getElementById("todayDarkRing");
+      if (ring) ring.style.setProperty("--ring", percent);
+      set("todayPercent", percent + "%");
+    } catch (e) {}
+  }
+  document.addEventListener("DOMContentLoaded", () => setTimeout(updateGoalFirstHomeFallback, 150));
+
 </script>
 </body>
 </html>
