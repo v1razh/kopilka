@@ -12249,6 +12249,59 @@
       letter-spacing: -.1px;
     }
 
+
+    /* Clickable analysis period switch */
+    .analysis-period-switch {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      padding: 5px;
+      border-radius: 999px;
+      background: rgba(255,255,255,.05);
+      border: 1px solid rgba(255,255,255,.08);
+      box-shadow:
+        inset 0 1px 0 rgba(255,255,255,.06),
+        0 10px 24px rgba(0,0,0,.14);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      flex: 0 0 auto;
+    }
+
+    .analysis-period-btn {
+      appearance: none;
+      -webkit-appearance: none;
+      border: 0;
+      background: transparent;
+      color: rgba(245,247,251,.62);
+      font-size: 12px;
+      font-weight: 900;
+      padding: 10px 13px;
+      border-radius: 999px;
+      transition: background .22s ease, color .22s ease, transform .16s ease, box-shadow .22s ease;
+      white-space: nowrap;
+      line-height: 1;
+      min-height: 34px;
+    }
+
+    .analysis-period-btn.active {
+      color: white;
+      background: linear-gradient(135deg, rgba(91,140,255,.55), rgba(124,58,237,.55));
+      box-shadow:
+        inset 0 1px 0 rgba(255,255,255,.12),
+        0 8px 18px rgba(91,140,255,.20);
+    }
+
+    .analysis-period-btn:active {
+      transform: scale(.96);
+    }
+
+    @media (max-width: 390px) {
+      .analysis-period-btn {
+        padding: 9px 10px;
+        font-size: 11px;
+      }
+    }
+
 </style>
 </head>
 <body>
@@ -12406,7 +12459,11 @@
             <h2>Анализ</h2>
             <p>Наглядная сводка по расходам, накоплениям и финансовому темпу.</p>
           </div>
-          <div class="analysis-main-pill" id="analysisPeriodPill">Месяц</div>
+          <div class="analysis-period-switch" id="analysisPeriodSwitch">
+              <button type="button" class="analysis-period-btn" data-period="week">Неделя</button>
+              <button type="button" class="analysis-period-btn active" data-period="month">Месяц</button>
+              <button type="button" class="analysis-period-btn" data-period="all">Всё</button>
+            </div>
         </div>
 
         <div class="analysis-hero-insight">
@@ -12959,7 +13016,9 @@
     }
   }
 
-  function render() {
+    data.analysisPeriod = data.analysisPeriod || "month";
+
+function render() {
     if (!Array.isArray(data.transactions)) data.transactions = [];
     if (!Array.isArray(data.pcParts)) data.pcParts = [];
     if (!Array.isArray(data.recurringPayments)) data.recurringPayments = [];
@@ -13546,11 +13605,65 @@
   }
 
 
-  function renderAnalytics() {
-    const currentMonth = today().slice(0, 7);
-    const monthTx = data.transactions.filter(x => monthKey(x.date) === currentMonth);
-    const expenses = monthTx.filter(x => x.type === "expense");
-    const savings = monthTx.filter(x => x.type === "saving");
+  
+  function getAnalysisPeriodLabel() {
+    if (data.analysisPeriod === "week") return "за неделю";
+    if (data.analysisPeriod === "all") return "за всё время";
+    return "за месяц";
+  }
+
+  function getAnalysisPeriodTitle() {
+    if (data.analysisPeriod === "week") return "Неделя";
+    if (data.analysisPeriod === "all") return "Всё";
+    return "Месяц";
+  }
+
+  function isTransactionInAnalysisPeriod(tx) {
+    if (data.analysisPeriod === "all") return true;
+
+    const date = tx.date || today();
+    const txDate = new Date(date + "T00:00:00");
+    const now = new Date();
+
+    if (data.analysisPeriod === "week") {
+      const start = new Date(now.getFullYear(), now.getMonth(), now.getDate());
+      const day = start.getDay() || 7;
+      start.setDate(start.getDate() - day + 1);
+      return txDate >= start;
+    }
+
+    return monthKey(date) === today().slice(0, 7);
+  }
+
+  function initAnalysisPeriodSwitch() {
+    const switcher = document.getElementById("analysisPeriodSwitch");
+    if (!switcher) return;
+
+    switcher.querySelectorAll(".analysis-period-btn").forEach(btn => {
+      btn.classList.toggle("active", btn.dataset.period === (data.analysisPeriod || "month"));
+      if (btn.dataset.bound === "1") return;
+      btn.dataset.bound = "1";
+
+      btn.addEventListener("click", () => {
+        data.analysisPeriod = btn.dataset.period || "month";
+        save();
+
+        switcher.querySelectorAll(".analysis-period-btn").forEach(item => {
+          item.classList.toggle("active", item.dataset.period === data.analysisPeriod);
+        });
+
+        renderAnalytics();
+    initAnalysisPeriodSwitch();
+      });
+    });
+  }
+
+
+function renderAnalytics() {
+    const periodTx = data.transactions.filter(isTransactionInAnalysisPeriod);
+    const expenses = periodTx.filter(x => x.type === "expense");
+    const savings = periodTx.filter(x => x.type === "saving");
+    const periodLabel = getAnalysisPeriodLabel();
 
     const totalExpenses = expenses.reduce((sum, x) => sum + Number(x.amount || 0), 0);
     const totalSavings = savings.reduce((sum, x) => sum + Number(x.amount || 0), 0);
@@ -13588,6 +13701,8 @@
       if (el) el.textContent = value;
     };
 
+    setText("analysisCategoryHint", getAnalysisPeriodLabel());
+
     const setRing = (id, value) => {
       const el = document.getElementById(id);
       if (el) el.style.setProperty("--value", Math.max(0, Math.min(100, value || 0)));
@@ -13614,13 +13729,13 @@
     setText("analysisTopCategory", top ? top.cat : "—");
     setText("analysisTopCategoryIcon", top ? (categoryEmoji[top.cat] || "🏷️") : "🏷️");
     setText("analysisTopCategoryPercent", `${topPercent}%`);
-    setText("analysisTopCategorySub", top ? `${rub(top.value)} за месяц` : "нет расходов");
+    setText("analysisTopCategorySub", top ? `${rub(top.value)} ${periodLabel}` : "нет расходов");
     setText("analysisBiggestExpense", biggest ? rub(biggest.amount) : "—");
-    setText("analysisBiggestExpenseSub", biggest ? (biggest.category || "расход") : "за месяц");
+    setText("analysisBiggestExpenseSub", biggest ? (biggest.category || "расход") : periodLabel);
     setText("analysisMonthSavings", rub(totalSavings));
     setText("analysisLeftGoal", rub(s.left));
     setText("analysisExpensePercent", salary.dailyLimit > 0 ? `${expensePercent}%` : "мес");
-    setText("analysisExpenseSub", salary.dailyLimit > 0 ? "от безопасного лимита" : "за месяц");
+    setText("analysisExpenseSub", salary.dailyLimit > 0 ? "от безопасного лимита" : periodLabel);
     setText("analysisSavingPercent", `${savingPercent}%`);
     setText("analysisGoalPercent", `${savingPercent}%`);
     setText("analysisHealthScore", healthScore);
@@ -14520,6 +14635,8 @@
 
   render();
   setTimeout(addHapticFeedback, 0);
+
+  document.addEventListener("DOMContentLoaded", initAnalysisPeriodSwitch);
 </script>
 </body>
 </html>
