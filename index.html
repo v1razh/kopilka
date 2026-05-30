@@ -2596,152 +2596,6 @@
       color: white;
     }
 
-
-    .analysis-chart-card {
-      border-radius: 24px;
-      padding: 14px;
-      background:
-        radial-gradient(circle at 18% 0%, rgba(91,140,255,.18), transparent 34%),
-        linear-gradient(180deg, rgba(255,255,255,.065), rgba(255,255,255,.022)),
-        rgba(255,255,255,.035);
-      border: 1px solid rgba(255,255,255,.11);
-      box-shadow:
-        inset 0 1px 0 rgba(255,255,255,.08),
-        0 12px 30px rgba(0,0,0,.16);
-    }
-
-    .analysis-chart-top {
-      display: flex;
-      justify-content: space-between;
-      align-items: flex-start;
-      gap: 12px;
-      margin-bottom: 12px;
-    }
-
-    .analysis-chart-top p {
-      margin: 0;
-      color: var(--muted);
-      font-size: 12px;
-      line-height: 1.35;
-    }
-
-    .analysis-chart-top strong {
-      display: block;
-      margin-top: 5px;
-      color: white;
-      font-size: 20px;
-      letter-spacing: -.25px;
-      line-height: 1.1;
-    }
-
-    .analysis-chart-badge {
-      flex: 0 0 auto;
-      padding: 8px 11px;
-      border-radius: 999px;
-      background: rgba(91,140,255,.18);
-      border: 1px solid rgba(91,140,255,.25);
-      color: white;
-      font-size: 12px;
-      font-weight: 900;
-      white-space: nowrap;
-    }
-
-    .analysis-chart-svg-wrap {
-      height: 230px;
-      border-radius: 22px;
-      overflow: hidden;
-      background:
-        linear-gradient(to top, rgba(255,255,255,.065) 1px, transparent 1px),
-        rgba(255,255,255,.018);
-      background-size: 100% 33.333%;
-      border: 1px solid rgba(255,255,255,.08);
-    }
-
-    #analysisSavingsSvg {
-      width: 100%;
-      height: 100%;
-      display: block;
-    }
-
-    .analysis-chart-grid {
-      stroke: rgba(255,255,255,.10);
-      stroke-width: 1;
-    }
-
-    .analysis-chart-goal {
-      stroke: rgba(255,255,255,.34);
-      stroke-width: 1.4;
-      stroke-dasharray: 7 8;
-    }
-
-    .analysis-chart-area {
-      fill: url(#analysisChartArea);
-    }
-
-    .analysis-chart-line {
-      fill: none;
-      stroke: url(#analysisChartLine);
-      stroke-width: 5;
-      stroke-linecap: round;
-      stroke-linejoin: round;
-      filter: drop-shadow(0 8px 12px rgba(91,140,255,.30));
-    }
-
-    .analysis-chart-dot {
-      fill: #ffffff;
-      stroke: #5b8cff;
-      stroke-width: 4;
-    }
-
-    .analysis-chart-dot-now {
-      fill: #4ade80;
-      stroke: white;
-    }
-
-    .analysis-chart-label {
-      fill: rgba(255,255,255,.62);
-      font-size: 11px;
-      font-weight: 800;
-    }
-
-    .analysis-chart-value {
-      fill: rgba(255,255,255,.92);
-      font-size: 12px;
-      font-weight: 900;
-    }
-
-    .analysis-chart-bottom {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 10px;
-      margin-top: 12px;
-    }
-
-    .analysis-chart-bottom div {
-      border-radius: 17px;
-      padding: 12px;
-      background: rgba(255,255,255,.045);
-      border: 1px solid rgba(255,255,255,.09);
-      min-width: 0;
-    }
-
-    .analysis-chart-bottom p {
-      margin: 0;
-      color: var(--muted);
-      font-size: 12px;
-    }
-
-    .analysis-chart-bottom strong {
-      display: block;
-      margin-top: 5px;
-      color: white;
-      font-size: 16px;
-      white-space: nowrap;
-      overflow: hidden;
-      text-overflow: ellipsis;
-    }
-
-
     @media (max-width: 390px) {
       .analysis-mini-grid {
         grid-template-columns: 1fr;
@@ -11302,30 +11156,6 @@
           </div>
         </div>
 
-
-        <div class="analysis-divider"></div>
-
-        <div class="analysis-section-title">
-          <span>График накоплений</span>
-          <small id="analysisChartHint">прогноз</small>
-        </div>
-<div class="analysis-chart-svg-wrap">
-            <svg id="analysisSavingsSvg" viewBox="0 0 360 220" preserveAspectRatio="none" aria-label="График накоплений"></svg>
-          </div>
-
-          <div class="analysis-chart-bottom">
-            <div>
-              <p>Нужно в месяц</p>
-              <strong id="analysisChartNeedMonthly">0 ₽</strong>
-            </div>
-            <div>
-              <p>Примерный срок</p>
-              <strong id="analysisChartMonths">0 мес.</strong>
-            </div>
-          </div>
-        </div>
-
-
         <div class="analysis-divider"></div>
 
         <div class="analysis-section-title">
@@ -12180,10 +12010,6 @@
   }
 
 
-
-
-  
-  
   function renderAnalytics() {
     const currentMonth = today().slice(0, 7);
     const monthTx = data.transactions.filter(x => monthKey(x.date) === currentMonth);
@@ -12217,6 +12043,7 @@
     setText("analysisBiggestExpense", biggest ? rub(biggest.amount) : "—");
     setText("analysisMonthSavings", rub(totalSavings));
     setText("analysisLeftGoal", rub(s.left));
+
     const bars = document.getElementById("analysisCategoryBars");
     if (bars) {
       if (!byCategory.length) {
