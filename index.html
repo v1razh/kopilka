@@ -2596,6 +2596,257 @@
       color: white;
     }
 
+
+    .analysis-chart-card {
+      border-radius: 24px;
+      padding: 14px;
+      background:
+        radial-gradient(circle at 18% 0%, rgba(91,140,255,.18), transparent 34%),
+        linear-gradient(180deg, rgba(255,255,255,.065), rgba(255,255,255,.022)),
+        rgba(255,255,255,.035);
+      border: 1px solid rgba(255,255,255,.11);
+      box-shadow:
+        inset 0 1px 0 rgba(255,255,255,.08),
+        0 12px 30px rgba(0,0,0,.16);
+    }
+
+    .analysis-chart-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: 12px;
+      margin-bottom: 12px;
+    }
+
+    .analysis-chart-top p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 12px;
+      line-height: 1.35;
+    }
+
+    .analysis-chart-top strong {
+      display: block;
+      margin-top: 5px;
+      color: white;
+      font-size: 20px;
+      letter-spacing: -.25px;
+      line-height: 1.1;
+    }
+
+    .analysis-chart-badge {
+      flex: 0 0 auto;
+      padding: 8px 11px;
+      border-radius: 999px;
+      background: rgba(91,140,255,.18);
+      border: 1px solid rgba(91,140,255,.25);
+      color: white;
+      font-size: 12px;
+      font-weight: 900;
+      white-space: nowrap;
+    }
+
+    .analysis-chart-svg-wrap {
+      height: 230px;
+      border-radius: 22px;
+      overflow: hidden;
+      background:
+        linear-gradient(to top, rgba(255,255,255,.065) 1px, transparent 1px),
+        rgba(255,255,255,.018);
+      background-size: 100% 33.333%;
+      border: 1px solid rgba(255,255,255,.08);
+    }
+
+    #analysisSavingsSvg {
+      width: 100%;
+      height: 100%;
+      display: block;
+    }
+
+    .analysis-chart-grid {
+      stroke: rgba(255,255,255,.10);
+      stroke-width: 1;
+    }
+
+    .analysis-chart-goal {
+      stroke: rgba(255,255,255,.34);
+      stroke-width: 1.4;
+      stroke-dasharray: 7 8;
+    }
+
+    .analysis-chart-area {
+      fill: url(#analysisChartArea);
+    }
+
+    .analysis-chart-line {
+      fill: none;
+      stroke: url(#analysisChartLine);
+      stroke-width: 5;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+      filter: drop-shadow(0 8px 12px rgba(91,140,255,.30));
+    }
+
+    .analysis-chart-dot {
+      fill: #ffffff;
+      stroke: #5b8cff;
+      stroke-width: 4;
+    }
+
+    .analysis-chart-dot-now {
+      fill: #4ade80;
+      stroke: white;
+    }
+
+    .analysis-chart-label {
+      fill: rgba(255,255,255,.62);
+      font-size: 11px;
+      font-weight: 800;
+    }
+
+    .analysis-chart-value {
+      fill: rgba(255,255,255,.92);
+      font-size: 12px;
+      font-weight: 900;
+    }
+
+    .analysis-chart-bottom {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+      margin-top: 12px;
+    }
+
+    .analysis-chart-bottom div {
+      border-radius: 17px;
+      padding: 12px;
+      background: rgba(255,255,255,.045);
+      border: 1px solid rgba(255,255,255,.09);
+      min-width: 0;
+    }
+
+    .analysis-chart-bottom p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 12px;
+    }
+
+    .analysis-chart-bottom strong {
+      display: block;
+      margin-top: 5px;
+      color: white;
+      font-size: 16px;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+
+    /* Improved analysis savings chart visual */
+    .analysis-chart-svg-wrap {
+      height: 230px;
+      border-radius: 24px;
+      overflow: hidden;
+      background:
+        radial-gradient(circle at 22% 18%, rgba(91,140,255,.10), transparent 32%),
+        linear-gradient(to top, rgba(255,255,255,.055) 1px, transparent 1px),
+        rgba(255,255,255,.018);
+      background-size: auto, 100% 33.333%, auto;
+      border: 1px solid rgba(255,255,255,.085);
+    }
+
+    .analysis-chart-grid {
+      stroke: rgba(255,255,255,.075);
+      stroke-width: 1;
+    }
+
+    .analysis-chart-goal {
+      stroke: rgba(255,255,255,.30);
+      stroke-width: 1.25;
+      stroke-dasharray: 8 9;
+    }
+
+    .analysis-chart-area {
+      fill: url(#analysisChartArea);
+    }
+
+    .analysis-chart-line {
+      fill: none;
+      stroke: url(#analysisChartLine);
+      stroke-width: 4.25;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+      filter: drop-shadow(0 7px 13px rgba(91,140,255,.24));
+    }
+
+    .analysis-chart-line-glow {
+      fill: none;
+      stroke: rgba(91,140,255,.18);
+      stroke-width: 10;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+      filter: blur(2px);
+    }
+
+    .analysis-chart-dot {
+      fill: rgba(245,247,251,.98);
+      stroke: #5b8cff;
+      stroke-width: 3.2;
+      filter: drop-shadow(0 4px 8px rgba(91,140,255,.22));
+    }
+
+    .analysis-chart-dot-now {
+      fill: #4ade80;
+      stroke: white;
+      stroke-width: 3.4;
+    }
+
+    .analysis-chart-dot-future {
+      fill: rgba(245,247,251,.92);
+      stroke: rgba(91,140,255,.92);
+    }
+
+    .analysis-chart-label {
+      fill: rgba(255,255,255,.62);
+      font-size: 10.5px;
+      font-weight: 800;
+    }
+
+    .analysis-chart-value {
+      fill: rgba(255,255,255,.94);
+      font-size: 11.5px;
+      font-weight: 900;
+    }
+
+
+    .mini-period-switch {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 4px;
+      margin-top: 10px;
+      padding: 4px;
+      border-radius: 13px;
+      background: rgba(255,255,255,.045);
+      border: 1px solid rgba(255,255,255,.08);
+    }
+
+    .mini-period-btn {
+      border: 0;
+      min-height: 28px;
+      border-radius: 10px;
+      background: transparent;
+      color: var(--muted);
+      font-size: 10px;
+      font-weight: 900;
+      padding: 0 4px;
+    }
+
+    .mini-period-btn.active {
+      color: white;
+      background: linear-gradient(135deg, rgba(91,140,255,.34), rgba(124,58,237,.24));
+      box-shadow: inset 0 0 0 1px rgba(255,255,255,.08);
+    }
+
     @media (max-width: 390px) {
       .analysis-mini-grid {
         grid-template-columns: 1fr;
@@ -11045,10 +11296,20 @@
           <div class="dashboard-summary-item">
             <p>Потрачено</p>
             <strong id="dashMonthExpenses">0 ₽</strong>
+            <div class="mini-period-switch" data-mini-period-type="expense">
+              <button class="mini-period-btn" data-period="week">Нед</button>
+              <button class="mini-period-btn active" data-period="month">Мес</button>
+              <button class="mini-period-btn" data-period="all">Всё</button>
+            </div>
           </div>
           <div class="dashboard-summary-item">
             <p>Отложено</p>
             <strong id="dashMonthSavings">0 ₽</strong>
+            <div class="mini-period-switch" data-mini-period-type="saving">
+              <button class="mini-period-btn" data-period="week">Нед</button>
+              <button class="mini-period-btn active" data-period="month">Мес</button>
+              <button class="mini-period-btn" data-period="all">Всё</button>
+            </div>
           </div>
           <div class="dashboard-summary-item">
             <p>До ПК</p>
@@ -11155,6 +11416,40 @@
             <strong id="analysisLeftGoal">0 ₽</strong>
           </div>
         </div>
+
+
+        <div class="analysis-divider"></div>
+
+        <div class="analysis-section-title">
+          <span>График накоплений</span>
+          <small id="analysisChartHint">прогноз</small>
+        </div>
+
+        <div class="analysis-chart-card">
+          <div class="analysis-chart-top">
+            <div>
+              <p>Прогресс к цели</p>
+              <strong id="analysisChartMain">0 ₽ → 0 ₽</strong>
+            </div>
+            <div class="analysis-chart-badge" id="analysisChartPercent">0%</div>
+          </div>
+
+          <div class="analysis-chart-svg-wrap">
+            <svg id="analysisSavingsSvg" viewBox="0 0 360 220" preserveAspectRatio="none" aria-label="График накоплений"></svg>
+          </div>
+
+          <div class="analysis-chart-bottom">
+            <div>
+              <p>Нужно в месяц</p>
+              <strong id="analysisChartNeedMonthly">0 ₽</strong>
+            </div>
+            <div>
+              <p>Примерный срок</p>
+              <strong id="analysisChartMonths">0 мес.</strong>
+            </div>
+          </div>
+        </div>
+
 
         <div class="analysis-divider"></div>
 
@@ -11443,6 +11738,8 @@
     targetMonth: "2026-12",
     compactMode: false,
     showHistory: true,
+    expenseMiniPeriod: "month",
+    savingMiniPeriod: "month",
     salaryDay: 10,
     advanceDay: 25,
     currentCash: 0,
@@ -11695,6 +11992,36 @@
     }
   }
 
+
+
+  function getMiniPeriodRange(period) {
+    const now = new Date();
+    const todayStart = new Date(now.getFullYear(), now.getMonth(), now.getDate());
+
+    if (period === "week") {
+      const start = new Date(todayStart);
+      start.setDate(start.getDate() - 6);
+      return { start };
+    }
+
+    if (period === "all") return { start: null };
+
+    return { start: new Date(now.getFullYear(), now.getMonth(), 1) };
+  }
+
+  function txInMiniPeriod(tx, period) {
+    if (period === "all") return true;
+    const range = getMiniPeriodRange(period);
+    const txDate = new Date((tx.date || today()) + "T00:00:00");
+    return !range.start || txDate >= range.start;
+  }
+
+  function switchMiniPeriod(type, period) {
+    if (type === "expense") data.expenseMiniPeriod = period;
+    if (type === "saving") data.savingMiniPeriod = period;
+    save();
+    render();
+  }
 
   function renderDashboard() {
     const statusEl = document.getElementById("dashboardStatus");
@@ -12010,6 +12337,30 @@
   }
 
 
+
+
+  function getTargetMonthLabel() {
+    const value = data.targetMonth || "";
+    if (!value || !value.includes("-")) return "цель";
+    const [year, month] = value.split("-").map(Number);
+    if (!year || !month) return "цель";
+
+    const date = new Date(year, month - 1, 1);
+    return date.toLocaleDateString("ru-RU", { month: "short", year: "numeric" }).replace(".", "");
+  }
+
+  function makeAnalysisSmoothPath(points) {
+    if (!points.length) return "";
+    let d = `M ${points[0].x} ${points[0].y}`;
+    for (let i = 1; i < points.length; i++) {
+      const prev = points[i - 1];
+      const cur = points[i];
+      const midX = (prev.x + cur.x) / 2;
+      d += ` C ${midX} ${prev.y}, ${midX} ${cur.y}, ${cur.x} ${cur.y}`;
+    }
+    return d;
+  }
+
   function renderAnalytics() {
     const currentMonth = today().slice(0, 7);
     const monthTx = data.transactions.filter(x => monthKey(x.date) === currentMonth);
@@ -12043,6 +12394,86 @@
     setText("analysisBiggestExpense", biggest ? rub(biggest.amount) : "—");
     setText("analysisMonthSavings", rub(totalSavings));
     setText("analysisLeftGoal", rub(s.left));
+
+    const chartSvg = document.getElementById("analysisSavingsSvg");
+    if (chartSvg) {
+      const goal = Math.max(1, Number(data.goal) || 1);
+      const saved = Math.max(0, Number(s.totalSaved) || 0);
+      const monthly = Math.max(0, Number(s.needMonthly) || 0);
+      const months = Math.max(2, Math.min(8, Number(s.months) || 8));
+      const targetLabel = getTargetMonthLabel();
+
+      setText("analysisChartMain", `${shortRub(saved)} → ${shortRub(goal)}`);
+      setText("analysisChartPercent", `${(s.progress || 0).toFixed(1)}%`);
+      setText("analysisChartNeedMonthly", rub(s.needMonthly));
+      setText("analysisChartMonths", targetLabel);
+
+      const values = Array.from({ length: months }, (_, i) => {
+        const value = monthly > 0 ? saved + monthly * i : saved;
+        return Math.min(goal, Math.max(0, value));
+      });
+
+      const w = 360;
+      const h = 220;
+      const padL = 34;
+      const padR = 34;
+      const padT = 34;
+      const padB = 42;
+      const usableW = w - padL - padR;
+      const usableH = h - padT - padB;
+      const maxY = Math.max(goal, ...values, 1);
+
+      const points = values.map((value, i) => ({
+        x: padL + (i / Math.max(1, values.length - 1)) * usableW,
+        y: padT + (1 - value / maxY) * usableH,
+        value,
+        i
+      }));
+
+      const line = points.map((p, i) => `${i === 0 ? "M" : "L"} ${p.x} ${p.y}`).join(" ");
+      const area = `${line} L ${points[points.length - 1].x} ${h - padB} L ${points[0].x} ${h - padB} Z`;
+      const goalY = padT + (1 - goal / maxY) * usableH;
+
+      const first = points[0];
+      const last = points[points.length - 1];
+
+      chartSvg.innerHTML = `
+        <defs>
+          <linearGradient id="analysisChartLine" x1="0" y1="0" x2="1" y2="0">
+            <stop offset="0%" stop-color="#4ade80"/>
+            <stop offset="48%" stop-color="#5b8cff"/>
+            <stop offset="100%" stop-color="#7c3aed"/>
+          </linearGradient>
+          <linearGradient id="analysisChartArea" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0%" stop-color="#5b8cff" stop-opacity=".22"/>
+            <stop offset="68%" stop-color="#7c3aed" stop-opacity=".08"/>
+            <stop offset="100%" stop-color="#7c3aed" stop-opacity="0"/>
+          </linearGradient>
+        </defs>
+
+        <line class="analysis-chart-grid" x1="${padL}" y1="${padT}" x2="${w - padR}" y2="${padT}"></line>
+        <line class="analysis-chart-grid" x1="${padL}" y1="${padT + usableH / 2}" x2="${w - padR}" y2="${padT + usableH / 2}"></line>
+        <line class="analysis-chart-grid" x1="${padL}" y1="${h - padB}" x2="${w - padR}" y2="${h - padB}"></line>
+        <line class="analysis-chart-goal" x1="${padL}" y1="${goalY}" x2="${w - padR}" y2="${goalY}"></line>
+
+        <path class="analysis-chart-area" d="${area}"></path>
+        <path class="analysis-chart-line-glow" d="${line}"></path>
+        <path class="analysis-chart-line" d="${line}"></path>
+
+        ${points.map((p, i) => {
+          if (i !== 0 && i !== points.length - 1 && i % 2 !== 0) return "";
+          return `
+            <circle class="analysis-chart-dot ${i === 0 ? "analysis-chart-dot-now" : "analysis-chart-dot-future"}" cx="${p.x}" cy="${p.y}" r="${i === 0 ? 5.8 : 4.6}"></circle>
+          `;
+        }).join("")}
+
+        <text class="analysis-chart-value" x="${first.x + 10}" y="${Math.max(18, first.y - 11)}" text-anchor="start">${shortRub(first.value)}</text>
+        <text class="analysis-chart-value" x="${last.x - 10}" y="${Math.max(18, last.y - 11)}" text-anchor="end">${shortRub(last.value)}</text>
+
+        <text class="analysis-chart-label" x="${padL}" y="${h - 13}" text-anchor="start">сейчас</text>
+        <text class="analysis-chart-label" x="${w - padR}" y="${h - 13}" text-anchor="end">${targetLabel}</text>
+      `;
+    }
 
     const bars = document.getElementById("analysisCategoryBars");
     if (bars) {
