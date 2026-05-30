@@ -12407,12 +12407,7 @@
       </div>
     </section>
 
-    <section id="stats" class="tab-content hidden">
-      <div class="card">
-        <h2>Статистика</h2>
-        <div id="catStats"></div>
-      </div>
-    </section>
+    
 
 
     
@@ -12802,7 +12797,7 @@
 
   <nav class="bottom-nav" aria-label="Нижняя навигация">
     <button class="nav-btn active icon-only" data-tab="add" aria-label="Главная" title="Главная"><span>🏠</span></button>
-    <button class="nav-btn" data-tab="stats"><span>📊</span>Статы</button>
+    
     <button class="nav-btn" data-tab="analytics"><span>📈</span>Анализ</button>
     <button class="nav-btn" data-tab="pcbuild"><span>💻</span>ПК</button>
     <button class="nav-btn" data-tab="plan"><span>🎯</span>Цель</button>
@@ -13070,7 +13065,7 @@ function render() {
     safeRender("dashboard", renderDashboard);
     safeRender("salaryForecast", renderSalaryForecast);
     safeRender("transactions", renderTransactions);
-    safeRender("stats", renderStats);
+    safeRender( renderStats);
     safeRender("analytics", renderAnalytics);
     safeRender("advancedAnalytics", renderAdvancedAnalytics);
     safeRender("smartAdvisor", renderSmartAdvisor);
