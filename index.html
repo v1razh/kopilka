@@ -2596,7 +2596,228 @@
       color: white;
     }
 
-    @media (max-width: 390px) {
+
+    .analysis-chart-card {
+      border-radius: 24px;
+      padding: 14px;
+      background:
+        radial-gradient(circle at 18% 0%, rgba(91,140,255,.18), transparent 34%),
+        linear-gradient(180deg, rgba(255,255,255,.065), rgba(255,255,255,.022)),
+        rgba(255,255,255,.035);
+      border: 1px solid rgba(255,255,255,.11);
+      box-shadow:
+        inset 0 1px 0 rgba(255,255,255,.08),
+        0 12px 30px rgba(0,0,0,.16);
+    }
+
+    .analysis-chart-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: 12px;
+      margin-bottom: 12px;
+    }
+
+    .analysis-chart-top p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 12px;
+      line-height: 1.35;
+    }
+
+    .analysis-chart-top strong {
+      display: block;
+      margin-top: 5px;
+      color: white;
+      font-size: 20px;
+      letter-spacing: -.25px;
+      line-height: 1.1;
+    }
+
+    .analysis-chart-badge {
+      flex: 0 0 auto;
+      padding: 8px 11px;
+      border-radius: 999px;
+      background: rgba(91,140,255,.18);
+      border: 1px solid rgba(91,140,255,.25);
+      color: white;
+      font-size: 12px;
+      font-weight: 900;
+      white-space: nowrap;
+    }
+
+    .analysis-chart-svg-wrap {
+      height: 230px;
+      border-radius: 22px;
+      overflow: hidden;
+      background:
+        linear-gradient(to top, rgba(255,255,255,.065) 1px, transparent 1px),
+        rgba(255,255,255,.018);
+      background-size: 100% 33.333%;
+      border: 1px solid rgba(255,255,255,.08);
+    }
+
+    #analysisSavingsSvg {
+      width: 100%;
+      height: 100%;
+      display: block;
+    }
+
+    .analysis-chart-grid {
+      stroke: rgba(255,255,255,.10);
+      stroke-width: 1;
+    }
+
+    .analysis-chart-goal {
+      stroke: rgba(255,255,255,.34);
+      stroke-width: 1.4;
+      stroke-dasharray: 7 8;
+    }
+
+    .analysis-chart-area {
+      fill: url(#analysisChartArea);
+    }
+
+    .analysis-chart-line {
+      fill: none;
+      stroke: url(#analysisChartLine);
+      stroke-width: 5;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+      filter: drop-shadow(0 8px 12px rgba(91,140,255,.30));
+    }
+
+    .analysis-chart-dot {
+      fill: #ffffff;
+      stroke: #5b8cff;
+      stroke-width: 4;
+    }
+
+    .analysis-chart-dot-now {
+      fill: #4ade80;
+      stroke: white;
+    }
+
+    .analysis-chart-label {
+      fill: rgba(255,255,255,.62);
+      font-size: 11px;
+      font-weight: 800;
+    }
+
+    .analysis-chart-value {
+      fill: rgba(255,255,255,.92);
+      font-size: 12px;
+      font-weight: 900;
+    }
+
+    .analysis-chart-bottom {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+      margin-top: 12px;
+    }
+
+    .analysis-chart-bottom div {
+      border-radius: 17px;
+      padding: 12px;
+      background: rgba(255,255,255,.045);
+      border: 1px solid rgba(255,255,255,.09);
+      min-width: 0;
+    }
+
+    .analysis-chart-bottom p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 12px;
+    }
+
+    .analysis-chart-bottom strong {
+      display: block;
+      margin-top: 5px;
+      color: white;
+      font-size: 16px;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+
+    /* Improved analysis savings chart visual */
+    .analysis-chart-svg-wrap {
+      height: 230px;
+      border-radius: 24px;
+      overflow: hidden;
+      background:
+        radial-gradient(circle at 22% 18%, rgba(91,140,255,.10), transparent 32%),
+        linear-gradient(to top, rgba(255,255,255,.055) 1px, transparent 1px),
+        rgba(255,255,255,.018);
+      background-size: auto, 100% 33.333%, auto;
+      border: 1px solid rgba(255,255,255,.085);
+    }
+
+    .analysis-chart-grid {
+      stroke: rgba(255,255,255,.075);
+      stroke-width: 1;
+    }
+
+    .analysis-chart-goal {
+      stroke: rgba(255,255,255,.30);
+      stroke-width: 1.25;
+      stroke-dasharray: 8 9;
+    }
+
+    .analysis-chart-area {
+      fill: url(#analysisChartArea);
+    }
+
+    .analysis-chart-line {
+      fill: none;
+      stroke: url(#analysisChartLine);
+      stroke-width: 4.25;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+      filter: drop-shadow(0 7px 13px rgba(91,140,255,.24));
+    }
+
+    .analysis-chart-line-glow {
+      fill: none;
+      stroke: rgba(91,140,255,.18);
+      stroke-width: 10;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+      filter: blur(2px);
+    }
+
+    .analysis-chart-dot {
+      fill: rgba(245,247,251,.98);
+      stroke: #5b8cff;
+      stroke-width: 3.2;
+      filter: drop-shadow(0 4px 8px rgba(91,140,255,.22));
+    }
+
+    .analysis-chart-dot-now {
+      fill: #4ade80;
+      stroke: white;
+      stroke-width: 3.4;
+    }
+
+    .analysis-chart-dot-future {
+      fill: rgba(245,247,251,.92);
+      stroke: rgba(91,140,255,.92);
+    }
+
+    .analysis-chart-label {
+      fill: rgba(255,255,255,.62);
+      font-size: 10.5px;
+      font-weight: 800;
+    }
+
+    .analysis-chart-value {
+      fill: rgba(255,255,255,.94);
+      font-size: 11.5px;
+      font-weight: 900;
+    }
+@media (max-width: 390px) {
       .analysis-mini-grid {
         grid-template-columns: 1fr;
       }
@@ -10980,6 +11201,98 @@
       .form-grid { grid-template-columns: 1fr; }
       .bottom-nav { left: 10px; right: 10px; }
     }
+  
+    /* Final stable main dashboard period switch */
+    .dashboard-period-switch {
+      display: grid !important;
+      grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
+      gap: 6px !important;
+      padding: 5px !important;
+      margin: 12px 0 14px !important;
+      border-radius: 18px !important;
+      background: rgba(255,255,255,.045) !important;
+      border: 1px solid rgba(255,255,255,.10) !important;
+      width: 100% !important;
+    }
+
+    .dashboard-period-btn {
+      appearance: none !important;
+      -webkit-appearance: none !important;
+      display: flex !important;
+      align-items: center !important;
+      justify-content: center !important;
+      width: 100% !important;
+      height: 38px !important;
+      min-height: 38px !important;
+      border: 0 !important;
+      border-radius: 13px !important;
+      margin: 0 !important;
+      padding: 0 4px !important;
+      background: transparent !important;
+      color: var(--muted) !important;
+      font-size: 12px !important;
+      line-height: 1 !important;
+      font-weight: 900 !important;
+      text-align: center !important;
+      white-space: nowrap !important;
+    }
+
+    .dashboard-period-btn.active {
+      color: white !important;
+      background: linear-gradient(135deg, rgba(91,140,255,.36), rgba(124,58,237,.26)) !important;
+      box-shadow: inset 0 0 0 1px rgba(255,255,255,.08) !important;
+    }
+
+    .dashboard-summary {
+      display: grid !important;
+      grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
+      gap: 10px !important;
+      width: 100% !important;
+      margin-bottom: 14px !important;
+      align-items: stretch !important;
+    }
+
+    .dashboard-summary-item {
+      min-width: 0 !important;
+      border-radius: 18px !important;
+      padding: 12px !important;
+      background: rgba(255,255,255,.045) !important;
+      border: 1px solid rgba(255,255,255,.10) !important;
+      overflow: hidden !important;
+    }
+
+    .dashboard-summary-item p {
+      margin: 0 !important;
+      color: var(--muted) !important;
+      font-size: 12px !important;
+      line-height: 1.25 !important;
+      white-space: nowrap !important;
+      overflow: hidden !important;
+      text-overflow: ellipsis !important;
+    }
+
+    .dashboard-summary-item strong {
+      display: block !important;
+      margin-top: 5px !important;
+      color: white !important;
+      font-size: 15px !important;
+      line-height: 1.15 !important;
+      white-space: nowrap !important;
+      overflow: hidden !important;
+      text-overflow: ellipsis !important;
+    }
+
+    .dashboard-summary-caption {
+      display: block !important;
+      margin-top: 5px !important;
+      color: var(--muted) !important;
+      font-size: 11px !important;
+      line-height: 1.2 !important;
+      white-space: nowrap !important;
+      overflow: hidden !important;
+      text-overflow: ellipsis !important;
+    }
+
   </style>
 </head>
 <body>
@@ -11041,18 +11354,29 @@
           <button class="quick-action" id="quickSaving"><span>🏦</span>В накопления</button>
         </div>
 
+        <div class="dashboard-period-switch">
+          <button type="button" class="dashboard-period-btn" data-dashboard-period="week">Неделя</button>
+          <button type="button" class="dashboard-period-btn active" data-dashboard-period="month">Месяц</button>
+          <button type="button" class="dashboard-period-btn" data-dashboard-period="all">Всё время</button>
+        </div>
+
         <div class="dashboard-summary">
           <div class="dashboard-summary-item">
             <p>Потрачено</p>
             <strong id="dashMonthExpenses">0 ₽</strong>
+            <span class="dashboard-summary-caption" id="dashExpensesCaption">за месяц</span>
           </div>
+
           <div class="dashboard-summary-item">
             <p>Отложено</p>
             <strong id="dashMonthSavings">0 ₽</strong>
+            <span class="dashboard-summary-caption" id="dashSavingsCaption">за месяц</span>
           </div>
+
           <div class="dashboard-summary-item">
             <p>До ПК</p>
             <strong id="dashLeftToGoal">0 ₽</strong>
+            <span class="dashboard-summary-caption">цель</span>
           </div>
         </div>
 
@@ -11155,6 +11479,40 @@
             <strong id="analysisLeftGoal">0 ₽</strong>
           </div>
         </div>
+
+
+        <div class="analysis-divider"></div>
+
+        <div class="analysis-section-title">
+          <span>График накоплений</span>
+          <small id="analysisChartHint">прогноз</small>
+        </div>
+
+        <div class="analysis-chart-card">
+          <div class="analysis-chart-top">
+            <div>
+              <p>Прогресс к цели</p>
+              <strong id="analysisChartMain">0 ₽ → 0 ₽</strong>
+            </div>
+            <div class="analysis-chart-badge" id="analysisChartPercent">0%</div>
+          </div>
+
+          <div class="analysis-chart-svg-wrap">
+            <svg id="analysisSavingsSvg" viewBox="0 0 360 220" preserveAspectRatio="none" aria-label="График накоплений"></svg>
+          </div>
+
+          <div class="analysis-chart-bottom">
+            <div>
+              <p>Нужно в месяц</p>
+              <strong id="analysisChartNeedMonthly">0 ₽</strong>
+            </div>
+            <div>
+              <p>Примерный срок</p>
+              <strong id="analysisChartMonths">0 мес.</strong>
+            </div>
+          </div>
+        </div>
+
 
         <div class="analysis-divider"></div>
 
@@ -11443,6 +11801,9 @@
     targetMonth: "2026-12",
     compactMode: false,
     showHistory: true,
+    dashboardPeriod: "month",
+    expenseMiniPeriod: "month",
+    savingMiniPeriod: "month",
     salaryDay: 10,
     advanceDay: 25,
     currentCash: 0,
@@ -11696,36 +12057,68 @@
   }
 
 
+  function getDashboardPeriodLabel(period) {
+    if (period === "week") return "за неделю";
+    if (period === "all") return "за всё время";
+    return "за месяц";
+  }
+
+  function isTransactionInDashboardPeriod(tx, period) {
+    if (period === "all") return true;
+
+    const now = new Date();
+    const txDate = new Date((tx.date || today()) + "T00:00:00");
+
+    if (period === "week") {
+      const start = new Date(now.getFullYear(), now.getMonth(), now.getDate());
+      start.setDate(start.getDate() - 6);
+      return txDate >= start;
+    }
+
+    return monthKey(tx.date || today()) === today().slice(0, 7);
+  }
+
   function renderDashboard() {
     const statusEl = document.getElementById("dashboardStatus");
     if (!statusEl) return;
 
     const s = calc();
     const salary = calcSalaryPlan();
-    const currentMonth = today().slice(0, 7);
+    const period = data.dashboardPeriod || "month";
 
-    const monthExpenses = data.transactions
-      .filter(x => x.type === "expense" && monthKey(x.date) === currentMonth)
-      .reduce((sum, x) => sum + Number(x.amount), 0);
+    const periodExpenses = data.transactions
+      .filter(x => x.type === "expense" && isTransactionInDashboardPeriod(x, period))
+      .reduce((sum, x) => sum + Number(x.amount || 0), 0);
 
-    const monthSavings = data.transactions
-      .filter(x => x.type === "saving" && monthKey(x.date) === currentMonth)
-      .reduce((sum, x) => sum + Number(x.amount), 0);
+    const periodSavings = data.transactions
+      .filter(x => x.type === "saving" && isTransactionInDashboardPeriod(x, period))
+      .reduce((sum, x) => sum + Number(x.amount || 0), 0);
 
     const payDateText = salary.payDate.toLocaleDateString("ru-RU", { day: "numeric", month: "long" });
-
     statusEl.textContent = `До ближайшей выплаты ${salary.days} дн. · ${payDateText}`;
 
-    document.getElementById("todayLimitMain").textContent = salary.dailyLimit > 0 ? rub(salary.dailyLimit) : "0 ₽";
-    document.getElementById("todayLimitSub").textContent = salary.dailyLimit > 0
+    const setText = (id, value) => {
+      const el = document.getElementById(id);
+      if (el) el.textContent = value;
+    };
+
+    setText("todayLimitMain", salary.dailyLimit > 0 ? rub(salary.dailyLimit) : "0 ₽");
+    setText("todayLimitSub", salary.dailyLimit > 0
       ? `Свободно после обязательных трат: ${rub(salary.freeMoney)}. Регулярные платежи уже учтены.`
-      : "Заполни деньги на карте и обязательные траты в настройках.";
+      : "Заполни деньги на карте и обязательные траты в настройках.");
 
-    document.getElementById("dashMonthExpenses").textContent = rub(monthExpenses);
-    document.getElementById("dashMonthSavings").textContent = rub(monthSavings);
-    document.getElementById("dashLeftToGoal").textContent = rub(s.left);
+    setText("dashMonthExpenses", rub(periodExpenses));
+    setText("dashMonthSavings", rub(periodSavings));
+    setText("dashLeftToGoal", rub(s.left));
+    setText("dashExpensesCaption", getDashboardPeriodLabel(period));
+    setText("dashSavingsCaption", getDashboardPeriodLabel(period));
 
-    const avgDaily = Math.round(monthExpenses / Math.max(1, new Date().getDate()));
+    document.querySelectorAll(".dashboard-period-btn").forEach(btn => {
+      btn.classList.toggle("active", btn.dataset.dashboardPeriod === period);
+    });
+
+    const daysForAvg = period === "week" ? 7 : Math.max(1, new Date().getDate());
+    const avgDaily = Math.round(periodExpenses / daysForAvg);
 
     let title = "Совет дня";
     let text = "";
@@ -11733,19 +12126,19 @@
     if (salary.dailyLimit <= 0) {
       title = "Настрой план";
       text = "Заполни деньги на карте, день зарплаты и обязательные траты — главная вкладка начнёт показывать реальный дневной лимит.";
-    } else if (avgDaily > salary.dailyLimit) {
+    } else if (avgDaily > salary.dailyLimit && period !== "all") {
       title = "Сбавь темп";
       text = `Средний расход ${rub(avgDaily)} в день выше лимита ${rub(salary.dailyLimit)}. Сегодня лучше оставить траты только на нужное.`;
-    } else if (monthSavings <= 0) {
+    } else if (periodSavings <= 0) {
       title = "Сделай первый перевод";
-      text = "В этом месяце ещё нет перевода в накопления. Даже небольшая сумма усилит ощущение прогресса к ПК.";
+      text = "За выбранный период ещё нет перевода в накопления. Даже небольшая сумма усилит ощущение прогресса.";
     } else {
       title = "Темп хороший";
-      text = `Ты уже отложил ${rub(monthSavings)} в этом месяце. Продолжай держать расходы ниже дневного лимита.`;
+      text = `За выбранный период ты отложил ${rub(periodSavings)}. Продолжай держать расходы ниже дневного лимита.`;
     }
 
-    document.getElementById("mainAdviceTitle").textContent = title;
-    document.getElementById("mainAdviceText").textContent = text;
+    setText("mainAdviceTitle", title);
+    setText("mainAdviceText", text);
   }
 
   function openAddSheetWithType(type) {
@@ -12010,6 +12403,30 @@
   }
 
 
+
+
+  function getTargetMonthLabel() {
+    const value = data.targetMonth || "";
+    if (!value || !value.includes("-")) return "цель";
+    const [year, month] = value.split("-").map(Number);
+    if (!year || !month) return "цель";
+
+    const date = new Date(year, month - 1, 1);
+    return date.toLocaleDateString("ru-RU", { month: "short", year: "numeric" }).replace(".", "");
+  }
+
+  function makeAnalysisSmoothPath(points) {
+    if (!points.length) return "";
+    let d = `M ${points[0].x} ${points[0].y}`;
+    for (let i = 1; i < points.length; i++) {
+      const prev = points[i - 1];
+      const cur = points[i];
+      const midX = (prev.x + cur.x) / 2;
+      d += ` C ${midX} ${prev.y}, ${midX} ${cur.y}, ${cur.x} ${cur.y}`;
+    }
+    return d;
+  }
+
   function renderAnalytics() {
     const currentMonth = today().slice(0, 7);
     const monthTx = data.transactions.filter(x => monthKey(x.date) === currentMonth);
@@ -12043,6 +12460,86 @@
     setText("analysisBiggestExpense", biggest ? rub(biggest.amount) : "—");
     setText("analysisMonthSavings", rub(totalSavings));
     setText("analysisLeftGoal", rub(s.left));
+
+    const chartSvg = document.getElementById("analysisSavingsSvg");
+    if (chartSvg) {
+      const goal = Math.max(1, Number(data.goal) || 1);
+      const saved = Math.max(0, Number(s.totalSaved) || 0);
+      const monthly = Math.max(0, Number(s.needMonthly) || 0);
+      const months = Math.max(2, Math.min(8, Number(s.months) || 8));
+      const targetLabel = getTargetMonthLabel();
+
+      setText("analysisChartMain", `${shortRub(saved)} → ${shortRub(goal)}`);
+      setText("analysisChartPercent", `${(s.progress || 0).toFixed(1)}%`);
+      setText("analysisChartNeedMonthly", rub(s.needMonthly));
+      setText("analysisChartMonths", targetLabel);
+
+      const values = Array.from({ length: months }, (_, i) => {
+        const value = monthly > 0 ? saved + monthly * i : saved;
+        return Math.min(goal, Math.max(0, value));
+      });
+
+      const w = 360;
+      const h = 220;
+      const padL = 34;
+      const padR = 34;
+      const padT = 34;
+      const padB = 42;
+      const usableW = w - padL - padR;
+      const usableH = h - padT - padB;
+      const maxY = Math.max(goal, ...values, 1);
+
+      const points = values.map((value, i) => ({
+        x: padL + (i / Math.max(1, values.length - 1)) * usableW,
+        y: padT + (1 - value / maxY) * usableH,
+        value,
+        i
+      }));
+
+      const line = points.map((p, i) => `${i === 0 ? "M" : "L"} ${p.x} ${p.y}`).join(" ");
+      const area = `${line} L ${points[points.length - 1].x} ${h - padB} L ${points[0].x} ${h - padB} Z`;
+      const goalY = padT + (1 - goal / maxY) * usableH;
+
+      const first = points[0];
+      const last = points[points.length - 1];
+
+      chartSvg.innerHTML = `
+        <defs>
+          <linearGradient id="analysisChartLine" x1="0" y1="0" x2="1" y2="0">
+            <stop offset="0%" stop-color="#4ade80"/>
+            <stop offset="48%" stop-color="#5b8cff"/>
+            <stop offset="100%" stop-color="#7c3aed"/>
+          </linearGradient>
+          <linearGradient id="analysisChartArea" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0%" stop-color="#5b8cff" stop-opacity=".22"/>
+            <stop offset="68%" stop-color="#7c3aed" stop-opacity=".08"/>
+            <stop offset="100%" stop-color="#7c3aed" stop-opacity="0"/>
+          </linearGradient>
+        </defs>
+
+        <line class="analysis-chart-grid" x1="${padL}" y1="${padT}" x2="${w - padR}" y2="${padT}"></line>
+        <line class="analysis-chart-grid" x1="${padL}" y1="${padT + usableH / 2}" x2="${w - padR}" y2="${padT + usableH / 2}"></line>
+        <line class="analysis-chart-grid" x1="${padL}" y1="${h - padB}" x2="${w - padR}" y2="${h - padB}"></line>
+        <line class="analysis-chart-goal" x1="${padL}" y1="${goalY}" x2="${w - padR}" y2="${goalY}"></line>
+
+        <path class="analysis-chart-area" d="${area}"></path>
+        <path class="analysis-chart-line-glow" d="${line}"></path>
+        <path class="analysis-chart-line" d="${line}"></path>
+
+        ${points.map((p, i) => {
+          if (i !== 0 && i !== points.length - 1 && i % 2 !== 0) return "";
+          return `
+            <circle class="analysis-chart-dot ${i === 0 ? "analysis-chart-dot-now" : "analysis-chart-dot-future"}" cx="${p.x}" cy="${p.y}" r="${i === 0 ? 5.8 : 4.6}"></circle>
+          `;
+        }).join("")}
+
+        <text class="analysis-chart-value" x="${first.x + 10}" y="${Math.max(18, first.y - 11)}" text-anchor="start">${shortRub(first.value)}</text>
+        <text class="analysis-chart-value" x="${last.x - 10}" y="${Math.max(18, last.y - 11)}" text-anchor="end">${shortRub(last.value)}</text>
+
+        <text class="analysis-chart-label" x="${padL}" y="${h - 13}" text-anchor="start">сейчас</text>
+        <text class="analysis-chart-label" x="${w - padR}" y="${h - 13}" text-anchor="end">${targetLabel}</text>
+      `;
+    }
 
     const bars = document.getElementById("analysisCategoryBars");
     if (bars) {
@@ -12853,6 +13350,19 @@
     if (event.key === "Escape" && document.getElementById("addSheet").classList.contains("open")) {
       closeAddSheet();
     }
+  });
+
+
+  document.addEventListener("click", (event) => {
+    const btn = event.target.closest(".dashboard-period-btn");
+    if (!btn) return;
+
+    event.preventDefault();
+    event.stopPropagation();
+
+    data.dashboardPeriod = btn.dataset.dashboardPeriod || "month";
+    save();
+    render();
   });
 
   document.querySelectorAll(".nav-btn").forEach(btn => {
