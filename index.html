@@ -11556,6 +11556,679 @@
         inset 0 0 0 1px rgba(255,255,255,.16),
         0 12px 28px rgba(91,140,255,.22) !important;
     }
+
+
+    /* Premium savings chart — redesigned */
+    .premium-savings-card {
+      position: relative;
+      overflow: hidden;
+      margin-bottom: 18px;
+      padding: 18px;
+      border-radius: 30px;
+      background:
+        radial-gradient(circle at 16% 0%, rgba(91,140,255,.20), transparent 32%),
+        radial-gradient(circle at 96% 5%, rgba(124,58,237,.22), transparent 34%),
+        linear-gradient(180deg, rgba(255,255,255,.082), rgba(255,255,255,.024)),
+        rgba(10,23,40,.46);
+      border: 1px solid rgba(255,255,255,.15);
+      box-shadow:
+        0 24px 68px rgba(0,0,0,.28),
+        inset 0 1px 0 rgba(255,255,255,.13),
+        inset 0 -1px 0 rgba(255,255,255,.04);
+      backdrop-filter: blur(30px) saturate(1.5);
+      -webkit-backdrop-filter: blur(30px) saturate(1.5);
+    }
+
+    .premium-savings-card::before {
+      content: "";
+      position: absolute;
+      inset: 1px;
+      border-radius: 29px;
+      background:
+        linear-gradient(120deg, rgba(255,255,255,.10), transparent 28%),
+        radial-gradient(circle at 42% 12%, rgba(255,255,255,.055), transparent 24%);
+      pointer-events: none;
+    }
+
+    .premium-savings-card > * {
+      position: relative;
+      z-index: 1;
+    }
+
+    .premium-savings-head {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      margin-bottom: 18px;
+    }
+
+    .premium-savings-head h2 {
+      margin: 0;
+      font-size: 22px;
+      letter-spacing: -.35px;
+    }
+
+    .premium-savings-mode {
+      color: rgba(245,247,251,.58);
+      font-size: 13px;
+      font-weight: 900;
+      white-space: nowrap;
+      display: flex;
+      align-items: center;
+      gap: 7px;
+    }
+
+    .premium-savings-mode span {
+      display: inline-grid;
+      place-items: center;
+      width: 21px;
+      height: 21px;
+      border-radius: 50%;
+      background: rgba(255,255,255,.07);
+      border: 1px solid rgba(255,255,255,.10);
+      color: rgba(245,247,251,.70);
+      font-size: 12px;
+    }
+
+    .premium-savings-hero {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 14px;
+      align-items: center;
+      margin-bottom: 14px;
+    }
+
+    .premium-savings-hero p {
+      margin: 0 0 8px;
+      color: #4ade80;
+      font-size: 15px;
+      font-weight: 900;
+      line-height: 1.25;
+    }
+
+    .premium-savings-hero strong {
+      display: block;
+      color: white;
+      font-size: 34px;
+      line-height: 1;
+      letter-spacing: -1px;
+    }
+
+    .premium-savings-hero small {
+      display: block;
+      margin-top: 8px;
+      color: rgba(245,247,251,.58);
+      font-size: 15px;
+      font-weight: 800;
+    }
+
+    .premium-ring {
+      position: relative;
+      width: 118px;
+      height: 118px;
+      flex: 0 0 auto;
+    }
+
+    .premium-ring svg {
+      width: 100%;
+      height: 100%;
+      transform: rotate(-90deg);
+      overflow: visible;
+    }
+
+    .premium-ring-bg {
+      fill: none;
+      stroke: rgba(255,255,255,.07);
+      stroke-width: 12;
+    }
+
+    .premium-ring-progress {
+      fill: none;
+      stroke: url(#premiumSavingsRingGradient);
+      stroke-width: 12;
+      stroke-linecap: round;
+      stroke-dasharray: 301.59;
+      stroke-dashoffset: 301.59;
+      filter: drop-shadow(0 6px 14px rgba(124,58,237,.34));
+      transition: stroke-dashoffset .7s cubic-bezier(.16,1,.3,1);
+    }
+
+    .premium-ring div {
+      position: absolute;
+      inset: 0;
+      display: grid;
+      place-items: center;
+      text-align: center;
+      align-content: center;
+    }
+
+    .premium-ring b {
+      color: white;
+      font-size: 25px;
+      line-height: 1;
+      letter-spacing: -.5px;
+    }
+
+    .premium-ring span {
+      display: block;
+      margin-top: 4px;
+      color: rgba(245,247,251,.62);
+      font-size: 12px;
+      font-weight: 800;
+    }
+
+    .premium-savings-graph {
+      height: 300px;
+      border-radius: 24px;
+      overflow: hidden;
+      background:
+        radial-gradient(circle at 18% 16%, rgba(91,140,255,.16), transparent 34%),
+        linear-gradient(to top, rgba(255,255,255,.055) 1px, transparent 1px),
+        linear-gradient(180deg, rgba(255,255,255,.050), rgba(255,255,255,.018));
+      background-size: auto, 100% 33.333%, auto;
+      border: 1px solid rgba(255,255,255,.10);
+      box-shadow:
+        inset 0 1px 0 rgba(255,255,255,.08),
+        inset 0 -30px 70px rgba(7,16,29,.26);
+    }
+
+    #premiumSavingsSvg {
+      width: 100%;
+      height: 100%;
+      display: block;
+    }
+
+    .premium-graph-grid {
+      stroke: rgba(255,255,255,.075);
+      stroke-width: 1;
+    }
+
+    .premium-graph-goal {
+      stroke: rgba(255,255,255,.28);
+      stroke-width: 1.4;
+      stroke-dasharray: 7 9;
+    }
+
+    .premium-graph-area {
+      fill: url(#premiumSavingsArea);
+    }
+
+    .premium-graph-line-past {
+      fill: none;
+      stroke: url(#premiumSavingsLinePast);
+      stroke-width: 4.7;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+      filter: drop-shadow(0 7px 14px rgba(91,140,255,.32));
+    }
+
+    .premium-graph-line-future {
+      fill: none;
+      stroke: rgba(236,229,255,.82);
+      stroke-width: 3.1;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+      stroke-dasharray: 6 8;
+      filter: drop-shadow(0 7px 14px rgba(124,58,237,.24));
+    }
+
+    .premium-graph-dot {
+      fill: white;
+      stroke: #5b8cff;
+      stroke-width: 3.5;
+      filter: drop-shadow(0 5px 10px rgba(91,140,255,.30));
+    }
+
+    .premium-graph-dot-now {
+      fill: #4ade80;
+      stroke: white;
+      stroke-width: 3.8;
+      filter: drop-shadow(0 6px 12px rgba(74,222,128,.28));
+    }
+
+    .premium-graph-dot-goal {
+      fill: #ffffff;
+      stroke: #a855f7;
+      stroke-width: 3.8;
+      filter: drop-shadow(0 7px 16px rgba(168,85,247,.38));
+    }
+
+    .premium-graph-label {
+      fill: rgba(245,247,251,.66);
+      font-size: 11px;
+      font-weight: 850;
+    }
+
+    .premium-graph-money {
+      fill: white;
+      font-size: 11px;
+      font-weight: 950;
+    }
+
+    .premium-graph-pill-green,
+    .premium-graph-pill-blue,
+    .premium-graph-pill-purple {
+      rx: 7;
+      ry: 7;
+    }
+
+    .premium-graph-pill-green { fill: rgba(34,197,94,.34); }
+    .premium-graph-pill-blue { fill: rgba(91,140,255,.42); }
+    .premium-graph-pill-purple { fill: rgba(124,58,237,.46); }
+
+    .premium-savings-stats {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1px;
+      margin: 14px 0;
+      padding: 12px;
+      border-radius: 20px;
+      background: rgba(255,255,255,.035);
+      border: 1px solid rgba(255,255,255,.08);
+    }
+
+    .premium-savings-stats div {
+      min-width: 0;
+      padding: 0 10px;
+      border-right: 1px solid rgba(255,255,255,.08);
+    }
+
+    .premium-savings-stats div:last-child {
+      border-right: 0;
+    }
+
+    .premium-savings-stats span {
+      display: block;
+      color: rgba(245,247,251,.58);
+      font-size: 11px;
+      line-height: 1.25;
+      min-height: 28px;
+    }
+
+    .premium-savings-stats strong {
+      display: block;
+      margin-top: 5px;
+      color: white;
+      font-size: 15px;
+      line-height: 1.1;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .premium-savings-note {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      border-radius: 20px;
+      padding: 14px;
+      background:
+        radial-gradient(circle at 100% 10%, rgba(255,255,255,.10), transparent 30%),
+        linear-gradient(135deg, rgba(124,58,237,.24), rgba(91,140,255,.12)),
+        rgba(255,255,255,.035);
+      border: 1px solid rgba(255,255,255,.11);
+    }
+
+    .premium-savings-note > div {
+      width: 38px;
+      height: 38px;
+      flex: 0 0 auto;
+      border-radius: 16px;
+      display: grid;
+      place-items: center;
+      background: linear-gradient(135deg, #7c3aed, #5b8cff);
+      box-shadow: 0 12px 24px rgba(91,140,255,.20);
+      color: white;
+      font-weight: 900;
+    }
+
+    .premium-savings-note p {
+      margin: 0;
+      color: rgba(245,247,251,.76);
+      line-height: 1.35;
+      font-size: 13px;
+    }
+
+    .premium-savings-note b {
+      color: white;
+      font-size: 14px;
+    }
+
+    .premium-savings-note span {
+      color: rgba(245,247,251,.68);
+    }
+
+    @media (max-width: 390px) {
+      .premium-savings-hero {
+        grid-template-columns: 1fr;
+      }
+
+      .premium-ring {
+        width: 104px;
+        height: 104px;
+        justify-self: end;
+        margin-top: -8px;
+      }
+
+      .premium-savings-hero strong {
+        font-size: 30px;
+      }
+
+      .premium-savings-graph {
+        height: 270px;
+      }
+
+      .premium-savings-stats {
+        grid-template-columns: 1fr;
+        gap: 8px;
+      }
+
+      .premium-savings-stats div {
+        border-right: 0;
+        border-bottom: 1px solid rgba(255,255,255,.08);
+        padding: 0 0 8px;
+      }
+
+      .premium-savings-stats div:last-child {
+        border-bottom: 0;
+        padding-bottom: 0;
+      }
+
+      .premium-savings-stats span {
+        min-height: auto;
+      }
+    }
+
+
+    /* Premium Analysis visuals with icons, percents and rings */
+    .analysis-premium-card {
+      overflow: hidden;
+      background:
+        radial-gradient(circle at 10% 0%, rgba(91,140,255,.18), transparent 34%),
+        radial-gradient(circle at 96% 6%, rgba(124,58,237,.18), transparent 32%),
+        linear-gradient(180deg, rgba(255,255,255,.082), rgba(255,255,255,.024)),
+        rgba(10,23,40,.44) !important;
+    }
+
+    .analysis-hero-insight {
+      display: grid;
+      grid-template-columns: auto 1fr auto;
+      align-items: center;
+      gap: 12px;
+      padding: 14px;
+      margin-bottom: 14px;
+      border-radius: 22px;
+      background:
+        radial-gradient(circle at 100% 0%, rgba(74,222,128,.12), transparent 36%),
+        linear-gradient(135deg, rgba(91,140,255,.14), rgba(124,58,237,.09)),
+        rgba(255,255,255,.035);
+      border: 1px solid rgba(255,255,255,.11);
+    }
+
+    .analysis-hero-icon {
+      width: 42px;
+      height: 42px;
+      border-radius: 17px;
+      display: grid;
+      place-items: center;
+      font-size: 22px;
+      background: linear-gradient(135deg, rgba(91,140,255,.34), rgba(124,58,237,.24));
+      box-shadow: inset 0 1px 0 rgba(255,255,255,.18);
+    }
+
+    .analysis-hero-insight p {
+      margin: 0;
+      color: rgba(245,247,251,.62);
+      font-size: 12px;
+      font-weight: 850;
+    }
+
+    .analysis-hero-insight strong {
+      display: block;
+      margin-top: 4px;
+      color: white;
+      font-size: 15px;
+      line-height: 1.35;
+    }
+
+    .analysis-health-ring,
+    .analysis-ring {
+      --value: 0;
+      --ring-color: #5b8cff;
+      display: grid;
+      place-items: center;
+      border-radius: 50%;
+      background:
+        radial-gradient(circle at center, rgba(10,23,40,.96) 56%, transparent 58%),
+        conic-gradient(var(--ring-color) calc(var(--value) * 1%), rgba(255,255,255,.08) 0);
+      box-shadow:
+        inset 0 1px 0 rgba(255,255,255,.10),
+        0 8px 18px rgba(0,0,0,.16);
+    }
+
+    .analysis-health-ring {
+      width: 54px;
+      height: 54px;
+      --ring-color: #4ade80;
+    }
+
+    .analysis-health-ring span {
+      color: white;
+      font-size: 16px;
+      font-weight: 950;
+    }
+
+    .analysis-premium-grid {
+      gap: 11px;
+    }
+
+    .premium-analysis-mini {
+      position: relative;
+      min-height: 142px;
+      overflow: hidden;
+      padding: 13px !important;
+      background:
+        linear-gradient(180deg, rgba(255,255,255,.074), rgba(255,255,255,.024)),
+        rgba(16,27,45,.34) !important;
+      box-shadow:
+        0 12px 30px rgba(0,0,0,.16),
+        inset 0 1px 0 rgba(255,255,255,.10) !important;
+    }
+
+    .premium-analysis-mini::after {
+      content: "";
+      position: absolute;
+      width: 84px;
+      height: 84px;
+      right: -34px;
+      bottom: -34px;
+      border-radius: 50%;
+      background: rgba(255,255,255,.045);
+      pointer-events: none;
+    }
+
+    .analysis-mini-top {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 8px;
+      margin-bottom: 11px;
+    }
+
+    .analysis-mini-icon {
+      width: 34px;
+      height: 34px;
+      display: grid;
+      place-items: center;
+      border-radius: 14px;
+      font-size: 18px;
+      background: rgba(255,255,255,.07);
+      border: 1px solid rgba(255,255,255,.08);
+      box-shadow: inset 0 1px 0 rgba(255,255,255,.08);
+    }
+
+    .analysis-ring {
+      width: 42px;
+      height: 42px;
+    }
+
+    .analysis-ring span {
+      font-size: 10px;
+      color: white;
+      font-weight: 950;
+      line-height: 1;
+    }
+
+    .analysis-mini-badge {
+      min-width: 34px;
+      max-width: 64px;
+      padding: 6px 8px;
+      border-radius: 999px;
+      background: rgba(255,255,255,.075);
+      border: 1px solid rgba(255,255,255,.08);
+      color: rgba(245,247,251,.78);
+      font-size: 10px;
+      font-weight: 950;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      text-align: center;
+    }
+
+    .premium-analysis-mini p {
+      margin: 0;
+      color: rgba(245,247,251,.58);
+      font-size: 12px;
+      font-weight: 850;
+      line-height: 1.25;
+    }
+
+    .premium-analysis-mini strong {
+      display: block;
+      margin-top: 7px;
+      color: white;
+      font-size: 17px;
+      line-height: 1.1;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .premium-analysis-mini small {
+      display: block;
+      margin-top: 6px;
+      color: rgba(245,247,251,.48);
+      font-size: 11px;
+      line-height: 1.25;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .expense-tile .analysis-ring { --ring-color: #fb7185; }
+    .saving-tile .analysis-ring { --ring-color: #4ade80; }
+
+    .expense-tile {
+      border-color: rgba(251,113,133,.16) !important;
+      background:
+        radial-gradient(circle at 100% 100%, rgba(251,113,133,.09), transparent 34%),
+        linear-gradient(180deg, rgba(255,255,255,.074), rgba(255,255,255,.024)),
+        rgba(16,27,45,.34) !important;
+    }
+
+    .saving-tile {
+      border-color: rgba(74,222,128,.16) !important;
+      background:
+        radial-gradient(circle at 100% 100%, rgba(74,222,128,.10), transparent 34%),
+        linear-gradient(180deg, rgba(255,255,255,.074), rgba(255,255,255,.024)),
+        rgba(16,27,45,.34) !important;
+    }
+
+    .goal-tile {
+      border-color: rgba(91,140,255,.16) !important;
+    }
+
+    .analysis-premium-bars {
+      gap: 12px;
+    }
+
+    .analysis-bar-row {
+      grid-template-columns: 34px 84px 1fr auto !important;
+      padding: 10px;
+      border-radius: 17px;
+      background: rgba(255,255,255,.035);
+      border: 1px solid rgba(255,255,255,.075);
+    }
+
+    .analysis-bar-emoji {
+      width: 28px;
+      height: 28px;
+      border-radius: 12px;
+      display: grid;
+      place-items: center;
+      background: rgba(255,255,255,.07);
+      font-size: 15px;
+    }
+
+    .analysis-bar-percent {
+      font-size: 12px;
+      color: rgba(245,247,251,.64);
+      font-weight: 900;
+      min-width: 34px;
+      text-align: right;
+    }
+
+    .analysis-bar-track {
+      height: 10px !important;
+      background: rgba(255,255,255,.065) !important;
+    }
+
+    .analysis-bar-fill {
+      background: linear-gradient(90deg, #5b8cff, #7c3aed) !important;
+      animation: premiumBarGrow .65s cubic-bezier(.16,1,.3,1) both;
+      transform-origin: left;
+    }
+
+    @keyframes premiumBarGrow {
+      from { transform: scaleX(.08); opacity: .35; }
+      to { transform: scaleX(1); opacity: 1; }
+    }
+
+    .analysis-advice {
+      display: grid;
+      grid-template-columns: auto 1fr;
+      gap: 10px;
+      align-items: flex-start;
+    }
+
+    .analysis-advice-icon {
+      width: 30px;
+      height: 30px;
+      border-radius: 12px;
+      display: grid;
+      place-items: center;
+      background: rgba(255,255,255,.075);
+      border: 1px solid rgba(255,255,255,.08);
+    }
+
+    @media (max-width: 390px) {
+      .analysis-bar-row {
+        grid-template-columns: 30px 74px 1fr auto !important;
+        gap: 8px;
+      }
+
+      .analysis-hero-insight {
+        grid-template-columns: auto 1fr;
+      }
+
+      .analysis-health-ring {
+        grid-column: 1 / -1;
+        justify-self: end;
+        margin-top: -6px;
+      }
+    }
+
 </style>
 </head>
 <body>
@@ -11707,55 +12380,95 @@
 
     
     <section id="analytics" class="tab-content hidden">
-      <div class="analysis-main-card">
+      <div class="analysis-main-card analysis-premium-card">
         <div class="analysis-main-head">
           <div>
             <h2>Анализ</h2>
-            <p>Единая сводка: расходы, накопления, категории и советы.</p>
+            <p>Наглядная сводка по расходам, накоплениям и финансовому темпу.</p>
           </div>
           <div class="analysis-main-pill" id="analysisPeriodPill">Месяц</div>
         </div>
 
-        <div class="analysis-mini-grid">
-          <div class="analysis-mini">
-            <p>Потрачено за месяц</p>
+        <div class="analysis-hero-insight">
+          <div class="analysis-hero-icon">✨</div>
+          <div>
+            <p id="analysisHeroTitle">Финансовый статус</p>
+            <strong id="analysisHeroText">Добавь операции — появится точный анализ.</strong>
+          </div>
+          <div class="analysis-health-ring" id="analysisHealthRing" style="--value:0;">
+            <span id="analysisHealthScore">0</span>
+          </div>
+        </div>
+
+        <div class="analysis-mini-grid analysis-premium-grid">
+          <div class="analysis-mini premium-analysis-mini expense-tile">
+            <div class="analysis-mini-top">
+              <div class="analysis-mini-icon">💸</div>
+              <div class="analysis-ring" id="analysisExpenseRing" style="--value:0;"><span id="analysisExpensePercent">0%</span></div>
+            </div>
+            <p>Потрачено</p>
             <strong id="analysisTotalExpenses">0 ₽</strong>
+            <small id="analysisExpenseSub">за месяц</small>
           </div>
 
-          <div class="analysis-mini">
-            <p>Средний расход в день</p>
+          <div class="analysis-mini premium-analysis-mini daily-tile">
+            <div class="analysis-mini-top">
+              <div class="analysis-mini-icon">⚡</div>
+              <div class="analysis-mini-badge" id="analysisDailyBadge">темп</div>
+            </div>
+            <p>Средний расход</p>
             <strong id="analysisAvgDaily">0 ₽</strong>
+            <small id="analysisDailySub">в день</small>
           </div>
 
-          <div class="analysis-mini">
+          <div class="analysis-mini premium-analysis-mini category-tile">
+            <div class="analysis-mini-top">
+              <div class="analysis-mini-icon" id="analysisTopCategoryIcon">🏷️</div>
+              <div class="analysis-mini-badge" id="analysisTopCategoryPercent">0%</div>
+            </div>
             <p>Топ категория</p>
             <strong id="analysisTopCategory">—</strong>
+            <small id="analysisTopCategorySub">нет расходов</small>
           </div>
 
-          <div class="analysis-mini">
-            <p>Самая большая покупка</p>
+          <div class="analysis-mini premium-analysis-mini biggest-tile">
+            <div class="analysis-mini-top">
+              <div class="analysis-mini-icon">🧾</div>
+              <div class="analysis-mini-badge">покупка</div>
+            </div>
+            <p>Самая большая</p>
             <strong id="analysisBiggestExpense">—</strong>
+            <small id="analysisBiggestExpenseSub">за месяц</small>
           </div>
 
-          <div class="analysis-mini">
-            <p>Отложено за месяц</p>
+          <div class="analysis-mini premium-analysis-mini saving-tile">
+            <div class="analysis-mini-top">
+              <div class="analysis-mini-icon">🏦</div>
+              <div class="analysis-ring" id="analysisSavingRing" style="--value:0;"><span id="analysisSavingPercent">0%</span></div>
+            </div>
+            <p>Отложено</p>
             <strong id="analysisMonthSavings">0 ₽</strong>
+            <small id="analysisSavingSub">к цели</small>
           </div>
 
-          <div class="analysis-mini">
-            <p>До цели осталось</p>
+          <div class="analysis-mini premium-analysis-mini goal-tile">
+            <div class="analysis-mini-top">
+              <div class="analysis-mini-icon">🎯</div>
+              <div class="analysis-mini-badge" id="analysisGoalPercent">0%</div>
+            </div>
+            <p>До цели</p>
             <strong id="analysisLeftGoal">0 ₽</strong>
+            <small id="analysisGoalSub">осталось</small>
           </div>
         </div>
 
+        <div class="analysis-divider"></div>
 
-        
-<div class="analysis-divider"></div>
-<div class="analysis-section-title">
+        <div class="analysis-section-title">
           <span>Расходы по категориям</span>
-          <small>текущий месяц</small>
+          <small id="analysisCategoryHint">текущий месяц</small>
         </div>
-        <div class="analysis-bars" id="analysisCategoryBars"></div>
+        <div class="analysis-bars analysis-premium-bars" id="analysisCategoryBars"></div>
 
         <div class="analysis-divider"></div>
 
@@ -12664,6 +13377,154 @@
   }
 
 
+  function shortMoney(value) {
+    const num = Math.max(0, Number(value) || 0);
+    if (num >= 1000000) return (Math.round(num / 100000) / 10).toString().replace(".", ",") + "м";
+    if (num >= 1000) return Math.round(num / 1000) + "к";
+    return String(Math.round(num));
+  }
+
+  function formatGoalMonth() {
+    const value = data.targetMonth || "";
+    if (!value || !value.includes("-")) return "—";
+    const [year, month] = value.split("-").map(Number);
+    if (!year || !month) return "—";
+    return new Date(year, month - 1, 1).toLocaleDateString("ru-RU", {
+      month: "short",
+      year: "numeric"
+    }).replace(".", "");
+  }
+
+  function renderPremiumSavingsChart() {
+    const svg = document.getElementById("premiumSavingsSvg");
+    if (!svg) return;
+
+    const s = calc();
+    const goal = Math.max(1, Number(data.goal) || 1);
+    const saved = Math.max(0, Number(s.totalSaved) || 0);
+    const progress = Math.max(0, Math.min(100, Number(s.progress) || 0));
+    const left = Math.max(0, goal - saved);
+    const months = Math.max(1, Number(s.months) || 1);
+    const monthly = Math.max(0, Number(s.needMonthly) || 0);
+    const targetDate = formatGoalMonth();
+
+    const setText = (id, value) => {
+      const el = document.getElementById(id);
+      if (el) el.textContent = value;
+    };
+
+    setText("premiumSavingsStatus", progress >= 100 ? "Цель достигнута! 🎉" : progress >= 50 ? "Ты уже близко к цели! ⚡" : "Ты на пути к цели! 🔥");
+    setText("premiumSavingsNow", rub(saved));
+    setText("premiumSavingsGoalText", `из ${rub(goal)}`);
+    setText("premiumSavingsPercent", `${Math.round(progress)}%`);
+    setText("premiumSavingsDate", targetDate);
+    setText("premiumSavingsMonthly", rub(monthly));
+    setText("premiumSavingsMonths", `${months} мес.`);
+
+    const ring = document.getElementById("premiumRingProgress");
+    if (ring) {
+      const circumference = 2 * Math.PI * 48;
+      ring.style.strokeDasharray = circumference;
+      ring.style.strokeDashoffset = circumference - (progress / 100) * circumference;
+      if (!document.getElementById("premiumSavingsRingGradient")) {
+        const svgRing = document.querySelector(".premium-ring svg");
+        if (svgRing) {
+          svgRing.insertAdjacentHTML("afterbegin", `
+            <defs>
+              <linearGradient id="premiumSavingsRingGradient" x1="0" y1="0" x2="1" y2="1">
+                <stop offset="0%" stop-color="#5b8cff"/>
+                <stop offset="100%" stop-color="#a855f7"/>
+              </linearGradient>
+            </defs>
+          `);
+        }
+      }
+    }
+
+    const note = document.getElementById("premiumSavingsNote");
+    if (note) {
+      const ahead = Math.max(0, monthly - 0);
+      note.querySelector("span").innerHTML = left > 0
+        ? `Осталось накопить <b style="color:#4ade80">${rub(left)}</b>. Держи темп — цель станет ближе.`
+        : "Финансовая цель выполнена. Можно ставить следующую.";
+    }
+
+    const w = 360;
+    const h = 230;
+    const padL = 34;
+    const padR = 28;
+    const padT = 34;
+    const padB = 35;
+    const graphW = w - padL - padR;
+    const graphH = h - padT - padB;
+
+    const pointsCount = Math.max(4, Math.min(8, months + 1));
+    const values = Array.from({ length: pointsCount }, (_, i) => {
+      const value = saved + monthly * i;
+      return Math.min(goal, Math.max(0, value));
+    });
+
+    values[0] = saved;
+
+    const maxY = Math.max(goal, ...values, 1);
+    const points = values.map((value, i) => ({
+      value,
+      x: padL + (i / Math.max(1, values.length - 1)) * graphW,
+      y: padT + (1 - value / maxY) * graphH,
+      i
+    }));
+
+    const nowIndex = 0;
+    const currentPoint = points[nowIndex];
+    const goalPoint = points[points.length - 1];
+
+    const linePath = points.map((p, i) => `${i === 0 ? "M" : "L"} ${p.x} ${p.y}`).join(" ");
+    const currentPath = points.slice(0, 4).map((p, i) => `${i === 0 ? "M" : "L"} ${p.x} ${p.y}`).join(" ");
+    const futurePath = points.slice(3).map((p, i) => `${i === 0 ? "M" : "L"} ${p.x} ${p.y}`).join(" ");
+    const areaPath = `${linePath} L ${goalPoint.x} ${h - padB} L ${points[0].x} ${h - padB} Z`;
+    const goalY = padT + (1 - goal / maxY) * graphH;
+
+    const pill = (x, y, text, cls, width = 66) => `
+      <rect class="${cls}" x="${x}" y="${y}" width="${width}" height="27"></rect>
+      <text class="premium-graph-money" x="${x + width / 2}" y="${y + 18}" text-anchor="middle">${text}</text>
+    `;
+
+    svg.innerHTML = `
+      <defs>
+        <linearGradient id="premiumSavingsLinePast" x1="0" y1="0" x2="1" y2="0">
+          <stop offset="0%" stop-color="#4ade80"/>
+          <stop offset="55%" stop-color="#5b8cff"/>
+          <stop offset="100%" stop-color="#7c3aed"/>
+        </linearGradient>
+        <linearGradient id="premiumSavingsArea" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0%" stop-color="#5b8cff" stop-opacity=".27"/>
+          <stop offset="58%" stop-color="#7c3aed" stop-opacity=".10"/>
+          <stop offset="100%" stop-color="#7c3aed" stop-opacity="0"/>
+        </linearGradient>
+      </defs>
+
+      <line class="premium-graph-grid" x1="${padL}" y1="${padT + graphH * .25}" x2="${w - padR}" y2="${padT + graphH * .25}"></line>
+      <line class="premium-graph-grid" x1="${padL}" y1="${padT + graphH * .55}" x2="${w - padR}" y2="${padT + graphH * .55}"></line>
+      <line class="premium-graph-grid" x1="${padL}" y1="${h - padB}" x2="${w - padR}" y2="${h - padB}"></line>
+      <line class="premium-graph-goal" x1="${padL}" y1="${goalY}" x2="${w - padR}" y2="${goalY}"></line>
+
+      <path class="premium-graph-area" d="${areaPath}"></path>
+      <path class="premium-graph-line-past" d="${currentPath}"></path>
+      <path class="premium-graph-line-future" d="${futurePath}"></path>
+
+      ${points.map((p, i) => `
+        <circle class="premium-graph-dot ${i === 0 ? "premium-graph-dot-now" : i === points.length - 1 ? "premium-graph-dot-goal" : ""}" cx="${p.x}" cy="${p.y}" r="${i === 0 || i === points.length - 1 ? 5.4 : 4.2}"></circle>
+      `).join("")}
+
+      ${pill(Math.max(8, currentPoint.x - 25), Math.max(12, currentPoint.y - 38), shortMoney(saved) + " ₽", "premium-graph-pill-green", 62)}
+      ${pill(Math.min(w - 82, Math.max(8, goalPoint.x - 65)), Math.max(10, goalY - 36), rub(goal), "premium-graph-pill-purple", 78)}
+
+      <text class="premium-graph-label" x="${currentPoint.x + 10}" y="${Math.max(18, currentPoint.y - 13)}" text-anchor="start">сейчас</text>
+      <text class="premium-graph-label" x="${goalPoint.x}" y="${h - 13}" text-anchor="end">${targetDate}</text>
+      <text class="premium-graph-label" x="${w - padR}" y="${Math.max(12, goalY - 11)}" text-anchor="end">цель</text>
+    `;
+  }
+
 
   function renderAnalytics() {
     const currentMonth = today().slice(0, 7);
@@ -12677,6 +13538,20 @@
     const s = calc();
     const salary = calcSalaryPlan();
 
+    const categoryEmoji = {
+      "Еда": "🍔",
+      "Транспорт": "🚕",
+      "Одежда": "👕",
+      "Дом": "🏠",
+      "Связь": "📱",
+      "Игры": "🎮",
+      "Развлечения": "🎬",
+      "Фастфуд": "🍟",
+      "Доставка": "🛵",
+      "Здоровье": "💊",
+      "Другое": "✨"
+    };
+
     const byCategory = categories.map(cat => ({
       cat,
       value: expenses
@@ -12685,6 +13560,7 @@
     })).filter(x => x.value > 0).sort((a, b) => b.value - a.value);
 
     const top = byCategory[0] || null;
+    const topPercent = top ? Math.round(top.value / Math.max(1, totalExpenses) * 100) : 0;
     const biggest = expenses.slice().sort((a, b) => Number(b.amount || 0) - Number(a.amount || 0))[0] || null;
 
     const setText = (id, value) => {
@@ -12692,91 +13568,63 @@
       if (el) el.textContent = value;
     };
 
+    const setRing = (id, value) => {
+      const el = document.getElementById(id);
+      if (el) el.style.setProperty("--value", Math.max(0, Math.min(100, value || 0)));
+    };
+
+    const expenseLimit = salary.dailyLimit > 0
+      ? salary.dailyLimit * Math.max(1, new Date().getDate())
+      : Math.max(totalExpenses, 1);
+
+    const expensePercent = totalExpenses > 0
+      ? Math.min(100, Math.round(totalExpenses / Math.max(1, expenseLimit) * 100))
+      : 0;
+
+    const savingPercent = s.progress ? Math.round(Math.max(0, Math.min(100, s.progress))) : 0;
+    const healthScore = Math.max(0, Math.min(100,
+      100
+      - (expensePercent > 80 ? 24 : expensePercent > 55 ? 12 : 0)
+      + (totalSavings > 0 ? 8 : 0)
+      - (salary.dailyLimit > 0 && avgDaily > salary.dailyLimit ? 18 : 0)
+    ));
+
     setText("analysisTotalExpenses", rub(totalExpenses));
     setText("analysisAvgDaily", rub(avgDaily));
     setText("analysisTopCategory", top ? top.cat : "—");
+    setText("analysisTopCategoryIcon", top ? (categoryEmoji[top.cat] || "🏷️") : "🏷️");
+    setText("analysisTopCategoryPercent", `${topPercent}%`);
+    setText("analysisTopCategorySub", top ? `${rub(top.value)} за месяц` : "нет расходов");
     setText("analysisBiggestExpense", biggest ? rub(biggest.amount) : "—");
+    setText("analysisBiggestExpenseSub", biggest ? (biggest.category || "расход") : "за месяц");
     setText("analysisMonthSavings", rub(totalSavings));
     setText("analysisLeftGoal", rub(s.left));
+    setText("analysisExpensePercent", `${expensePercent}%`);
+    setText("analysisSavingPercent", `${savingPercent}%`);
+    setText("analysisGoalPercent", `${savingPercent}%`);
+    setText("analysisHealthScore", healthScore);
 
-    const chartSvg = document.getElementById("analysisSavingsSvg");
-    if (chartSvg) {
-      const goal = Math.max(1, Number(data.goal) || 1);
-      const saved = Math.max(0, Number(s.totalSaved) || 0);
-      const monthly = Math.max(0, Number(s.needMonthly) || 0);
-      const months = Math.max(2, Math.min(8, Number(s.months) || 8));
-      const targetLabel = getTargetMonthLabel();
+    setRing("analysisExpenseRing", expensePercent);
+    setRing("analysisSavingRing", savingPercent);
+    setRing("analysisHealthRing", healthScore);
 
-      setText("analysisChartMain", `${shortRub(saved)} → ${shortRub(goal)}`);
-      setText("analysisChartPercent", `${(s.progress || 0).toFixed(1)}%`);
-      setText("analysisChartNeedMonthly", rub(s.needMonthly));
-      setText("analysisChartMonths", targetLabel);
+    const heroTitle = document.getElementById("analysisHeroTitle");
+    const heroText = document.getElementById("analysisHeroText");
 
-      const values = Array.from({ length: months }, (_, i) => {
-        const value = monthly > 0 ? saved + monthly * i : saved;
-        return Math.min(goal, Math.max(0, value));
-      });
-
-      const w = 360;
-      const h = 220;
-      const padL = 34;
-      const padR = 34;
-      const padT = 34;
-      const padB = 42;
-      const usableW = w - padL - padR;
-      const usableH = h - padT - padB;
-      const maxY = Math.max(goal, ...values, 1);
-
-      const points = values.map((value, i) => ({
-        x: padL + (i / Math.max(1, values.length - 1)) * usableW,
-        y: padT + (1 - value / maxY) * usableH,
-        value,
-        i
-      }));
-
-      const line = points.map((p, i) => `${i === 0 ? "M" : "L"} ${p.x} ${p.y}`).join(" ");
-      const area = `${line} L ${points[points.length - 1].x} ${h - padB} L ${points[0].x} ${h - padB} Z`;
-      const goalY = padT + (1 - goal / maxY) * usableH;
-
-      const first = points[0];
-      const last = points[points.length - 1];
-
-      chartSvg.innerHTML = `
-        <defs>
-          <linearGradient id="analysisChartLine" x1="0" y1="0" x2="1" y2="0">
-            <stop offset="0%" stop-color="#4ade80"/>
-            <stop offset="48%" stop-color="#5b8cff"/>
-            <stop offset="100%" stop-color="#7c3aed"/>
-          </linearGradient>
-          <linearGradient id="analysisChartArea" x1="0" y1="0" x2="0" y2="1">
-            <stop offset="0%" stop-color="#5b8cff" stop-opacity=".22"/>
-            <stop offset="68%" stop-color="#7c3aed" stop-opacity=".08"/>
-            <stop offset="100%" stop-color="#7c3aed" stop-opacity="0"/>
-          </linearGradient>
-        </defs>
-
-        <line class="analysis-chart-grid" x1="${padL}" y1="${padT}" x2="${w - padR}" y2="${padT}"></line>
-        <line class="analysis-chart-grid" x1="${padL}" y1="${padT + usableH / 2}" x2="${w - padR}" y2="${padT + usableH / 2}"></line>
-        <line class="analysis-chart-grid" x1="${padL}" y1="${h - padB}" x2="${w - padR}" y2="${h - padB}"></line>
-        <line class="analysis-chart-goal" x1="${padL}" y1="${goalY}" x2="${w - padR}" y2="${goalY}"></line>
-
-        <path class="analysis-chart-area" d="${area}"></path>
-        <path class="analysis-chart-line-glow" d="${line}"></path>
-        <path class="analysis-chart-line" d="${line}"></path>
-
-        ${points.map((p, i) => {
-          if (i !== 0 && i !== points.length - 1 && i % 2 !== 0) return "";
-          return `
-            <circle class="analysis-chart-dot ${i === 0 ? "analysis-chart-dot-now" : "analysis-chart-dot-future"}" cx="${p.x}" cy="${p.y}" r="${i === 0 ? 5.8 : 4.6}"></circle>
-          `;
-        }).join("")}
-
-        <text class="analysis-chart-value" x="${first.x + 10}" y="${Math.max(18, first.y - 11)}" text-anchor="start">${shortRub(first.value)}</text>
-        <text class="analysis-chart-value" x="${last.x - 10}" y="${Math.max(18, last.y - 11)}" text-anchor="end">${shortRub(last.value)}</text>
-
-        <text class="analysis-chart-label" x="${padL}" y="${h - 13}" text-anchor="start">сейчас</text>
-        <text class="analysis-chart-label" x="${w - padR}" y="${h - 13}" text-anchor="end">${targetLabel}</text>
-      `;
+    if (heroTitle && heroText) {
+      if (totalExpenses === 0) {
+        heroTitle.textContent = "Анализ ждёт данные";
+        heroText.textContent = "Добавь расходы и накопления — карточки станут точнее.";
+      } else if (salary.dailyLimit > 0 && avgDaily > salary.dailyLimit) {
+        heroTitle.textContent = "Темп расходов высокий";
+        heroText.textContent = `Средний расход ${rub(avgDaily)} выше лимита ${rub(salary.dailyLimit)} в день.`;
+      } else if (totalSavings > 0) {
+        heroTitle.textContent = "Хорошая динамика";
+        heroText.textContent = `Ты уже отложил ${rub(totalSavings)} в этом месяце.`;
+      } else {
+        heroTitle.textContent = "Можно усилить накопления";
+        heroText.textContent = "Расходы есть, а переводов в накопления за месяц пока нет.";
+      }
     }
 
     const bars = document.getElementById("analysisCategoryBars");
@@ -12786,15 +13634,17 @@
       } else {
         const max = Math.max(...byCategory.map(x => x.value), 1);
         bars.innerHTML = byCategory.slice(0, 6).map(item => {
-          const width = Math.max(6, Math.round(item.value / max * 100));
+          const width = Math.max(7, Math.round(item.value / max * 100));
           const percent = Math.round(item.value / Math.max(1, totalExpenses) * 100);
+          const emoji = categoryEmoji[item.cat] || "✨";
           return `
             <div class="analysis-bar-row">
+              <div class="analysis-bar-emoji">${emoji}</div>
               <div class="analysis-bar-name">${item.cat}</div>
               <div class="analysis-bar-track">
                 <div class="analysis-bar-fill" style="width:${width}%"></div>
               </div>
-              <div class="analysis-bar-value">${percent}%</div>
+              <div class="analysis-bar-percent">${percent}%</div>
             </div>
           `;
         }).join("");
@@ -12804,27 +13654,32 @@
     const advice = [];
 
     if (totalExpenses === 0) {
-      advice.push("Добавь несколько расходов — тогда анализ покажет реальные слабые места бюджета.");
+      advice.push(["📌", "Добавь несколько расходов — тогда анализ покажет реальные слабые места бюджета."]);
     } else {
-      advice.push(`За текущий месяц потрачено <b>${rub(totalExpenses)}</b>, средний расход — <b>${rub(avgDaily)}</b> в день.`);
+      advice.push(["📊", `За текущий месяц потрачено <b>${rub(totalExpenses)}</b>, средний расход — <b>${rub(avgDaily)}</b> в день.`]);
     }
 
     if (top) {
       const economy = Math.round(top.value * 0.25);
-      advice.push(`Самая затратная категория — <b>${top.cat}</b>. Если сократить её на 25%, можно освободить примерно <b>${rub(economy)}</b>.`);
+      advice.push(["🎯", `Самая затратная категория — <b>${top.cat}</b>. Если сократить её на 25%, можно освободить примерно <b>${rub(economy)}</b>.`]);
     }
 
     if (salary.dailyLimit > 0 && avgDaily > salary.dailyLimit) {
-      advice.push(`Темп трат выше безопасного лимита до выплаты: <b>${rub(avgDaily)}</b> против <b>${rub(salary.dailyLimit)}</b> в день.`);
+      advice.push(["⚠️", `Темп трат выше безопасного лимита: <b>${rub(avgDaily)}</b> против <b>${rub(salary.dailyLimit)}</b> в день.`]);
     } else if (salary.dailyLimit > 0) {
-      advice.push(`Дневной лимит до выплаты выглядит спокойнее: можно тратить около <b>${rub(salary.dailyLimit)}</b> в день.`);
+      advice.push(["✅", `Дневной лимит выглядит спокойно: можно тратить около <b>${rub(salary.dailyLimit)}</b> в день.`]);
     }
 
-    advice.push(`До цели осталось <b>${rub(s.left)}</b>. Для текущего срока нужно откладывать около <b>${rub(s.needMonthly)}</b> в месяц.`);
+    advice.push(["🏦", `До цели осталось <b>${rub(s.left)}</b>. Для текущего срока нужно откладывать около <b>${rub(s.needMonthly)}</b> в месяц.`]);
 
     const adviceBox = document.getElementById("analysisAdviceList");
     if (adviceBox) {
-      adviceBox.innerHTML = advice.map(text => `<div class="analysis-advice">${text}</div>`).join("");
+      adviceBox.innerHTML = advice.map(([icon, text]) => `
+        <div class="analysis-advice">
+          <div class="analysis-advice-icon">${icon}</div>
+          <div>${text}</div>
+        </div>
+      `).join("");
     }
   }
 
