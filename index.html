@@ -12229,6 +12229,26 @@
       }
     }
 
+
+    /* Fix analysis mini-card labels */
+    .biggest-tile .analysis-mini-badge {
+      max-width: none !important;
+      min-width: 42px !important;
+      padding-left: 9px !important;
+      padding-right: 9px !important;
+    }
+
+    .analysis-ring span {
+      max-width: 34px;
+      text-align: center;
+      line-height: 1.05 !important;
+    }
+
+    .expense-tile #analysisExpensePercent {
+      font-size: 9px !important;
+      letter-spacing: -.1px;
+    }
+
 </style>
 </head>
 <body>
@@ -12404,7 +12424,7 @@
           <div class="analysis-mini premium-analysis-mini expense-tile">
             <div class="analysis-mini-top">
               <div class="analysis-mini-icon">💸</div>
-              <div class="analysis-ring" id="analysisExpenseRing" style="--value:0;"><span id="analysisExpensePercent">0%</span></div>
+              <div class="analysis-ring" id="analysisExpenseRing" style="--value:0;"><span id="analysisExpensePercent">лимит</span></div>
             </div>
             <p>Потрачено</p>
             <strong id="analysisTotalExpenses">0 ₽</strong>
@@ -12434,7 +12454,7 @@
           <div class="analysis-mini premium-analysis-mini biggest-tile">
             <div class="analysis-mini-top">
               <div class="analysis-mini-icon">🧾</div>
-              <div class="analysis-mini-badge">покупка</div>
+              <div class="analysis-mini-badge">чек</div>
             </div>
             <p>Самая большая</p>
             <strong id="analysisBiggestExpense">—</strong>
@@ -13599,7 +13619,8 @@
     setText("analysisBiggestExpenseSub", biggest ? (biggest.category || "расход") : "за месяц");
     setText("analysisMonthSavings", rub(totalSavings));
     setText("analysisLeftGoal", rub(s.left));
-    setText("analysisExpensePercent", `${expensePercent}%`);
+    setText("analysisExpensePercent", salary.dailyLimit > 0 ? `${expensePercent}%` : "мес");
+    setText("analysisExpenseSub", salary.dailyLimit > 0 ? "от безопасного лимита" : "за месяц");
     setText("analysisSavingPercent", `${savingPercent}%`);
     setText("analysisGoalPercent", `${savingPercent}%`);
     setText("analysisHealthScore", healthScore);
