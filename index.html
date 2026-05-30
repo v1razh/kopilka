@@ -2818,6 +2818,218 @@
       font-weight: 900;
     }
 
+
+    /* Ultra premium analysis chart */
+    .analysis-chart-card {
+      position: relative;
+      overflow: hidden;
+      border-radius: 28px;
+      padding: 16px;
+      background:
+        radial-gradient(circle at 12% 0%, rgba(91,140,255,.28), transparent 34%),
+        radial-gradient(circle at 92% 8%, rgba(124,58,237,.22), transparent 30%),
+        linear-gradient(180deg, rgba(255,255,255,.10), rgba(255,255,255,.032)),
+        rgba(12,24,42,.46);
+      border: 1px solid rgba(255,255,255,.16);
+      box-shadow:
+        0 24px 60px rgba(0,0,0,.26),
+        inset 0 1px 0 rgba(255,255,255,.14),
+        inset 0 -1px 0 rgba(255,255,255,.04);
+      backdrop-filter: blur(30px) saturate(1.55);
+      -webkit-backdrop-filter: blur(30px) saturate(1.55);
+    }
+
+    .analysis-chart-card::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background:
+        linear-gradient(115deg, rgba(255,255,255,.13), transparent 28%),
+        radial-gradient(circle at 40% 12%, rgba(255,255,255,.08), transparent 22%);
+      pointer-events: none;
+      opacity: .75;
+    }
+
+    .analysis-chart-card > * {
+      position: relative;
+      z-index: 1;
+    }
+
+    .analysis-chart-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: 12px;
+      margin-bottom: 14px;
+    }
+
+    .analysis-chart-top p {
+      margin: 0;
+      color: rgba(245,247,251,.62);
+      font-size: 12px;
+      line-height: 1.35;
+      font-weight: 700;
+    }
+
+    .analysis-chart-top strong {
+      display: block;
+      margin-top: 5px;
+      color: white;
+      font-size: 22px;
+      letter-spacing: -.35px;
+      line-height: 1.08;
+    }
+
+    .analysis-chart-badge {
+      flex: 0 0 auto;
+      min-width: 58px;
+      text-align: center;
+      padding: 9px 12px;
+      border-radius: 999px;
+      background:
+        linear-gradient(135deg, rgba(91,140,255,.30), rgba(124,58,237,.22));
+      border: 1px solid rgba(255,255,255,.18);
+      color: white;
+      font-size: 12px;
+      font-weight: 950;
+      white-space: nowrap;
+      box-shadow:
+        0 10px 24px rgba(91,140,255,.16),
+        inset 0 1px 0 rgba(255,255,255,.18);
+    }
+
+    .analysis-chart-svg-wrap {
+      height: 240px;
+      border-radius: 24px;
+      overflow: hidden;
+      background:
+        radial-gradient(circle at 18% 15%, rgba(91,140,255,.14), transparent 32%),
+        linear-gradient(to top, rgba(255,255,255,.052) 1px, transparent 1px),
+        linear-gradient(180deg, rgba(255,255,255,.055), rgba(255,255,255,.018));
+      background-size: auto, 100% 33.333%, auto;
+      border: 1px solid rgba(255,255,255,.10);
+      box-shadow:
+        inset 0 1px 0 rgba(255,255,255,.08),
+        inset 0 -20px 60px rgba(7,16,29,.22);
+    }
+
+    #analysisSavingsSvg {
+      width: 100%;
+      height: 100%;
+      display: block;
+    }
+
+    .analysis-chart-grid {
+      stroke: rgba(255,255,255,.075);
+      stroke-width: 1;
+    }
+
+    .analysis-chart-goal {
+      stroke: rgba(255,255,255,.32);
+      stroke-width: 1.25;
+      stroke-dasharray: 8 10;
+    }
+
+    .analysis-chart-area {
+      fill: url(#analysisChartArea);
+    }
+
+    .analysis-chart-line-glow {
+      fill: none;
+      stroke: rgba(91,140,255,.18);
+      stroke-width: 13;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+      filter: blur(3px);
+    }
+
+    .analysis-chart-line {
+      fill: none;
+      stroke: url(#analysisChartLine);
+      stroke-width: 4.6;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+      filter: drop-shadow(0 8px 14px rgba(91,140,255,.30));
+    }
+
+    .analysis-chart-dot {
+      fill: rgba(255,255,255,.96);
+      stroke: #5b8cff;
+      stroke-width: 3.2;
+      filter: drop-shadow(0 5px 10px rgba(91,140,255,.28));
+    }
+
+    .analysis-chart-dot-now {
+      fill: #4ade80;
+      stroke: white;
+      stroke-width: 3.6;
+      filter: drop-shadow(0 5px 12px rgba(74,222,128,.26));
+    }
+
+    .analysis-chart-dot-future {
+      fill: rgba(255,255,255,.94);
+      stroke: rgba(91,140,255,.96);
+    }
+
+    .analysis-chart-dot-final {
+      fill: #ffffff;
+      stroke: #7c3aed;
+      stroke-width: 3.6;
+      filter: drop-shadow(0 6px 14px rgba(124,58,237,.34));
+    }
+
+    .analysis-chart-label {
+      fill: rgba(245,247,251,.64);
+      font-size: 10.5px;
+      font-weight: 850;
+    }
+
+    .analysis-chart-value {
+      fill: rgba(255,255,255,.94);
+      font-size: 11.5px;
+      font-weight: 950;
+    }
+
+    .analysis-chart-goal-label {
+      fill: rgba(255,255,255,.62);
+      font-size: 10.5px;
+      font-weight: 850;
+    }
+
+    .analysis-chart-bottom {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+      margin-top: 12px;
+    }
+
+    .analysis-chart-bottom div {
+      border-radius: 18px;
+      padding: 12px;
+      background:
+        linear-gradient(180deg, rgba(255,255,255,.065), rgba(255,255,255,.024)),
+        rgba(255,255,255,.03);
+      border: 1px solid rgba(255,255,255,.10);
+      min-width: 0;
+    }
+
+    .analysis-chart-bottom p {
+      margin: 0;
+      color: rgba(245,247,251,.58);
+      font-size: 12px;
+      font-weight: 700;
+    }
+
+    .analysis-chart-bottom strong {
+      display: block;
+      margin-top: 5px;
+      color: white;
+      font-size: 16px;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
     @media (max-width: 390px) {
       .analysis-mini-grid {
         grid-template-columns: 1fr;
@@ -12344,9 +12556,9 @@
 
       const w = 360;
       const h = 220;
-      const padL = 34;
-      const padR = 34;
-      const padT = 34;
+      const padL = 36;
+      const padR = 36;
+      const padT = 36;
       const padB = 42;
       const usableW = w - padL - padR;
       const usableH = h - padT - padB;
@@ -12365,17 +12577,18 @@
 
       const first = points[0];
       const last = points[points.length - 1];
+      const mid = points[Math.floor(points.length / 2)];
 
       chartSvg.innerHTML = `
         <defs>
           <linearGradient id="analysisChartLine" x1="0" y1="0" x2="1" y2="0">
             <stop offset="0%" stop-color="#4ade80"/>
-            <stop offset="48%" stop-color="#5b8cff"/>
-            <stop offset="100%" stop-color="#7c3aed"/>
+            <stop offset="42%" stop-color="#5b8cff"/>
+            <stop offset="100%" stop-color="#8b5cf6"/>
           </linearGradient>
           <linearGradient id="analysisChartArea" x1="0" y1="0" x2="0" y2="1">
-            <stop offset="0%" stop-color="#5b8cff" stop-opacity=".22"/>
-            <stop offset="68%" stop-color="#7c3aed" stop-opacity=".08"/>
+            <stop offset="0%" stop-color="#5b8cff" stop-opacity=".30"/>
+            <stop offset="58%" stop-color="#7c3aed" stop-opacity=".11"/>
             <stop offset="100%" stop-color="#7c3aed" stop-opacity="0"/>
           </linearGradient>
         </defs>
@@ -12389,15 +12602,13 @@
         <path class="analysis-chart-line-glow" d="${line}"></path>
         <path class="analysis-chart-line" d="${line}"></path>
 
-        ${points.map((p, i) => {
-          if (i !== 0 && i !== points.length - 1 && i % 2 !== 0) return "";
-          return `
-            <circle class="analysis-chart-dot ${i === 0 ? "analysis-chart-dot-now" : "analysis-chart-dot-future"}" cx="${p.x}" cy="${p.y}" r="${i === 0 ? 5.8 : 4.6}"></circle>
-          `;
-        }).join("")}
+        <circle class="analysis-chart-dot analysis-chart-dot-now" cx="${first.x}" cy="${first.y}" r="5.9"></circle>
+        <circle class="analysis-chart-dot analysis-chart-dot-future" cx="${mid.x}" cy="${mid.y}" r="4.7"></circle>
+        <circle class="analysis-chart-dot analysis-chart-dot-final" cx="${last.x}" cy="${last.y}" r="5.3"></circle>
 
-        <text class="analysis-chart-value" x="${first.x + 10}" y="${Math.max(18, first.y - 11)}" text-anchor="start">${shortRub(first.value)}</text>
-        <text class="analysis-chart-value" x="${last.x - 10}" y="${Math.max(18, last.y - 11)}" text-anchor="end">${shortRub(last.value)}</text>
+        <text class="analysis-chart-value" x="${first.x + 10}" y="${Math.max(18, first.y - 12)}" text-anchor="start">${shortRub(first.value)}</text>
+        <text class="analysis-chart-value" x="${last.x - 10}" y="${Math.max(18, last.y - 12)}" text-anchor="end">${shortRub(last.value)}</text>
+        <text class="analysis-chart-goal-label" x="${w - padR}" y="${Math.max(15, goalY - 8)}" text-anchor="end">цель ${shortRub(goal)}</text>
 
         <text class="analysis-chart-label" x="${padL}" y="${h - 13}" text-anchor="start">сейчас</text>
         <text class="analysis-chart-label" x="${w - padR}" y="${h - 13}" text-anchor="end">${targetLabel}</text>
