@@ -12302,6 +12302,22 @@
       }
     }
 
+
+/* Balanced bottom navigation after removing stats */
+.bottom-nav{
+  display:grid !important;
+  grid-template-columns:repeat(auto-fit,minmax(0,1fr));
+  gap:10px;
+}
+
+.bottom-nav .nav-btn,
+.bottom-nav button,
+.bottom-nav a{
+  width:100%;
+  justify-content:center;
+  flex:1 1 0;
+}
+
 </style>
 </head>
 <body>
@@ -12964,14 +12980,57 @@
   }
 
   function calcSalaryPlan() {
-    const payDate = nextPayDate();
-    const days = daysUntil(payDate);
-    const recurring = getRecurringBeforePay();
-    const requiredTotal = Number(data.requiredBeforePay) + Number(recurring.total);
-    const freeMoney = Math.max(0, Number(data.currentCash) - requiredTotal);
+    const baseCash = Number(data.currentCash || 0);
+    const mandatory = Number(data.mandatory || 0);
+    const recurring = getMonthlyRecurringTotal ? getMonthlyRecurringTotal() : 0;
+
+    const now = new Date();
+    const payDay = Math.max(1, Math.min(31, Number(data.payDay || 1)));
+
+    let payDate = new Date(now.getFullYear(), now.getMonth(), payDay);
+
+    if (payDate < new Date(now.getFullYear(), now.getMonth(), now.getDate())) {
+      payDate = new Date(now.getFullYear(), now.getMonth() + 1, payDay);
+    }
+
+    const todayStart = new Date(now.getFullYear(), now.getMonth(), now.getDate());
+
+    const days = Math.max(1, Math.ceil((payDate - todayStart) / 86400000));
+
+    const periodTx = data.transactions.filter(tx => {
+      const txDate = new Date((tx.date || today()) + "T00:00:00");
+      return txDate >= todayStart && txDate <= payDate;
+    });
+
+    const spentAfterToday = periodTx
+      .filter(tx => tx.type === "expense")
+      .reduce((sum, tx) => sum + Number(tx.amount || 0), 0);
+
+    const incomeAfterToday = periodTx
+      .filter(tx => tx.type === "income")
+      .reduce((sum, tx) => sum + Number(tx.amount || 0), 0);
+
+    const savedAfterToday = periodTx
+      .filter(tx => tx.type === "saving")
+      .reduce((sum, tx) => sum + Number(tx.amount || 0), 0);
+
+    const actualCash = Math.max(0, baseCash - spentAfterToday + incomeAfterToday - savedAfterToday);
+    const freeMoney = Math.max(0, actualCash - mandatory - recurring);
     const dailyLimit = Math.floor(freeMoney / days);
 
-    return { payDate, days, freeMoney, dailyLimit, recurringTotal: recurring.total, recurringItems: recurring.items, requiredTotal };
+    return {
+      payDate,
+      days,
+      baseCash,
+      actualCash,
+      spentAfterToday,
+      incomeAfterToday,
+      savedAfterToday,
+      mandatory,
+      recurring,
+      freeMoney,
+      dailyLimit
+    };
   }
 
   function calc() {
@@ -13126,7 +13185,7 @@ function render() {
 
     setText("todayLimitMain", salary.dailyLimit > 0 ? rub(salary.dailyLimit) : "0 ₽");
     setText("todayLimitSub", salary.dailyLimit > 0
-      ? `Свободно после обязательных трат: ${rub(salary.freeMoney)}. Регулярные платежи уже учтены.`
+      ? `Свободно после обязательных трат: ${rub(salary.freeMoney)}. Расходы и регулярные платежи уже учтены.`
       : "Заполни деньги на карте и обязательные траты в настройках.");
 
     setText("dashMonthExpenses", rub(periodExpenses));
