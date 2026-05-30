@@ -11301,6 +11301,134 @@
       border-color: rgba(74,222,128,.18) !important;
     }
 
+
+    .dashboard-top-group {
+      margin-bottom: 12px;
+    }
+
+    .dashboard-summary-main {
+      grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+    }
+
+    .dashboard-summary-streak {
+      grid-template-columns: 1fr !important;
+      margin-top: 0 !important;
+    }
+
+    .dashboard-streak-card {
+      position: relative;
+      overflow: hidden;
+      background:
+        radial-gradient(circle at top right, rgba(74,222,128,.16), transparent 38%),
+        linear-gradient(135deg, rgba(74,222,128,.10), rgba(91,140,255,.08)),
+        rgba(255,255,255,.045) !important;
+      border-color: rgba(74,222,128,.16) !important;
+    }
+
+    .dashboard-streak-card::after {
+      content: "🔥";
+      position: absolute;
+      right: 14px;
+      top: 50%;
+      transform: translateY(-50%);
+      font-size: 28px;
+      opacity: .18;
+      pointer-events: none;
+    }
+
+    .dashboard-streak-card strong {
+      font-size: 18px !important;
+    }
+
+
+    /* Final separated dashboard metrics layout */
+    .dashboard-money-group {
+      margin-bottom: 12px !important;
+    }
+
+    .dashboard-money-group .dashboard-period-switch {
+      display: grid !important;
+      grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
+      gap: 6px !important;
+      padding: 5px !important;
+      margin: 12px 0 10px !important;
+      border-radius: 18px !important;
+      background: rgba(255,255,255,.045) !important;
+      border: 1px solid rgba(255,255,255,.10) !important;
+      width: 100% !important;
+    }
+
+    .dashboard-money-group .dashboard-period-btn {
+      appearance: none !important;
+      -webkit-appearance: none !important;
+      display: flex !important;
+      align-items: center !important;
+      justify-content: center !important;
+      height: 38px !important;
+      min-height: 38px !important;
+      border: 0 !important;
+      border-radius: 13px !important;
+      margin: 0 !important;
+      padding: 0 4px !important;
+      background: transparent !important;
+      color: var(--muted) !important;
+      font-size: 12px !important;
+      line-height: 1 !important;
+      font-weight: 900 !important;
+      white-space: nowrap !important;
+    }
+
+    .dashboard-money-group .dashboard-period-btn.active {
+      color: white !important;
+      background: linear-gradient(135deg, rgba(91,140,255,.36), rgba(124,58,237,.26)) !important;
+      box-shadow: inset 0 0 0 1px rgba(255,255,255,.08) !important;
+    }
+
+    .dashboard-summary-money {
+      display: grid !important;
+      grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+      gap: 10px !important;
+      margin-bottom: 0 !important;
+      width: 100% !important;
+    }
+
+    .dashboard-streak-card {
+      display: flex !important;
+      align-items: center !important;
+      justify-content: space-between !important;
+      gap: 12px !important;
+      margin: 0 0 14px !important;
+      padding: 14px !important;
+      border-radius: 20px !important;
+      background:
+        radial-gradient(circle at 90% 50%, rgba(74,222,128,.18), transparent 34%),
+        linear-gradient(135deg, rgba(74,222,128,.12), rgba(91,140,255,.08)),
+        rgba(255,255,255,.045) !important;
+      border: 1px solid rgba(74,222,128,.18) !important;
+      overflow: hidden !important;
+    }
+
+    .dashboard-streak-card p {
+      margin: 0 !important;
+      color: var(--muted) !important;
+      font-size: 12px !important;
+      line-height: 1.3 !important;
+    }
+
+    .dashboard-streak-card strong {
+      display: block !important;
+      margin-top: 5px !important;
+      color: white !important;
+      font-size: 22px !important;
+      line-height: 1.1 !important;
+    }
+
+    .dashboard-streak-icon {
+      font-size: 32px !important;
+      opacity: .86 !important;
+      flex: 0 0 auto !important;
+    }
+
 </style>
 </head>
 <body>
@@ -11362,30 +11490,35 @@
           <button class="quick-action" id="quickSaving"><span>🏦</span>В накопления</button>
         </div>
 
-        <div class="dashboard-period-switch">
-          <button type="button" class="dashboard-period-btn" data-dashboard-period="week">Неделя</button>
-          <button type="button" class="dashboard-period-btn active" data-dashboard-period="month">Месяц</button>
-          <button type="button" class="dashboard-period-btn" data-dashboard-period="all">Всё время</button>
+        <div class="dashboard-money-group">
+          <div class="dashboard-period-switch">
+            <button type="button" class="dashboard-period-btn" data-dashboard-period="week">Неделя</button>
+            <button type="button" class="dashboard-period-btn active" data-dashboard-period="month">Месяц</button>
+            <button type="button" class="dashboard-period-btn" data-dashboard-period="all">Всё время</button>
+          </div>
+
+          <div class="dashboard-summary dashboard-summary-money">
+            <div class="dashboard-summary-item">
+              <p>Потрачено</p>
+              <strong id="dashMonthExpenses">0 ₽</strong>
+              <span class="dashboard-summary-caption" id="dashExpensesCaption">за месяц</span>
+            </div>
+
+            <div class="dashboard-summary-item">
+              <p>Отложено</p>
+              <strong id="dashMonthSavings">0 ₽</strong>
+              <span class="dashboard-summary-caption" id="dashSavingsCaption">за месяц</span>
+            </div>
+          </div>
         </div>
 
-        <div class="dashboard-summary">
-          <div class="dashboard-summary-item">
-            <p>Потрачено</p>
-            <strong id="dashMonthExpenses">0 ₽</strong>
-            <span class="dashboard-summary-caption" id="dashExpensesCaption">за месяц</span>
+        <div class="dashboard-streak-card">
+          <div>
+            <p>Дней подряд без лишних трат</p>
+            <strong id="dashNoSpendDays">0 дн.</strong>
+            <span class="dashboard-summary-caption">личный streak 🔥</span>
           </div>
-
-          <div class="dashboard-summary-item">
-            <p>Отложено</p>
-            <strong id="dashMonthSavings">0 ₽</strong>
-            <span class="dashboard-summary-caption" id="dashSavingsCaption">за месяц</span>
-          </div>
-
-          <div class="dashboard-summary-item">
-            <p>Без лишних трат</p>
-            <strong id="dashNoSpendDays">0 дней</strong>
-            <span class="dashboard-summary-caption">подряд 🔥</span>
-          </div>
+          <div class="dashboard-streak-icon">🔥</div>
         </div>
 
         <div class="main-advice">
@@ -11748,17 +11881,18 @@
       <div class="field">
         <label>Категория</label>
         <select id="category">
-          <option>Еда</option>
-          <option>Транспорт</option>
-          <option>Игры</option>
-          <option>Развлечения</option>
-          <option>Подарки</option>
-          <option>Учёба</option>
-          <option>Связь</option>
-          <option>Одежда</option>
-          <option>ПК</option>
-          <option>Другое</option>
-        </select>
+            <option value="Еда">Еда</option>
+            <option value="Транспорт">Транспорт</option>
+            <option value="Одежда">Одежда</option>
+            <option value="Дом">Дом</option>
+            <option value="Связь">Связь</option>
+            <option value="Игры">Игры</option>
+            <option value="Развлечения">Развлечения</option>
+            <option value="Фастфуд">Фастфуд</option>
+            <option value="Доставка">Доставка</option>
+            <option value="Здоровье">Здоровье</option>
+            <option value="Другое">Другое</option>
+          </select>
       </div>
     </div>
 
@@ -13251,6 +13385,41 @@
 
   document.getElementById("date").value = today();
 
+
+  const categorySets = {
+    expense: ["Еда", "Транспорт", "Одежда", "Дом", "Связь", "Игры", "Развлечения", "Фастфуд", "Доставка", "Здоровье", "Другое"],
+    income: ["Зарплата", "Аванс", "Подработка", "Подарок", "Кэшбэк", "Возврат", "Другое"],
+    saving: ["Накопления", "ПК", "Подушка", "Инвестиции", "Другое"]
+  };
+
+  function updateCategoryOptions() {
+    const typeEl = document.getElementById("type");
+    const categoryEl = document.getElementById("category");
+    if (!typeEl || !categoryEl) return;
+
+    const selectedType = typeEl.value || "expense";
+    const list = categorySets[selectedType] || categorySets.expense;
+    const previousValue = categoryEl.value;
+
+    categoryEl.innerHTML = list
+      .map(cat => `<option value="${cat}">${cat}</option>`)
+      .join("");
+
+    if (list.includes(previousValue)) {
+      categoryEl.value = previousValue;
+    } else {
+      categoryEl.value = list[0];
+    }
+  }
+
+
+
+  const operationTypeSelect = document.getElementById("type");
+  if (operationTypeSelect) {
+    operationTypeSelect.addEventListener("change", updateCategoryOptions);
+    updateCategoryOptions();
+  }
+
   document.getElementById("addBtn").addEventListener("click", () => {
     const amountEl = document.getElementById("amount");
     const typeEl = document.getElementById("type");
@@ -13270,7 +13439,7 @@
       id: crypto.randomUUID(),
       type: typeEl?.value || "expense",
       amount,
-      category: categoryEl?.value || "Другое",
+      category: categoryEl?.value || (categorySets[typeEl?.value || "expense"]?.[0] || "Другое"),
       note: (noteEl?.value || "").trim(),
       date: dateEl?.value || today()
     });
