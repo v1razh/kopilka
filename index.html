@@ -2827,98 +2827,6 @@
       }
     }
 
-
-
-    /* Fixed clean dashboard period + mini summary */
-    .dashboard-period-switch {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 6px;
-      padding: 5px;
-      margin: 12px 0 14px;
-      border-radius: 18px;
-      background: rgba(255,255,255,.045);
-      border: 1px solid rgba(255,255,255,.10);
-      width: 100%;
-    }
-
-    .dashboard-period-btn {
-      appearance: none;
-      -webkit-appearance: none;
-      border: 0;
-      height: 38px;
-      min-height: 38px;
-      border-radius: 13px;
-      background: transparent;
-      color: var(--muted);
-      font-size: 12px;
-      line-height: 1;
-      font-weight: 900;
-      padding: 0 4px;
-      margin: 0;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      text-align: center;
-      white-space: nowrap;
-    }
-
-    .dashboard-period-btn.active {
-      color: white;
-      background: linear-gradient(135deg, rgba(91,140,255,.36), rgba(124,58,237,.26));
-      box-shadow: inset 0 0 0 1px rgba(255,255,255,.08);
-    }
-
-    .dashboard-summary {
-      display: grid !important;
-      grid-template-columns: repeat(3, minmax(0, 1fr));
-      gap: 10px;
-      margin-bottom: 14px;
-      width: 100%;
-      align-items: stretch;
-    }
-
-    .dashboard-summary-item {
-      min-width: 0;
-      border-radius: 18px;
-      padding: 12px;
-      background: rgba(255,255,255,.045);
-      border: 1px solid rgba(255,255,255,.10);
-      overflow: hidden;
-    }
-
-    .dashboard-summary-item p {
-      margin: 0;
-      color: var(--muted);
-      font-size: 12px;
-      line-height: 1.25;
-      white-space: nowrap;
-      overflow: hidden;
-      text-overflow: ellipsis;
-    }
-
-    .dashboard-summary-item strong {
-      display: block;
-      margin-top: 5px;
-      font-size: 15px;
-      color: white;
-      line-height: 1.15;
-      white-space: nowrap;
-      overflow: hidden;
-      text-overflow: ellipsis;
-    }
-
-    .dashboard-summary-caption {
-      display: block;
-      margin-top: 5px;
-      color: var(--muted);
-      font-size: 11px;
-      line-height: 1.2;
-      white-space: nowrap;
-      overflow: hidden;
-      text-overflow: ellipsis;
-    }
-
     @media (max-width: 390px) {
       .pc-stage-actions {
         grid-template-columns: 1fr;
@@ -11294,11 +11202,103 @@
       .bottom-nav { left: 10px; right: 10px; }
     }
   
-    .dashboard-summary-item:has(#dashForecast) {
+    /* Final stable main dashboard period switch */
+    .dashboard-period-switch {
+      display: grid !important;
+      grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
+      gap: 6px !important;
+      padding: 5px !important;
+      margin: 12px 0 14px !important;
+      border-radius: 18px !important;
+      background: rgba(255,255,255,.045) !important;
+      border: 1px solid rgba(255,255,255,.10) !important;
+      width: 100% !important;
+    }
+
+    .dashboard-period-btn {
+      appearance: none !important;
+      -webkit-appearance: none !important;
+      display: flex !important;
+      align-items: center !important;
+      justify-content: center !important;
+      width: 100% !important;
+      height: 38px !important;
+      min-height: 38px !important;
+      border: 0 !important;
+      border-radius: 13px !important;
+      margin: 0 !important;
+      padding: 0 4px !important;
+      background: transparent !important;
+      color: var(--muted) !important;
+      font-size: 12px !important;
+      line-height: 1 !important;
+      font-weight: 900 !important;
+      text-align: center !important;
+      white-space: nowrap !important;
+    }
+
+    .dashboard-period-btn.active {
+      color: white !important;
+      background: linear-gradient(135deg, rgba(91,140,255,.36), rgba(124,58,237,.26)) !important;
+      box-shadow: inset 0 0 0 1px rgba(255,255,255,.08) !important;
+    }
+
+    .dashboard-summary {
+      display: grid !important;
+      grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
+      gap: 10px !important;
+      width: 100% !important;
+      margin-bottom: 14px !important;
+      align-items: stretch !important;
+    }
+
+    .dashboard-summary-item {
+      min-width: 0 !important;
+      border-radius: 18px !important;
+      padding: 12px !important;
+      background: rgba(255,255,255,.045) !important;
+      border: 1px solid rgba(255,255,255,.10) !important;
+      overflow: hidden !important;
+    }
+
+    .dashboard-summary-item p {
+      margin: 0 !important;
+      color: var(--muted) !important;
+      font-size: 12px !important;
+      line-height: 1.25 !important;
+      white-space: nowrap !important;
+      overflow: hidden !important;
+      text-overflow: ellipsis !important;
+    }
+
+    .dashboard-summary-item strong {
+      display: block !important;
+      margin-top: 5px !important;
+      color: white !important;
+      font-size: 15px !important;
+      line-height: 1.15 !important;
+      white-space: nowrap !important;
+      overflow: hidden !important;
+      text-overflow: ellipsis !important;
+    }
+
+    .dashboard-summary-caption {
+      display: block !important;
+      margin-top: 5px !important;
+      color: var(--muted) !important;
+      font-size: 11px !important;
+      line-height: 1.2 !important;
+      white-space: nowrap !important;
+      overflow: hidden !important;
+      text-overflow: ellipsis !important;
+    }
+
+  
+    .dashboard-summary-item:has(#dashNoSpendDays) {
       background:
-        linear-gradient(135deg, rgba(91,140,255,.12), rgba(124,58,237,.08)),
+        linear-gradient(135deg, rgba(74,222,128,.13), rgba(91,140,255,.10)),
         rgba(255,255,255,.045) !important;
-      border-color: rgba(91,140,255,.16) !important;
+      border-color: rgba(74,222,128,.18) !important;
     }
 
 </style>
@@ -11361,20 +11361,30 @@
           <button class="quick-action" id="quickIncome"><span>💰</span>Доход</button>
           <button class="quick-action" id="quickSaving"><span>🏦</span>В накопления</button>
         </div>
-<div class="dashboard-summary">
+
+        <div class="dashboard-period-switch">
+          <button type="button" class="dashboard-period-btn" data-dashboard-period="week">Неделя</button>
+          <button type="button" class="dashboard-period-btn active" data-dashboard-period="month">Месяц</button>
+          <button type="button" class="dashboard-period-btn" data-dashboard-period="all">Всё время</button>
+        </div>
+
+        <div class="dashboard-summary">
           <div class="dashboard-summary-item">
             <p>Потрачено</p>
             <strong id="dashMonthExpenses">0 ₽</strong>
+            <span class="dashboard-summary-caption" id="dashExpensesCaption">за месяц</span>
           </div>
-          </div>
+
           <div class="dashboard-summary-item">
             <p>Отложено</p>
             <strong id="dashMonthSavings">0 ₽</strong>
+            <span class="dashboard-summary-caption" id="dashSavingsCaption">за месяц</span>
           </div>
-          </div>
+
           <div class="dashboard-summary-item">
-            <p>До ПК</p>
-            <strong id="dashLeftToGoal">0 ₽</strong>
+            <p>Без лишних трат</p>
+            <strong id="dashNoSpendDays">0 дней</strong>
+            <span class="dashboard-summary-caption">подряд 🔥</span>
           </div>
         </div>
 
@@ -11800,6 +11810,8 @@
     compactMode: false,
     showHistory: true,
     dashboardPeriod: "month",
+    expenseMiniPeriod: "month",
+    savingMiniPeriod: "month",
     salaryDay: 10,
     advanceDay: 25,
     currentCash: 0,
@@ -12053,10 +12065,25 @@
   }
 
 
-  function getPeriodLabel(period) {
+  function getDashboardPeriodLabel(period) {
     if (period === "week") return "за неделю";
     if (period === "all") return "за всё время";
     return "за месяц";
+  }
+
+  function isTransactionInDashboardPeriod(tx, period) {
+    if (period === "all") return true;
+
+    const now = new Date();
+    const txDate = new Date((tx.date || today()) + "T00:00:00");
+
+    if (period === "week") {
+      const start = new Date(now.getFullYear(), now.getMonth(), now.getDate());
+      start.setDate(start.getDate() - 6);
+      return txDate >= start;
+    }
+
+    return monthKey(tx.date || today()) === today().slice(0, 7);
   }
 
   function renderDashboard() {
@@ -12065,39 +12092,41 @@
 
     const s = calc();
     const salary = calcSalaryPlan();
-    const currentMonth = today().slice(0, 7);
+    const period = data.dashboardPeriod || "month";
 
-    const monthExpenses = data.transactions
-      .filter(x => x.type === "expense" && monthKey(x.date) === currentMonth)
-      .reduce((sum, x) => sum + Number(x.amount), 0);
+    const periodExpenses = data.transactions
+      .filter(x => x.type === "expense" && isTransactionInDashboardPeriod(x, period))
+      .reduce((sum, x) => sum + Number(x.amount || 0), 0);
 
-    const monthSavings = data.transactions
-      .filter(x => x.type === "saving" && monthKey(x.date) === currentMonth)
-      .reduce((sum, x) => sum + Number(x.amount), 0);
+    const periodSavings = data.transactions
+      .filter(x => x.type === "saving" && isTransactionInDashboardPeriod(x, period))
+      .reduce((sum, x) => sum + Number(x.amount || 0), 0);
 
     const payDateText = salary.payDate.toLocaleDateString("ru-RU", { day: "numeric", month: "long" });
-
     statusEl.textContent = `До ближайшей выплаты ${salary.days} дн. · ${payDateText}`;
 
-    document.getElementById("todayLimitMain").textContent = salary.dailyLimit > 0 ? rub(salary.dailyLimit) : "0 ₽";
-    document.getElementById("todayLimitSub").textContent = salary.dailyLimit > 0
+    const setText = (id, value) => {
+      const el = document.getElementById(id);
+      if (el) el.textContent = value;
+    };
+
+    setText("todayLimitMain", salary.dailyLimit > 0 ? rub(salary.dailyLimit) : "0 ₽");
+    setText("todayLimitSub", salary.dailyLimit > 0
       ? `Свободно после обязательных трат: ${rub(salary.freeMoney)}. Регулярные платежи уже учтены.`
-      : "Заполни деньги на карте и обязательные траты в настройках.";
+      : "Заполни деньги на карте и обязательные траты в настройках.");
 
-    document.getElementById("dashMonthExpenses").textContent = rub(monthExpenses);
-    document.getElementById("dashMonthSavings").textContent = rub(monthSavings);
-    document.getElementById("dashLeftToGoal").textContent = rub(s.left);
-
-    setText("dashExpensesCaption", getPeriodLabel(period));
-    setText("dashSavingsCaption", getPeriodLabel(period));
-    setText("dashBalanceCaption", "сейчас");
+    setText("dashMonthExpenses", rub(periodExpenses));
+    setText("dashMonthSavings", rub(periodSavings));
+    setText("dashLeftToGoal", rub(s.left));
+    setText("dashExpensesCaption", getDashboardPeriodLabel(period));
+    setText("dashSavingsCaption", getDashboardPeriodLabel(period));
 
     document.querySelectorAll(".dashboard-period-btn").forEach(btn => {
       btn.classList.toggle("active", btn.dataset.dashboardPeriod === period);
     });
 
-
-    const avgDaily = Math.round(monthExpenses / Math.max(1, new Date().getDate()));
+    const daysForAvg = period === "week" ? 7 : Math.max(1, new Date().getDate());
+    const avgDaily = Math.round(periodExpenses / daysForAvg);
 
     let title = "Совет дня";
     let text = "";
@@ -12105,19 +12134,19 @@
     if (salary.dailyLimit <= 0) {
       title = "Настрой план";
       text = "Заполни деньги на карте, день зарплаты и обязательные траты — главная вкладка начнёт показывать реальный дневной лимит.";
-    } else if (avgDaily > salary.dailyLimit) {
+    } else if (avgDaily > salary.dailyLimit && period !== "all") {
       title = "Сбавь темп";
       text = `Средний расход ${rub(avgDaily)} в день выше лимита ${rub(salary.dailyLimit)}. Сегодня лучше оставить траты только на нужное.`;
-    } else if (monthSavings <= 0) {
+    } else if (periodSavings <= 0) {
       title = "Сделай первый перевод";
-      text = "В этом месяце ещё нет перевода в накопления. Даже небольшая сумма усилит ощущение прогресса к ПК.";
+      text = "За выбранный период ещё нет перевода в накопления. Даже небольшая сумма усилит ощущение прогресса.";
     } else {
       title = "Темп хороший";
-      text = `Ты уже отложил ${rub(monthSavings)} в этом месяце. Продолжай держать расходы ниже дневного лимита.`;
+      text = `За выбранный период ты отложил ${rub(periodSavings)}. Продолжай держать расходы ниже дневного лимита.`;
     }
 
-    document.getElementById("mainAdviceTitle").textContent = title;
-    document.getElementById("mainAdviceText").textContent = text;
+    setText("mainAdviceTitle", title);
+    setText("mainAdviceText", text);
   }
 
   function openAddSheetWithType(type) {
