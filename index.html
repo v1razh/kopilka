@@ -15223,5 +15223,44 @@ function renderAnalytics() {
   document.addEventListener("DOMContentLoaded", () => setTimeout(updateGoalFirstHomeFallback, 150));
 
 </script>
+
+<script>
+(function(){
+  function bindFab(){
+    const fab=document.getElementById("openAddSheet");
+    const backdrop=document.getElementById("sheetBackdrop");
+    const sheet=document.getElementById("addSheet");
+    const close=document.getElementById("closeAddSheet");
+    if(!fab||!backdrop||!sheet) return;
+
+    function openSheet(){
+      document.body.classList.add("sheet-open");
+      backdrop.classList.add("open");
+      sheet.classList.add("open");
+    }
+
+    function closeSheet(){
+      document.body.classList.remove("sheet-open");
+      backdrop.classList.remove("open");
+      sheet.classList.remove("open");
+    }
+
+    fab.onclick=openSheet;
+    fab.addEventListener("touchstart", openSheet, {passive:true});
+
+    if(close){
+      close.onclick=closeSheet;
+    }
+
+    backdrop.onclick=closeSheet;
+  }
+
+  if(document.readyState==="loading") {
+    document.addEventListener("DOMContentLoaded", bindFab);
+  } else {
+    bindFab();
+  }
+})();
+</script>
 </body>
 </html>
