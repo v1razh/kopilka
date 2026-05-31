@@ -12767,6 +12767,50 @@
       .dash-red-card strong { font-size: 16px; }
     }
 
+
+    /* Recent operations in redesigned home */
+    #recentTransactions:not(.empty) {
+      display: grid;
+      gap: 10px;
+      padding: 0;
+      text-align: left;
+    }
+
+    .recent-tx {
+      margin: 0 !important;
+      border-radius: 20px !important;
+      background:
+        linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.022)),
+        rgba(16,27,45,.34) !important;
+      border: 1px solid rgba(255,255,255,.10) !important;
+    }
+
+    .recent-tx-left {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      min-width: 0;
+    }
+
+    .recent-tx-icon {
+      width: 38px;
+      height: 38px;
+      flex: 0 0 auto;
+      display: grid;
+      place-items: center;
+      border-radius: 15px;
+      background: rgba(255,255,255,.07);
+      border: 1px solid rgba(255,255,255,.08);
+      font-size: 18px;
+    }
+
+    .recent-tx-right {
+      display: grid;
+      justify-items: end;
+      gap: 5px;
+      flex: 0 0 auto;
+    }
+
 </style>
 </head>
 <body>
@@ -13635,6 +13679,13 @@ function render() {
     const statusEl = document.getElementById("dashboardStatus");
     if (!statusEl) return;
 
+    if (!Array.isArray(data.transactions)) data.transactions = [];
+
+    const setText = (id, value) => {
+      const el = document.getElementById(id);
+      if (el) el.textContent = value;
+    };
+
     const s = calc();
     const salary = calcSalaryPlan();
     const period = data.dashboardPeriod || "month";
@@ -13648,19 +13699,20 @@ function render() {
     setText("goalTotalHero", rub(goalHero));
     setText("goalPercentHero", `${progressHero}%`);
     setText("goalLeftHero", `Осталось ${rub(Math.max(0, goalHero - totalSavedHero))}`);
+
     const goalFill = document.getElementById("goalProgressFill");
     if (goalFill) goalFill.style.width = `${progressHero}%`;
 
     setText("todayPercent", `${progressHero}%`);
+
     const todayRing = document.getElementById("todayDarkRing");
     if (todayRing) todayRing.style.setProperty("--ring", progressHero);
 
-
-    const periodExpenses = (data.transactions || [])
+    const periodExpenses = data.transactions
       .filter(x => x.type === "expense" && isTransactionInDashboardPeriod(x, period))
       .reduce((sum, x) => sum + Number(x.amount || 0), 0);
 
-    const periodSavings = (data.transactions || [])
+    const periodSavings = data.transactions
       .filter(x => x.type === "saving" && isTransactionInDashboardPeriod(x, period))
       .reduce((sum, x) => sum + Number(x.amount || 0), 0);
 
@@ -13671,33 +13723,39 @@ function render() {
 
     statusEl.textContent = `До ближайшей выплаты ${salary.days} дн. · ${payDateText}`;
 
-    const setText = (id, value) => {
-      const el = document.getElementById(id);
-      if (el) el.textContent = value;
-    };
-
-    setText("todayLimitMain", rub(salary.dailyLimit));
-    setText("freeAfterRequiredMain", rub(salary.freeMoney));
-
+    setText("todayLimitMain", rub(Math.max(0, salary.dailyLimit || 0)));
+    setText("freeAfterRequiredMain", rub(Math.max(0, salary.freeMoney || 0)));
     setText(
       "todayLimitSub",
-      `На карте с учётом операций: ${rub(salary.actualCash)}. Расходы, обязательные траты и регулярные платежи уже учтены.`
+      salary.dailyLimit > 0
+        ? `На карте с учётом операций: ${rub(salary.actualCash || data.currentCash || 0)}. Расходы и регулярные платежи уже учтены.`
+        : "Заполни деньги на карте и обязательные траты в настройках."
     );
 
     setText("dashMonthExpenses", rub(periodExpenses));
     setText("dashMonthSavings", rub(periodSavings));
 
-    const leftGoalEl = document.getElementById("dashLeftToGoal");
-    if (leftGoalEl) setText("dashLeftToGoal", rub(s.left));
-
-    const streakEl = document.getElementById("dashNoSpendDays");
-    if (streakEl) {
-      const noSpendDays = typeof calcNoSpendDays === "function" ? calcNoSpendDays() : 0;
-      setText("dashNoSpendDays", `${noSpendDays} дн.`);
-    }
+    const noSpendDays = typeof calcNoSpendDays === "function" ? calcNoSpendDays() : 0;
+    setText("dashNoSpendDays", `${noSpendDays} дн.`);
 
     setText("dashExpensesCaption", getDashboardPeriodLabel(period));
     setText("dashSavingsCaption", getDashboardPeriodLabel(period));
+
+    const expenseLine = document.getElementById("dashExpenseLine");
+    const savingLine = document.getElementById("dashSavingLine");
+    const maxMiniValue = Math.max(1, periodExpenses, periodSavings);
+
+    if (expenseLine) {
+      expenseLine.style.width = periodExpenses > 0
+        ? `${Math.max(8, Math.round(periodExpenses / maxMiniValue * 100))}%`
+        : "0%";
+    }
+
+    if (savingLine) {
+      savingLine.style.width = periodSavings > 0
+        ? `${Math.max(8, Math.round(periodSavings / maxMiniValue * 100))}%`
+        : "0%";
+    }
 
     document.querySelectorAll(".dashboard-period-btn").forEach(btn => {
       btn.classList.toggle("active", btn.dataset.dashboardPeriod === period);
@@ -13709,12 +13767,9 @@ function render() {
     let title = "Совет дня";
     let text = "";
 
-    if (salary.currentCash <= 0) {
-      title = "Добавь деньги на карте";
-      text = "Укажи текущую сумму на карте в настройках — тогда дневной лимит станет точнее.";
-    } else if (salary.freeMoney <= 0) {
-      title = "Свободных денег нет";
-      text = `После обязательных трат и регулярных платежей свободно ${rub(salary.freeMoney)}. Лучше тратить только на нужное.`;
+    if (salary.dailyLimit <= 0) {
+      title = "Настрой план";
+      text = "Заполни деньги на карте, день зарплаты и обязательные траты — главная вкладка начнёт показывать реальный дневной лимит.";
     } else if (avgDaily > salary.dailyLimit && period !== "all") {
       title = "Сбавь темп";
       text = `Средний расход ${rub(avgDaily)} в день выше лимита ${rub(salary.dailyLimit)}. Сегодня лучше оставить траты только на нужное.`;
@@ -13728,6 +13783,8 @@ function render() {
 
     setText("mainAdviceTitle", title);
     setText("mainAdviceText", text);
+
+    renderRecentTransactions();
   }
 
   function openAddSheetWithType(type) {
@@ -13747,7 +13804,56 @@ function render() {
     `;
   }
 
-  function renderTransactions() {
+  
+  function renderRecentTransactions() {
+    const box = document.getElementById("recentTransactions");
+    if (!box) return;
+
+    if (!Array.isArray(data.transactions)) data.transactions = [];
+
+    if (!data.transactions.length) {
+      box.classList.add("empty");
+      box.innerHTML = 'Чтобы добавить расход, доход или перевод в накопления — нажми большую кнопку “+”.';
+      return;
+    }
+
+    box.classList.remove("empty");
+
+    box.innerHTML = data.transactions
+      .slice()
+      .sort((a, b) => String(b.date || "").localeCompare(String(a.date || "")))
+      .slice(0, 6)
+      .map(tx => {
+        const isExpense = tx.type === "expense";
+        const isSaving = tx.type === "saving";
+        const sign = isExpense ? "-" : "+";
+        const cls = isExpense ? "expense" : "income";
+        const typeText = isExpense ? "Расход" : isSaving ? "В накопления" : "Доход";
+        const icon = isExpense ? "💸" : isSaving ? "🏦" : "💰";
+        const category = tx.category || "Другое";
+        const note = tx.note ? ` · ${tx.note}` : "";
+        const date = tx.date || today();
+
+        return `
+          <div class="tx recent-tx">
+            <div class="recent-tx-left">
+              <div class="recent-tx-icon">${icon}</div>
+              <div>
+                <p class="tx-title">${category}</p>
+                <p class="tx-sub">${typeText}${note} · ${date}</p>
+              </div>
+            </div>
+            <div class="recent-tx-right">
+              <div class="amount ${cls}">${sign}${rub(tx.amount || 0)}</div>
+              <button class="delete" type="button" onclick="removeTx('${tx.id}')" aria-label="Удалить операцию">×</button>
+            </div>
+          </div>
+        `;
+      })
+      .join("");
+  }
+
+function renderTransactions() {
     const box = document.getElementById("txList");
     if (!box) return;
 
@@ -14969,6 +15075,7 @@ function renderAnalytics() {
     data.transactions = data.transactions.filter(x => x.id !== id);
     save();
     render();
+    renderRecentTransactions();
   }
 
   function softHaptic(pattern = 8) {
@@ -15097,6 +15204,7 @@ function renderAnalytics() {
 
     save();
     render();
+    renderRecentTransactions();
 
     const addBtn = document.getElementById("addBtn");
     if (typeof successHaptic === "function") successHaptic(addBtn);
