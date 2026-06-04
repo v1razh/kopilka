@@ -15079,6 +15079,56 @@ function render() {
 
       const fill = document.getElementById("goalPlanFill");
       if (fill) fill.style.width = `${progressValue}%`;
+
+      // Ближайший рубеж
+      const milestonePercents = [5, 10, 25, 50, 75, 100];
+      const nextPercent = milestonePercents.find(p => progressValue < p) || 100;
+      const milestoneTarget = Math.ceil(goalValue * nextPercent / 100);
+      const milestoneNeed = Math.max(0, milestoneTarget - savedValue);
+      const previousPercent = milestonePercents.slice().reverse().find(p => progressValue >= p) || 0;
+      const previousTarget = Math.ceil(goalValue * previousPercent / 100);
+      const milestoneRange = Math.max(1, milestoneTarget - previousTarget);
+      const milestoneDone = Math.max(0, Math.min(100, Math.round((savedValue - previousTarget) / milestoneRange * 100)));
+
+      setGoalText("goalMilestoneTitle", nextPercent >= 100 ? "Финальный рывок" : `${nextPercent}% цели`);
+      setGoalText("goalMilestoneNeed", milestoneNeed > 0 ? rub(milestoneNeed) : "Рубеж взят 🎉");
+      setGoalText(
+        "goalMilestoneSub",
+        milestoneNeed > 0 ? `до рубежа ${rub(milestoneTarget)}` : "следующий рубеж уже достигнут"
+      );
+
+      const milestoneFill = document.getElementById("goalMilestoneFill");
+      if (milestoneFill) milestoneFill.style.width = `${milestoneDone}%`;
+
+      // План по месяцам
+      const roadmap = document.getElementById("goalRoadmapList");
+      if (roadmap) {
+        if (monthsValue <= 0 || dateText === "—") {
+          roadmap.innerHTML = '<div class="empty">Укажи целевой месяц, чтобы увидеть дорожную карту накоплений.</div>';
+        } else {
+          const monthFormatter = new Intl.DateTimeFormat("ru-RU", { month: "short", year: "numeric" });
+          const visibleMonths = Math.min(5, monthsValue);
+          const monthlyStep = leftValue / Math.max(1, monthsValue);
+          const start = new Date();
+
+          roadmap.innerHTML = Array.from({ length: visibleMonths }).map((_, index) => {
+            const date = new Date(start.getFullYear(), start.getMonth() + index, 1);
+            const targetByMonth = Math.min(goalValue, Math.round(savedValue + monthlyStep * (index + 1)));
+            const isCurrent = index === 0;
+
+            return `
+              <div class="goal-roadmap-item ${isCurrent ? "is-current" : ""}">
+                <div class="goal-roadmap-icon">${isCurrent ? "🔥" : "📍"}</div>
+                <div>
+                  <p>${monthFormatter.format(date).replace(".", "")}</p>
+                  <small>${isCurrent ? "ближайший контрольный месяц" : "плановая точка прогресса"}</small>
+                </div>
+                <strong>${rub(targetByMonth)}</strong>
+              </div>
+            `;
+          }).join("");
+        }
+      }
     };
 
     updateGoalTab();
