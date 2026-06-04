@@ -12993,45 +12993,156 @@
 }
 
 
-/* Sticky goal for other tabs */
-#stickyGoalContainer {
-  position: relative;
-  z-index: 5;
-  transition: all 0.28s ease;
-}
-#stickyGoalContainer.sticky {
+
+/* Fixed compact goal header for non-home tabs */
+.compact-goal-top {
   position: fixed;
+  left: 18px;
+  right: 18px;
   top: calc(var(--safe-top) + 10px);
-  left: 14px;
-  right: 14px;
   max-width: 520px;
-  padding: 8px;
-  border-radius: 20px;
+  margin: 0 auto;
+  z-index: 40;
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 10px;
+  align-items: center;
+  padding: 12px 14px 13px;
+  border-radius: 22px;
   background:
-    linear-gradient(135deg, rgba(91,140,255,.22), rgba(124,58,237,.14)),
-    rgba(16,27,45,.42);
-  box-shadow: 0 12px 36px rgba(0,0,0,.28);
+    radial-gradient(circle at 92% 0%, rgba(124,58,237,.22), transparent 34%),
+    linear-gradient(135deg, rgba(16,27,45,.88), rgba(13,26,44,.78));
+  border: 1px solid rgba(255,255,255,.14);
+  box-shadow:
+    0 18px 44px rgba(0,0,0,.36),
+    inset 0 1px 0 rgba(255,255,255,.12);
+  backdrop-filter: blur(28px) saturate(1.5);
+  -webkit-backdrop-filter: blur(28px) saturate(1.5);
 }
-#stickyGoalContainer.sticky .goal-hero-card {
-  padding: 12px;
-  border-radius: 20px;
+
+.compact-goal-top.hidden {
+  display: none !important;
 }
-#stickyGoalContainer.sticky .goal-hero-card .top p {
+
+.compact-goal-left {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  min-width: 0;
+}
+
+.compact-goal-icon {
+  width: 42px;
+  height: 42px;
+  flex: 0 0 auto;
+  display: grid;
+  place-items: center;
+  border-radius: 16px;
+  background: rgba(124,58,237,.18);
+  border: 1px solid rgba(255,255,255,.10);
+  font-size: 20px;
+}
+
+.compact-goal-text {
+  min-width: 0;
+}
+
+.compact-goal-text p {
+  margin: 0;
+  color: rgba(245,247,251,.58);
+  font-size: 11px;
+  font-weight: 900;
+  line-height: 1.15;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.compact-goal-text strong {
+  display: block;
+  margin-top: 3px;
+  color: white;
+  font-size: 18px;
+  line-height: 1;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.compact-goal-text small {
+  display: block;
+  margin-top: 3px;
+  color: rgba(245,247,251,.48);
   font-size: 10px;
+  line-height: 1;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
-#stickyGoalContainer.sticky .goal-hero-card .top strong {
-  font-size: 16px;
+
+.compact-goal-right {
+  min-width: 54px;
+  height: 38px;
+  padding: 0 10px;
+  border-radius: 16px;
+  display: grid;
+  place-items: center;
+  background: rgba(91,140,255,.13);
+  border: 1px solid rgba(255,255,255,.10);
 }
-#stickyGoalContainer.sticky .goal-hero-card .goal-hero-progress {
-  height: 8px;
+
+.compact-goal-right b {
+  color: #a78bfa;
+  font-size: 18px;
+  line-height: 1;
 }
-#stickyGoalContainer.sticky .goal-hero-card .goal-hero-progress .goal-hero-fill {
+
+.compact-goal-bar {
+  grid-column: 1 / -1;
+  height: 6px;
+  border-radius: 999px;
+  overflow: hidden;
+  background: rgba(255,255,255,.08);
+}
+
+.compact-goal-bar i {
+  display: block;
+  width: 0%;
   height: 100%;
+  border-radius: 999px;
+  background: linear-gradient(90deg, #8b5cf6, #5b8cff, #4ade80);
+  transition: width .35s cubic-bezier(.16, 1, .3, 1);
+}
+
+body.has-compact-goal .app {
+  padding-top: 92px;
+}
+
+body.has-compact-goal #add {
+  padding-top: 0;
 }
 
 </style>
 </head>
 <body>
+
+  <div id="compactGoalTop" class="compact-goal-top hidden">
+    <div class="compact-goal-left">
+      <div class="compact-goal-icon">🎯</div>
+      <div class="compact-goal-text">
+        <p id="compactGoalName">Цель</p>
+        <strong id="compactGoalSaved">0 ₽</strong>
+        <small id="compactGoalLeft">Осталось 0 ₽</small>
+      </div>
+    </div>
+    <div class="compact-goal-right">
+      <b id="compactGoalPercent">0%</b>
+    </div>
+    <div class="compact-goal-bar">
+      <i id="compactGoalFill"></i>
+    </div>
+  </div>
+
 </div>
   </div>
 
@@ -13051,7 +13162,7 @@
         </div>
       </div>
 
-      <div id="stickyGoalContainer"><div class="goal-hero-card">
+      <div class="goal-hero-card">
         <div class="goal-hero-row">
           <div>
             <div class="goal-kicker">🎯 ТВОЯ ЦЕЛЬ</div></div>
@@ -14078,6 +14189,8 @@ setText("todayLimitMain", rub(Math.max(0, salary.dailyLimit || 0)));
     setText("mainAdviceText", text);
 
     renderRecentTransactions();
+    const activeTab = document.querySelector(".nav-btn.active")?.dataset.tab || "add";
+    updateCompactGoalHeader(activeTab);
   }
 
   function openAddSheetWithType(type) {
@@ -15410,8 +15523,7 @@ function renderAnalytics() {
   }
 
   function switchTab(tabName) {
-  updateStickyGoal(tabName);
-    if (typeof softHaptic === "function") softHaptic();
+if (typeof softHaptic === "function") softHaptic();
 
     document.querySelectorAll(".nav-btn").forEach(x => {
       x.classList.toggle("active", x.dataset.tab === tabName);
@@ -15620,14 +15732,52 @@ document.getElementById("openAddSheet").addEventListener("click", openAddSheet);
   document.addEventListener("DOMContentLoaded", () => setTimeout(updateGoalFirstHomeFallback, 150));
 
 
-function updateStickyGoal(tabName) {
-  const container = document.getElementById("stickyGoalContainer");
-  if(tabName === 'home') {
-    container.classList.remove('sticky');
-  } else {
-    container.classList.add('sticky');
+
+
+
+  function updateCompactGoalHeader(activeTab) {
+    const compact = document.getElementById("compactGoalTop");
+    if (!compact) return;
+
+    const isHome = activeTab === "add" || activeTab === "home" || activeTab === undefined && !document.getElementById("add")?.classList.contains("hidden");
+
+    compact.classList.toggle("hidden", isHome);
+    document.body.classList.toggle("has-compact-goal", !isHome);
+
+    if (isHome) return;
+
+    try {
+      const s = typeof calc === "function" ? calc() : { totalSaved: 0, left: 0 };
+      const goal = Math.max(1, Number(data.goal || 0));
+      const saved = Number(s.totalSaved || 0);
+      const percent = Math.max(0, Math.min(100, Math.round(saved / goal * 100)));
+      const set = (id, value) => {
+        const el = document.getElementById(id);
+        if (el) el.textContent = value;
+      };
+
+      set("compactGoalName", data.goalName || "Цель");
+      set("compactGoalSaved", typeof rub === "function" ? rub(saved) : `${saved} ₽`);
+      set("compactGoalLeft", `Осталось ${typeof rub === "function" ? rub(Math.max(0, goal - saved)) : Math.max(0, goal - saved) + " ₽"}`);
+      set("compactGoalPercent", `${percent}%`);
+
+      const fill = document.getElementById("compactGoalFill");
+      if (fill) fill.style.width = `${percent}%`;
+    } catch (e) {}
   }
-}
+
+
+  document.addEventListener("click", (event) => {
+    const btn = event.target.closest(".nav-btn");
+    if (!btn) return;
+
+    const tab = btn.dataset.tab || btn.getAttribute("data-tab");
+    setTimeout(() => updateCompactGoalHeader(tab), 0);
+  });
+
+  document.addEventListener("DOMContentLoaded", () => {
+    setTimeout(() => updateCompactGoalHeader("add"), 150);
+  });
 
 </script>
 
