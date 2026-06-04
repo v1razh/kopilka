@@ -14067,6 +14067,230 @@ body.has-compact-goal #add {
 .goal-roadmap-item strong{color:white;font-size:15px;font-weight:1000;white-space:nowrap}
 .goal-roadmap-item.is-current{background:linear-gradient(135deg,rgba(74,222,128,.12),rgba(91,140,255,.08)),rgba(255,255,255,.045);border-color:rgba(74,222,128,.20)}
 
+
+/* ===== Premium settings tab redesign ===== */
+.settings-redesign {
+  animation: smoothScreenIn .48s cubic-bezier(.16, 1, .3, 1);
+}
+
+.settings-hero-card,
+.settings-card-premium {
+  position: relative;
+  overflow: hidden;
+  padding: 22px;
+  margin-bottom: 14px;
+  border-radius: 32px;
+  background:
+    radial-gradient(circle at 92% 8%, rgba(124,58,237,.26), transparent 34%),
+    radial-gradient(circle at 8% 0%, rgba(91,140,255,.18), transparent 30%),
+    linear-gradient(145deg, rgba(17,20,48,.94), rgba(10,23,43,.91) 58%, rgba(14,27,49,.95));
+  border: 1px solid rgba(139,92,246,.30);
+  box-shadow:
+    0 22px 60px rgba(0,0,0,.32),
+    0 0 34px rgba(124,58,237,.10),
+    inset 0 1px 0 rgba(255,255,255,.11);
+}
+
+.settings-hero-card::before {
+  content: "";
+  position: absolute;
+  right: -76px;
+  top: -76px;
+  width: 220px;
+  height: 220px;
+  border-radius: 999px;
+  background: rgba(255,255,255,.055);
+  pointer-events: none;
+}
+
+.settings-hero-top,
+.settings-card-head {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 16px;
+  margin-bottom: 16px;
+}
+
+.settings-kicker {
+  margin-bottom: 8px;
+  color: rgba(216,180,254,.82);
+  font-size: 12px;
+  font-weight: 950;
+  letter-spacing: 1.3px;
+  line-height: 1.15;
+}
+
+.settings-hero-top h1,
+.settings-card-head h2 {
+  margin: 0;
+  color: white;
+  font-size: 28px;
+  line-height: 1.06;
+  letter-spacing: -.8px;
+}
+
+.settings-hero-top p {
+  margin: 8px 0 0;
+  color: rgba(245,247,251,.58);
+  font-size: 13px;
+  line-height: 1.35;
+  font-weight: 750;
+}
+
+.settings-hero-icon,
+.settings-card-icon {
+  width: 68px;
+  height: 68px;
+  flex: 0 0 auto;
+  display: grid;
+  place-items: center;
+  border-radius: 23px;
+  background:
+    radial-gradient(circle at 50% 20%, rgba(255,255,255,.16), transparent 42%),
+    linear-gradient(180deg, rgba(255,255,255,.11), rgba(255,255,255,.04));
+  border: 1px solid rgba(255,255,255,.12);
+  box-shadow: inset 0 1px 0 rgba(255,255,255,.15), 0 18px 34px rgba(0,0,0,.25);
+  font-size: 32px;
+}
+
+.settings-card-icon {
+  width: 58px;
+  height: 58px;
+  border-radius: 21px;
+  font-size: 27px;
+}
+
+.settings-tabs-premium {
+  position: relative;
+  z-index: 1;
+  margin: 18px 0 0 !important;
+  padding: 6px !important;
+  border-radius: 21px !important;
+  background: rgba(255,255,255,.055) !important;
+  border: 1px solid rgba(255,255,255,.10) !important;
+  box-shadow: inset 0 1px 0 rgba(255,255,255,.07);
+}
+
+.settings-tabs-premium .settings-tab-btn {
+  min-height: 46px;
+  border-radius: 16px;
+  font-size: 13px;
+}
+
+.settings-tabs-premium .settings-tab-btn.active {
+  background:
+    linear-gradient(135deg, rgba(91,140,255,.42), rgba(124,58,237,.32)) !important;
+  box-shadow:
+    inset 0 1px 0 rgba(255,255,255,.10),
+    0 12px 26px rgba(91,140,255,.16) !important;
+}
+
+.settings-card-premium {
+  background:
+    radial-gradient(circle at 100% 0%, rgba(91,140,255,.14), transparent 34%),
+    linear-gradient(180deg, rgba(255,255,255,.07), rgba(255,255,255,.023)),
+    rgba(16,27,45,.42);
+  border-color: rgba(255,255,255,.12);
+}
+
+.settings-field label {
+  color: rgba(245,247,251,.60);
+  font-weight: 850;
+}
+
+.settings-field input,
+.settings-field select {
+  background:
+    linear-gradient(180deg, rgba(255,255,255,.055), rgba(255,255,255,.018)),
+    rgba(6,16,28,.48);
+  border-color: rgba(255,255,255,.12);
+  box-shadow: inset 0 1px 0 rgba(255,255,255,.06);
+}
+
+.settings-switch {
+  border-radius: 22px !important;
+  padding: 15px !important;
+  background:
+    linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.02)),
+    rgba(255,255,255,.035) !important;
+  border-color: rgba(255,255,255,.11) !important;
+}
+
+.settings-switch p {
+  color: white;
+  font-size: 15px;
+}
+
+.settings-switch small {
+  color: rgba(245,247,251,.52);
+}
+
+.settings-save-btn {
+  margin-top: 8px !important;
+  box-shadow: 0 16px 34px rgba(91,140,255,.20);
+}
+
+.settings-recurring-summary {
+  border-radius: 22px !important;
+  padding: 16px !important;
+  background:
+    linear-gradient(135deg, rgba(74,222,128,.12), rgba(91,140,255,.10)),
+    rgba(255,255,255,.045) !important;
+  border: 1px solid rgba(255,255,255,.12) !important;
+}
+
+.settings-recurring-summary p {
+  color: rgba(245,247,251,.58) !important;
+  font-weight: 750;
+}
+
+.settings-recurring-summary strong {
+  font-size: 28px !important;
+  color: white !important;
+}
+
+.settings-recurring-list {
+  display: grid;
+  gap: 10px;
+}
+
+.settings-redesign .recurring-item {
+  border-radius: 22px;
+  background:
+    linear-gradient(180deg, rgba(255,255,255,.07), rgba(255,255,255,.023)),
+    rgba(16,27,45,.38);
+  border-color: rgba(255,255,255,.12);
+  box-shadow: 0 12px 28px rgba(0,0,0,.18), inset 0 1px 0 rgba(255,255,255,.08);
+}
+
+@media (max-width: 390px) {
+  .settings-hero-card,
+  .settings-card-premium {
+    padding: 20px;
+    border-radius: 30px;
+  }
+
+  .settings-hero-top h1,
+  .settings-card-head h2 {
+    font-size: 24px;
+  }
+
+  .settings-hero-icon {
+    width: 60px;
+    height: 60px;
+    font-size: 28px;
+  }
+
+  .settings-card-icon {
+    width: 52px;
+    height: 52px;
+    font-size: 24px;
+  }
+}
+
 </style>
 </head>
 <body>
@@ -14544,95 +14768,136 @@ body.has-compact-goal #add {
       </div>
     </section>
 
-    <section id="settings" class="tab-content hidden">
-      <div class="card">
-        <h2>Настройки</h2>
-
-        <div class="settings-tabs">
-          <button class="settings-tab-btn active" data-settings-tab="mainSettings">Основные</button>
-          <button class="settings-tab-btn" data-settings-tab="regularSettings">Регулярные</button>
+    <section id="settings" class="tab-content hidden settings-redesign">
+      <div class="settings-hero-card">
+        <div class="settings-hero-top">
+          <div>
+            <div class="settings-kicker">⚙️ НАСТРОЙКИ</div>
+            <h1>Центр управления</h1>
+            <p>План, лимиты, цель и регулярные платежи в одном месте.</p>
+          </div>
+          <div class="settings-hero-icon">🛠️</div>
         </div>
 
-        <div id="mainSettings" class="settings-panel">
-          <h2>План до зарплаты</h2>
+        <div class="settings-tabs settings-tabs-premium">
+          <button class="settings-tab-btn active" data-settings-tab="mainSettings">⚡ Основные</button>
+          <button class="settings-tab-btn" data-settings-tab="regularSettings">🔁 Регулярные</button>
+        </div>
+      </div>
+
+      <div id="mainSettings" class="settings-panel">
+        <div class="settings-card-premium">
+          <div class="settings-card-head">
+            <div>
+              <div class="settings-kicker">💳 ПЛАН ДО ВЫПЛАТЫ</div>
+              <h2>Дневной лимит</h2>
+            </div>
+            <div class="settings-card-icon">📆</div>
+          </div>
 
           <div class="form-grid">
-            <div class="field">
+            <div class="field settings-field">
               <label>День зарплаты</label>
               <input id="salaryDay" inputmode="numeric" placeholder="10" />
             </div>
-            <div class="field">
+            <div class="field settings-field">
               <label>День аванса</label>
               <input id="advanceDay" inputmode="numeric" placeholder="25" />
             </div>
           </div>
 
-          <div class="field">
+          <div class="field settings-field">
             <label>Деньги сейчас на карте, ₽</label>
             <input id="currentCash" inputmode="decimal" placeholder="0" />
           </div>
 
-          <div class="field">
+          <div class="field settings-field">
             <label>Обязательные траты до выплаты, ₽</label>
             <input id="requiredBeforePay" inputmode="decimal" placeholder="0" />
           </div>
 
-          <button class="primary" id="saveSalaryPlan">Сохранить план до зарплаты</button>
+          <button class="primary settings-save-btn" id="saveSalaryPlan">💾 Сохранить план до зарплаты</button>
           <p class="hint">Регулярные платежи из соседней вкладки тоже учитываются в дневном лимите.</p>
+        </div>
 
-          <div style="height:14px"></div>
-
-          <div class="switch-row">
+        <div class="settings-card-premium">
+          <div class="settings-card-head">
             <div>
-              <p>Компактный режим</p>
+              <div class="settings-kicker">✨ ПРИЛОЖЕНИЕ</div>
+              <h2>Внешний вид</h2>
+            </div>
+            <div class="settings-card-icon">🎛️</div>
+          </div>
+
+          <div class="switch-row settings-switch">
+            <div>
+              <p>📱 Компактный режим</p>
               <small>Уменьшает вертикальные отступы, чтобы больше помещалось на экране.</small>
             </div>
             <button class="switch" id="compactSwitch"></button>
           </div>
 
-          <div class="switch-row">
+          <div class="switch-row settings-switch">
             <div>
-              <p>Показывать историю</p>
+              <p>🕘 Показывать историю</p>
               <small>Включает или скрывает список последних операций на главной.</small>
             </div>
             <button class="switch on" id="historySwitch"></button>
           </div>
 
-          <div class="field">
+          <div class="field settings-field">
             <label>Название цели</label>
             <input id="goalName" placeholder="ПК мечты" />
           </div>
 
-          <button class="primary" id="saveAppSettings">Сохранить настройки</button>
+          <button class="primary settings-save-btn" id="saveAppSettings">✅ Сохранить настройки</button>
         </div>
+      </div>
 
-        <div id="regularSettings" class="settings-panel hidden">
-          <h2>Регулярные платежи</h2>
+      <div id="regularSettings" class="settings-panel hidden">
+        <div class="settings-card-premium">
+          <div class="settings-card-head">
+            <div>
+              <div class="settings-kicker">🔁 РЕГУЛЯРНЫЕ ПЛАТЕЖИ</div>
+              <h2>Повторяющиеся траты</h2>
+            </div>
+            <div class="settings-card-icon">💸</div>
+          </div>
 
-          <div class="recurring-summary">
-            <p>Регулярные платежи до ближайшей выплаты</p>
+          <div class="recurring-summary settings-recurring-summary">
+            <p>До ближайшей выплаты</p>
             <strong id="recurringBeforePayTotal">0 ₽</strong>
             <p id="recurringBeforePayHint">Добавь платежи, чтобы они учитывались в дневном лимите.</p>
           </div>
 
-          <div id="recurringList"></div>
+          <div id="recurringList" class="settings-recurring-list"></div>
+        </div>
 
-          <div class="field">
+        <div class="settings-card-premium">
+          <div class="settings-card-head">
+            <div>
+              <div class="settings-kicker">➕ НОВЫЙ ПЛАТЁЖ</div>
+              <h2>Добавить регулярный</h2>
+            </div>
+            <div class="settings-card-icon">🧾</div>
+          </div>
+
+          <div class="field settings-field">
             <label>Название</label>
             <input id="recurringName" placeholder="Например: связь" />
           </div>
 
-          <div class="field">
+          <div class="field settings-field">
             <label>Сумма, ₽</label>
             <input id="recurringAmount" inputmode="decimal" placeholder="Например: 1200" />
           </div>
 
           <div class="form-grid">
-            <div class="field">
+            <div class="field settings-field">
               <label>День месяца</label>
               <input id="recurringDay" inputmode="numeric" placeholder="5" />
             </div>
-            <div class="field">
+            <div class="field settings-field">
               <label>Периодичность</label>
               <select id="recurringFrequency">
                 <option value="monthly">Каждый месяц</option>
@@ -14641,7 +14906,7 @@ body.has-compact-goal #add {
             </div>
           </div>
 
-          <div class="field">
+          <div class="field settings-field">
             <label>Месяц для ежегодного платежа</label>
             <select id="recurringMonth">
               <option value="0">Январь</option>
@@ -14659,15 +14924,9 @@ body.has-compact-goal #add {
             </select>
           </div>
 
-          <button class="primary" id="addRecurringBtn">+ Добавить регулярный платёж</button>
+          <button class="primary settings-save-btn" id="addRecurringBtn">+ Добавить регулярный платёж</button>
           <p class="hint">Например: связь каждый месяц, универ раз в год в августе, подписка каждый месяц.</p>
         </div>
-      </div>
-
-      <div class="card">
-        <h2>Данные</h2>
-        <button class="danger" id="resetBtn">Сбросить все данные</button>
-        <p class="hint">Данные хранятся на этом устройстве в браузере.</p>
       </div>
     </section>
   </main>
