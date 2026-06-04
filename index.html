@@ -1773,35 +1773,7 @@
       line-height: 1.4;
       display: block;
     }
-
-    .quick-actions {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 10px;
-      margin-bottom: 14px;
-    }
-
-    .quick-action {
-      border: 1px solid rgba(255,255,255,.12);
-      border-radius: 20px;
-      min-height: 74px;
-      padding: 10px 6px;
-      color: white;
-      font-weight: 900;
-      background:
-        linear-gradient(180deg, rgba(255,255,255,.08), rgba(255,255,255,.025)),
-        rgba(16,27,45,.38);
-      backdrop-filter: blur(18px) saturate(1.25);
-      -webkit-backdrop-filter: blur(18px) saturate(1.25);
-    }
-
-    .quick-action span {
-      display: block;
-      font-size: 23px;
-      margin-bottom: 5px;
-    }
-
-    .dashboard-summary {
+.dashboard-summary {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
       gap: 10px;
@@ -4397,35 +4369,7 @@
       line-height: 1.4;
       display: block;
     }
-
-    .quick-actions {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 10px;
-      margin-bottom: 14px;
-    }
-
-    .quick-action {
-      border: 1px solid rgba(255,255,255,.12);
-      border-radius: 20px;
-      min-height: 74px;
-      padding: 10px 6px;
-      color: white;
-      font-weight: 900;
-      background:
-        linear-gradient(180deg, rgba(255,255,255,.08), rgba(255,255,255,.025)),
-        rgba(16,27,45,.38);
-      backdrop-filter: blur(18px) saturate(1.25);
-      -webkit-backdrop-filter: blur(18px) saturate(1.25);
-    }
-
-    .quick-action span {
-      display: block;
-      font-size: 23px;
-      margin-bottom: 5px;
-    }
-
-    .dashboard-summary {
+.dashboard-summary {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
       gap: 10px;
@@ -6801,35 +6745,7 @@
       line-height: 1.4;
       display: block;
     }
-
-    .quick-actions {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 10px;
-      margin-bottom: 14px;
-    }
-
-    .quick-action {
-      border: 1px solid rgba(255,255,255,.12);
-      border-radius: 20px;
-      min-height: 74px;
-      padding: 10px 6px;
-      color: white;
-      font-weight: 900;
-      background:
-        linear-gradient(180deg, rgba(255,255,255,.08), rgba(255,255,255,.025)),
-        rgba(16,27,45,.38);
-      backdrop-filter: blur(18px) saturate(1.25);
-      -webkit-backdrop-filter: blur(18px) saturate(1.25);
-    }
-
-    .quick-action span {
-      display: block;
-      font-size: 23px;
-      margin-bottom: 5px;
-    }
-
-    .dashboard-summary {
+.dashboard-summary {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
       gap: 10px;
@@ -9027,35 +8943,7 @@
       line-height: 1.4;
       display: block;
     }
-
-    .quick-actions {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 10px;
-      margin-bottom: 14px;
-    }
-
-    .quick-action {
-      border: 1px solid rgba(255,255,255,.12);
-      border-radius: 20px;
-      min-height: 74px;
-      padding: 10px 6px;
-      color: white;
-      font-weight: 900;
-      background:
-        linear-gradient(180deg, rgba(255,255,255,.08), rgba(255,255,255,.025)),
-        rgba(16,27,45,.38);
-      backdrop-filter: blur(18px) saturate(1.25);
-      -webkit-backdrop-filter: blur(18px) saturate(1.25);
-    }
-
-    .quick-action span {
-      display: block;
-      font-size: 23px;
-      margin-bottom: 5px;
-    }
-
-    .dashboard-summary {
+.dashboard-summary {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
       gap: 10px;
@@ -11492,17 +11380,7 @@
       background: rgba(255,255,255,.08);
       pointer-events: none;
     }
-
-    .quick-action {
-      background:
-        linear-gradient(180deg, rgba(255,255,255,.09), rgba(255,255,255,.025)),
-        rgba(16,27,45,.34) !important;
-      box-shadow:
-        0 12px 26px rgba(0,0,0,.16),
-        inset 0 1px 0 rgba(255,255,255,.10) !important;
-    }
-
-    .dashboard-summary-item,
+.dashboard-summary-item,
     .analytics-tile,
     .advanced-tile,
     .settings-box,
@@ -12811,6 +12689,309 @@
       flex: 0 0 auto;
     }
 
+
+    /* Next payment card on home screen */
+    .next-pay-card {
+      display: grid;
+      grid-template-columns: auto 1fr;
+      align-items: center;
+      gap: 13px;
+      margin: -4px 0 16px;
+      padding: 15px;
+      border-radius: 24px;
+      background:
+        linear-gradient(135deg, rgba(91,140,255,.16), rgba(124,58,237,.10)),
+        rgba(16,27,45,.38);
+      border: 1px solid rgba(255,255,255,.12);
+      box-shadow:
+        0 14px 34px rgba(0,0,0,.20),
+        inset 0 1px 0 rgba(255,255,255,.08);
+      backdrop-filter: blur(22px) saturate(1.35);
+      -webkit-backdrop-filter: blur(22px) saturate(1.35);
+    }
+
+    .next-pay-icon {
+      width: 50px;
+      height: 50px;
+      display: grid;
+      place-items: center;
+      border-radius: 18px;
+      background: rgba(91,140,255,.17);
+      border: 1px solid rgba(255,255,255,.10);
+      font-size: 24px;
+    }
+
+    .next-pay-content {
+      min-width: 0;
+    }
+
+    .next-pay-content p {
+      margin: 0;
+      color: rgba(245,247,251,.65);
+      font-size: 13px;
+      font-weight: 850;
+    }
+
+    .next-pay-content strong {
+      display: block;
+      margin-top: 4px;
+      color: white;
+      font-size: 28px;
+      line-height: 1;
+      letter-spacing: -.6px;
+    }
+
+    .next-pay-content small {
+      display: block;
+      margin-top: 5px;
+      color: rgba(245,247,251,.52);
+      font-size: 12px;
+      line-height: 1.3;
+    }
+
+
+    /* Compact premium home widgets */
+    .home-redesign-head {
+      margin-bottom: 12px !important;
+    }
+
+    .next-pay-card {
+      margin: -2px 0 12px !important;
+      padding: 11px 13px !important;
+      border-radius: 20px !important;
+      gap: 10px !important;
+    }
+
+    .next-pay-icon {
+      width: 42px !important;
+      height: 42px !important;
+      border-radius: 15px !important;
+      font-size: 20px !important;
+    }
+
+    .next-pay-content p {
+      font-size: 12px !important;
+    }
+
+    .next-pay-content strong {
+      margin-top: 3px !important;
+      font-size: 22px !important;
+    }
+
+    .next-pay-content small {
+      margin-top: 3px !important;
+      font-size: 11px !important;
+    }
+
+    .goal-hero-card {
+      padding: 20px !important;
+      border-radius: 30px !important;
+      margin-bottom: 12px !important;
+    }
+
+    .goal-kicker {
+      font-size: 11px !important;
+      margin-bottom: 8px !important;
+    }
+
+    .goal-hero-title {
+      font-size: 23px !important;
+    }
+
+    .goal-jar {
+      width: 78px !important;
+      height: 78px !important;
+      border-radius: 23px !important;
+    }
+
+    .goal-jar-glass {
+      font-size: 40px !important;
+    }
+
+    .goal-hero-money {
+      margin-top: 18px !important;
+      font-size: 46px !important;
+      letter-spacing: -2px !important;
+    }
+
+    .goal-hero-sub {
+      margin-top: 7px !important;
+      font-size: 14px !important;
+    }
+
+    .goal-hero-progress {
+      height: 12px !important;
+      margin-top: 17px !important;
+    }
+
+    .goal-hero-bottom {
+      margin-top: 10px !important;
+    }
+
+    .goal-hero-bottom strong {
+      font-size: 22px !important;
+    }
+
+    .goal-hero-bottom span {
+      font-size: 12px !important;
+    }
+
+    .goal-hero-advice {
+      margin-top: 13px !important;
+      padding: 12px 13px !important;
+      border-radius: 17px !important;
+      font-size: 13px !important;
+      line-height: 1.35 !important;
+    }
+
+    .today-dark-card {
+      grid-template-columns: 1fr auto !important;
+      gap: 12px !important;
+      padding: 15px !important;
+      border-radius: 24px !important;
+      margin-bottom: 12px !important;
+    }
+
+    .today-dark-main p {
+      font-size: 12px !important;
+    }
+
+    .today-dark-main strong {
+      margin-top: 6px !important;
+      font-size: 32px !important;
+      letter-spacing: -1px !important;
+    }
+
+    .today-dark-main small {
+      margin-top: 6px !important;
+      font-size: 11px !important;
+      line-height: 1.3 !important;
+    }
+
+    .today-free-row {
+      margin-top: 10px !important;
+      padding-top: 10px !important;
+      gap: 8px !important;
+    }
+
+    .today-free-row span {
+      font-size: 11px !important;
+    }
+
+    .today-free-row b {
+      font-size: 15px !important;
+    }
+
+    .today-dark-ring {
+      width: 74px !important;
+      height: 74px !important;
+    }
+
+    .today-dark-ring b {
+      font-size: 15px !important;
+    }
+
+    .today-dark-ring span {
+      font-size: 9px !important;
+      margin-top: 3px !important;
+    }
+
+    .dashboard-cards-redesign {
+      gap: 8px !important;
+      margin-bottom: 12px !important;
+    }
+
+    .dash-red-card {
+      padding: 12px !important;
+      border-radius: 20px !important;
+    }
+
+    .dash-red-icon {
+      width: 36px !important;
+      height: 36px !important;
+      border-radius: 14px !important;
+      font-size: 17px !important;
+      margin-bottom: 9px !important;
+    }
+
+    .dash-red-card p {
+      font-size: 11px !important;
+    }
+
+    .dash-red-card strong {
+      margin-top: 6px !important;
+      font-size: 16px !important;
+    }
+
+    .dash-red-card small {
+      margin-top: 4px !important;
+      font-size: 10px !important;
+    }
+
+    .dash-red-line {
+      height: 5px !important;
+      margin-top: 9px !important;
+    }
+
+    @media (max-width: 390px) {
+      .goal-hero-money {
+        font-size: 40px !important;
+      }
+
+      .goal-jar {
+        width: 66px !important;
+        height: 66px !important;
+      }
+
+      .goal-jar-glass {
+        font-size: 34px !important;
+      }
+
+      .today-dark-card {
+        grid-template-columns: 1fr !important;
+      }
+
+      .today-dark-ring {
+        display: none !important;
+      }
+    }
+
+
+    /* Hide removed quick action buttons */
+    .quick-actions,
+    .quick-actions-redesign,
+    #quickExpense,
+    #quickIncome,
+    #quickSaving {
+      display: none !important;
+    }
+
+
+/* Hide removed next pay block */
+.next-pay-card{
+  display:none !important;
+}
+
+
+/* Removed next pay text and card completely */
+.next-pay-card,
+#nextPayLabel,
+#nextPayMain,
+#nextPaySub {
+  display: none !important;
+}
+
+
+/* Remove quick action cards */
+.quick-actions,
+.quick-actions-redesign,
+.quick-action,
+#quickExpense,
+#quickIncome,
+#quickSaving{
+  display:none !important;
+}
+
 </style>
 </head>
 <body>
@@ -12825,6 +13006,12 @@
           <p id="dashboardStatus">Твой финансовый статус</p>
         </div>
         <div class="home-redesign-badge">⚡</div>
+      </div>
+<div class="next-pay-content">
+          <p id="nextPayLabel">До ближайшей выплаты</p>
+          <strong id="nextPayMain">—</strong>
+          <small id="nextPaySub">Аванс или зарплата появится после заполнения настроек.</small>
+        </div>
       </div>
 
       <div class="goal-hero-card">
@@ -12897,7 +13084,7 @@
           <p>Без лишних трат</p>
           <strong id="dashNoSpendDays">0 дн.</strong>
           <small>подряд</small>
-          <div class="dash-red-line blue"><i style="width:40%"></i></div>
+          <div class="dash-red-line blue"><i id="dashNoSpendLine"></i></div>
         </div>
       </div>
 
@@ -12908,14 +13095,7 @@
           <p id="mainAdviceText">Добавь данные — приложение подскажет, как лучше двигаться к цели.</p>
         </div>
       </div>
-
-      <div class="quick-actions quick-actions-redesign">
-        <button class="quick-action" id="quickExpense"><span>💸</span>Расход</button>
-        <button class="quick-action" id="quickIncome"><span>💰</span>Доход</button>
-        <button class="quick-action" id="quickSaving"><span>🏦</span>В накопления</button>
-      </div>
-
-      <div class="card recent-redesign">
+<div class="card recent-redesign">
         <div class="row">
           <h2 style="margin:0">Последние операции</h2>
         </div>
@@ -13410,7 +13590,45 @@
     return Math.max(0, (target.getFullYear() - now.getFullYear()) * 12 + target.getMonth() - now.getMonth() + 1);
   }
 
-  function nextPayDate() {
+  
+  function getNextPayInfo() {
+    const now = new Date();
+    const todayStart = new Date(now.getFullYear(), now.getMonth(), now.getDate());
+
+    const salaryDay = Number(data.salaryDay || 10);
+    const advanceDay = Number(data.advanceDay || 25);
+
+    const candidates = [
+      { type: "salary", label: "зарплаты", fullLabel: "Зарплата", day: salaryDay },
+      { type: "advance", label: "аванса", fullLabel: "Аванс", day: advanceDay }
+    ]
+      .filter(item => item.day >= 1 && item.day <= 31)
+      .map(item => {
+        let date = new Date(now.getFullYear(), now.getMonth(), item.day);
+
+        if (date < todayStart) {
+          date = new Date(now.getFullYear(), now.getMonth() + 1, item.day);
+        }
+
+        return { ...item, date };
+      })
+      .sort((a, b) => a.date - b.date);
+
+    const next = candidates[0] || {
+      type: "salary",
+      label: "зарплаты",
+      fullLabel: "Зарплата",
+      day: 10,
+      date: new Date(now.getFullYear(), now.getMonth(), 10)
+    };
+
+    return {
+      ...next,
+      days: typeof daysUntil === "function" ? daysUntil(next.date) : 1
+    };
+  }
+
+function nextPayDate() {
     const now = new Date();
     const candidates = [Number(data.salaryDay), Number(data.advanceDay)]
       .filter(day => day >= 1 && day <= 31)
@@ -13675,7 +13893,37 @@ function render() {
     return monthKey(tx.date || today()) === today().slice(0, 7);
   }
 
-  function renderDashboard() {
+  
+  function calcNoSpendDays() {
+    if (!Array.isArray(data.transactions)) data.transactions = [];
+
+    const expenseDates = new Set(
+      data.transactions
+        .filter(tx => tx.type === "expense")
+        .map(tx => tx.date || today())
+    );
+
+    const now = new Date();
+    const monthStart = new Date(now.getFullYear(), now.getMonth(), 1);
+
+    let streak = 0;
+    let cursor = new Date(now.getFullYear(), now.getMonth(), now.getDate());
+
+    while (cursor >= monthStart) {
+      const key = cursor.toISOString().slice(0, 10);
+
+      if (expenseDates.has(key)) {
+        break;
+      }
+
+      streak += 1;
+      cursor.setDate(cursor.getDate() - 1);
+    }
+
+    return streak;
+  }
+
+function renderDashboard() {
     const statusEl = document.getElementById("dashboardStatus");
     if (!statusEl) return;
 
@@ -13716,19 +13964,22 @@ function render() {
       .filter(x => x.type === "saving" && isTransactionInDashboardPeriod(x, period))
       .reduce((sum, x) => sum + Number(x.amount || 0), 0);
 
-    const payDateText = salary.payDate.toLocaleDateString("ru-RU", {
+    const nextPayInfo = typeof getNextPayInfo === "function"
+      ? getNextPayInfo()
+      : { label: "выплаты", fullLabel: "Выплата", days: salary.days, date: salary.payDate };
+
+    const payDateText = nextPayInfo.date.toLocaleDateString("ru-RU", {
       day: "numeric",
       month: "long"
     });
 
-    statusEl.textContent = `До ближайшей выплаты ${salary.days} дн. · ${payDateText}`;
-
-    setText("todayLimitMain", rub(Math.max(0, salary.dailyLimit || 0)));
+    statusEl.textContent = "Твой финансовый статус";
+setText("todayLimitMain", rub(Math.max(0, salary.dailyLimit || 0)));
     setText("freeAfterRequiredMain", rub(Math.max(0, salary.freeMoney || 0)));
     setText(
       "todayLimitSub",
       salary.dailyLimit > 0
-        ? `На карте с учётом операций: ${rub(salary.actualCash || data.currentCash || 0)}. Расходы и регулярные платежи уже учтены.`
+        ? `На карте: ${rub(salary.actualCash || data.currentCash || 0)} · расходы учтены.`
         : "Заполни деньги на карте и обязательные траты в настройках."
     );
 
@@ -13737,6 +13988,11 @@ function render() {
 
     const noSpendDays = typeof calcNoSpendDays === "function" ? calcNoSpendDays() : 0;
     setText("dashNoSpendDays", `${noSpendDays} дн.`);
+
+    const noSpendLine = document.getElementById("dashNoSpendLine");
+    if (noSpendLine) {
+      noSpendLine.style.width = `${Math.max(6, Math.min(100, Math.round(noSpendDays / 7 * 100)))}%`;
+    }
 
     setText("dashExpensesCaption", getDashboardPeriodLabel(period));
     setText("dashSavingsCaption", getDashboardPeriodLabel(period));
@@ -15271,12 +15527,7 @@ function renderAnalytics() {
   document.querySelectorAll(".settings-tab-btn").forEach(btn => {
     btn.addEventListener("click", () => switchSettingsTab(btn.dataset.settingsTab));
   });
-
-  document.getElementById("quickExpense").addEventListener("click", () => openAddSheetWithType("expense"));
-  document.getElementById("quickIncome").addEventListener("click", () => openAddSheetWithType("income"));
-  document.getElementById("quickSaving").addEventListener("click", () => openAddSheetWithType("saving"));
-
-  document.getElementById("openAddSheet").addEventListener("click", openAddSheet);
+document.getElementById("openAddSheet").addEventListener("click", openAddSheet);
   document.getElementById("closeAddSheet").addEventListener("click", closeAddSheet);
   document.getElementById("sheetBackdrop").addEventListener("click", closeAddSheet);
   document.addEventListener("keydown", (event) => {
