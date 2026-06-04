@@ -15410,6 +15410,7 @@ function renderAnalytics() {
   }
 
   function switchTab(tabName) {
+  updateStickyGoal(tabName);
     if (typeof softHaptic === "function") softHaptic();
 
     document.querySelectorAll(".nav-btn").forEach(x => {
@@ -15619,15 +15620,14 @@ document.getElementById("openAddSheet").addEventListener("click", openAddSheet);
   document.addEventListener("DOMContentLoaded", () => setTimeout(updateGoalFirstHomeFallback, 150));
 
 
-function updateStickyGoal(tab) {
+function updateStickyGoal(tabName) {
   const container = document.getElementById("stickyGoalContainer");
-  if(tab === 'home') {
-    container.classList.remove('sticky'); // большой блок на главной
+  if(tabName === 'home') {
+    container.classList.remove('sticky');
   } else {
-    container.classList.add('sticky'); // компактный закрепленный блок
+    container.classList.add('sticky');
   }
 }
-// Пример использования: switchTab('settings') или switchTab('home')
 
 </script>
 
