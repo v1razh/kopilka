@@ -13303,6 +13303,88 @@ body.has-compact-goal #add {
   }
 }
 
+
+/* Monthly target plan inside goal card */
+.goal-monthly-plan {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 12px;
+  align-items: center;
+  margin-top: 14px;
+  padding: 14px;
+  border-radius: 20px;
+  background:
+    linear-gradient(135deg, rgba(91,140,255,.14), rgba(124,58,237,.12)),
+    rgba(255,255,255,.045);
+  border: 1px solid rgba(255,255,255,.11);
+  box-shadow:
+    inset 0 1px 0 rgba(255,255,255,.08),
+    0 12px 26px rgba(0,0,0,.16);
+}
+
+.goal-monthly-icon {
+  width: 46px;
+  height: 46px;
+  display: grid;
+  place-items: center;
+  border-radius: 17px;
+  background: rgba(91,140,255,.16);
+  border: 1px solid rgba(255,255,255,.10);
+  font-size: 22px;
+}
+
+.goal-monthly-text {
+  min-width: 0;
+}
+
+.goal-monthly-text p {
+  margin: 0;
+  color: rgba(245,247,251,.62);
+  font-size: 12px;
+  font-weight: 850;
+}
+
+.goal-monthly-text strong {
+  display: block;
+  margin-top: 4px;
+  color: #fff;
+  font-size: 22px;
+  line-height: 1.05;
+  font-weight: 1000;
+  letter-spacing: -.4px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.goal-monthly-text small {
+  display: block;
+  margin-top: 5px;
+  color: rgba(245,247,251,.50);
+  font-size: 11px;
+  line-height: 1.25;
+}
+
+@media (max-width: 390px) {
+  .goal-monthly-plan {
+    padding: 12px;
+    gap: 10px;
+  }
+
+  .goal-monthly-icon {
+    width: 40px;
+    height: 40px;
+    border-radius: 15px;
+    font-size: 19px;
+  }
+
+  .goal-monthly-text strong {
+    font-size: 19px;
+  }
+}
+
 </style>
 </head>
 <body>
@@ -13371,6 +13453,15 @@ body.has-compact-goal #add {
 
         <div class="goal-hero-bottom">
           <span id="goalLeftHero">Осталось 0 ₽</span>
+        </div>
+
+        <div class="goal-monthly-plan">
+          <div class="goal-monthly-icon">📅</div>
+          <div class="goal-monthly-text">
+            <p>Нужно откладывать</p>
+            <strong id="goalMonthlyNeedHero">0 ₽ / мес.</strong>
+            <small id="goalMonthlyTargetHero">чтобы успеть к выбранной дате</small>
+          </div>
         </div>
 
         <div class="goal-hero-advice" id="goalHeroAdvice">
@@ -14283,6 +14374,18 @@ function renderDashboard() {
     setText("goalTotalHero", rub(goalHero));
     setText("goalPercentHero", `${progressHero}%`);
     setText("goalLeftHero", `Осталось ${rub(Math.max(0, goalHero - totalSavedHero))}`);
+
+    const needMonthlyHero = Math.max(0, Number(s.needMonthly || 0));
+    const monthsHero = Math.max(0, Number(s.months || 0));
+    const targetHero = typeof formatGoalMonth === "function" ? formatGoalMonth() : "выбранной дате";
+
+    setText("goalMonthlyNeedHero", `${rub(needMonthlyHero)} / мес.`);
+    setText(
+      "goalMonthlyTargetHero",
+      monthsHero > 0 && targetHero !== "—"
+        ? `ещё ${monthsHero} мес. · цель к ${targetHero}`
+        : "укажи дату цели в настройках"
+    );
 
     const goalFill = document.getElementById("goalProgressFill");
     if (goalFill) goalFill.style.width = `${progressHero}%`;
