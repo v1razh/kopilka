@@ -14247,6 +14247,67 @@ body.has-compact-goal #add {
   }
 }
 
+
+/* Working compact mode + switch click fix */
+.switch {
+  cursor: pointer;
+  position: relative;
+  z-index: 3;
+}
+
+.switch-row {
+  position: relative;
+}
+
+body.compact-mode {
+  padding-bottom: calc(var(--safe-bottom) + 126px);
+}
+
+body.compact-mode .card,
+body.compact-mode .goal-hero-card,
+body.compact-mode .today-dark-card,
+body.compact-mode .dash-red-card,
+body.compact-mode .settings-card-premium,
+body.compact-mode .pc-hero-card,
+body.compact-mode .goal-tab-hero,
+body.compact-mode .goal-tab-settings,
+body.compact-mode .goal-tab-forecast,
+body.compact-mode #settings .card {
+  padding: 14px !important;
+  margin-bottom: 10px !important;
+  border-radius: 24px !important;
+}
+
+body.compact-mode .field {
+  margin-bottom: 9px !important;
+}
+
+body.compact-mode input,
+body.compact-mode select {
+  min-height: 48px !important;
+  height: 48px !important;
+}
+
+body.compact-mode .bottom-nav {
+  padding: 6px !important;
+  bottom: calc(var(--safe-bottom) + 8px) !important;
+}
+
+body.compact-mode .fab {
+  width: 56px !important;
+  height: 56px !important;
+  bottom: calc(var(--safe-bottom) + 96px) !important;
+}
+
+body.compact-mode .goal-hero-money,
+body.compact-mode .goal-tab-money {
+  font-size: 40px !important;
+}
+
+body.compact-mode .home-redesign-head {
+  margin-bottom: 10px !important;
+}
+
 </style>
 </head>
 <body>
@@ -15352,6 +15413,7 @@ function render() {
 
     const compactSwitch = document.getElementById("compactSwitch");
     if (compactSwitch) compactSwitch.classList.toggle("on", Boolean(data.compactMode));
+    document.body.classList.toggle("compact-mode", Boolean(data.compactMode));
 
     const historySwitch = document.getElementById("historySwitch");
     if (historySwitch) historySwitch.classList.toggle("on", Boolean(data.showHistory));
@@ -17060,27 +17122,42 @@ if (typeof softHaptic === "function") softHaptic();
     alert("План до зарплаты сохранён");
   });
 
-  document.getElementById("saveAppSettings").addEventListener("click", () => {
+  
+  // Robust settings switches
+  document.addEventListener("click", (event) => {
+    const compactBtn = event.target.closest("#compactSwitch");
+    if (compactBtn) {
+      event.preventDefault();
+      event.stopPropagation();
+      data.compactMode = !Boolean(data.compactMode);
+      save();
+      render();
+      return;
+    }
+
+    const historyBtn = event.target.closest("#historySwitch");
+    if (historyBtn) {
+      event.preventDefault();
+      event.stopPropagation();
+      data.showHistory = !Boolean(data.showHistory);
+      save();
+      render();
+    }
+  }, true);
+
+document.getElementById("saveAppSettings").addEventListener("click", () => {
     data.goalName = document.getElementById("goalName").value.trim() || "ПК мечты";
     save();
     render();
     successHaptic(document.getElementById("saveAppSettings"));
     alert("Настройки сохранены");
   });
-
-  document.getElementById("compactSwitch").addEventListener("click", () => {
-    data.compactMode = !data.compactMode;
-    save();
-    render();
-  });
-
-  document.getElementById("historySwitch").addEventListener("click", () => {
-    data.showHistory = !data.showHistory;
-    save();
-    render();
-  });
-
-  document.getElementById("resetBtn").addEventListener("click", () => {
+  const compactSwitchDirect = document.getElementById("compactSwitch");
+  if (compactSwitchDirect) compactSwitchDirect.addEventListener("click", () => {});
+  const historySwitchDirect = document.getElementById("historySwitch");
+  if (historySwitchDirect) historySwitchDirect.addEventListener("click", () => {});
+  const resetBtn = document.getElementById("resetBtn");
+  if (resetBtn) resetBtn.addEventListener("click", () => {
     if (confirm("Точно сбросить все данные?")) {
       localStorage.removeItem(STORAGE_KEY);
       data = JSON.parse(JSON.stringify(defaultData));
@@ -17089,8 +17166,7 @@ if (typeof softHaptic === "function") softHaptic();
       switchTab("add");
     }
   });
-
-  document.getElementById("addRecurringBtn").addEventListener("click", addRecurringPayment);
+document.getElementById("addRecurringBtn").addEventListener("click", addRecurringPayment);
   document.querySelectorAll(".settings-tab-btn").forEach(btn => {
     btn.addEventListener("click", () => switchSettingsTab(btn.dataset.settingsTab));
   });
