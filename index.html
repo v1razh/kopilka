@@ -13385,6 +13385,358 @@ body.has-compact-goal #add {
   }
 }
 
+
+/* ===== Premium PC tab redesign ===== */
+.pcbuild-redesign {
+  animation: smoothScreenIn .48s cubic-bezier(.16, 1, .3, 1);
+}
+
+.pc-hero-card {
+  position: relative;
+  overflow: hidden;
+  padding: 22px;
+  margin-bottom: 14px;
+  border-radius: 32px;
+  background:
+    radial-gradient(circle at 92% 8%, rgba(91,140,255,.30), transparent 34%),
+    radial-gradient(circle at 8% 0%, rgba(124,58,237,.20), transparent 30%),
+    linear-gradient(145deg, rgba(13,27,51,.94), rgba(16,19,48,.90) 58%, rgba(8,20,36,.96));
+  border: 1px solid rgba(91,140,255,.32);
+  box-shadow:
+    0 22px 60px rgba(0,0,0,.34),
+    0 0 34px rgba(91,140,255,.12),
+    inset 0 1px 0 rgba(255,255,255,.11);
+}
+
+.pc-hero-card::before {
+  content: "";
+  position: absolute;
+  right: -76px;
+  top: -76px;
+  width: 220px;
+  height: 220px;
+  border-radius: 999px;
+  background: rgba(255,255,255,.055);
+  pointer-events: none;
+}
+
+.pc-hero-top,
+.pc-add-head {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 16px;
+}
+
+.pc-kicker {
+  margin-bottom: 8px;
+  color: rgba(191,219,254,.82);
+  font-size: 12px;
+  font-weight: 950;
+  letter-spacing: 1.3px;
+  line-height: 1.15;
+}
+
+.pc-hero-top h1,
+.pc-add-head h2 {
+  margin: 0;
+  color: #fff;
+  font-size: 28px;
+  line-height: 1.06;
+  letter-spacing: -.8px;
+}
+
+.pc-hero-icon,
+.pc-add-icon,
+.pc-section-badge {
+  width: 68px;
+  height: 68px;
+  flex: 0 0 auto;
+  display: grid;
+  place-items: center;
+  border-radius: 23px;
+  background:
+    radial-gradient(circle at 50% 20%, rgba(255,255,255,.16), transparent 42%),
+    linear-gradient(180deg, rgba(255,255,255,.11), rgba(255,255,255,.04));
+  border: 1px solid rgba(255,255,255,.12);
+  box-shadow: inset 0 1px 0 rgba(255,255,255,.15), 0 18px 34px rgba(0,0,0,.25);
+  font-size: 32px;
+}
+
+.pc-hero-money {
+  position: relative;
+  z-index: 1;
+  margin-top: 22px;
+  color: white;
+  font-size: 38px;
+  line-height: 1;
+  font-weight: 1000;
+  letter-spacing: -1.5px;
+}
+
+.pc-hero-sub {
+  position: relative;
+  z-index: 1;
+  margin-top: 8px;
+  color: rgba(245,247,251,.58);
+  font-size: 13px;
+  line-height: 1.35;
+  font-weight: 750;
+}
+
+.pc-hero-progress {
+  position: relative;
+  z-index: 1;
+  height: 13px;
+  margin-top: 18px;
+  border-radius: 999px;
+  overflow: hidden;
+  background: rgba(255,255,255,.09);
+}
+
+.pc-hero-progress div {
+  height: 100%;
+  width: 0%;
+  border-radius: 999px;
+  background: linear-gradient(90deg, #5b8cff, #8b5cf6, #4ade80);
+  box-shadow: 0 0 24px rgba(91,140,255,.32);
+  transition: width .55s cubic-bezier(.16, 1, .3, 1);
+}
+
+.pc-hero-stats {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px;
+  margin-top: 16px;
+}
+
+.pc-hero-stats div {
+  min-width: 0;
+  padding: 12px;
+  border-radius: 18px;
+  background: rgba(255,255,255,.055);
+  border: 1px solid rgba(255,255,255,.09);
+}
+
+.pc-hero-stats span {
+  display: block;
+  color: rgba(245,247,251,.54);
+  font-size: 11px;
+  font-weight: 850;
+}
+
+.pc-hero-stats strong {
+  display: block;
+  margin-top: 5px;
+  color: white;
+  font-size: 18px;
+  line-height: 1;
+}
+
+.pc-next-card {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 13px;
+  align-items: center;
+  margin-bottom: 14px;
+  padding: 15px;
+  border-radius: 24px;
+  background:
+    linear-gradient(135deg, rgba(74,222,128,.12), rgba(91,140,255,.10)),
+    rgba(16,27,45,.38);
+  border: 1px solid rgba(255,255,255,.12);
+  color: rgba(245,247,251,.88);
+  font-size: 14px;
+  line-height: 1.42;
+  font-weight: 750;
+}
+
+.pc-next-card b {
+  color: white;
+}
+
+.pc-next-icon {
+  width: 48px;
+  height: 48px;
+  display: grid;
+  place-items: center;
+  border-radius: 18px;
+  background: rgba(74,222,128,.14);
+  border: 1px solid rgba(255,255,255,.09);
+  font-size: 23px;
+}
+
+.pc-section-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 14px;
+  margin: 8px 0 12px;
+}
+
+.pc-section-head h2 {
+  margin: 0;
+  font-size: 24px;
+  letter-spacing: -.5px;
+}
+
+.pc-section-head p {
+  margin: 4px 0 0;
+  color: rgba(245,247,251,.58);
+  font-size: 13px;
+  font-weight: 750;
+}
+
+.pc-section-badge {
+  width: 52px;
+  height: 52px;
+  border-radius: 19px;
+  font-size: 24px;
+}
+
+.pc-parts-list {
+  display: grid;
+  gap: 11px;
+  margin-bottom: 14px;
+}
+
+.pc-stage-card {
+  position: relative;
+  overflow: hidden;
+  padding: 15px !important;
+  border-radius: 24px !important;
+  background:
+    linear-gradient(180deg, rgba(255,255,255,.075), rgba(255,255,255,.024)),
+    rgba(16,27,45,.38) !important;
+  border: 1px solid rgba(255,255,255,.115) !important;
+  box-shadow: 0 14px 34px rgba(0,0,0,.20), inset 0 1px 0 rgba(255,255,255,.08) !important;
+}
+
+.pc-stage-top {
+  display: grid !important;
+  grid-template-columns: auto 1fr auto;
+  gap: 12px !important;
+  align-items: center !important;
+}
+
+.pc-part-icon {
+  width: 46px;
+  height: 46px;
+  border-radius: 17px;
+  display: grid;
+  place-items: center;
+  background: rgba(91,140,255,.16);
+  border: 1px solid rgba(255,255,255,.09);
+  font-size: 22px;
+}
+
+.pc-stage-title {
+  font-size: 16px !important;
+  line-height: 1.15;
+}
+
+.pc-stage-sub {
+  margin-top: 4px !important;
+}
+
+.pc-stage-price {
+  font-size: 15px;
+}
+
+.pc-stage-status {
+  margin-top: 8px !important;
+}
+
+.pc-stage-progress {
+  height: 8px !important;
+  margin: 13px 0 0 !important;
+  border-radius: 999px !important;
+  background: rgba(255,255,255,.08) !important;
+}
+
+.pc-stage-progress div {
+  height: 100%;
+  border-radius: 999px;
+  background: linear-gradient(90deg, #5b8cff, #8b5cf6, #4ade80) !important;
+}
+
+.pc-stage-actions {
+  grid-template-columns: repeat(3, 1fr) !important;
+  gap: 8px !important;
+  margin-top: 12px !important;
+}
+
+.pc-stage-actions .small-btn {
+  min-height: 40px;
+  padding: 10px 8px;
+  border-radius: 15px;
+  font-size: 12px;
+}
+
+.pc-add-card {
+  padding: 20px;
+  margin-bottom: 14px;
+  border-radius: 30px;
+  background:
+    radial-gradient(circle at 100% 0%, rgba(124,58,237,.18), transparent 34%),
+    linear-gradient(180deg, rgba(255,255,255,.07), rgba(255,255,255,.023)),
+    rgba(16,27,45,.42);
+  border: 1px solid rgba(255,255,255,.12);
+  box-shadow: 0 18px 44px rgba(0,0,0,.25), inset 0 1px 0 rgba(255,255,255,.09);
+}
+
+.pc-add-head {
+  margin-bottom: 16px;
+}
+
+.pc-add-icon {
+  width: 58px;
+  height: 58px;
+  border-radius: 21px;
+  font-size: 28px;
+}
+
+.pc-add-btn {
+  margin-top: 8px !important;
+}
+
+@media (max-width: 390px) {
+  .pc-hero-top h1 {
+    font-size: 24px;
+  }
+
+  .pc-hero-icon {
+    width: 60px;
+    height: 60px;
+    font-size: 28px;
+  }
+
+  .pc-hero-money {
+    font-size: 32px;
+  }
+
+  .pc-hero-stats {
+    gap: 8px;
+  }
+
+  .pc-hero-stats div {
+    padding: 10px;
+  }
+
+  .pc-stage-top {
+    grid-template-columns: auto 1fr;
+  }
+
+  .pc-stage-price {
+    grid-column: 2;
+    text-align: left;
+  }
+}
+
 </style>
 </head>
 <body>
@@ -13674,24 +14026,63 @@ body.has-compact-goal #add {
       </div>
     </section>
 
-    <section id="pcbuild" class="tab-content hidden">
-      <div class="card">
-        <h2>Сборка ПК</h2>
+    <section id="pcbuild" class="tab-content hidden pcbuild-redesign">
+      <div class="pc-hero-card">
+        <div class="pc-hero-top">
+          <div>
+            <div class="pc-kicker">🖥️ СБОРКА ПК</div>
+            <h1>Твой будущий компьютер</h1>
+          </div>
 
-        <div class="pc-stage-summary">
-          <p>Общий прогресс сборки</p>
-          <strong id="pcStageTotal">0 ₽ / 0 ₽</strong>
-          <div class="pc-stage-progress"><div id="pcStageTotalFill"></div></div>
-          <p id="pcStageTotalHint">Добавь комплектующие, чтобы видеть этапы сборки.</p>
+          <div class="pc-hero-icon">⚙️</div>
         </div>
 
-        <div class="pc-next-advice" id="pcNextAdvice"></div>
+        <div class="pc-hero-money" id="pcStageTotal">0 ₽ / 0 ₽</div>
+        <div class="pc-hero-sub" id="pcStageTotalHint">Добавь комплектующие, чтобы видеть этапы сборки.</div>
 
-        <div id="pcPartsList"></div>
+        <div class="pc-hero-progress">
+          <div id="pcStageTotalFill"></div>
+        </div>
+
+        <div class="pc-hero-stats">
+          <div>
+            <span>Этапов</span>
+            <strong id="pcPartsCountHero">0</strong>
+          </div>
+          <div>
+            <span>Куплено</span>
+            <strong id="pcPartsBoughtHero">0</strong>
+          </div>
+          <div>
+            <span>Прогресс</span>
+            <strong id="pcProgressHero">0%</strong>
+          </div>
+        </div>
       </div>
 
-      <div class="card">
-        <h2>Добавить комплектующую</h2>
+      <div class="pc-next-card" id="pcNextAdvice">
+        <div class="pc-next-icon">💡</div>
+        <div>Добавь комплектующие, чтобы приложение подсказало следующий этап.</div>
+      </div>
+
+      <div class="pc-section-head">
+        <div>
+          <h2>Комплектующие</h2>
+          <p>Этапы твоей сборки</p>
+        </div>
+        <div class="pc-section-badge">🧩</div>
+      </div>
+
+      <div id="pcPartsList" class="pc-parts-list"></div>
+
+      <div class="pc-add-card">
+        <div class="pc-add-head">
+          <div>
+            <div class="pc-kicker">➕ НОВЫЙ ЭТАП</div>
+            <h2>Добавить комплектующую</h2>
+          </div>
+          <div class="pc-add-icon">🛠️</div>
+        </div>
 
         <div class="field">
           <label>Название</label>
@@ -13725,7 +14116,7 @@ body.has-compact-goal #add {
           <input id="partNote" placeholder="Например: купить ближе к декабрю" />
         </div>
 
-        <button class="primary" id="addPartBtn">+ Добавить этап сборки</button>
+        <button class="primary pc-add-btn" id="addPartBtn">+ Добавить этап сборки</button>
         <p class="hint">Каждая комплектующая считается отдельным этапом большой цели.</p>
       </div>
     </section>
@@ -15606,11 +15997,22 @@ function renderAnalytics() {
 
     if (!totalEl || !fillEl || !hintEl || !adviceEl || !list) return;
 
+    const boughtCount = data.pcParts.filter(p => p.purchased).length;
+
     totalEl.textContent = `${rub(effectiveProgressMoney)} / ${rub(total)}`;
     fillEl.style.width = `${totalProgress}%`;
     hintEl.textContent = total > 0
-      ? `Куплено этапов: ${data.pcParts.filter(p => p.purchased).length} из ${data.pcParts.length}. Общий прогресс: ${totalProgress.toFixed(1)}%.`
+      ? `Куплено этапов: ${boughtCount} из ${data.pcParts.length}. Общий прогресс: ${totalProgress.toFixed(1)}%.`
       : "Добавь комплектующие, чтобы видеть этапы сборки.";
+
+    const setPcText = (id, value) => {
+      const el = document.getElementById(id);
+      if (el) el.textContent = value;
+    };
+
+    setPcText("pcPartsCountHero", data.pcParts.length);
+    setPcText("pcPartsBoughtHero", boughtCount);
+    setPcText("pcProgressHero", `${Math.round(totalProgress)}%`);
 
     const nextPart = data.pcParts
       .filter(part => !part.purchased)
@@ -15630,6 +16032,23 @@ function renderAnalytics() {
       return;
     }
 
+    const partIcon = category => {
+      const icons = {
+        "Видеокарта": "🎮",
+        "Процессор": "🧠",
+        "Материнская плата": "🔌",
+        "Оперативная память": "⚡",
+        "SSD": "💾",
+        "Блок питания": "🔋",
+        "Охлаждение": "❄️",
+        "Корпус": "🧊",
+        "Монитор": "🖥️",
+        "Периферия": "⌨️",
+        "Другое": "🧩"
+      };
+      return icons[category] || "🧩";
+    };
+
     list.innerHTML = data.pcParts.map(part => {
       const price = Number(part.price || 0);
       const stageProgress = part.purchased ? 100 : (price > 0 ? Math.min(100, saved / price * 100) : 0);
@@ -15638,11 +16057,14 @@ function renderAnalytics() {
       return `
         <div class="pc-stage-card">
           <div class="pc-stage-top">
+            <div class="pc-part-icon">${partIcon(part.category)}</div>
+
             <div>
               <p class="pc-stage-title">${part.name || "Без названия"}</p>
               <p class="pc-stage-sub">${part.category || "Другое"} · ${part.note || "без комментария"}</p>
               <span class="pc-stage-status ${part.purchased ? "done" : ""}">${part.purchased ? "✅ " : ""}${statusText}</span>
             </div>
+
             <div class="pc-stage-price">${rub(price)}</div>
           </div>
 
