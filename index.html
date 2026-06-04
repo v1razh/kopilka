@@ -16018,17 +16018,38 @@ function renderAnalytics() {
       .filter(part => !part.purchased)
       .sort((a, b) => Number(a.price || 0) - Number(b.price || 0))[0];
 
-    if (nextPart) {
+    
+if (nextPart) {
       const affordable = saved >= Number(nextPart.price || 0);
+      const leftMoney = Math.max(0, Number(nextPart.price || 0) - saved);
+
       adviceEl.innerHTML = affordable
-        ? `Следующий этап можно закрыть уже сейчас: <b>${nextPart.name}</b> за ${rub(nextPart.price)}.`
-        : `Следующий логичный этап: <b>${nextPart.name}</b>. До него осталось примерно <b>${rub(Math.max(0, Number(nextPart.price || 0) - saved))}</b>, если ориентироваться на текущие накопления.`;
+        ? `
+          <div>
+            <div style="font-size:12px;opacity:.7;margin-bottom:6px;">⚡ Следующий этап</div>
+            <div style="font-size:24px;font-weight:900;margin-bottom:6px;">${nextPart.name}</div>
+            <div style="font-size:18px;font-weight:800;color:#4ade80;">Можно купить уже сейчас</div>
+          </div>
+        `
+        : `
+          <div>
+            <div style="font-size:12px;opacity:.7;margin-bottom:6px;">💡 Следующий этап</div>
+            <div style="font-size:24px;font-weight:900;margin-bottom:6px;">${nextPart.name}</div>
+            <div style="font-size:20px;font-weight:900;">${rub(leftMoney)}</div>
+            <div style="font-size:13px;opacity:.75;margin-top:6px;">Осталось накопить</div>
+          </div>
+        `;
     } else {
-      adviceEl.innerHTML = `Все этапы отмечены как купленные. Сборка закрыта 🎉`;
+      adviceEl.innerHTML = `
+        <div>
+          <div style="font-size:28px;">🎉</div>
+          <div style="font-size:20px;font-weight:900;margin-top:6px;">Сборка завершена</div>
+          <div style="opacity:.75;">Все комплектующие отмечены как купленные</div>
+        </div>
+      `;
     }
 
-    if (!data.pcParts.length) {
-      list.innerHTML = '<div class="empty">Комплектующих пока нет. Добавь первый этап ниже.</div>';
+list.innerHTML = '<div class="empty">Комплектующих пока нет. Добавь первый этап ниже.</div>';
       return;
     }
 
