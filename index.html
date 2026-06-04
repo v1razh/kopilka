@@ -13122,6 +13122,187 @@ body.has-compact-goal #add {
   padding-top: 0;
 }
 
+
+/* Removed quick action mini-blocks */
+.quick-actions,
+.quick-actions-redesign,
+.quick-action,
+#quickExpense,
+#quickIncome,
+#quickSaving {
+  display: none !important;
+}
+
+
+/* Unified goal card on dashboard */
+.goal-hero-unified {
+  width: 100% !important;
+  margin: 0 0 14px !important;
+  padding: 22px !important;
+  border-radius: 32px !important;
+  overflow: hidden !important;
+  background:
+    radial-gradient(circle at 92% 8%, rgba(124,58,237,.28), transparent 34%),
+    radial-gradient(circle at 8% 0%, rgba(91,140,255,.18), transparent 30%),
+    linear-gradient(145deg, rgba(17,20,48,.94), rgba(10,23,43,.91) 58%, rgba(14,27,49,.95)) !important;
+  border: 1px solid rgba(139,92,246,.36) !important;
+  box-shadow:
+    0 22px 60px rgba(0,0,0,.34),
+    0 0 34px rgba(124,58,237,.12),
+    inset 0 1px 0 rgba(255,255,255,.11) !important;
+}
+
+.goal-hero-unified .goal-hero-row {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: space-between !important;
+  gap: 16px !important;
+  margin: 0 !important;
+}
+
+.goal-hero-heading {
+  min-width: 0;
+}
+
+.goal-hero-unified .goal-kicker {
+  margin: 0 0 8px !important;
+  color: rgba(216,180,254,.82) !important;
+  font-size: 12px !important;
+  font-weight: 950 !important;
+  letter-spacing: 1.4px !important;
+  line-height: 1.15 !important;
+}
+
+.goal-hero-unified .goal-hero-title {
+  margin: 0 !important;
+  color: #fff !important;
+  font-size: 28px !important;
+  line-height: 1.05 !important;
+  letter-spacing: -.7px !important;
+  white-space: nowrap !important;
+  overflow: hidden !important;
+  text-overflow: ellipsis !important;
+}
+
+.goal-hero-unified .goal-jar {
+  width: 72px !important;
+  height: 72px !important;
+  border-radius: 23px !important;
+  flex: 0 0 auto !important;
+}
+
+.goal-hero-unified .goal-jar-glass {
+  font-size: 38px !important;
+}
+
+.goal-hero-main {
+  margin-top: 22px;
+  position: relative;
+  z-index: 1;
+}
+
+.goal-hero-unified .goal-hero-money {
+  margin: 0 !important;
+  color: white !important;
+  font-size: 54px !important;
+  line-height: .95 !important;
+  font-weight: 1000 !important;
+  letter-spacing: -2.2px !important;
+}
+
+.goal-hero-unified .goal-hero-sub {
+  margin-top: 8px !important;
+  color: rgba(245,247,251,.58) !important;
+  font-size: 15px !important;
+  font-weight: 800 !important;
+}
+
+.goal-hero-progress-row {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  align-items: center;
+  gap: 14px;
+  margin-top: 18px;
+  position: relative;
+  z-index: 1;
+}
+
+.goal-hero-unified .goal-hero-progress {
+  height: 12px !important;
+  margin: 0 !important;
+  border-radius: 999px !important;
+  background: rgba(255,255,255,.09) !important;
+}
+
+.goal-hero-unified .goal-hero-fill {
+  height: 100% !important;
+  border-radius: 999px !important;
+  background: linear-gradient(90deg, #8b5cf6, #5b8cff, #4ade80) !important;
+}
+
+.goal-hero-progress-row strong {
+  color: #a78bfa !important;
+  font-size: 22px !important;
+  font-weight: 1000 !important;
+  line-height: 1 !important;
+  min-width: 44px;
+  text-align: right;
+}
+
+.goal-hero-unified .goal-hero-bottom {
+  display: flex !important;
+  justify-content: flex-end !important;
+  margin-top: 10px !important;
+}
+
+.goal-hero-unified .goal-hero-bottom span {
+  color: rgba(245,247,251,.62) !important;
+  font-size: 13px !important;
+  font-weight: 850 !important;
+  text-align: right !important;
+}
+
+.goal-hero-unified .goal-hero-bottom strong {
+  display: none !important;
+}
+
+.goal-hero-unified .goal-hero-advice {
+  margin-top: 16px !important;
+  padding: 13px 14px !important;
+  border-radius: 18px !important;
+  background:
+    linear-gradient(135deg, rgba(255,255,255,.075), rgba(255,255,255,.035)) !important;
+  border: 1px solid rgba(255,255,255,.10) !important;
+  color: rgba(245,247,251,.88) !important;
+  font-size: 14px !important;
+  line-height: 1.36 !important;
+  font-weight: 800 !important;
+}
+
+@media (max-width: 390px) {
+  .goal-hero-unified {
+    padding: 20px !important;
+    border-radius: 30px !important;
+  }
+
+  .goal-hero-unified .goal-hero-title {
+    font-size: 24px !important;
+  }
+
+  .goal-hero-unified .goal-hero-money {
+    font-size: 46px !important;
+  }
+
+  .goal-hero-unified .goal-jar {
+    width: 64px !important;
+    height: 64px !important;
+  }
+
+  .goal-hero-unified .goal-jar-glass {
+    font-size: 34px !important;
+  }
+}
+
 </style>
 </head>
 <body>
@@ -13162,26 +13343,33 @@ body.has-compact-goal #add {
         </div>
       </div>
 
-      <div class="goal-hero-card">
+      <div class="goal-hero-card goal-hero-unified">
         <div class="goal-hero-row">
-          <div>
-            <div class="goal-kicker">🎯 ТВОЯ ЦЕЛЬ</div></div>
+          <div class="goal-hero-heading">
+            <div class="goal-kicker">🎯 ТВОЯ ЦЕЛЬ</div>
             <h1 class="goal-hero-title" id="goalNameHero">Копилка</h1>
           </div>
+
           <div class="goal-jar" aria-hidden="true">
             <div class="goal-jar-glass">🪙</div>
           </div>
         </div>
 
-        <div class="goal-hero-money" id="goalSavedHero">0 ₽</div>
-        <div class="goal-hero-sub">из <span id="goalTotalHero">0 ₽</span></div>
+        <div class="goal-hero-main">
+          <div>
+            <div class="goal-hero-money" id="goalSavedHero">0 ₽</div>
+            <div class="goal-hero-sub">из <span id="goalTotalHero">0 ₽</span></div>
+          </div>
+        </div>
 
-        <div class="goal-hero-progress">
-          <div class="goal-hero-fill" id="goalProgressFill"></div>
+        <div class="goal-hero-progress-row">
+          <div class="goal-hero-progress">
+            <div class="goal-hero-fill" id="goalProgressFill"></div>
+          </div>
+          <strong id="goalPercentHero">0%</strong>
         </div>
 
         <div class="goal-hero-bottom">
-          <strong id="goalPercentHero">0%</strong>
           <span id="goalLeftHero">Осталось 0 ₽</span>
         </div>
 
