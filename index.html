@@ -12992,6 +12992,43 @@
   display:none !important;
 }
 
+
+/* Sticky goal for other tabs */
+#stickyGoalContainer {
+  position: relative;
+  z-index: 5;
+  transition: all 0.28s ease;
+}
+#stickyGoalContainer.sticky {
+  position: fixed;
+  top: calc(var(--safe-top) + 10px);
+  left: 14px;
+  right: 14px;
+  max-width: 520px;
+  padding: 8px;
+  border-radius: 20px;
+  background:
+    linear-gradient(135deg, rgba(91,140,255,.22), rgba(124,58,237,.14)),
+    rgba(16,27,45,.42);
+  box-shadow: 0 12px 36px rgba(0,0,0,.28);
+}
+#stickyGoalContainer.sticky .goal-hero-card {
+  padding: 12px;
+  border-radius: 20px;
+}
+#stickyGoalContainer.sticky .goal-hero-card .top p {
+  font-size: 10px;
+}
+#stickyGoalContainer.sticky .goal-hero-card .top strong {
+  font-size: 16px;
+}
+#stickyGoalContainer.sticky .goal-hero-card .goal-hero-progress {
+  height: 8px;
+}
+#stickyGoalContainer.sticky .goal-hero-card .goal-hero-progress .goal-hero-fill {
+  height: 100%;
+}
+
 </style>
 </head>
 <body>
@@ -13014,10 +13051,10 @@
         </div>
       </div>
 
-      <div class="goal-hero-card">
+      <div id="stickyGoalContainer"><div class="goal-hero-card">
         <div class="goal-hero-row">
           <div>
-            <div class="goal-kicker">🎯 ТВОЯ ЦЕЛЬ</div>
+            <div class="goal-kicker">🎯 ТВОЯ ЦЕЛЬ</div></div>
             <h1 class="goal-hero-title" id="goalNameHero">Копилка</h1>
           </div>
           <div class="goal-jar" aria-hidden="true">
@@ -15580,6 +15617,17 @@ document.getElementById("openAddSheet").addEventListener("click", openAddSheet);
     } catch (e) {}
   }
   document.addEventListener("DOMContentLoaded", () => setTimeout(updateGoalFirstHomeFallback, 150));
+
+
+function updateStickyGoal(tab) {
+  const container = document.getElementById("stickyGoalContainer");
+  if(tab === 'home') {
+    container.classList.remove('sticky'); // большой блок на главной
+  } else {
+    container.classList.add('sticky'); // компактный закрепленный блок
+  }
+}
+// Пример использования: switchTab('settings') или switchTab('home')
 
 </script>
 
