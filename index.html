@@ -14308,6 +14308,15 @@ body.compact-mode .home-redesign-head {
   margin-bottom: 10px !important;
 }
 
+
+/* Switch hard click fix */
+#compactSwitch,
+#historySwitch {
+  pointer-events: auto !important;
+  touch-action: manipulation !important;
+  cursor: pointer !important;
+}
+
 </style>
 </head>
 <body>
@@ -14828,7 +14837,7 @@ body.compact-mode .home-redesign-head {
               <p>Компактный режим</p>
               <small>Уменьшает вертикальные отступы, чтобы больше помещалось на экране.</small>
             </div>
-            <button class="switch" id="compactSwitch"></button>
+            <button type="button" class="switch" id="compactSwitch" onclick="toggleCompactMode(event)"></button>
           </div>
 
           <div class="switch-row">
@@ -14836,7 +14845,7 @@ body.compact-mode .home-redesign-head {
               <p>Показывать историю</p>
               <small>Включает или скрывает список последних операций на главной.</small>
             </div>
-            <button class="switch on" id="historySwitch"></button>
+            <button type="button" class="switch on" id="historySwitch" onclick="toggleHistoryMode(event)"></button>
           </div>
 
           <div class="field">
@@ -17111,7 +17120,39 @@ if (typeof softHaptic === "function") softHaptic();
     alert("План сохранён");
   });
 
-  document.getElementById("saveSalaryPlan").addEventListener("click", () => {
+  
+  function toggleCompactMode(event) {
+    if (event) {
+      event.preventDefault();
+      event.stopPropagation();
+    }
+
+    data.compactMode = !Boolean(data.compactMode);
+    save();
+
+    const compactSwitch = document.getElementById("compactSwitch");
+    if (compactSwitch) compactSwitch.classList.toggle("on", Boolean(data.compactMode));
+    document.body.classList.toggle("compact-mode", Boolean(data.compactMode));
+
+    render();
+  }
+
+  function toggleHistoryMode(event) {
+    if (event) {
+      event.preventDefault();
+      event.stopPropagation();
+    }
+
+    data.showHistory = !Boolean(data.showHistory);
+    save();
+
+    const historySwitch = document.getElementById("historySwitch");
+    if (historySwitch) historySwitch.classList.toggle("on", Boolean(data.showHistory));
+
+    render();
+  }
+
+document.getElementById("saveSalaryPlan").addEventListener("click", () => {
     data.salaryDay = Number(document.getElementById("salaryDay").value) || 10;
     data.advanceDay = Number(document.getElementById("advanceDay").value) || 25;
     data.currentCash = Number(String(document.getElementById("currentCash").value).replace(",", ".")) || 0;
@@ -17121,30 +17162,6 @@ if (typeof softHaptic === "function") softHaptic();
     successHaptic(document.getElementById("saveSalaryPlan"));
     alert("План до зарплаты сохранён");
   });
-
-  
-  // Robust settings switches
-  document.addEventListener("click", (event) => {
-    const compactBtn = event.target.closest("#compactSwitch");
-    if (compactBtn) {
-      event.preventDefault();
-      event.stopPropagation();
-      data.compactMode = !Boolean(data.compactMode);
-      save();
-      render();
-      return;
-    }
-
-    const historyBtn = event.target.closest("#historySwitch");
-    if (historyBtn) {
-      event.preventDefault();
-      event.stopPropagation();
-      data.showHistory = !Boolean(data.showHistory);
-      save();
-      render();
-    }
-  }, true);
-
 document.getElementById("saveAppSettings").addEventListener("click", () => {
     data.goalName = document.getElementById("goalName").value.trim() || "ПК мечты";
     save();
@@ -17152,11 +17169,7 @@ document.getElementById("saveAppSettings").addEventListener("click", () => {
     successHaptic(document.getElementById("saveAppSettings"));
     alert("Настройки сохранены");
   });
-  const compactSwitchDirect = document.getElementById("compactSwitch");
-  if (compactSwitchDirect) compactSwitchDirect.addEventListener("click", () => {});
-  const historySwitchDirect = document.getElementById("historySwitch");
-  if (historySwitchDirect) historySwitchDirect.addEventListener("click", () => {});
-  const resetBtn = document.getElementById("resetBtn");
+const resetBtn = document.getElementById("resetBtn");
   if (resetBtn) resetBtn.addEventListener("click", () => {
     if (confirm("Точно сбросить все данные?")) {
       localStorage.removeItem(STORAGE_KEY);
