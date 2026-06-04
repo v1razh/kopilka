@@ -14049,6 +14049,24 @@ body.has-compact-goal #add {
   }
 }
 
+
+/* Unique goal tab blocks */
+.goal-milestone-card,.goal-roadmap-card{position:relative;overflow:hidden;padding:20px;margin-bottom:14px;border-radius:30px;background:radial-gradient(circle at 100% 0%,rgba(74,222,128,.16),transparent 34%),linear-gradient(180deg,rgba(255,255,255,.07),rgba(255,255,255,.023)),rgba(16,27,45,.42);border:1px solid rgba(255,255,255,.12);box-shadow:0 18px 44px rgba(0,0,0,.25),inset 0 1px 0 rgba(255,255,255,.09)}
+.goal-milestone-top,.goal-roadmap-head{display:flex;justify-content:space-between;align-items:center;gap:14px;margin-bottom:16px}
+.goal-milestone-top h2,.goal-roadmap-head h2{margin:0;color:white;font-size:24px;line-height:1.08;letter-spacing:-.5px}
+.goal-milestone-icon{width:58px;height:58px;flex:0 0 auto;display:grid;place-items:center;border-radius:21px;background:linear-gradient(180deg,rgba(255,255,255,.11),rgba(255,255,255,.04));border:1px solid rgba(255,255,255,.12);font-size:28px}
+.goal-milestone-money{color:white;font-size:38px;line-height:1;font-weight:1000;letter-spacing:-1.4px}
+.goal-milestone-sub{margin-top:7px;color:rgba(245,247,251,.56);font-size:13px;font-weight:800}
+.goal-milestone-progress{height:10px;margin-top:15px;border-radius:999px;overflow:hidden;background:rgba(255,255,255,.09)}
+.goal-milestone-progress div{height:100%;width:0%;border-radius:999px;background:linear-gradient(90deg,#4ade80,#5b8cff,#8b5cf6);transition:width .55s cubic-bezier(.16,1,.3,1)}
+.goal-roadmap-list{display:grid;gap:10px}
+.goal-roadmap-item{display:grid;grid-template-columns:auto 1fr auto;gap:11px;align-items:center;padding:12px;border-radius:18px;background:rgba(255,255,255,.045);border:1px solid rgba(255,255,255,.09)}
+.goal-roadmap-icon{width:38px;height:38px;display:grid;place-items:center;border-radius:14px;background:rgba(91,140,255,.14);border:1px solid rgba(255,255,255,.08);font-size:18px}
+.goal-roadmap-item p{margin:0;color:white;font-size:14px;font-weight:900}
+.goal-roadmap-item small{display:block;margin-top:3px;color:rgba(245,247,251,.50);font-size:11px;line-height:1.25}
+.goal-roadmap-item strong{color:white;font-size:15px;font-weight:1000;white-space:nowrap}
+.goal-roadmap-item.is-current{background:linear-gradient(135deg,rgba(74,222,128,.12),rgba(91,140,255,.08)),rgba(255,255,255,.045);border-color:rgba(74,222,128,.20)}
+
 </style>
 </head>
 <body>
@@ -14249,6 +14267,30 @@ body.has-compact-goal #add {
           <p>Темп</p>
           <strong id="goalPlanPace">В процессе</strong>
         </div>
+      </div>
+
+      <div class="goal-milestone-card">
+        <div class="goal-milestone-top">
+          <div>
+            <div class="goal-tab-kicker">🏁 БЛИЖАЙШИЙ РУБЕЖ</div>
+            <h2 id="goalMilestoneTitle">Следующий шаг</h2>
+          </div>
+          <div class="goal-milestone-icon">🚀</div>
+        </div>
+        <div class="goal-milestone-money" id="goalMilestoneNeed">0 ₽</div>
+        <div class="goal-milestone-sub" id="goalMilestoneSub">До следующего рубежа</div>
+        <div class="goal-milestone-progress"><div id="goalMilestoneFill"></div></div>
+      </div>
+
+      <div class="goal-roadmap-card">
+        <div class="goal-roadmap-head">
+          <div>
+            <div class="goal-tab-kicker">🗓️ ПЛАН ПО МЕСЯЦАМ</div>
+            <h2>Дорожная карта</h2>
+          </div>
+          <div class="goal-tab-settings-icon">🧭</div>
+        </div>
+        <div class="goal-roadmap-list" id="goalRoadmapList"></div>
       </div>
 
       <div class="goal-tab-settings">
