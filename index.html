@@ -14451,6 +14451,126 @@ body.compact-mode .home-redesign-head {
   font-weight: 850;
 }
 
+
+/* Project archive */
+.project-archive-card {
+  padding: 20px;
+  margin-bottom: 14px;
+  border-radius: 30px;
+  background:
+    radial-gradient(circle at 100% 0%, rgba(124,58,237,.16), transparent 34%),
+    linear-gradient(180deg, rgba(255,255,255,.07), rgba(255,255,255,.023)),
+    rgba(16,27,45,.42);
+  border: 1px solid rgba(255,255,255,.12);
+  box-shadow: 0 18px 44px rgba(0,0,0,.25), inset 0 1px 0 rgba(255,255,255,.09);
+}
+
+.project-archive-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 14px;
+  margin-bottom: 14px;
+}
+
+.project-archive-head h2 {
+  margin: 0;
+  color: white;
+  font-size: 24px;
+  line-height: 1.08;
+  letter-spacing: -.5px;
+}
+
+.project-archive-icon {
+  width: 56px;
+  height: 56px;
+  flex: 0 0 auto;
+  display: grid;
+  place-items: center;
+  border-radius: 20px;
+  background:
+    radial-gradient(circle at 50% 20%, rgba(255,255,255,.16), transparent 42%),
+    linear-gradient(180deg, rgba(255,255,255,.11), rgba(255,255,255,.04));
+  border: 1px solid rgba(255,255,255,.12);
+  box-shadow: inset 0 1px 0 rgba(255,255,255,.15), 0 16px 30px rgba(0,0,0,.22);
+  font-size: 27px;
+}
+
+.project-archive-list {
+  display: grid;
+  gap: 10px;
+}
+
+.project-archive-item {
+  display: grid;
+  gap: 12px;
+  padding: 14px;
+  border-radius: 22px;
+  background:
+    linear-gradient(180deg, rgba(255,255,255,.065), rgba(255,255,255,.022)),
+    rgba(16,27,45,.36);
+  border: 1px solid rgba(255,255,255,.10);
+  box-shadow: inset 0 1px 0 rgba(255,255,255,.07);
+}
+
+.project-archive-top {
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  align-items: center;
+  gap: 11px;
+}
+
+.project-archive-project-icon {
+  width: 42px;
+  height: 42px;
+  display: grid;
+  place-items: center;
+  border-radius: 16px;
+  background: rgba(91,140,255,.14);
+  border: 1px solid rgba(255,255,255,.08);
+  font-size: 20px;
+}
+
+.project-archive-title {
+  min-width: 0;
+}
+
+.project-archive-title p {
+  margin: 0;
+  color: white;
+  font-size: 15px;
+  font-weight: 950;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.project-archive-title small {
+  display: block;
+  margin-top: 3px;
+  color: rgba(245,247,251,.52);
+  font-size: 11px;
+  line-height: 1.25;
+}
+
+.project-archive-total {
+  color: white;
+  font-size: 14px;
+  font-weight: 950;
+  white-space: nowrap;
+}
+
+.project-archive-actions {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;
+}
+
+.project-archive-actions .small-btn {
+  min-height: 40px;
+  border-radius: 15px;
+}
+
 </style>
 </head>
 <body>
@@ -14911,6 +15031,18 @@ body.compact-mode .home-redesign-head {
 
         <button class="primary project-save-btn" id="saveProjectSettings">💾 Сохранить проект</button>
         <p class="hint">Выбирай готовый тип или создай свой проект. Этапы ниже можно называть как угодно.</p>
+      </div>
+
+      <div class="project-archive-card">
+        <div class="project-archive-head">
+          <div>
+            <div class="pc-kicker">📂 АРХИВ ПРОЕКТОВ</div>
+            <h2>Старые проекты</h2>
+          </div>
+          <div class="project-archive-icon">🗄️</div>
+        </div>
+
+        <div id="projectArchiveList" class="project-archive-list"></div>
       </div>
 
       <div class="pc-next-card" id="pcNextAdvice">
@@ -17088,6 +17220,7 @@ function renderAnalytics() {
     if (!confirm(`Отправить проект «${project.name}» в архив? Его этапы сохранятся, но проект исчезнет из активного списка.`)) return;
 
     project.archived = true;
+    project.archivedAt = today();
 
     const nextProject = data.projects.find(item => !item.archived);
 
@@ -17116,6 +17249,88 @@ function renderAnalytics() {
     save();
     render();
   }
+
+  function renderProjectArchive() {
+    const list = document.getElementById("projectArchiveList");
+    if (!list) return;
+
+    normalizeProjects();
+
+    const archived = data.projects.filter(project => project.archived);
+
+    if (!archived.length) {
+      list.innerHTML = '<div class="empty">Архив пока пуст. Сюда можно отправлять завершённые или старые проекты.</div>';
+      return;
+    }
+
+    list.innerHTML = archived.map(project => {
+      const config = projectConfigs[project.type] || projectConfigs.custom;
+      const parts = Array.isArray(project.parts) ? project.parts : [];
+      const total = parts.reduce((sum, part) => sum + Number(part.price || 0), 0);
+      const done = parts.filter(part => part.purchased).length;
+
+      return `
+        <div class="project-archive-item">
+          <div class="project-archive-top">
+            <div class="project-archive-project-icon">${config.icon || "🧩"}</div>
+
+            <div class="project-archive-title">
+              <p>${project.name || "Мой проект"}</p>
+              <small>${config.label || "Проект"} · этапов: ${done}/${parts.length}</small>
+            </div>
+
+            <div class="project-archive-total">${rub(total)}</div>
+          </div>
+
+          <div class="project-archive-actions">
+            <button type="button" class="small-btn" onclick="restoreProject('${project.id}')">🔄 Восстановить</button>
+            <button type="button" class="small-btn danger-text" onclick="deleteProjectForever('${project.id}')">Удалить</button>
+          </div>
+        </div>
+      `;
+    }).join("");
+  }
+
+  function restoreProject(projectId) {
+    const project = data.projects.find(item => item.id === projectId);
+    if (!project) return;
+
+    project.archived = false;
+    data.activeProjectId = project.id;
+    data.projectType = project.type || "custom";
+    data.projectName = project.name || "Мой проект";
+    data.pcParts = Array.isArray(project.parts) ? project.parts : [];
+
+    save();
+    render();
+  }
+
+  function deleteProjectForever(projectId) {
+    const project = data.projects.find(item => item.id === projectId);
+    if (!project) return;
+
+    if (!confirm(`Удалить проект «${project.name}» навсегда? Это действие нельзя отменить.`)) return;
+
+    data.projects = data.projects.filter(item => item.id !== projectId);
+
+    if (data.activeProjectId === projectId) {
+      const nextProject = data.projects.find(item => !item.archived);
+      if (nextProject) {
+        data.activeProjectId = nextProject.id;
+        data.projectType = nextProject.type || "custom";
+        data.projectName = nextProject.name || "Мой проект";
+        data.pcParts = Array.isArray(nextProject.parts) ? nextProject.parts : [];
+      } else {
+        data.activeProjectId = null;
+        data.projects = [];
+        normalizeProjects();
+      }
+    }
+
+    save();
+    render();
+  }
+
 
   const projectConfigs = {
     pc: {
@@ -17206,6 +17421,7 @@ function renderAnalytics() {
 
     updateProjectCategoryOptions();
     renderProjectSelect();
+    renderProjectArchive();
   }
 
   function saveProjectSettings() {
