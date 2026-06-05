@@ -14571,6 +14571,10 @@ body.compact-mode .home-redesign-head {
   border-radius: 15px;
 }
 
+
+.archive-modal{position:fixed;inset:0;z-index:5000;background:rgba(0,0,0,.65);backdrop-filter:blur(10px);display:flex;align-items:center;justify-content:center;padding:20px}
+.archive-modal.hidden{display:none}
+.archive-modal-card{width:min(100%,560px);max-height:80vh;overflow:auto;padding:20px;border-radius:28px;background:#0f172a;border:1px solid rgba(255,255,255,.12)}
 </style>
 </head>
 <body>
@@ -15021,7 +15025,7 @@ body.compact-mode .home-redesign-head {
 
         <div class="project-actions-grid">
           <button type="button" class="small-btn" id="createProjectBtn">➕ Новый</button>
-          <button type="button" class="small-btn danger-text" id="archiveProjectBtn">📦 В архив</button>
+          <button type="button" class="small-btn danger-text" id="openArchiveBtn">📂 Архив</button><button type="button" class="small-btn danger-text" id="archiveProjectBtn">📦 В архив</button>
         </div>
 
         <div class="field">
@@ -15033,17 +15037,7 @@ body.compact-mode .home-redesign-head {
         <p class="hint">Выбирай готовый тип или создай свой проект. Этапы ниже можно называть как угодно.</p>
       </div>
 
-      <div class="project-archive-card">
-        <div class="project-archive-head">
-          <div>
-            <div class="pc-kicker">📂 АРХИВ ПРОЕКТОВ</div>
-            <h2>Старые проекты</h2>
-          </div>
-          <div class="project-archive-icon">🗄️</div>
-        </div>
-
-        <div id="projectArchiveList" class="project-archive-list"></div>
-      </div>
+      
 
       <div class="pc-next-card" id="pcNextAdvice">
         <div class="pc-next-icon">💡</div>
@@ -18079,6 +18073,13 @@ document.getElementById("openAddSheet").addEventListener("click", openAddSheet);
     setTimeout(() => updateCompactGoalHeader("add"), 150);
   });
 
+
+function openArchiveModal(){const m=document.getElementById('archiveModal');if(m)m.classList.remove('hidden');if(typeof renderProjectArchive==='function')renderProjectArchive();}
+function closeArchiveModal(){const m=document.getElementById('archiveModal');if(m)m.classList.add('hidden');}
+document.addEventListener('click',e=>{
+if(e.target&&e.target.id==='openArchiveBtn')openArchiveModal();
+if(e.target&&e.target.id==='closeArchiveBtn')closeArchiveModal();
+});
 </script>
 
 <script>
@@ -18119,5 +18120,15 @@ document.getElementById("openAddSheet").addEventListener("click", openAddSheet);
   }
 })();
 </script>
+
+<div id="archiveModal" class="archive-modal hidden">
+<div class="archive-modal-card">
+<div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:12px">
+<h2 style="margin:0">📂 Архив проектов</h2>
+<button class="small-btn" id="closeArchiveBtn">✕</button>
+</div>
+<div id="projectArchiveList"></div>
+</div>
+</div>
 </body>
 </html>
