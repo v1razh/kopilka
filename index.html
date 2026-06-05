@@ -14384,6 +14384,55 @@ body.compact-mode .home-redesign-head {
   padding-right: 54px !important;
 }
 
+
+/* Project type setup */
+.project-setup-card {
+  padding: 20px;
+  margin-bottom: 14px;
+  border-radius: 30px;
+  background:
+    radial-gradient(circle at 100% 0%, rgba(91,140,255,.16), transparent 34%),
+    linear-gradient(180deg, rgba(255,255,255,.07), rgba(255,255,255,.023)),
+    rgba(16,27,45,.42);
+  border: 1px solid rgba(255,255,255,.12);
+  box-shadow: 0 18px 44px rgba(0,0,0,.25), inset 0 1px 0 rgba(255,255,255,.09);
+}
+
+.project-setup-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 14px;
+  margin-bottom: 16px;
+}
+
+.project-setup-head h2 {
+  margin: 0;
+  color: white;
+  font-size: 24px;
+  line-height: 1.08;
+  letter-spacing: -.5px;
+}
+
+.project-setup-icon {
+  width: 56px;
+  height: 56px;
+  flex: 0 0 auto;
+  display: grid;
+  place-items: center;
+  border-radius: 20px;
+  background:
+    radial-gradient(circle at 50% 20%, rgba(255,255,255,.16), transparent 42%),
+    linear-gradient(180deg, rgba(255,255,255,.11), rgba(255,255,255,.04));
+  border: 1px solid rgba(255,255,255,.12);
+  box-shadow: inset 0 1px 0 rgba(255,255,255,.15), 0 16px 30px rgba(0,0,0,.22);
+  font-size: 27px;
+}
+
+.project-save-btn {
+  margin-top: 8px !important;
+}
+
 </style>
 </head>
 <body>
@@ -14776,10 +14825,10 @@ body.compact-mode .home-redesign-head {
         <div class="pc-hero-top">
           <div>
             <div class="pc-kicker">🧩 ПРОЕКТ</div>
-            <h1>Твой проект</h1>
+            <h1 id="projectTitleHero">Твой проект</h1>
           </div>
 
-          <div class="pc-hero-icon">⚙️</div>
+          <div class="pc-hero-icon" id="projectHeroIcon">⚙️</div>
         </div>
 
         <div class="pc-hero-money" id="pcStageTotal">0 ₽ / 0 ₽</div>
@@ -14805,15 +14854,46 @@ body.compact-mode .home-redesign-head {
         </div>
       </div>
 
+      <div class="project-setup-card">
+        <div class="project-setup-head">
+          <div>
+            <div class="pc-kicker">🎛️ ТИП ПРОЕКТА</div>
+            <h2>Настрой проект</h2>
+          </div>
+          <div class="project-setup-icon">🧩</div>
+        </div>
+
+        <div class="field">
+          <label>Тип проекта</label>
+          <select id="projectType">
+            <option value="pc">ПК / компьютер</option>
+            <option value="car">Автомобиль</option>
+            <option value="phone">Телефон и гаджеты</option>
+            <option value="travel">Путешествие</option>
+            <option value="room">Комната / ремонт</option>
+            <option value="camera">Камера / студия</option>
+            <option value="custom">Свой проект</option>
+          </select>
+        </div>
+
+        <div class="field">
+          <label>Название проекта</label>
+          <input id="projectName" placeholder="Например: ПК мечты" />
+        </div>
+
+        <button class="primary project-save-btn" id="saveProjectSettings">💾 Сохранить проект</button>
+        <p class="hint">Выбирай готовый тип или создай свой проект. Этапы ниже можно называть как угодно.</p>
+      </div>
+
       <div class="pc-next-card" id="pcNextAdvice">
         <div class="pc-next-icon">💡</div>
-        <div>Добавь комплектующие, чтобы приложение подсказало следующий этап.</div>
+        <div>Добавь этапы, чтобы приложение подсказало следующий шаг проекта.</div>
       </div>
 
       <div class="pc-section-head">
         <div>
           <h2>Этапы проекта</h2>
-          <p>Этапы твоей сборки</p>
+          <p id="projectPartsSubtitle">Этапы твоего проекта</p>
         </div>
         <div class="pc-section-badge">🧩</div>
       </div>
@@ -14837,16 +14917,10 @@ body.compact-mode .home-redesign-head {
         <div class="field">
           <label>Категория</label>
           <select id="partCategory">
-            <option>Видеокарта</option>
-            <option>Процессор</option>
-            <option>Материнская плата</option>
-            <option>Оперативная память</option>
-            <option>SSD</option>
-            <option>Блок питания</option>
-            <option>Охлаждение</option>
-            <option>Корпус</option>
-            <option>Монитор</option>
-            <option>Периферия</option>
+            <option>Этап</option>
+            <option>Покупка</option>
+            <option>Комплектующая</option>
+            <option>Аксессуар</option>
             <option>Другое</option>
           </select>
         </div>
@@ -15089,6 +15163,8 @@ body.compact-mode .home-redesign-head {
     compactMode: false,
     showHistory: true,
     appMode: "project",
+    projectType: "pc",
+    projectName: "ПК мечты",
     dashboardPeriod: "month",
     recentPeriod: "all",
     expenseMiniPeriod: "month",
@@ -16865,8 +16941,119 @@ function renderAnalytics() {
     });
   }
 
+
+  const projectConfigs = {
+    pc: {
+      icon: "🖥️",
+      title: "ПК мечты",
+      label: "ПК / компьютер",
+      subtitle: "Комплектующие и этапы сборки",
+      categories: ["Видеокарта", "Процессор", "Материнская плата", "Оперативная память", "SSD", "Блок питания", "Охлаждение", "Корпус", "Монитор", "Периферия", "Другое"]
+    },
+    car: {
+      icon: "🚗",
+      title: "Автомобиль",
+      label: "Автомобиль",
+      subtitle: "Части покупки и подготовки машины",
+      categories: ["Первый взнос", "Страховка", "Резина", "Регистрация", "ТО", "Аксессуары", "Ремонт", "Другое"]
+    },
+    phone: {
+      icon: "📱",
+      title: "Новый гаджет",
+      label: "Телефон и гаджеты",
+      subtitle: "Устройство, аксессуары и доплаты",
+      categories: ["Телефон", "Чехол", "Стекло", "Наушники", "Зарядка", "Гарантия", "Аксессуар", "Другое"]
+    },
+    travel: {
+      icon: "✈️",
+      title: "Путешествие",
+      label: "Путешествие",
+      subtitle: "Билеты, жильё, документы и траты",
+      categories: ["Билеты", "Отель", "Документы", "Страховка", "Еда", "Развлечения", "Транспорт", "Другое"]
+    },
+    room: {
+      icon: "🏠",
+      title: "Комната / ремонт",
+      label: "Комната / ремонт",
+      subtitle: "Мебель, техника и ремонт по этапам",
+      categories: ["Мебель", "Техника", "Материалы", "Инструменты", "Свет", "Декор", "Работа", "Другое"]
+    },
+    camera: {
+      icon: "🎥",
+      title: "Студия / камера",
+      label: "Камера / студия",
+      subtitle: "Техника для съёмки и контента",
+      categories: ["Камера", "Объектив", "Свет", "Микрофон", "Штатив", "Карта памяти", "Аксессуар", "Другое"]
+    },
+    custom: {
+      icon: "🧩",
+      title: "Мой проект",
+      label: "Свой проект",
+      subtitle: "Свои этапы и части проекта",
+      categories: ["Этап", "Покупка", "Комплектующая", "Аксессуар", "Услуга", "Другое"]
+    }
+  };
+
+  function getProjectConfig() {
+    return projectConfigs[data.projectType || "pc"] || projectConfigs.custom;
+  }
+
+  function updateProjectCategoryOptions() {
+    const categoryEl = document.getElementById("partCategory");
+    if (!categoryEl) return;
+
+    const config = getProjectConfig();
+    const current = categoryEl.value;
+    const categories = config.categories || projectConfigs.custom.categories;
+
+    categoryEl.innerHTML = categories.map(cat => `<option>${cat}</option>`).join("");
+    categoryEl.value = categories.includes(current) ? current : categories[0];
+  }
+
+  function updateProjectUI() {
+    const config = getProjectConfig();
+    const projectName = data.projectName || config.title;
+
+    const set = (id, value) => {
+      const el = document.getElementById(id);
+      if (el) el.textContent = value;
+    };
+
+    set("projectTitleHero", projectName);
+    set("projectHeroIcon", config.icon || "🧩");
+    set("projectPartsSubtitle", config.subtitle || "Этапы твоего проекта");
+
+    const typeEl = document.getElementById("projectType");
+    if (typeEl) typeEl.value = data.projectType || "pc";
+
+    const nameEl = document.getElementById("projectName");
+    if (nameEl) nameEl.value = projectName;
+
+    updateProjectCategoryOptions();
+  }
+
+  function saveProjectSettings() {
+    const typeEl = document.getElementById("projectType");
+    const nameEl = document.getElementById("projectName");
+
+    data.projectType = typeEl ? typeEl.value : (data.projectType || "pc");
+
+    const config = getProjectConfig();
+    data.projectName = nameEl && nameEl.value.trim()
+      ? nameEl.value.trim()
+      : config.title;
+
+    save();
+    updateProjectUI();
+    renderPcBuild();
+
+    const btn = document.getElementById("saveProjectSettings");
+    if (btn && typeof successHaptic === "function") successHaptic(btn);
+  }
+
   function renderPcBuild() {
     if (!Array.isArray(data.pcParts)) data.pcParts = [];
+    if (typeof updateProjectUI === "function") updateProjectUI();
 
     data.pcParts = data.pcParts.map(part => ({
       ...part,
@@ -16960,7 +17147,7 @@ function renderAnalytics() {
         "Периферия": "⌨️",
         "Другое": "🧩"
       };
-      return icons[category] || "🧩";
+      return icons[category] || (getProjectConfig().icon || "🧩");
     };
 
     list.innerHTML = data.pcParts.map(part => {
@@ -17039,7 +17226,7 @@ function renderAnalytics() {
   }
 
   function deletePart(id) {
-    if (!confirm("Удалить эту комплектующую из сборки?")) return;
+    if (!confirm("Удалить этот этап проекта?")) return;
     data.pcParts = data.pcParts.filter(part => part.id !== id);
     save();
     render();
