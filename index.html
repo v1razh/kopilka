@@ -14317,6 +14317,73 @@ body.compact-mode .home-redesign-head {
   cursor: pointer !important;
 }
 
+
+/* Recent operations period selector */
+.recent-header {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 12px;
+  margin-bottom: 14px;
+}
+
+.recent-period-switch {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 6px;
+  padding: 5px;
+  border-radius: 18px;
+  background: rgba(255,255,255,.055);
+  border: 1px solid rgba(255,255,255,.10);
+  box-shadow: inset 0 1px 0 rgba(255,255,255,.07);
+}
+
+.recent-period-btn {
+  border: 0;
+  min-height: 38px;
+  border-radius: 14px;
+  background: transparent;
+  color: rgba(245,247,251,.56);
+  font-size: 12px;
+  font-weight: 950;
+}
+
+.recent-period-btn.active {
+  color: white;
+  background:
+    linear-gradient(135deg, rgba(91,140,255,.44), rgba(124,58,237,.34));
+  box-shadow:
+    inset 0 1px 0 rgba(255,255,255,.12),
+    0 10px 22px rgba(91,140,255,.15);
+}
+
+
+/* Project mode setting */
+.project-hidden {
+  display: none !important;
+}
+
+.bottom-nav.simple-mode {
+  grid-template-columns: repeat(4, 1fr) !important;
+}
+
+.app-mode-field {
+  position: relative;
+}
+
+.app-mode-field::before {
+  content: "🎛️";
+  position: absolute;
+  right: 14px;
+  top: 35px;
+  z-index: 2;
+  pointer-events: none;
+  opacity: .9;
+}
+
+.app-mode-field select {
+  padding-right: 54px !important;
+}
+
 </style>
 </head>
 <body>
@@ -14455,8 +14522,13 @@ body.compact-mode .home-redesign-head {
         </div>
       </div>
 <div class="card recent-redesign">
-        <div class="row">
+        <div class="recent-header">
           <h2 style="margin:0">Последние операции</h2>
+          <div class="recent-period-switch" id="recentPeriodSwitch">
+            <button type="button" class="recent-period-btn" data-recent-period="week">Неделя</button>
+            <button type="button" class="recent-period-btn" data-recent-period="month">Месяц</button>
+            <button type="button" class="recent-period-btn" data-recent-period="all">Все</button>
+          </div>
         </div>
         <div id="recentTransactions" class="empty">Чтобы добавить расход, доход или перевод в накопления — нажми большую кнопку “+”.</div>
       </div>
@@ -14703,15 +14775,15 @@ body.compact-mode .home-redesign-head {
       <div class="pc-hero-card">
         <div class="pc-hero-top">
           <div>
-            <div class="pc-kicker">🖥️ СБОРКА ПК</div>
-            <h1>Твой будущий компьютер</h1>
+            <div class="pc-kicker">🧩 ПРОЕКТ</div>
+            <h1>Твой проект</h1>
           </div>
 
           <div class="pc-hero-icon">⚙️</div>
         </div>
 
         <div class="pc-hero-money" id="pcStageTotal">0 ₽ / 0 ₽</div>
-        <div class="pc-hero-sub" id="pcStageTotalHint">Добавь комплектующие, чтобы видеть этапы сборки.</div>
+        <div class="pc-hero-sub" id="pcStageTotalHint">Добавь этапы, чтобы видеть прогресс проекта.</div>
 
         <div class="pc-hero-progress">
           <div id="pcStageTotalFill"></div>
@@ -14740,7 +14812,7 @@ body.compact-mode .home-redesign-head {
 
       <div class="pc-section-head">
         <div>
-          <h2>Комплектующие</h2>
+          <h2>Этапы проекта</h2>
           <p>Этапы твоей сборки</p>
         </div>
         <div class="pc-section-badge">🧩</div>
@@ -14752,7 +14824,7 @@ body.compact-mode .home-redesign-head {
         <div class="pc-add-head">
           <div>
             <div class="pc-kicker">➕ НОВЫЙ ЭТАП</div>
-            <h2>Добавить комплектующую</h2>
+            <h2>Добавить этап проекта</h2>
           </div>
           <div class="pc-add-icon">🛠️</div>
         </div>
@@ -14789,8 +14861,8 @@ body.compact-mode .home-redesign-head {
           <input id="partNote" placeholder="Например: купить ближе к декабрю" />
         </div>
 
-        <button class="primary pc-add-btn" id="addPartBtn">+ Добавить этап сборки</button>
-        <p class="hint">Каждая комплектующая считается отдельным этапом большой цели.</p>
+        <button class="primary pc-add-btn" id="addPartBtn">+ Добавить этап проекта</button>
+        <p class="hint">Каждый этап считается частью большой цели.</p>
       </div>
     </section>
 
@@ -14851,6 +14923,14 @@ body.compact-mode .home-redesign-head {
           <div class="field">
             <label>Название цели</label>
             <input id="goalName" placeholder="ПК мечты" />
+          </div>
+
+          <div class="field app-mode-field">
+            <label>Режим приложения</label>
+            <select id="appMode">
+              <option value="project">Копилка + проект</option>
+              <option value="simple">Простая копилка</option>
+            </select>
           </div>
 
           <button class="primary" id="saveAppSettings">Сохранить настройки</button>
@@ -14986,7 +15066,7 @@ body.compact-mode .home-redesign-head {
     <button class="nav-btn active icon-only" data-tab="add" aria-label="Главная" title="Главная"><span>🏠</span></button>
     
     <button class="nav-btn" data-tab="analytics"><span>📈</span>Анализ</button>
-    <button class="nav-btn" data-tab="pcbuild"><span>💻</span>ПК</button>
+    <button class="nav-btn" data-tab="pcbuild"><span>🧩</span>Проект</button>
     <button class="nav-btn" data-tab="plan"><span>🎯</span>Цель</button>
     <button class="nav-btn icon-only" data-tab="settings" aria-label="Настройки" title="Настройки"><span>⚙️</span></button>
   </nav>
@@ -15008,7 +15088,9 @@ body.compact-mode .home-redesign-head {
     targetMonth: "2026-12",
     compactMode: false,
     showHistory: true,
+    appMode: "project",
     dashboardPeriod: "month",
+    recentPeriod: "all",
     expenseMiniPeriod: "month",
     savingMiniPeriod: "month",
     salaryDay: 10,
@@ -15414,6 +15496,8 @@ function render() {
     setValue("annualRate", data.annualRate);
     setValue("targetMonth", data.targetMonth);
     setValue("goalName", data.goalName || "ПК мечты");
+    setValue("appMode", data.appMode || "project");
+    applyAppMode();
 
     setValue("salaryDay", data.salaryDay);
     setValue("advanceDay", data.advanceDay);
@@ -15647,11 +15731,57 @@ setText("todayLimitMain", rub(Math.max(0, salary.dailyLimit || 0)));
   }
 
   
-  function renderRecentTransactions() {
+  
+  function getRecentPeriodLabel(period) {
+    if (period === "week") return "за неделю";
+    if (period === "month") return "за месяц";
+    return "за всё время";
+  }
+
+  function isTransactionInRecentPeriod(tx) {
+    const period = data.recentPeriod || "all";
+    if (period === "all") return true;
+
+    const date = tx.date || today();
+    const txDate = new Date(date + "T00:00:00");
+    const now = new Date();
+
+    if (period === "week") {
+      const start = new Date(now.getFullYear(), now.getMonth(), now.getDate());
+      start.setDate(start.getDate() - 6);
+      return txDate >= start;
+    }
+
+    return monthKey(date) === today().slice(0, 7);
+  }
+
+  function initRecentPeriodSwitch() {
+    const switcher = document.getElementById("recentPeriodSwitch");
+    if (!switcher) return;
+
+    switcher.querySelectorAll(".recent-period-btn").forEach(btn => {
+      btn.classList.toggle("active", btn.dataset.recentPeriod === (data.recentPeriod || "all"));
+
+      if (btn.dataset.bound === "1") return;
+      btn.dataset.bound = "1";
+
+      btn.addEventListener("click", () => {
+        data.recentPeriod = btn.dataset.recentPeriod || "all";
+        save();
+        renderRecentTransactions();
+        initRecentPeriodSwitch();
+      });
+    });
+  }
+
+
+function renderRecentTransactions() {
     const box = document.getElementById("recentTransactions");
     if (!box) return;
 
     if (!Array.isArray(data.transactions)) data.transactions = [];
+
+    initRecentPeriodSwitch();
 
     if (!data.transactions.length) {
       box.classList.add("empty");
@@ -15659,12 +15789,21 @@ setText("todayLimitMain", rub(Math.max(0, salary.dailyLimit || 0)));
       return;
     }
 
+    const filteredTransactions = data.transactions
+      .filter(isTransactionInRecentPeriod)
+      .slice()
+      .sort((a, b) => String(b.date || "").localeCompare(String(a.date || "")));
+
+    if (!filteredTransactions.length) {
+      box.classList.add("empty");
+      box.innerHTML = `За выбранный период операций нет.`;
+      return;
+    }
+
     box.classList.remove("empty");
 
-    box.innerHTML = data.transactions
-      .slice()
-      .sort((a, b) => String(b.date || "").localeCompare(String(a.date || "")))
-      .slice(0, 6)
+    box.innerHTML = filteredTransactions
+      .slice(0, 8)
       .map(tx => {
         const isExpense = tx.type === "expense";
         const isSaving = tx.type === "saving";
@@ -16757,7 +16896,7 @@ function renderAnalytics() {
     fillEl.style.width = `${totalProgress}%`;
     hintEl.textContent = total > 0
       ? `Куплено этапов: ${boughtCount} из ${data.pcParts.length}. Общий прогресс: ${totalProgress.toFixed(1)}%.`
-      : "Добавь комплектующие, чтобы видеть этапы сборки.";
+      : "Добавь этапы, чтобы видеть прогресс проекта.";
 
     const setPcText = (id, value) => {
       const el = document.getElementById(id);
@@ -16796,14 +16935,14 @@ function renderAnalytics() {
       adviceEl.innerHTML = `
         <div class="pc-next-clean">
           <div class="pc-next-label">🎉 Готово</div>
-          <div class="pc-next-name">Сборка завершена</div>
-          <div class="pc-next-caption">Все комплектующие отмечены как купленные</div>
+          <div class="pc-next-name">Проект завершён</div>
+          <div class="pc-next-caption">Все этапы отмечены как завершённые</div>
         </div>
       `;
     }
 
     if (!data.pcParts.length) {
-      list.innerHTML = '<div class="empty">Комплектующих пока нет. Добавь первый этап ниже.</div>';
+      list.innerHTML = '<div class="empty">Этапов пока нет. Добавь первый этап ниже.</div>';
       return;
     }
 
@@ -16870,7 +17009,7 @@ function renderAnalytics() {
     const note = document.getElementById("partNote").value.trim();
 
     if (!name) {
-      alert("Введи название комплектующей");
+      alert("Введи название этапа");
       return;
     }
 
@@ -17010,10 +17149,39 @@ function renderAnalytics() {
     element.classList.add("success-pulse");
   }
 
+
+  function applyAppMode() {
+    const mode = data.appMode || "project";
+    const projectBtn = document.querySelector('[data-tab="pcbuild"]');
+    const projectSection = document.getElementById("pcbuild");
+    const bottomNav = document.querySelector(".bottom-nav");
+
+    if (projectBtn) projectBtn.classList.toggle("project-hidden", mode === "simple");
+    if (projectSection) projectSection.classList.toggle("project-hidden", mode === "simple");
+    if (bottomNav) bottomNav.classList.toggle("simple-mode", mode === "simple");
+
+    const modeSelect = document.getElementById("appMode");
+    if (modeSelect) modeSelect.value = mode;
+
+    if (mode === "simple" && projectSection && !projectSection.classList.contains("hidden")) {
+      switchTab("add");
+    }
+  }
+
   function switchTab(tabName) {
 if (typeof softHaptic === "function") softHaptic();
 
-    document.querySelectorAll(".nav-btn").forEach(x => {
+    
+  // appMode immediate change
+  document.addEventListener("change", (event) => {
+    if (event.target && event.target.id === "appMode") {
+      data.appMode = event.target.value || "project";
+      save();
+      applyAppMode();
+    }
+  });
+
+document.querySelectorAll(".nav-btn").forEach(x => {
       x.classList.toggle("active", x.dataset.tab === tabName);
     });
 
@@ -17164,8 +17332,11 @@ document.getElementById("saveSalaryPlan").addEventListener("click", () => {
   });
 document.getElementById("saveAppSettings").addEventListener("click", () => {
     data.goalName = document.getElementById("goalName").value.trim() || "ПК мечты";
+    const appModeEl = document.getElementById("appMode");
+    data.appMode = appModeEl ? appModeEl.value : (data.appMode || "project");
     save();
     render();
+    applyAppMode();
     successHaptic(document.getElementById("saveAppSettings"));
     alert("Настройки сохранены");
   });
@@ -17210,6 +17381,7 @@ document.getElementById("openAddSheet").addEventListener("click", openAddSheet);
   });
 
   render();
+  setTimeout(applyAppMode, 0);
   setTimeout(addHapticFeedback, 0);
 
   document.addEventListener("DOMContentLoaded", initAnalysisPeriodSwitch);
