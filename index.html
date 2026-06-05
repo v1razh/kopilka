@@ -14433,6 +14433,24 @@ body.compact-mode .home-redesign-head {
   margin-top: 8px !important;
 }
 
+
+/* Multi-project controls */
+.project-actions-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;
+  margin: -3px 0 13px;
+}
+
+.project-actions-grid .small-btn {
+  min-height: 42px;
+  border-radius: 15px;
+}
+
+#activeProjectSelect {
+  font-weight: 850;
+}
+
 </style>
 </head>
 <body>
@@ -14877,6 +14895,16 @@ body.compact-mode .home-redesign-head {
         </div>
 
         <div class="field">
+          <label>Активный проект</label>
+          <select id="activeProjectSelect"></select>
+        </div>
+
+        <div class="project-actions-grid">
+          <button type="button" class="small-btn" id="createProjectBtn">➕ Новый</button>
+          <button type="button" class="small-btn danger-text" id="archiveProjectBtn">📦 В архив</button>
+        </div>
+
+        <div class="field">
           <label>Название проекта</label>
           <input id="projectName" placeholder="Например: ПК мечты" />
         </div>
@@ -15165,6 +15193,8 @@ body.compact-mode .home-redesign-head {
     appMode: "project",
     projectType: "pc",
     projectName: "ПК мечты",
+    activeProjectId: null,
+    projects: [],
     dashboardPeriod: "month",
     recentPeriod: "all",
     expenseMiniPeriod: "month",
@@ -16942,6 +16972,151 @@ function renderAnalytics() {
   }
 
 
+
+  function normalizeProjects() {
+    if (!Array.isArray(data.projects)) data.projects = [];
+
+    if (!data.projects.length) {
+      const id = data.activeProjectId || crypto.randomUUID();
+      data.projects.push({
+        id,
+        name: data.projectName || data.goalName || "ПК мечты",
+        type: data.projectType || "pc",
+        archived: false,
+        parts: Array.isArray(data.pcParts) ? data.pcParts : []
+      });
+      data.activeProjectId = id;
+    }
+
+    let active = data.projects.find(project => project.id === data.activeProjectId && !project.archived);
+
+    if (!active) {
+      active = data.projects.find(project => !project.archived) || data.projects[0];
+      if (active && active.archived) active.archived = false;
+      if (active) data.activeProjectId = active.id;
+    }
+
+    if (active) {
+      if (!Array.isArray(active.parts)) active.parts = [];
+      data.projectType = active.type || data.projectType || "custom";
+      data.projectName = active.name || data.projectName || "Мой проект";
+      data.pcParts = active.parts;
+    }
+  }
+
+  function getActiveProject() {
+    if (!Array.isArray(data.projects) || !data.projects.length) normalizeProjects();
+    return data.projects.find(project => project.id === data.activeProjectId) || data.projects[0];
+  }
+
+  function getActiveProjectParts() {
+    const project = getActiveProject();
+    if (!project.parts) project.parts = [];
+    data.pcParts = project.parts;
+    return project.parts;
+  }
+
+  function syncActiveProject() {
+    const project = getActiveProject();
+    if (!project) return;
+
+    project.type = data.projectType || project.type || "custom";
+    project.name = data.projectName || project.name || "Мой проект";
+    project.parts = Array.isArray(data.pcParts) ? data.pcParts : [];
+  }
+
+  function renderProjectSelect() {
+    const select = document.getElementById("activeProjectSelect");
+    if (!select) return;
+
+    normalizeProjects();
+
+    const visibleProjects = data.projects.filter(project => !project.archived);
+    select.innerHTML = visibleProjects.map(project => {
+      const config = projectConfigs[project.type] || projectConfigs.custom;
+      return `<option value="${project.id}">${config.icon || "🧩"} ${project.name || "Мой проект"}</option>`;
+    }).join("");
+
+    select.value = data.activeProjectId;
+  }
+
+  function switchActiveProject(projectId) {
+    const project = data.projects.find(item => item.id === projectId);
+    if (!project) return;
+
+    data.activeProjectId = project.id;
+    data.projectType = project.type || "custom";
+    data.projectName = project.name || "Мой проект";
+    data.pcParts = Array.isArray(project.parts) ? project.parts : [];
+
+    save();
+    render();
+  }
+
+  function createProject() {
+    const typeEl = document.getElementById("projectType");
+    const type = typeEl ? typeEl.value : "custom";
+    const config = projectConfigs[type] || projectConfigs.custom;
+    const name = prompt("Название нового проекта:", config.title || "Мой проект");
+
+    if (name === null) return;
+
+    const project = {
+      id: crypto.randomUUID(),
+      name: name.trim() || config.title || "Мой проект",
+      type,
+      archived: false,
+      parts: []
+    };
+
+    data.projects.push(project);
+    data.activeProjectId = project.id;
+    data.projectType = project.type;
+    data.projectName = project.name;
+    data.pcParts = project.parts;
+
+    save();
+    render();
+  }
+
+  function archiveActiveProject() {
+    normalizeProjects();
+
+    const project = getActiveProject();
+    if (!project) return;
+
+    if (!confirm(`Отправить проект «${project.name}» в архив? Его этапы сохранятся, но проект исчезнет из активного списка.`)) return;
+
+    project.archived = true;
+
+    const nextProject = data.projects.find(item => !item.archived);
+
+    if (nextProject) {
+      data.activeProjectId = nextProject.id;
+      data.projectType = nextProject.type || "custom";
+      data.projectName = nextProject.name || "Мой проект";
+      data.pcParts = Array.isArray(nextProject.parts) ? nextProject.parts : [];
+    } else {
+      const config = projectConfigs.pc;
+      const newProject = {
+        id: crypto.randomUUID(),
+        name: config.title,
+        type: "pc",
+        archived: false,
+        parts: []
+      };
+
+      data.projects.push(newProject);
+      data.activeProjectId = newProject.id;
+      data.projectType = newProject.type;
+      data.projectName = newProject.name;
+      data.pcParts = newProject.parts;
+    }
+
+    save();
+    render();
+  }
+
   const projectConfigs = {
     pc: {
       icon: "🖥️",
@@ -17030,6 +17205,7 @@ function renderAnalytics() {
     if (nameEl) nameEl.value = projectName;
 
     updateProjectCategoryOptions();
+    renderProjectSelect();
   }
 
   function saveProjectSettings() {
@@ -17043,6 +17219,7 @@ function renderAnalytics() {
       ? nameEl.value.trim()
       : config.title;
 
+    syncActiveProject();
     save();
     updateProjectUI();
     renderPcBuild();
@@ -17052,13 +17229,15 @@ function renderAnalytics() {
   }
 
   function renderPcBuild() {
-    if (!Array.isArray(data.pcParts)) data.pcParts = [];
+    normalizeProjects();
+    data.pcParts = getActiveProjectParts();
     if (typeof updateProjectUI === "function") updateProjectUI();
 
     data.pcParts = data.pcParts.map(part => ({
       ...part,
       purchased: Boolean(part.purchased)
     }));
+    syncActiveProject();
 
     const saved = calc().totalSaved;
     const total = data.pcParts.reduce((sum, part) => sum + Number(part.price || 0), 0);
@@ -17182,9 +17361,12 @@ function renderAnalytics() {
   }
 
   function togglePartPurchased(id) {
-    const part = data.pcParts.find(item => item.id === id);
+    const parts = getActiveProjectParts();
+    const part = parts.find(item => item.id === id);
     if (!part) return;
     part.purchased = !Boolean(part.purchased);
+    data.pcParts = parts;
+    syncActiveProject();
     save();
     render();
   }
@@ -17205,9 +17387,9 @@ function renderAnalytics() {
       return;
     }
 
-    if (!Array.isArray(data.pcParts)) data.pcParts = [];
+    const parts = getActiveProjectParts();
 
-    data.pcParts.push({
+    parts.push({
       id: crypto.randomUUID(),
       name,
       category,
@@ -17215,6 +17397,9 @@ function renderAnalytics() {
       note,
       purchased: false
     });
+
+    data.pcParts = parts;
+    syncActiveProject();
 
     document.getElementById("partName").value = "";
     document.getElementById("partPrice").value = "";
@@ -17227,13 +17412,16 @@ function renderAnalytics() {
 
   function deletePart(id) {
     if (!confirm("Удалить этот этап проекта?")) return;
-    data.pcParts = data.pcParts.filter(part => part.id !== id);
+    const parts = getActiveProjectParts().filter(part => part.id !== id);
+    data.pcParts = parts;
+    syncActiveProject();
     save();
     render();
   }
 
   function editPart(id) {
-    const part = data.pcParts.find(item => item.id === id);
+    const parts = getActiveProjectParts();
+    const part = parts.find(item => item.id === id);
     if (!part) return;
 
     const name = prompt("Название:", part.name);
@@ -17254,6 +17442,8 @@ function renderAnalytics() {
     part.name = name.trim();
     part.price = price;
     part.note = note.trim();
+    data.pcParts = parts;
+    syncActiveProject();
 
     save();
     render();
@@ -17460,6 +17650,35 @@ document.querySelectorAll(".nav-btn").forEach(x => {
 
     if (typeof closeAddSheet === "function") closeAddSheet();
   });
+
+
+  const activeProjectSelect = document.getElementById("activeProjectSelect");
+  if (activeProjectSelect) {
+    activeProjectSelect.addEventListener("change", () => switchActiveProject(activeProjectSelect.value));
+  }
+
+  const createProjectBtn = document.getElementById("createProjectBtn");
+  if (createProjectBtn) createProjectBtn.addEventListener("click", createProject);
+
+  const archiveProjectBtn = document.getElementById("archiveProjectBtn");
+  if (archiveProjectBtn) archiveProjectBtn.addEventListener("click", archiveActiveProject);
+
+  const saveProjectSettingsBtn = document.getElementById("saveProjectSettings");
+  if (saveProjectSettingsBtn) saveProjectSettingsBtn.addEventListener("click", saveProjectSettings);
+
+
+  const projectTypeSelect = document.getElementById("projectType");
+  if (projectTypeSelect) {
+    projectTypeSelect.addEventListener("change", () => {
+      data.projectType = projectTypeSelect.value || "custom";
+      const config = getProjectConfig();
+      const nameEl = document.getElementById("projectName");
+      if (nameEl && (!nameEl.value.trim() || Object.values(projectConfigs).some(item => item.title === nameEl.value.trim()))) {
+        nameEl.value = config.title;
+      }
+      updateProjectUI();
+    });
+  }
 
   document.getElementById("addPartBtn").addEventListener("click", addPcPart);
 
