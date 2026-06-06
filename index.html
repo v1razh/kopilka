@@ -14634,67 +14634,144 @@ body.compact-mode .home-redesign-head {
 
 
 
-/* Polished collapsible project settings */
-.project-collapsible {
-  transition:
-    border-color .28s ease,
-    box-shadow .28s ease,
-    background .28s ease,
-    transform .24s ease;
+
+/* Clean project settings button */
+#projectSettingsCard.project-collapsible {
+  padding: 0 !important;
+  overflow: hidden !important;
 }
 
-.project-collapsible-header {
-  cursor: pointer;
-  user-select: none;
-  min-height: 58px;
+.project-settings-open-btn {
+  width: 100%;
+  min-height: 76px;
+  padding: 16px;
+  border: 0;
+  border-radius: 30px;
+  color: white;
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  align-items: center;
+  gap: 13px;
+  text-align: left;
+  background:
+    radial-gradient(circle at 100% 0%, rgba(91,140,255,.16), transparent 35%),
+    linear-gradient(180deg, rgba(255,255,255,.065), rgba(255,255,255,.022)),
+    rgba(16,27,45,.34);
 }
 
-.project-collapsible-header:active {
-  transform: scale(.992);
+.project-settings-open-icon {
+  width: 48px;
+  height: 48px;
+  display: grid;
+  place-items: center;
+  border-radius: 18px;
+  background:
+    radial-gradient(circle at 50% 20%, rgba(255,255,255,.18), transparent 42%),
+    linear-gradient(135deg, rgba(91,140,255,.35), rgba(124,58,237,.24));
+  border: 1px solid rgba(255,255,255,.13);
+  box-shadow: inset 0 1px 0 rgba(255,255,255,.18), 0 12px 26px rgba(0,0,0,.20);
+  font-size: 23px;
 }
 
-.project-settings-summary {
-  margin-top: 7px;
-  color: rgba(245,247,251,.55);
+.project-settings-open-text {
+  min-width: 0;
+}
+
+.project-settings-open-text strong {
+  display: block;
+  font-size: 18px;
+  line-height: 1.12;
+  letter-spacing: -.2px;
+}
+
+.project-settings-open-text small {
+  display: block;
+  margin-top: 5px;
+  color: rgba(245,247,251,.58);
   font-size: 12px;
-  line-height: 1.3;
-  font-weight: 800;
-  max-width: 260px;
+  font-weight: 850;
+  line-height: 1.25;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
-  transition: opacity .22s ease, transform .22s ease, max-height .22s ease;
 }
 
-.project-collapsible:not(.collapsed) .project-settings-summary {
-  opacity: 0;
-  transform: translateY(-4px);
-  max-height: 0;
-  margin-top: 0;
+.project-settings-open-chevron {
+  width: 34px;
+  height: 34px;
+  display: grid;
+  place-items: center;
+  border-radius: 13px;
+  background: rgba(255,255,255,.07);
+  border: 1px solid rgba(255,255,255,.10);
+  color: rgba(255,255,255,.88);
+  font-size: 30px;
+  line-height: 1;
+  transition: transform .32s cubic-bezier(.16,1,.3,1), background .22s ease;
+}
+
+#projectSettingsCard:not(.collapsed) .project-settings-open-chevron {
+  transform: rotate(90deg);
+  background: rgba(91,140,255,.16);
 }
 
 .project-collapsible-body {
   overflow: hidden;
-  max-height: 1700px;
+  max-height: 1800px;
   opacity: 1;
   transform: translateY(0);
-  margin-top: 2px;
+  padding: 0 20px 20px;
   transition:
-    max-height .46s cubic-bezier(.16,1,.3,1),
-    opacity .28s ease,
-    transform .32s cubic-bezier(.16,1,.3,1),
-    margin-top .28s ease;
-  will-change: max-height, opacity, transform;
+    max-height .42s cubic-bezier(.16,1,.3,1),
+    opacity .24s ease,
+    transform .28s cubic-bezier(.16,1,.3,1),
+    padding .24s ease;
 }
 
-.project-collapsible-body > * {
-  animation: projectSettingsBodyIn .36s cubic-bezier(.16,1,.3,1) both;
+#projectSettingsCard.collapsed .project-collapsible-body {
+  max-height: 0 !important;
+  opacity: 0 !important;
+  transform: translateY(-8px);
+  padding-top: 0 !important;
+  padding-bottom: 0 !important;
+  pointer-events: none;
+}
+
+.project-settings-expanded-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+  padding-top: 18px;
+  margin-bottom: 14px;
+}
+
+.project-settings-expanded-head h2 {
+  margin: 0;
+  font-size: 24px;
+  line-height: 1.08;
+}
+
+.project-settings-close-btn {
+  flex: 0 0 auto;
+  min-height: 38px;
+  padding: 0 12px;
+  border: 1px solid rgba(255,255,255,.12);
+  border-radius: 14px;
+  color: rgba(245,247,251,.86);
+  background: rgba(255,255,255,.055);
+  font-weight: 850;
+  font-size: 12px;
+}
+
+#projectSettingsCard:not(.collapsed) .project-collapsible-body > * {
+  animation: projectSettingsBodyIn .34s cubic-bezier(.16,1,.3,1) both;
 }
 
 @keyframes projectSettingsBodyIn {
   from {
     opacity: 0;
-    transform: translateY(-8px) scale(.99);
+    transform: translateY(-7px) scale(.99);
     filter: blur(3px);
   }
   to {
@@ -14702,96 +14779,6 @@ body.compact-mode .home-redesign-head {
     transform: translateY(0) scale(1);
     filter: blur(0);
   }
-}
-
-.project-collapsible.collapsed .project-collapsible-body {
-  max-height: 0;
-  opacity: 0;
-  transform: translateY(-8px);
-  margin-top: 0;
-  pointer-events: none;
-}
-
-.project-collapsible.collapsed {
-  padding-bottom: 18px;
-  background:
-    radial-gradient(circle at 100% 0%, rgba(91,140,255,.10), transparent 34%),
-    linear-gradient(180deg, rgba(255,255,255,.055), rgba(255,255,255,.018)),
-    rgba(16,27,45,.34);
-}
-
-.project-collapsible.collapsed .project-setup-head {
-  margin-bottom: 0;
-}
-
-
-
-/* Fixed visible glass arrow for project settings */
-.project-header-actions-compact {
-  display: flex !important;
-  align-items: center !important;
-  gap: 8px !important;
-  flex: 0 0 auto !important;
-}
-
-.project-collapse-arrow {
-  width: 48px !important;
-  height: 48px !important;
-  min-width: 48px !important;
-  min-height: 48px !important;
-  padding: 0 !important;
-  display: grid !important;
-  place-items: center !important;
-  border-radius: 18px !important;
-  border: 1px solid rgba(255,255,255,.18) !important;
-  background:
-    radial-gradient(circle at 50% 18%, rgba(255,255,255,.22), transparent 42%),
-    linear-gradient(135deg, rgba(91,140,255,.42), rgba(124,58,237,.34)),
-    rgba(255,255,255,.06) !important;
-  box-shadow:
-    0 14px 30px rgba(91,140,255,.24),
-    inset 0 1px 0 rgba(255,255,255,.26),
-    inset 0 -1px 0 rgba(255,255,255,.06) !important;
-  position: relative !important;
-  z-index: 5 !important;
-  opacity: 1 !important;
-  overflow: visible !important;
-  transform: rotate(0deg) !important;
-  transition:
-    transform .36s cubic-bezier(.16,1,.3,1),
-    box-shadow .24s ease,
-    background .24s ease !important;
-}
-
-.project-collapse-arrow::before {
-  content: "" !important;
-  width: 13px !important;
-  height: 13px !important;
-  border-right: 3px solid rgba(255,255,255,.96) !important;
-  border-bottom: 3px solid rgba(255,255,255,.96) !important;
-  border-radius: 2px !important;
-  transform: translateY(-2px) rotate(45deg) !important;
-  filter: drop-shadow(0 2px 3px rgba(0,0,0,.28)) !important;
-  transition: transform .36s cubic-bezier(.16,1,.3,1) !important;
-}
-
-#projectSettingsCard:not(.collapsed) .project-collapse-arrow::before {
-  transform: translateY(3px) rotate(225deg) !important;
-}
-
-.project-collapse-arrow:active {
-  transform: scale(.94) !important;
-  box-shadow:
-    0 8px 18px rgba(91,140,255,.18),
-    inset 0 1px 0 rgba(255,255,255,.22) !important;
-}
-
-.project-collapsible-header {
-  overflow: visible !important;
-}
-
-#projectSettingsCard {
-  overflow: visible !important;
 }
 
 </style>
@@ -15276,18 +15263,24 @@ body.compact-mode .home-redesign-head {
       </div>
 
       <div class="project-setup-card project-collapsible collapsed" id="projectSettingsCard">
-<div class="project-setup-head project-collapsible-header" id="projectSettingsToggle" role="button" tabindex="0">
-          <div>
-            <div class="pc-kicker">🎛️ ТИП ПРОЕКТА</div>
-            <h2>Настрой проект</h2>
-            <div class="project-settings-summary" id="projectSettingsSummary">Активный проект: —</div>
-          </div>
-          <div class="project-header-actions project-header-actions-compact">
-            <button type="button" class="project-icon-btn" id="openArchiveBtn" aria-label="Архив проектов" title="Архив проектов">📂</button>
-            <button type="button" class="project-collapse-arrow" id="projectSettingsArrow" aria-label="Показать настройки проекта"></button>
-          </div>
-        </div>
+        <button type="button" class="project-settings-open-btn" id="projectSettingsToggle">
+          <span class="project-settings-open-icon">🎛️</span>
+          <span class="project-settings-open-text">
+            <strong>Настройки проекта</strong>
+            <small id="projectSettingsSummary">Активный проект: —</small>
+          </span>
+          <span class="project-settings-open-chevron">›</span>
+        </button>
+
         <div class="project-collapsible-body" id="projectSettingsBody">
+          <div class="project-settings-expanded-head">
+            <div>
+              <div class="pc-kicker">⚙️ ПАРАМЕТРЫ</div>
+              <h2>Настрой проект</h2>
+            </div>
+            <button type="button" class="project-settings-close-btn" id="projectSettingsCloseBtn">Свернуть</button>
+          </div>
+
 <div class="field">
           <label>Тип проекта</label>
           <select id="projectType">
@@ -18326,39 +18319,73 @@ const archiveModalBackdropClose = true;
 
 
 
+
 (function(){
-  function initProjectSettingsCollapse(){
+  function updateProjectSettingsSummary(){
+    const summary = document.getElementById("projectSettingsSummary");
+    if (!summary) return;
+
+    const projectNameInput = document.getElementById("projectName");
+    const projectTypeSelect = document.getElementById("projectType");
+    const activeSelect = document.getElementById("activeProjectSelect");
+
+    const activeText = activeSelect && activeSelect.selectedOptions[0]
+      ? activeSelect.selectedOptions[0].textContent.trim()
+      : "";
+
+    const projectName = projectNameInput && projectNameInput.value.trim()
+      ? projectNameInput.value.trim()
+      : activeText || "проект";
+
+    const typeText = projectTypeSelect && projectTypeSelect.selectedOptions[0]
+      ? projectTypeSelect.selectedOptions[0].textContent.trim()
+      : "тип не выбран";
+
+    summary.textContent = `Активный проект: ${projectName} · ${typeText}`;
+  }
+
+  function initProjectSettingsButton(){
     const card = document.getElementById("projectSettingsCard");
     const toggle = document.getElementById("projectSettingsToggle");
+    const closeBtn = document.getElementById("projectSettingsCloseBtn");
     if (!card || !toggle || toggle.dataset.bound === "1") return;
 
     const saved = localStorage.getItem("projectSettingsCollapsed");
     card.classList.toggle("collapsed", saved !== "false");
 
-    const toggleCard = () => {
-      card.classList.toggle("collapsed");
-      localStorage.setItem("projectSettingsCollapsed", String(card.classList.contains("collapsed")));
+    const setCollapsed = (value) => {
+      card.classList.toggle("collapsed", value);
+      localStorage.setItem("projectSettingsCollapsed", String(value));
     };
 
-    toggle.addEventListener("click", (event) => {
-      if (event.target.closest("#openArchiveBtn")) return;
-      toggleCard();
+    toggle.addEventListener("click", () => {
+      setCollapsed(!card.classList.contains("collapsed"));
     });
 
-    toggle.addEventListener("keydown", (event) => {
-      if (event.key === "Enter" || event.key === " ") {
-        event.preventDefault();
-        toggleCard();
+    if (closeBtn) {
+      closeBtn.addEventListener("click", (event) => {
+        event.stopPropagation();
+        setCollapsed(true);
+      });
+    }
+
+    ["projectName", "projectType", "activeProjectSelect"].forEach(id => {
+      const el = document.getElementById(id);
+      if (el) {
+        el.addEventListener("input", updateProjectSettingsSummary);
+        el.addEventListener("change", () => setTimeout(updateProjectSettingsSummary, 0));
       }
     });
 
+    setTimeout(updateProjectSettingsSummary, 80);
+    setTimeout(updateProjectSettingsSummary, 350);
     toggle.dataset.bound = "1";
   }
 
   if (document.readyState === "loading") {
-    document.addEventListener("DOMContentLoaded", initProjectSettingsCollapse);
+    document.addEventListener("DOMContentLoaded", initProjectSettingsButton);
   } else {
-    initProjectSettingsCollapse();
+    initProjectSettingsButton();
   }
 })();
 
