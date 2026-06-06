@@ -14633,120 +14633,89 @@ body.compact-mode .home-redesign-head {
 }
 
 
-/* FORCE: polished collapsible project settings */
-#projectSettingsCard.project-collapsible {
-  overflow: hidden !important;
-  padding: 0 !important;
+
+/* Polished collapsible project settings */
+.project-collapsible {
+  transition:
+    border-color .28s ease,
+    box-shadow .28s ease,
+    background .28s ease,
+    transform .24s ease;
 }
 
-.project-settings-toggle {
-  width: 100%;
-  min-height: 82px;
-  padding: 18px 20px;
-  border: 0;
-  background: transparent;
-  color: white;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 14px;
-  text-align: left;
+.project-collapsible-header {
   cursor: pointer;
+  user-select: none;
+  min-height: 58px;
 }
 
-.project-settings-toggle-left {
-  min-width: 0;
-}
-
-.project-settings-toggle-left h2 {
-  margin: 0;
-  color: white;
-  font-size: 24px;
-  line-height: 1.08;
-  letter-spacing: -.5px;
+.project-collapsible-header:active {
+  transform: scale(.992);
 }
 
 .project-settings-summary {
   margin-top: 7px;
-  color: rgba(245,247,251,.58);
+  color: rgba(245,247,251,.55);
   font-size: 12px;
   line-height: 1.3;
-  font-weight: 850;
+  font-weight: 800;
+  max-width: 260px;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
-  max-width: 270px;
-  transition: opacity .24s ease, transform .24s ease, max-height .24s ease, margin .24s ease;
+  transition: opacity .22s ease, transform .22s ease, max-height .22s ease;
 }
 
-#projectSettingsCard:not(.collapsed) .project-settings-summary {
+.project-collapsible:not(.collapsed) .project-settings-summary {
   opacity: 0;
   transform: translateY(-4px);
   max-height: 0;
   margin-top: 0;
 }
 
-.project-settings-toggle-right {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  flex: 0 0 auto;
-}
-
-.project-settings-toggle-right #openArchiveBtn {
-  position: relative;
-  z-index: 3;
-}
-
 .project-collapse-arrow {
-  width: 42px;
-  height: 42px;
+  width: 34px;
+  height: 34px;
   display: grid;
   place-items: center;
-  border-radius: 16px;
+  border-radius: 13px;
   color: white;
   background:
-    linear-gradient(180deg, rgba(255,255,255,.12), rgba(255,255,255,.04)),
-    rgba(91,140,255,.12);
-  border: 1px solid rgba(255,255,255,.13);
+    linear-gradient(180deg, rgba(255,255,255,.105), rgba(255,255,255,.035)),
+    rgba(91,140,255,.10);
+  border: 1px solid rgba(255,255,255,.12);
   box-shadow:
-    inset 0 1px 0 rgba(255,255,255,.14),
-    0 12px 26px rgba(0,0,0,.20);
-  font-size: 25px;
+    inset 0 1px 0 rgba(255,255,255,.12),
+    0 10px 22px rgba(0,0,0,.18);
+  font-size: 22px;
   font-weight: 1000;
   line-height: 1;
   transform: rotate(180deg);
-  transition: transform .34s cubic-bezier(.16,1,.3,1), background .22s ease;
+  transition:
+    transform .34s cubic-bezier(.16,1,.3,1),
+    background .24s ease,
+    box-shadow .24s ease;
 }
 
-#projectSettingsCard.collapsed .project-collapse-arrow {
+.project-collapsible.collapsed .project-collapse-arrow {
   transform: rotate(0deg);
 }
 
 .project-collapsible-body {
   overflow: hidden;
-  max-height: 1800px;
+  max-height: 1700px;
   opacity: 1;
   transform: translateY(0);
-  padding: 0 20px 20px;
+  margin-top: 2px;
   transition:
     max-height .46s cubic-bezier(.16,1,.3,1),
     opacity .28s ease,
     transform .32s cubic-bezier(.16,1,.3,1),
-    padding .28s ease;
+    margin-top .28s ease;
   will-change: max-height, opacity, transform;
 }
 
-#projectSettingsCard.collapsed .project-collapsible-body {
-  max-height: 0 !important;
-  opacity: 0 !important;
-  transform: translateY(-8px);
-  padding-top: 0 !important;
-  padding-bottom: 0 !important;
-  pointer-events: none;
-}
-
-#projectSettingsCard:not(.collapsed) .project-collapsible-body > * {
+.project-collapsible-body > * {
   animation: projectSettingsBodyIn .36s cubic-bezier(.16,1,.3,1) both;
 }
 
@@ -14763,19 +14732,40 @@ body.compact-mode .home-redesign-head {
   }
 }
 
-#projectSettingsCard.collapsed {
+.project-collapsible.collapsed .project-collapsible-body {
+  max-height: 0;
+  opacity: 0;
+  transform: translateY(-8px);
+  margin-top: 0;
+  pointer-events: none;
+}
+
+.project-collapsible.collapsed {
+  padding-bottom: 18px;
   background:
     radial-gradient(circle at 100% 0%, rgba(91,140,255,.10), transparent 34%),
     linear-gradient(180deg, rgba(255,255,255,.055), rgba(255,255,255,.018)),
-    rgba(16,27,45,.34) !important;
+    rgba(16,27,45,.34);
 }
 
-#projectSettingsCard .field,
-#projectSettingsCard .project-actions-grid,
-#projectSettingsCard .project-save-btn,
-#projectSettingsCard .hint {
-  position: relative;
+.project-collapsible.collapsed .project-setup-head {
+  margin-bottom: 0;
 }
+
+
+.project-collapse-arrow{
+  width:44px;
+  height:44px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  border-radius:50%;
+  background:linear-gradient(135deg, rgba(91,140,255,.28), rgba(124,58,237,.24));
+  border:1px solid rgba(255,255,255,.14);
+  box-shadow:0 10px 24px rgba(91,140,255,.20), inset 0 1px 0 rgba(255,255,255,.18);
+}
+.project-collapse-arrow::before{content:"⌄";font-size:22px;font-weight:900;color:#fff;}
+#projectSettingsCard:not(.collapsed) .project-collapse-arrow{transform:rotate(180deg);}
 
 </style>
 </head>
@@ -15201,6 +15191,7 @@ body.compact-mode .home-redesign-head {
       
 
 
+
       
 
       <div class="pc-next-card" id="pcNextAdvice">
@@ -15258,20 +15249,18 @@ body.compact-mode .home-redesign-head {
       </div>
 
       <div class="project-setup-card project-collapsible collapsed" id="projectSettingsCard">
-
-        <button type="button" class="project-settings-toggle" id="projectSettingsToggle">
-          <div class="project-settings-toggle-left">
-            <div class="pc-kicker">🎛️ НАСТРОЙКА ПРОЕКТА</div>
+<div class="project-setup-head project-collapsible-header" id="projectSettingsToggle" role="button" tabindex="0">
+          <div>
+            <div class="pc-kicker">🎛️ ТИП ПРОЕКТА</div>
             <h2>Настрой проект</h2>
             <div class="project-settings-summary" id="projectSettingsSummary">Активный проект: —</div>
           </div>
-
-          <div class="project-settings-toggle-right">
+          <div class="project-header-actions">
             <button type="button" class="project-icon-btn" id="openArchiveBtn" aria-label="Архив проектов" title="Архив проектов">📂</button>
-            <span class="project-collapse-arrow" id="projectSettingsArrow">⌄</span>
+            <div class="project-setup-icon">🧩</div>
           </div>
-        </button>
-
+            <span class="project-collapse-arrow" id="projectSettingsArrow">⌄</span>
+        </div>
         <div class="project-collapsible-body" id="projectSettingsBody">
 <div class="field">
           <label>Тип проекта</label>
@@ -15306,7 +15295,6 @@ body.compact-mode .home-redesign-head {
       </div>
         </div>
       </div>
-
 
     </section>
 
@@ -17629,6 +17617,12 @@ function renderAnalytics() {
     const nameEl = document.getElementById("projectName");
     if (nameEl) nameEl.value = projectName;
 
+    const summaryEl = document.getElementById("projectSettingsSummary");
+    if (summaryEl) {
+      const typeLabel = config.label || "Проект";
+      summaryEl.textContent = `Активный проект: ${projectName} · ${typeLabel}`;
+    }
+
     updateProjectCategoryOptions();
     renderProjectSelect();
     renderProjectArchive();
@@ -18305,30 +18299,8 @@ document.addEventListener("click", (event) => {
 const archiveModalBackdropClose = true;
 
 
+
 (function(){
-  function updateProjectSettingsSummary(){
-    const summary = document.getElementById("projectSettingsSummary");
-    if (!summary) return;
-
-    const projectNameInput = document.getElementById("projectName");
-    const projectTypeSelect = document.getElementById("projectType");
-    const activeSelect = document.getElementById("activeProjectSelect");
-
-    const activeText = activeSelect && activeSelect.selectedOptions[0]
-      ? activeSelect.selectedOptions[0].textContent.trim()
-      : "";
-
-    const projectName = projectNameInput && projectNameInput.value.trim()
-      ? projectNameInput.value.trim()
-      : activeText || "проект";
-
-    const typeText = projectTypeSelect && projectTypeSelect.selectedOptions[0]
-      ? projectTypeSelect.selectedOptions[0].textContent.trim()
-      : "тип не выбран";
-
-    summary.textContent = `Активный проект: ${projectName} · ${typeText}`;
-  }
-
   function initProjectSettingsCollapse(){
     const card = document.getElementById("projectSettingsCard");
     const toggle = document.getElementById("projectSettingsToggle");
@@ -18354,16 +18326,6 @@ const archiveModalBackdropClose = true;
       }
     });
 
-    ["projectName", "projectType", "activeProjectSelect"].forEach(id => {
-      const el = document.getElementById(id);
-      if (el) {
-        el.addEventListener("input", updateProjectSettingsSummary);
-        el.addEventListener("change", () => setTimeout(updateProjectSettingsSummary, 0));
-      }
-    });
-
-    setTimeout(updateProjectSettingsSummary, 100);
-    setTimeout(updateProjectSettingsSummary, 400);
     toggle.dataset.bound = "1";
   }
 
