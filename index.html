@@ -14633,18 +14633,44 @@ body.compact-mode .home-redesign-head {
 }
 
 
-/* Collapsible project settings */
+
+/* Polished collapsible project settings */
 .project-collapsible {
-  transition: border-color .22s ease, box-shadow .22s ease;
+  transition:
+    border-color .28s ease,
+    box-shadow .28s ease,
+    background .28s ease,
+    transform .24s ease;
 }
 
 .project-collapsible-header {
   cursor: pointer;
   user-select: none;
+  min-height: 58px;
 }
 
 .project-collapsible-header:active {
-  transform: scale(.99);
+  transform: scale(.992);
+}
+
+.project-settings-summary {
+  margin-top: 7px;
+  color: rgba(245,247,251,.55);
+  font-size: 12px;
+  line-height: 1.3;
+  font-weight: 800;
+  max-width: 260px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  transition: opacity .22s ease, transform .22s ease, max-height .22s ease;
+}
+
+.project-collapsible:not(.collapsed) .project-settings-summary {
+  opacity: 0;
+  transform: translateY(-4px);
+  max-height: 0;
+  margin-top: 0;
 }
 
 .project-collapse-arrow {
@@ -14654,40 +14680,72 @@ body.compact-mode .home-redesign-head {
   place-items: center;
   border-radius: 13px;
   color: white;
-  background: rgba(255,255,255,.08);
-  border: 1px solid rgba(255,255,255,.10);
+  background:
+    linear-gradient(180deg, rgba(255,255,255,.105), rgba(255,255,255,.035)),
+    rgba(91,140,255,.10);
+  border: 1px solid rgba(255,255,255,.12);
+  box-shadow:
+    inset 0 1px 0 rgba(255,255,255,.12),
+    0 10px 22px rgba(0,0,0,.18);
   font-size: 22px;
   font-weight: 1000;
   line-height: 1;
-  transition: transform .24s cubic-bezier(.16,1,.3,1), background .2s ease;
+  transform: rotate(180deg);
+  transition:
+    transform .34s cubic-bezier(.16,1,.3,1),
+    background .24s ease,
+    box-shadow .24s ease;
 }
 
 .project-collapsible.collapsed .project-collapse-arrow {
-  transform: rotate(-90deg);
+  transform: rotate(0deg);
 }
 
 .project-collapsible-body {
   overflow: hidden;
-  max-height: 1600px;
+  max-height: 1700px;
   opacity: 1;
   transform: translateY(0);
+  margin-top: 2px;
   transition:
-    max-height .34s cubic-bezier(.16,1,.3,1),
-    opacity .24s ease,
-    transform .24s ease,
-    margin-top .24s ease;
+    max-height .46s cubic-bezier(.16,1,.3,1),
+    opacity .28s ease,
+    transform .32s cubic-bezier(.16,1,.3,1),
+    margin-top .28s ease;
+  will-change: max-height, opacity, transform;
+}
+
+.project-collapsible-body > * {
+  animation: projectSettingsBodyIn .36s cubic-bezier(.16,1,.3,1) both;
+}
+
+@keyframes projectSettingsBodyIn {
+  from {
+    opacity: 0;
+    transform: translateY(-8px) scale(.99);
+    filter: blur(3px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+    filter: blur(0);
+  }
 }
 
 .project-collapsible.collapsed .project-collapsible-body {
   max-height: 0;
   opacity: 0;
-  transform: translateY(-6px);
+  transform: translateY(-8px);
   margin-top: 0;
   pointer-events: none;
 }
 
 .project-collapsible.collapsed {
   padding-bottom: 18px;
+  background:
+    radial-gradient(circle at 100% 0%, rgba(91,140,255,.10), transparent 34%),
+    linear-gradient(180deg, rgba(255,255,255,.055), rgba(255,255,255,.018)),
+    rgba(16,27,45,.34);
 }
 
 .project-collapsible.collapsed .project-setup-head {
@@ -15180,6 +15238,7 @@ body.compact-mode .home-redesign-head {
           <div>
             <div class="pc-kicker">🎛️ ТИП ПРОЕКТА</div>
             <h2>Настрой проект</h2>
+            <div class="project-settings-summary" id="projectSettingsSummary">Активный проект: —</div>
           </div>
           <div class="project-header-actions">
             <button type="button" class="project-icon-btn" id="openArchiveBtn" aria-label="Архив проектов" title="Архив проектов">📂</button>
@@ -17543,6 +17602,12 @@ function renderAnalytics() {
     const nameEl = document.getElementById("projectName");
     if (nameEl) nameEl.value = projectName;
 
+    const summaryEl = document.getElementById("projectSettingsSummary");
+    if (summaryEl) {
+      const typeLabel = config.label || "Проект";
+      summaryEl.textContent = `Активный проект: ${projectName} · ${typeLabel}`;
+    }
+
     updateProjectCategoryOptions();
     renderProjectSelect();
     renderProjectArchive();
@@ -18219,6 +18284,7 @@ document.addEventListener("click", (event) => {
 const archiveModalBackdropClose = true;
 
 
+
 (function(){
   function initProjectSettingsCollapse(){
     const card = document.getElementById("projectSettingsCard");
@@ -18226,18 +18292,18 @@ const archiveModalBackdropClose = true;
     if (!card || !toggle || toggle.dataset.bound === "1") return;
 
     const saved = localStorage.getItem("projectSettingsCollapsed");
-    if (saved === "false") {
-      card.classList.remove("collapsed");
-    } else {
-      card.classList.add("collapsed");
-    }
+    card.classList.toggle("collapsed", saved !== "false");
 
     const toggleCard = () => {
       card.classList.toggle("collapsed");
       localStorage.setItem("projectSettingsCollapsed", String(card.classList.contains("collapsed")));
     };
 
-    toggle.addEventListener("click", toggleCard);
+    toggle.addEventListener("click", (event) => {
+      if (event.target.closest("#openArchiveBtn")) return;
+      toggleCard();
+    });
+
     toggle.addEventListener("keydown", (event) => {
       if (event.key === "Enter" || event.key === " ") {
         event.preventDefault();
