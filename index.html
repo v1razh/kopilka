@@ -14781,6 +14781,11 @@ body.compact-mode .home-redesign-head {
   }
 }
 
+
+.project-settings-modal{position:fixed;inset:0;z-index:9999;display:flex;align-items:center;justify-content:center;background:rgba(0,0,0,.55);backdrop-filter:blur(12px);opacity:0;pointer-events:none;transition:.25s}
+.project-settings-modal.open{opacity:1;pointer-events:auto}
+.project-settings-modal-card{width:min(92vw,560px);max-height:85vh;overflow:auto;border-radius:30px;padding:20px;background:linear-gradient(180deg,rgba(16,27,45,.96),rgba(8,16,28,.98));border:1px solid rgba(255,255,255,.12)}
+
 </style>
 </head>
 <body>
@@ -18389,6 +18394,24 @@ const archiveModalBackdropClose = true;
   }
 })();
 
+
+document.addEventListener('DOMContentLoaded',()=>{
+const btn=document.getElementById('projectSettingsToggle')||document.getElementById('projectSettingsOpenBtn');
+const modal=document.getElementById('projectSettingsModal');
+const close=document.getElementById('closeProjectModal');
+const content=document.getElementById('projectSettingsModalContent');
+const body=document.getElementById('projectSettingsBody');
+if(btn&&modal&&content&&body){
+btn.addEventListener('click',()=>{
+content.innerHTML='';
+content.appendChild(body.cloneNode(true));
+modal.classList.add('open');
+});
+}
+if(close)close.onclick=()=>modal.classList.remove('open');
+if(modal)modal.onclick=(e)=>{if(e.target===modal)modal.classList.remove('open');};
+});
+
 </script>
 
 <script>
@@ -18437,6 +18460,16 @@ const archiveModalBackdropClose = true;
 <button class="small-btn" id="closeArchiveBtn">✕</button>
 </div>
 <div id="projectArchiveList"></div>
+</div>
+</div>
+
+<div id="projectSettingsModal" class="project-settings-modal">
+<div class="project-settings-modal-card">
+<div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:16px">
+<h2 style="margin:0">⚙️ Настройки проекта</h2>
+<button class="small-btn" id="closeProjectModal">✕</button>
+</div>
+<div id="projectSettingsModalContent"></div>
 </div>
 </div>
 </body>
