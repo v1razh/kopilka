@@ -12992,6 +12992,8 @@
   display:none !important;
 }
 
+
+
 /* Fixed compact goal header for non-home tabs */
 .compact-goal-top {
   position: fixed;
@@ -14630,6 +14632,13 @@ body.compact-mode .home-redesign-head {
   letter-spacing: -.5px;
 }
 
+
+.project-collapsible-header{display:flex;align-items:center;justify-content:space-between;gap:12px;cursor:pointer}
+.project-collapse-arrow{font-size:20px;font-weight:900;transition:transform .25s ease}
+.project-collapsible.collapsed .project-collapse-arrow{transform:rotate(-90deg)}
+.project-collapsible-body{overflow:hidden;transition:max-height .3s ease,opacity .25s ease;max-height:2000px;opacity:1}
+.project-collapsible.collapsed .project-collapsible-body{max-height:0;opacity:0}
+
 </style>
 </head>
 <body>
@@ -14780,6 +14789,11 @@ body.compact-mode .home-redesign-head {
       </div>
     </section>
 
+    
+
+
+    
+
     <section id="plan" class="tab-content hidden goal-tab-redesign">
       <div class="goal-tab-hero">
         <div class="goal-tab-top">
@@ -14906,6 +14920,8 @@ body.compact-mode .home-redesign-head {
       </div>
     </section>
 
+
+    
     <section id="analytics" class="tab-content hidden">
       <div class="analysis-main-card analysis-premium-card">
         <div class="analysis-main-head">
@@ -15044,6 +15060,52 @@ body.compact-mode .home-redesign-head {
         </div>
       </div>
 
+      <div class="project-setup-card">
+        <div class="project-setup-head">
+          <div>
+            <div class="pc-kicker">🎛️ ТИП ПРОЕКТА</div>
+            <h2>Настрой проект</h2>
+          </div>
+          <div class="project-header-actions">
+            <button type="button" class="project-icon-btn" id="openArchiveBtn" aria-label="Архив проектов" title="Архив проектов">📂</button>
+            <div class="project-setup-icon">🧩</div>
+          </div>
+        </div>
+
+        <div class="field">
+          <label>Тип проекта</label>
+          <select id="projectType">
+            <option value="pc">ПК / компьютер</option>
+            <option value="car">Автомобиль</option>
+            <option value="phone">Телефон и гаджеты</option>
+            <option value="travel">Путешествие</option>
+            <option value="room">Комната / ремонт</option>
+            <option value="camera">Камера / студия</option>
+            <option value="custom">Свой проект</option>
+          </select>
+        </div>
+
+        <div class="field">
+          <label>Активный проект</label>
+          <select id="activeProjectSelect"></select>
+        </div>
+
+        <div class="project-actions-grid">
+          <button type="button" class="small-btn" id="createProjectBtn">➕ Новый</button>
+          <button type="button" class="small-btn danger-text" id="archiveProjectBtn">✅ Завершить</button>
+        </div>
+
+        <div class="field">
+          <label>Название проекта</label>
+          <input id="projectName" placeholder="Например: ПК мечты" />
+        </div>
+
+        <button class="primary project-save-btn" id="saveProjectSettings">💾 Сохранить проект</button>
+        <p class="hint">Выбирай готовый тип или создай свой проект. Этапы ниже можно называть как угодно.</p>
+      </div>
+
+      
+
       <div class="pc-next-card" id="pcNextAdvice">
         <div class="pc-next-icon">💡</div>
         <div>Добавь этапы, чтобы приложение подсказало следующий шаг проекта.</div>
@@ -15097,51 +15159,6 @@ body.compact-mode .home-redesign-head {
         <button class="primary pc-add-btn" id="addPartBtn">+ Добавить этап проекта</button>
         <p class="hint">Каждый этап считается частью большой цели.</p>
       </div>
-
-      <div class="project-setup-card">
-        <div class="project-setup-head">
-          <div>
-            <div class="pc-kicker">🎛️ НАСТРОЙКА ПРОЕКТА</div>
-            <h2>Настрой проект</h2>
-          </div>
-          <div class="project-header-actions">
-            <button type="button" class="project-icon-btn" id="openArchiveBtn" aria-label="Архив проектов" title="Архив проектов">📂</button>
-            <div class="project-setup-icon">🧩</div>
-          </div>
-        </div>
-
-        <div class="field">
-          <label>Тип проекта</label>
-          <select id="projectType">
-            <option value="pc">ПК / компьютер</option>
-            <option value="car">Автомобиль</option>
-            <option value="phone">Телефон и гаджеты</option>
-            <option value="travel">Путешествие</option>
-            <option value="room">Комната / ремонт</option>
-            <option value="camera">Камера / студия</option>
-            <option value="custom">Свой проект</option>
-          </select>
-        </div>
-
-        <div class="field">
-          <label>Активный проект</label>
-          <select id="activeProjectSelect"></select>
-        </div>
-
-        <div class="project-actions-grid">
-          <button type="button" class="small-btn" id="createProjectBtn">➕ Новый</button>
-          <button type="button" class="small-btn danger-text" id="archiveProjectBtn">✅ Завершить</button>
-        </div>
-
-        <div class="field">
-          <label>Название проекта</label>
-          <input id="projectName" placeholder="Например: ПК мечты" />
-        </div>
-
-        <button class="primary project-save-btn" id="saveProjectSettings">💾 Сохранить проект</button>
-        <p class="hint">Выбирай готовый тип или создай свой проект. Этапы ниже можно называть как угодно.</p>
-      </div>
-
     </section>
 
     <section id="settings" class="tab-content hidden">
@@ -15350,6 +15367,8 @@ body.compact-mode .home-redesign-head {
   </nav>
 
 <script>
+
+
 
   const STORAGE_KEY = "pc-kopilka-v3-salary-plan";
   const OLD_KEYS = ["pc-kopilka-v3", "pc-kopilka-v2", "pc-kopilka-v1"];
@@ -16010,6 +16029,8 @@ setText("todayLimitMain", rub(Math.max(0, salary.dailyLimit || 0)));
     `;
   }
 
+  
+  
   function getRecentPeriodLabel(period) {
     if (period === "week") return "за неделю";
     if (period === "month") return "за месяц";
@@ -16356,6 +16377,9 @@ function renderTransactions() {
     return d;
   }
 
+
+
+
   function getTargetMonthLabel() {
     const value = data.targetMonth || "";
     if (!value || !value.includes("-")) return "цель";
@@ -16527,6 +16551,8 @@ function renderTransactions() {
     `;
   }
 
+
+  
   function getAnalysisPeriodLabel() {
     if (data.analysisPeriod === "week") return "за неделю";
     if (data.analysisPeriod === "all") return "за всё время";
@@ -17137,6 +17163,8 @@ function renderAnalytics() {
       panel.classList.toggle("hidden", panel.id !== tabId);
     });
   }
+
+
 
   function normalizeProjects() {
     if (!Array.isArray(data.projects)) data.projects = [];
@@ -17855,6 +17883,8 @@ document.querySelectorAll(".nav-btn").forEach(x => {
     }
   }
 
+
+
   const operationTypeSelect = document.getElementById("type");
   if (operationTypeSelect) {
     operationTypeSelect.addEventListener("change", updateCategoryOptions);
@@ -18062,6 +18092,10 @@ document.getElementById("openAddSheet").addEventListener("click", openAddSheet);
   }
   document.addEventListener("DOMContentLoaded", () => setTimeout(updateGoalFirstHomeFallback, 150));
 
+
+
+
+
   function updateCompactGoalHeader(activeTab) {
     const compact = document.getElementById("compactGoalTop");
     if (!compact) return;
@@ -18120,6 +18154,24 @@ document.addEventListener("click", (event) => {
   if (event.target === modal) closeArchiveModal();
 });
 const archiveModalBackdropClose = true;
+
+
+document.addEventListener('DOMContentLoaded',()=>{
+ const card=document.querySelector('.project-setup-card');
+ const toggle=document.getElementById('projectSettingsToggle');
+ const body=document.querySelector('.project-collapsible-body');
+ if(!card||!toggle||!body)return;
+
+ const collapsed=localStorage.getItem('projectSettingsCollapsed');
+ if(collapsed!=='false'){
+   card.classList.add('collapsed');
+ }
+
+ toggle.addEventListener('click',()=>{
+   card.classList.toggle('collapsed');
+   localStorage.setItem('projectSettingsCollapsed', String(!card.classList.contains('collapsed')));
+ });
+});
 
 </script>
 
