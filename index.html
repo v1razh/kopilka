@@ -14786,6 +14786,38 @@ body.compact-mode .home-redesign-head {
 .project-settings-modal.open{opacity:1;pointer-events:auto}
 .project-settings-modal-card{width:min(92vw,560px);max-height:85vh;overflow:auto;border-radius:30px;padding:20px;background:linear-gradient(180deg,rgba(16,27,45,.96),rgba(8,16,28,.98));border:1px solid rgba(255,255,255,.12)}
 
+
+/* Project settings modal-only fix */
+.project-settings-open-chevron {
+  display: none !important;
+}
+
+.project-settings-open-btn {
+  grid-template-columns: auto 1fr !important;
+}
+
+#projectSettingsCard .project-collapsible-body {
+  display: none !important;
+  max-height: 0 !important;
+  opacity: 0 !important;
+  padding: 0 !important;
+  margin: 0 !important;
+  pointer-events: none !important;
+}
+
+#projectSettingsModal #projectSettingsBody {
+  display: block !important;
+  max-height: none !important;
+  opacity: 1 !important;
+  padding: 0 !important;
+  margin: 0 !important;
+  pointer-events: auto !important;
+}
+
+body.project-modal-open {
+  overflow: hidden !important;
+}
+
 </style>
 </head>
 <body>
@@ -15274,7 +15306,7 @@ body.compact-mode .home-redesign-head {
             <strong>Настройки проекта</strong>
             <small id="projectSettingsSummary">Активный проект: —</small>
           </span>
-          <span class="project-settings-open-chevron">›</span>
+          
         </button>
 
         <div class="project-collapsible-body" id="projectSettingsBody">
@@ -18411,6 +18443,127 @@ modal.classList.add('open');
 if(close)close.onclick=()=>modal.classList.remove('open');
 if(modal)modal.onclick=(e)=>{if(e.target===modal)modal.classList.remove('open');};
 });
+
+
+(function(){
+  let originalParent = null;
+  let originalNextSibling = null;
+
+  function updateProjectSettingsSummaryFixed(){
+    const summary = document.getElementById("projectSettingsSummary");
+    if (!summary) return;
+
+    const projectNameInput = document.getElementById("projectName");
+    const projectTypeSelect = document.getElementById("projectType");
+    const activeSelect = document.getElementById("activeProjectSelect");
+
+    const activeText = activeSelect && activeSelect.selectedOptions[0]
+      ? activeSelect.selectedOptions[0].textContent.trim()
+      : "";
+
+    const projectName = projectNameInput && projectNameInput.value.trim()
+      ? projectNameInput.value.trim()
+      : activeText || "проект";
+
+    const typeText = projectTypeSelect && projectTypeSelect.selectedOptions[0]
+      ? projectTypeSelect.selectedOptions[0].textContent.trim()
+      : "тип не выбран";
+
+    summary.textContent = `Активный проект: ${projectName} · ${typeText}`;
+  }
+
+  function openProjectSettingsModalFixed(event){
+    if (event) {
+      event.preventDefault();
+      event.stopPropagation();
+      event.stopImmediatePropagation();
+    }
+
+    const card = document.getElementById("projectSettingsCard");
+    const modal = document.getElementById("projectSettingsModal");
+    const content = document.getElementById("projectSettingsModalContent");
+    const body = document.getElementById("projectSettingsBody");
+
+    if (card) card.classList.add("collapsed");
+    if (!modal || !content || !body) return;
+
+    if (!originalParent) {
+      originalParent = body.parentNode;
+      originalNextSibling = body.nextSibling;
+    }
+
+    content.innerHTML = "";
+    content.appendChild(body);
+
+    modal.classList.add("open");
+    document.body.classList.add("project-modal-open");
+    updateProjectSettingsSummaryFixed();
+  }
+
+  function closeProjectSettingsModalFixed(event){
+    if (event) {
+      event.preventDefault();
+      event.stopPropagation();
+    }
+
+    const modal = document.getElementById("projectSettingsModal");
+    const body = document.getElementById("projectSettingsBody");
+
+    if (modal) modal.classList.remove("open");
+    document.body.classList.remove("project-modal-open");
+
+    if (body && originalParent) {
+      if (originalNextSibling) {
+        originalParent.insertBefore(body, originalNextSibling);
+      } else {
+        originalParent.appendChild(body);
+      }
+    }
+
+    updateProjectSettingsSummaryFixed();
+  }
+
+  function initProjectSettingsModalOnly(){
+    const btn = document.getElementById("projectSettingsToggle") || document.getElementById("projectSettingsOpenBtn");
+    const modal = document.getElementById("projectSettingsModal");
+    const close = document.getElementById("closeProjectModal");
+
+    if (btn && btn.dataset.modalOnlyBound !== "1") {
+      btn.addEventListener("click", openProjectSettingsModalFixed, true);
+      btn.dataset.modalOnlyBound = "1";
+    }
+
+    if (close && close.dataset.modalOnlyBound !== "1") {
+      close.addEventListener("click", closeProjectSettingsModalFixed, true);
+      close.dataset.modalOnlyBound = "1";
+    }
+
+    if (modal && modal.dataset.modalOnlyBound !== "1") {
+      modal.addEventListener("click", (event) => {
+        if (event.target === modal) closeProjectSettingsModalFixed(event);
+      }, true);
+      modal.dataset.modalOnlyBound = "1";
+    }
+
+    ["projectName", "projectType", "activeProjectSelect"].forEach(id => {
+      const el = document.getElementById(id);
+      if (el && el.dataset.summaryFixedBound !== "1") {
+        el.addEventListener("input", updateProjectSettingsSummaryFixed);
+        el.addEventListener("change", () => setTimeout(updateProjectSettingsSummaryFixed, 0));
+        el.dataset.summaryFixedBound = "1";
+      }
+    });
+
+    setTimeout(updateProjectSettingsSummaryFixed, 100);
+    setTimeout(updateProjectSettingsSummaryFixed, 400);
+  }
+
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", initProjectSettingsModalOnly);
+  } else {
+    initProjectSettingsModalOnly();
+  }
+})();
 
 </script>
 
