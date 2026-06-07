@@ -14782,12 +14782,7 @@ body.compact-mode .home-redesign-head {
 }
 
 
-.project-settings-modal{position:fixed;inset:0;z-index:9999;display:flex;align-items:center;justify-content:center;background:rgba(0,0,0,.55);backdrop-filter:blur(12px);opacity:0;pointer-events:none;transition:.25s}
-.project-settings-modal.open{opacity:1;pointer-events:auto}
-.project-settings-modal-card{width:min(92vw,560px);max-height:85vh;overflow:auto;border-radius:30px;padding:20px;background:linear-gradient(180deg,rgba(16,27,45,.96),rgba(8,16,28,.98));border:1px solid rgba(255,255,255,.12)}
-
-
-/* Project settings modal-only fix */
+/* Project settings as real modal window */
 .project-settings-open-chevron {
   display: none !important;
 }
@@ -14796,22 +14791,81 @@ body.compact-mode .home-redesign-head {
   grid-template-columns: auto 1fr !important;
 }
 
-#projectSettingsCard .project-collapsible-body {
-  display: none !important;
-  max-height: 0 !important;
-  opacity: 0 !important;
+#projectSettingsCard {
   padding: 0 !important;
-  margin: 0 !important;
-  pointer-events: none !important;
 }
 
-#projectSettingsModal #projectSettingsBody {
-  display: block !important;
-  max-height: none !important;
-  opacity: 1 !important;
+#projectSettingsCard .project-collapsible-body {
+  display: none !important;
+}
+
+.project-settings-modal {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 18px;
+  background: rgba(0,0,0,.58);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  transition: opacity .26s cubic-bezier(.16,1,.3,1), visibility .26s ease;
+}
+
+.project-settings-modal.open {
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+}
+
+.project-settings-modal-card {
+  width: min(100%, 560px);
+  max-height: 84vh;
+  overflow: auto;
+  border-radius: 32px;
+  padding: 20px;
+  background:
+    radial-gradient(circle at 100% 0%, rgba(91,140,255,.18), transparent 36%),
+    linear-gradient(180deg, rgba(255,255,255,.10), rgba(255,255,255,.035)),
+    rgba(13,26,44,.96);
+  border: 1px solid rgba(255,255,255,.14);
+  box-shadow:
+    0 30px 90px rgba(0,0,0,.62),
+    inset 0 1px 0 rgba(255,255,255,.16);
+  transform: translateY(18px) scale(.96);
+  transition: transform .32s cubic-bezier(.16,1,.3,1);
+}
+
+.project-settings-modal.open .project-settings-modal-card,
+.project-settings-modal.open > .project-settings-modal-card {
+  transform: translateY(0) scale(1);
+}
+
+.project-settings-modal-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 16px;
+}
+
+.project-settings-modal-head h2 {
+  margin: 0;
+  font-size: 25px;
+  line-height: 1.08;
+  letter-spacing: -.5px;
+}
+
+.project-settings-modal-close {
+  width: 42px;
+  height: 42px;
   padding: 0 !important;
-  margin: 0 !important;
-  pointer-events: auto !important;
+  border-radius: 16px !important;
+  font-size: 18px;
 }
 
 body.project-modal-open {
@@ -15309,46 +15363,8 @@ body.project-modal-open {
           
         </button>
 
-        <div class="project-collapsible-body" id="projectSettingsBody">
-          <div class="project-settings-expanded-head">
-            <div>
-              <div class="pc-kicker">⚙️ ПАРАМЕТРЫ</div>
-              <h2>Настрой проект</h2>
-            </div>
-            <button type="button" class="project-settings-close-btn" id="projectSettingsCloseBtn">Свернуть</button>
-          </div>
+        
 
-<div class="field">
-          <label>Тип проекта</label>
-          <select id="projectType">
-            <option value="pc">ПК / компьютер</option>
-            <option value="car">Автомобиль</option>
-            <option value="phone">Телефон и гаджеты</option>
-            <option value="travel">Путешествие</option>
-            <option value="room">Комната / ремонт</option>
-            <option value="camera">Камера / студия</option>
-            <option value="custom">Свой проект</option>
-          </select>
-        </div>
-
-        <div class="field">
-          <label>Активный проект</label>
-          <select id="activeProjectSelect"></select>
-        </div>
-
-        <div class="project-actions-grid">
-          <button type="button" class="small-btn" id="createProjectBtn">➕ Новый</button>
-          <button type="button" class="small-btn danger-text" id="archiveProjectBtn">✅ Завершить</button>
-        </div>
-
-        <div class="field">
-          <label>Название проекта</label>
-          <input id="projectName" placeholder="Например: ПК мечты" />
-        </div>
-
-        <button class="primary project-save-btn" id="saveProjectSettings">💾 Сохранить проект</button>
-        <p class="hint">Выбирай готовый тип или создай свой проект. Этапы ниже можно называть как угодно.</p>
-      </div>
         </div>
       </div>
 
@@ -15558,6 +15574,59 @@ body.project-modal-open {
     <button class="nav-btn" data-tab="plan"><span>🎯</span>Цель</button>
     <button class="nav-btn icon-only" data-tab="settings" aria-label="Настройки" title="Настройки"><span>⚙️</span></button>
   </nav>
+
+
+<div id="projectSettingsModal" class="project-settings-modal">
+  <div class="project-settings-modal-card">
+    <div class="project-settings-modal-head">
+      <div>
+        <div class="pc-kicker">⚙️ НАСТРОЙКИ ПРОЕКТА</div>
+        <h2>Настрой проект</h2>
+      </div>
+      <button type="button" class="project-settings-modal-close small-btn" id="closeProjectModal">✕</button>
+    </div>
+    <div class="project-collapsible-body" id="projectSettingsBody">
+          <div class="project-settings-expanded-head">
+            <div>
+              <div class="pc-kicker">⚙️ ПАРАМЕТРЫ</div>
+              <h2>Настрой проект</h2>
+            </div>
+            <button type="button" class="project-settings-close-btn" id="projectSettingsCloseBtn">Свернуть</button>
+          </div>
+
+<div class="field">
+          <label>Тип проекта</label>
+          <select id="projectType">
+            <option value="pc">ПК / компьютер</option>
+            <option value="car">Автомобиль</option>
+            <option value="phone">Телефон и гаджеты</option>
+            <option value="travel">Путешествие</option>
+            <option value="room">Комната / ремонт</option>
+            <option value="camera">Камера / студия</option>
+            <option value="custom">Свой проект</option>
+          </select>
+        </div>
+
+        <div class="field">
+          <label>Активный проект</label>
+          <select id="activeProjectSelect"></select>
+        </div>
+
+        <div class="project-actions-grid">
+          <button type="button" class="small-btn" id="createProjectBtn">➕ Новый</button>
+          <button type="button" class="small-btn danger-text" id="archiveProjectBtn">✅ Завершить</button>
+        </div>
+
+        <div class="field">
+          <label>Название проекта</label>
+          <input id="projectName" placeholder="Например: ПК мечты" />
+        </div>
+
+        <button class="primary project-save-btn" id="saveProjectSettings">💾 Сохранить проект</button>
+        <p class="hint">Выбирай готовый тип или создай свой проект. Этапы ниже можно называть как угодно.</p>
+      </div>
+  </div>
+</div>
 
 <script>
 
@@ -18357,8 +18426,9 @@ const archiveModalBackdropClose = true;
 
 
 
+
 (function(){
-  function updateProjectSettingsSummary(){
+  function updateProjectSettingsSummaryModal(){
     const summary = document.getElementById("projectSettingsSummary");
     if (!summary) return;
 
@@ -18381,98 +18451,7 @@ const archiveModalBackdropClose = true;
     summary.textContent = `Активный проект: ${projectName} · ${typeText}`;
   }
 
-  function initProjectSettingsButton(){
-    const card = document.getElementById("projectSettingsCard");
-    const toggle = document.getElementById("projectSettingsToggle");
-    const closeBtn = document.getElementById("projectSettingsCloseBtn");
-    if (!card || !toggle || toggle.dataset.bound === "1") return;
-
-    const saved = localStorage.getItem("projectSettingsCollapsed");
-    card.classList.toggle("collapsed", saved !== "false");
-
-    const setCollapsed = (value) => {
-      card.classList.toggle("collapsed", value);
-      localStorage.setItem("projectSettingsCollapsed", String(value));
-    };
-
-    toggle.addEventListener("click", () => {
-      setCollapsed(!card.classList.contains("collapsed"));
-    });
-
-    if (closeBtn) {
-      closeBtn.addEventListener("click", (event) => {
-        event.stopPropagation();
-        setCollapsed(true);
-      });
-    }
-
-    ["projectName", "projectType", "activeProjectSelect"].forEach(id => {
-      const el = document.getElementById(id);
-      if (el) {
-        el.addEventListener("input", updateProjectSettingsSummary);
-        el.addEventListener("change", () => setTimeout(updateProjectSettingsSummary, 0));
-      }
-    });
-
-    setTimeout(updateProjectSettingsSummary, 80);
-    setTimeout(updateProjectSettingsSummary, 350);
-    toggle.dataset.bound = "1";
-  }
-
-  if (document.readyState === "loading") {
-    document.addEventListener("DOMContentLoaded", initProjectSettingsButton);
-  } else {
-    initProjectSettingsButton();
-  }
-})();
-
-
-document.addEventListener('DOMContentLoaded',()=>{
-const btn=document.getElementById('projectSettingsToggle')||document.getElementById('projectSettingsOpenBtn');
-const modal=document.getElementById('projectSettingsModal');
-const close=document.getElementById('closeProjectModal');
-const content=document.getElementById('projectSettingsModalContent');
-const body=document.getElementById('projectSettingsBody');
-if(btn&&modal&&content&&body){
-btn.addEventListener('click',()=>{
-content.innerHTML='';
-content.appendChild(body.cloneNode(true));
-modal.classList.add('open');
-});
-}
-if(close)close.onclick=()=>modal.classList.remove('open');
-if(modal)modal.onclick=(e)=>{if(e.target===modal)modal.classList.remove('open');};
-});
-
-
-(function(){
-  let originalParent = null;
-  let originalNextSibling = null;
-
-  function updateProjectSettingsSummaryFixed(){
-    const summary = document.getElementById("projectSettingsSummary");
-    if (!summary) return;
-
-    const projectNameInput = document.getElementById("projectName");
-    const projectTypeSelect = document.getElementById("projectType");
-    const activeSelect = document.getElementById("activeProjectSelect");
-
-    const activeText = activeSelect && activeSelect.selectedOptions[0]
-      ? activeSelect.selectedOptions[0].textContent.trim()
-      : "";
-
-    const projectName = projectNameInput && projectNameInput.value.trim()
-      ? projectNameInput.value.trim()
-      : activeText || "проект";
-
-    const typeText = projectTypeSelect && projectTypeSelect.selectedOptions[0]
-      ? projectTypeSelect.selectedOptions[0].textContent.trim()
-      : "тип не выбран";
-
-    summary.textContent = `Активный проект: ${projectName} · ${typeText}`;
-  }
-
-  function openProjectSettingsModalFixed(event){
+  function openProjectSettingsModal(event){
     if (event) {
       event.preventDefault();
       event.stopPropagation();
@@ -18481,81 +18460,60 @@ if(modal)modal.onclick=(e)=>{if(e.target===modal)modal.classList.remove('open');
 
     const card = document.getElementById("projectSettingsCard");
     const modal = document.getElementById("projectSettingsModal");
-    const content = document.getElementById("projectSettingsModalContent");
-    const body = document.getElementById("projectSettingsBody");
-
     if (card) card.classList.add("collapsed");
-    if (!modal || !content || !body) return;
-
-    if (!originalParent) {
-      originalParent = body.parentNode;
-      originalNextSibling = body.nextSibling;
-    }
-
-    content.innerHTML = "";
-    content.appendChild(body);
+    if (!modal) return;
 
     modal.classList.add("open");
     document.body.classList.add("project-modal-open");
-    updateProjectSettingsSummaryFixed();
+    updateProjectSettingsSummaryModal();
   }
 
-  function closeProjectSettingsModalFixed(event){
+  function closeProjectSettingsModal(event){
     if (event) {
       event.preventDefault();
       event.stopPropagation();
+      event.stopImmediatePropagation();
     }
 
     const modal = document.getElementById("projectSettingsModal");
-    const body = document.getElementById("projectSettingsBody");
-
     if (modal) modal.classList.remove("open");
     document.body.classList.remove("project-modal-open");
-
-    if (body && originalParent) {
-      if (originalNextSibling) {
-        originalParent.insertBefore(body, originalNextSibling);
-      } else {
-        originalParent.appendChild(body);
-      }
-    }
-
-    updateProjectSettingsSummaryFixed();
+    updateProjectSettingsSummaryModal();
   }
 
   function initProjectSettingsModalOnly(){
     const btn = document.getElementById("projectSettingsToggle") || document.getElementById("projectSettingsOpenBtn");
-    const modal = document.getElementById("projectSettingsModal");
     const close = document.getElementById("closeProjectModal");
+    const modal = document.getElementById("projectSettingsModal");
 
     if (btn && btn.dataset.modalOnlyBound !== "1") {
-      btn.addEventListener("click", openProjectSettingsModalFixed, true);
+      btn.addEventListener("click", openProjectSettingsModal, true);
       btn.dataset.modalOnlyBound = "1";
     }
 
     if (close && close.dataset.modalOnlyBound !== "1") {
-      close.addEventListener("click", closeProjectSettingsModalFixed, true);
+      close.addEventListener("click", closeProjectSettingsModal, true);
       close.dataset.modalOnlyBound = "1";
     }
 
     if (modal && modal.dataset.modalOnlyBound !== "1") {
       modal.addEventListener("click", (event) => {
-        if (event.target === modal) closeProjectSettingsModalFixed(event);
+        if (event.target === modal) closeProjectSettingsModal(event);
       }, true);
       modal.dataset.modalOnlyBound = "1";
     }
 
     ["projectName", "projectType", "activeProjectSelect"].forEach(id => {
       const el = document.getElementById(id);
-      if (el && el.dataset.summaryFixedBound !== "1") {
-        el.addEventListener("input", updateProjectSettingsSummaryFixed);
-        el.addEventListener("change", () => setTimeout(updateProjectSettingsSummaryFixed, 0));
-        el.dataset.summaryFixedBound = "1";
+      if (el && el.dataset.summaryModalBound !== "1") {
+        el.addEventListener("input", updateProjectSettingsSummaryModal);
+        el.addEventListener("change", () => setTimeout(updateProjectSettingsSummaryModal, 0));
+        el.dataset.summaryModalBound = "1";
       }
     });
 
-    setTimeout(updateProjectSettingsSummaryFixed, 100);
-    setTimeout(updateProjectSettingsSummaryFixed, 400);
+    setTimeout(updateProjectSettingsSummaryModal, 100);
+    setTimeout(updateProjectSettingsSummaryModal, 500);
   }
 
   if (document.readyState === "loading") {
@@ -18613,16 +18571,6 @@ if(modal)modal.onclick=(e)=>{if(e.target===modal)modal.classList.remove('open');
 <button class="small-btn" id="closeArchiveBtn">✕</button>
 </div>
 <div id="projectArchiveList"></div>
-</div>
-</div>
-
-<div id="projectSettingsModal" class="project-settings-modal">
-<div class="project-settings-modal-card">
-<div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:16px">
-<h2 style="margin:0">⚙️ Настройки проекта</h2>
-<button class="small-btn" id="closeProjectModal">✕</button>
-</div>
-<div id="projectSettingsModalContent"></div>
 </div>
 </div>
 </body>
